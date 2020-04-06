@@ -1,0 +1,106 @@
+@keyframes fade-in-out {
+  0%   { opacity: 0; }
+  13%  { opacity: 1; }
+  87%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+
+
+.motion{
+  @include atom(var) {
+    @include atom(animation, transition) {
+      $group: $atom;
+
+      @include atom(duration, delay) {
+        @include variant-timings {
+          --#{$group}--#{$atom}: #{$variant-timing};
+        }
+      }
+
+      @include atom(curve) {
+        @include variant-easings {
+          --#{$group}--#{$atom}: #{$variant-easing};
+        }
+      }
+    }
+
+    @include atom(animation) {
+      @include variant(fade-in-out) {
+        --animation--name: #{$variant};
+      }
+    }
+
+    @include atom(transition) {
+      @include atom(backdrop-filter, backdrop-filter, bottom, left, opacity, right, top, visibility) {
+        $attribute: $atom;
+
+        @include variant(duration, delay) {
+          $property: $variant;
+          @include variant-timings {
+            --transition--#{$attribute}--#{$property}: #{$variant-timing};
+          }
+        }
+
+        @include variant(curve) {
+          $property: $variant;
+
+          @include variant-easings {
+            --transition--#{$attribute}--#{$property}: #{$variant-easing};
+          }
+        }
+      }
+    }
+  }
+
+  @include atom(animation) {
+    animation-name:             var(--animation--name);
+    animation-delay:            var(--animation--delay, 0ms);
+    animation-duration:         var(--animation--duration, 0ms);
+    animation-timing-function:  var(--animation--curve, linear);
+
+
+    @include variant(paused, running) {
+      animation-play-state:     #{$variant};
+    }
+  }
+
+  @include atom(transition) {
+    transition-property:        -webkit-backdrop-filter,
+                                backdrop-filter,
+                                bottom,
+                                left,
+                                opacity,
+                                right,
+                                top,
+                                visibility
+                                ;
+    transition-delay:           var(--transition--backdrop-filter--delay, var(--transition--delay, 0ms)),
+                                var(--transition--backdrop-filter--delay, var(--transition--delay, 0ms)),
+                                var(--transition--bottom--delay,          var(--transition--delay, 0ms)),
+                                var(--transition--left--delay,            var(--transition--delay, 0ms)),
+                                var(--transition--opacity--delay,         var(--transition--delay, 0ms)),
+                                var(--transition--right--delay,           var(--transition--delay, 0ms)),
+                                var(--transition--top--delay,             var(--transition--delay, 0ms)),
+                                var(--transition--visibility--delay,      var(--transition--delay, 0ms))
+                                ;
+    transition-duration:        var(--transition--backdrop-filter--duration, var(--transition--duration, 0ms)),
+                                var(--transition--backdrop-filter--duration, var(--transition--duration, 0ms)),
+                                var(--transition--bottom--duration,          var(--transition--duration, 0ms)),
+                                var(--transition--left--duration,            var(--transition--duration, 0ms)),
+                                var(--transition--opacity--duration,         var(--transition--duration, 0ms)),
+                                var(--transition--right--duration,           var(--transition--duration, 0ms)),
+                                var(--transition--top--duration,             var(--transition--duration, 0ms)),
+                                var(--transition--visibility--duration,      var(--transition--duration, 0ms))
+                                ;
+    transition-timing-function: var(--transition--backdrop-filter--curve, var(--transition--curve, linear)),
+                                var(--transition--backdrop-filter--curve, var(--transition--curve, linear)),
+                                var(--transition--bottom--curve,          var(--transition--curve, linear)),
+                                var(--transition--left--curve,            var(--transition--curve, linear)),
+                                var(--transition--opacity--curve,         var(--transition--curve, linear)),
+                                var(--transition--right--curve,           var(--transition--curve, linear)),
+                                var(--transition--top--curve,             var(--transition--curve, linear)),
+                                var(--transition--visibility--curve,      var(--transition--curve, linear))
+                                ;
+  }
+}

@@ -1,0 +1,106 @@
+%__disable--touch {
+  -webkit-touch-callout: none; // This is the long-press on iOS. Fine for links; bad for images.
+}
+
+
+
+%__disable--interaction {
+  @at-root {
+    img#{&} { // Specificity for images.
+      @extend %__disable--drag-select; // TODO This extends from links, @use will resolve.
+      @extend %__disable--touch;
+    }
+  }
+}
+
+
+
+.picture {
+  align-items:     var(--picture--align-items, flex-start);
+  display:         flex;
+  flex-direction:  column;
+  height:          100%;
+  justify-content: var(--picture--justify-content, flex-start);
+  position:        relative;
+  width:           100%;
+
+  @include variant(center) {
+    @extend #{$variant-parent};
+
+    --picture--align-items:     center;
+    --picture--justify-content: center;
+  }
+
+  @include atom(image) {
+    @extend %__disable--interaction;
+
+    $height-fallback: 100%;
+    $width-fallback: 100%;
+
+    $height-fallback--nonmobile: ();
+    $width-fallback--nonmobile: ();
+
+    // Allow for breakpoint-specific overrides. This should probably be a mixin!
+    @include atom-breakpoints {
+      & {
+        $height-fallback--append: (); // Internal lists.
+        $width-fallback--append: ();
+
+        @if str-index(#{$atom-breakpoint}, "tall") { // Will only match on the last run-through.
+          $height-fallback--append: join($height-fallback--nonmobile, __css-var(#{$atom-breakpoint}--picture--max-height));
+          $width-fallback--append:  join($width-fallback--nonmobile, __css-var(#{$atom-breakpoint}--picture--max-width));
+        }
+        @else if str-index(#{$atom-breakpoint}, "landscape") and str-index(#{$atom-breakpoint}, "nonmobile") { // Landscape and nonmobile.
+          $height-fallback--nonmobile: append($height-fallback--nonmobile, __css-var(#{$atom-breakpoint}--picture--max-height), $separator: comma);
+          $width-fallback--nonmobile:  append($width-fallback--nonmobile, __css-var(#{$atom-breakpoint}--picture--max-width), $separator: comma);
+
+          $height-fallback--append: $height-fallback--nonmobile;
+          $width-fallback--append: $width-fallback--nonmobile;
+        }
+        @else if str-index(#{$atom-breakpoint}, "landscape") { // Just landscape.
+          $height-fallback: append($height-fallback, __css-var(#{$atom-breakpoint}--picture--max-height), $separator: comma);
+          $width-fallback:  append($width-fallback, __css-var(#{$atom-breakpoint}--picture--max-width), $separator: comma);
+        }
+        @else if str-index(#{$atom-breakpoint}, "nonmobile") or length($height-fallback--nonmobile) > 0 { // In first nonmobile, or subsequent.
+          $height-fallback--nonmobile: append($height-fallback--nonmobile, __css-var(#{$atom-breakpoint}--picture--max-height), $separator: comma);
+          $width-fallback--nonmobile:  append($width-fallback--nonmobile, __css-var(#{$atom-breakpoint}--picture--max-width), $separator: comma);
+
+          $height-fallback--append: $height-fallback--nonmobile;
+          $width-fallback--append: $width-fallback--nonmobile;
+        }
+        @else { // Otherwise we must be in mobile.
+          $height-fallback: append($height-fallback, __css-var(#{$atom-breakpoint}--picture--max-height), $separator: comma);
+          $width-fallback:  append($width-fallback, __css-var(#{$atom-breakpoint}--picture--max-width), $separator: comma);
+        }
+
+        max-height: #{__fallback-list(join($height-fallback, $height-fallback--append))};
+        max-width:  #{__fallback-list(join($width-fallback, $width-fallback--append))};
+
+        @if not $breakpoint { // Only mobile/base, shared across.
+          position: static;
+        }
+      }
+    }
+
+    @include variant(crop) {
+      @extend %__disable--interaction;
+
+      height: 100%;
+      object-fit: cover;
+      width:  100%;
+      object-position: center var(--picture--object-position--y, center);
+
+      @include variant(top) {
+        @extend #{$variant-parent};
+
+        --picture--object-position--y: 20%;
+      }
+
+      @include variant(bottom) {
+        @extend #{$variant-parent};
+
+        --picture--object-position--y: 80%;
+      }
+    }
+  }
+}

@@ -1,0 +1,489 @@
+$sans-cap-height:         0.75; // Inherent to MoMA Sans. In em.
+$sans-x-height:           0.559;
+
+$sans-shoulder:               1 - $sans-cap-height; // Remainder/overhang.
+$sans-shoulder--bottom:       0.105; // Vertical centering in Chrome’s bounding box. Safari is “close enough”.
+$sans-shoulder--top:          $sans-shoulder - $sans-shoulder--bottom; // Remainder above.
+
+$sans-shift--cap:         $sans-shoulder / 2; // For centering on caps.
+$sans-shift--x:           (1 - $sans-x-height) / 2; // On x-height.
+
+$sans-size-conversion:    0.1rem; // Rem conversion. No Math!
+$sans-spacing-conversion: 0.001em; // Convert from Adobe tracking points (thousandths-of-an-em).
+
+
+
+// Variable cascade control.
+@mixin type-variable($variable, $value) {
+  #{$variable}: $value;
+
+  & [class*="typography"] { // Resets/clears for descendents, since they should all share the same value.
+    #{$variable}--previous: initial;
+  }
+
+  & + [class*="typography"] { // Makes value available to succeeding elements.
+    #{$variable}--previous: $value;
+
+    & [class*="typography"] { // But not their descendents.
+      #{$variable}--previous: initial;
+    }
+  }
+
+  @include __icon-aliasing($variable, $value);
+}
+
+
+
+@mixin __icon-aliasing($variable, $value) {
+  $icon-shift--lower: 16;
+  $icon-shift--upper: 24;
+
+  // Only for smaller size variables. (All these shenanigans are just for more-efficient compiled CSS.)
+  @if $variable == "--typography--size" and $value >= $icon-shift--lower and $value <= $icon-shift--upper {
+    @if type-of($variant) == "string" { // Named sizes have their own/internal breakpoints.
+      @if $breakpoint == null { // Match to mobile.
+        @extend %__typography--icon-aliasing;
+        @extend %__typography--icon-aliasing--high;
+      }
+      @else { // Match to nonmobile.
+        @extend %__#{$breakpoint-prefix}nonmobile#{$breakpoint-delimiter}typography--icon-aliasing;
+      }
+    }
+    @else {
+      @if $breakpoint == null { // First call, outside media query.
+        @include atom-breakpoints {
+          .#{$atom-breakpoint}#{strip-selector(&)} {
+            @extend %__#{$atom-breakpoint}typography--icon-aliasing; // Match to media-query-specific extends, below.
+
+            @if str-index(#{$atom-breakpoint}, "nonmobile") == null {
+              @extend %__#{$atom-breakpoint}typography--icon-aliasing--high; // Even higher densities for mobile.
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin __baseline-spacing($variant-name: --typography--padding--top, $leading-shoulder: add) {
+  @extend %__#{$atom-breakpoint}typography--spacing--variables;
+
+  $suffix: "";
+
+  @if $variant-name != --typography--padding--top { // Default for typgraphy elements.
+    $suffix: --#{$variant-name};
+  }
+
+  --typography--baseline-count#{$suffix}: #{$variant-count};
+
+  @if $leading-shoulder == add {
+    #{$variant-name}: calc((var(--typography--line-height--spacing) * var(--typography--baseline-count#{$suffix})) + (var(--typography--leading-shoulder))); // Add the leading/shoulder.
+  }
+  @else if $leading-shoulder == subtract {
+    #{$variant-name}: calc((var(--typography--line-height--spacing) * var(--typography--baseline-count#{$suffix})) - (var(--typography--leading-shoulder))); // Subtract it.
+  }
+  @else if $leading-shoulder == none {
+    #{$variant-name}: calc(var(--typography--line-height--spacing) * var(--typography--baseline-count#{$suffix})); // Exact.
+  }
+}
+
+
+
+// Defaults applied at root: bold, set solid.
+:root {
+  --typography--leading:            1;   // Explicit fallbacks/base.
+  --typography--size:               10;
+
+  --typography--descender--clear:   100; // Distance decender exceeds the bounding box.
+  --typography--icon--space:        444; // Two spaces between two uppercase “M”, for icon separation.
+  --typography--icon--stroke:       149; // Thickness of right-arrow icon stem.
+  --typography--inset--left:       -64;  // Optical insets, at Bold weight. Left edge of capital "M". In thousandths-of-an-em again, for consistency.
+  --typography--inset--right:      -36;  // Right edge of lowercase “m” (since lines tend to end lowercase).
+  --typography--tracking:          -20;  // Tracked in.
+  --typography--underline--clear:   100; // Can’t exceed narrowest descender width, with this shadow implementation.
+  --typography--underline--offset:  56;  // Distance down from baseline. Lines up to bottom of descenders.
+  --typography--underline:          133; // Height of crossbar on capital “E”.
+  --typography--weight:             900; // Direct map to font stylesheet.
+}
+
+
+
+%__nowrap, .nowrap, moma-nowrap, nobr { // Legacy class/element coverage.
+  white-space: nowrap;
+}
+
+%__underline {
+  background-image:    linear-gradient(to bottom, var(--color), var(--color) var(--typography--underline--thickness), transparent var(--typography--underline--thickness)); // Gradient going down, type color to transparent, over the underline thickness distance.
+  background-position: calc(-1 * var(--typography--margin--left)) calc(var(--typography--underline--top) + 1em); // Pushed in from left edge, starting vertically at the baseline.
+  background-repeat:   no-repeat; // Prevent top/bottom from looping back over.
+  background-size:     calc(100% + var(--typography--margin--left) + var(--typography--margin--right)) 100%; // Take out left/right insets. full height. Larger offsets would need a negative margin/padding on the bottom, but this covers us for now.
+  text-shadow: // Clear the descenders, if we know the background color.
+    var(--background-color) var(--typography--underline--clearing) 0, // “East”
+    var(--background-color) var(--typography--underline--clearing) calc(var(--typography--underline--clearing) / 3), // “Southeast”
+    var(--background-color) 0 calc(var(--typography--underline--clearing) / 3), // “South”
+    var(--background-color) calc(-1 * var(--typography--underline--clearing)) calc(var(--typography--underline--clearing) / 3), // “Southwest”
+    var(--background-color) calc(-1 * var(--typography--underline--clearing)) 0, // “West”
+    var(--background-color) calc(-1 * var(--typography--underline--clearing)) calc(-1 * var(--typography--underline--clearing) / 3), // “Northwest”
+    var(--background-color) 0 calc(-1 * var(--typography--underline--clearing) / 3) // “North”
+    ;
+}
+
+%__icon {
+  @extend %color__svg--alpha !optional; // Optional flag, as external MoMA Sans file doesn’t get this?
+
+  --typography--icon--inset: -156; // Optical “safe area” in embedded SVGs.
+
+  --typography--icon--margin:       calc(var(--typography--icon--inset) * #{$sans-spacing-conversion}); // Same.
+  --typography--icon--space--width: calc(var(--typography--icon--space) * #{$sans-spacing-conversion}); // Render the actual values.
+  --typography--icon--stroke-width: calc(var(--typography--icon--stroke) * #{$sans-spacing-conversion}); // Same.
+
+  height:        var(--typography--font-size);
+  margin-bottom: calc(-1 * var(--typography--font-size) * var(--typography--icon--shift--override, var(--typography--icon--shift))); // Vertical centering.
+  margin-left:   var(--typography--icon--margin--left);
+  margin-right:  var(--typography--icon--margin--right);
+  margin-top:    calc(var(--typography--margin--bottom) + var(--typography--margin--top)); // Match shoulder “height” from type.
+  stroke-width:  var(--typography--icon--stroke-width);
+  transform:     translate(var(--typography--icon--translate-x, 0), var(--typography--icon--translate-y, 0)) rotate(var(--typography--icon--rotate, 0)); // X/Y shift for aliasing tweaks.
+  width:         var(--typography--font-size);
+}
+
+
+
+// Base class to be applied to all paragraph elements.
+.typography {
+  --typography--font-size:   calc(var(--typography--size) * #{$sans-size-conversion}); // Render the actual values.
+  --typography--line-height: calc(var(--typography--leading) * var(--typography--font-size)); // Calculated exactly (not em/relative) to allow for super/subscript type sizes.
+
+  --typography--letter-spacing: calc(var(--typography--tracking) * #{$sans-spacing-conversion}); // Render the actual values.
+  --typography--margin--left:   calc(var(--typography--inset--left) * #{$sans-spacing-conversion}); // Same.
+  --typography--margin--right:  calc(var(--typography--inset--right) * #{$sans-spacing-conversion}); // Same.
+
+  --typography--width: calc(-1 * (var(--typography--margin--left) + var(--typography--margin--right)) + 100% + #{$sans-size-conversion}); // Full block width, adding in left/right shifts, plus some rouonding cover.
+
+  --typography--underline--clearing:  calc(var(--typography--underline--clear) * #{$sans-spacing-conversion}); // Render the actual values.
+  --typography--underline--thickness: calc(var(--typography--underline) * #{$sans-spacing-conversion}); // Same.
+  --typography--underline--top:       calc(var(--typography--underline--offset) * #{$sans-spacing-conversion}); // Same.
+
+  --typography--leading--bottom:  var(--typography--font-size) * #{$sans-shoulder--bottom}; // Internal variables to keep things tidy.
+  --typography--leading--between: var(--typography--font-size) * (var(--typography--leading) - 1); // Same.
+  --typography--leading--top:     var(--typography--font-size) * #{$sans-shoulder--top}; // Same.
+
+  --typography--margin--bottom: calc(-1 * (var(--typography--leading--bottom) + var(--typography--leading--between) / 2 + var(--typography--bounding-extension, 0rem))); // Total space below, now with bounding box extension for descenders.
+  --typography--margin--top:    calc(-1 * (var(--typography--leading--top) + var(--typography--leading--between) / 2)); // And above.
+
+  color:          var(--color);
+  display:        inline-block; // Need to have this for the negative margins to work properly.
+  font-size:      var(--typography--font-size);
+  font-weight:    var(--typography--weight);
+  letter-spacing: var(--typography--letter-spacing);
+  line-height:    var(--typography--line-height);
+  margin-bottom:  var(--typography--margin--bottom); // Pulls bounding box up to baseline.
+  margin-left:    var(--typography--margin--left);
+  margin-right:   var(--typography--margin--right);
+  margin-top:     var(--typography--margin--top); // Pulls bounding box down to cap-height.
+  overflow-wrap:  break-word; // Prevent container-breaking.
+  width:          var(--typography--width); // Effectively display: block.
+
+
+
+  a { // Underline classless links inside typography elements (usually from rendered markdown).
+    @extend %__underline;
+  }
+
+
+
+  @include atom(var) {
+    // Weights.
+    @include atom(weight) {
+      @include variant(regular) {
+        --typography--icon--space:        649;
+        --typography--icon--stroke:       76;
+        --typography--inset--left:       -95;
+        --typography--inset--right:      -70;
+        --typography--tracking:           0;
+        --typography--underline--clear:   75;
+        --typography--underline--offset:  120;
+        --typography--underline:          75;
+        --typography--weight:             400;
+      }
+    }
+
+    // Baselines.
+    @include atom(baseline) {
+      @include variant(body) {
+        @include type-variable(--typography--leading, 4/3);
+      }
+    }
+
+    // Icon shift overrides.
+    @include atom(icon) {
+      @include variant(cap) {
+        --typography--icon--shift--override: #{$sans-shift--cap};
+      }
+
+      @include variant(x) {
+        --typography--icon--shift--override: #{$sans-shift--x};
+      }
+    }
+  }
+
+
+
+  // Wrapping.
+  @include atom(no-wrap) {
+    @extend %__nowrap;
+  }
+
+  // Underlines.
+  @include atom(underline) {
+    @extend %__underline;
+
+    // Disable underlines on classless child links (from rendered Markdown).
+    @include variant(link) {
+      @include variant(disable) {
+        a {
+          background:  initial;
+          text-shadow: initial;
+        }
+      }
+    }
+  }
+
+  // Tabular numbers.
+  @include atom(tabular-numbers) {
+    font-variant-numeric: tabular-nums; // Number width.
+  }
+
+  // Icons.
+  @include atom(icon) {
+    @include variant(before, after) {
+      @include variant-rotations {
+        @extend %__icon;
+
+        --typography--icon--rotate: #{$variant-rotation};
+
+        @if $variant == 'before' {
+          --typography--icon--margin--left:  calc(var(--typography--icon--margin) - var(--typography--margin--left)); // Remove the optical text shift and icon inset.
+          --typography--icon--margin--right: calc(var(--typography--icon--margin) + var(--typography--margin--left) + var(--typography--icon--space--width)); // Add text shift back on inside, plus a space.
+          --typography--icon--shift:         #{$sans-shift--cap}; // TODO Make this a separate extend, so there can be an atom to overwrite defaults?
+        }
+        @else {
+          --typography--icon--margin--left:  calc(var(--typography--icon--margin) + var(--typography--margin--right) + var(--typography--icon--space--width));
+          --typography--icon--margin--right: calc(var(--typography--icon--margin) - var(--typography--margin--right));
+          --typography--icon--shift:         #{$sans-shift--x};
+        }
+      }
+    }
+  }
+
+
+
+  @include atom-breakpoints {
+    // Targeting sequential type elements.
+    %__#{$atom-breakpoint}typography--spacing--sequential {
+      .typography + & {
+        padding-top: var(--typography--padding--top);
+      }
+    }
+
+    // Maths for sequential baselines.
+    %__#{$atom-breakpoint}typography--spacing--variables {
+      --typography--leading--spacing:          var(--typography--leading); // Default/reset.
+      --typography--size--spacing:             var(--typography--size); // Default/reset.
+
+      --typography--font-size--spacing:        var(--typography--size--spacing) * #{$sans-size-conversion}; // Separate internal calculations for spacing.
+      --typography--line-height--spacing:      var(--typography--leading--spacing) * var(--typography--font-size--spacing); // Same.
+      --typography--leading--between--spacing: var(--typography--font-size--spacing) * (var(--typography--leading--spacing) - 1); // Same.
+      --typography--shoulder--spacing:         var(--typography--font-size--spacing) * #{$sans-shoulder}; // Same.
+      --typography--leading-shoulder:          var(--typography--leading--between--spacing) + var(--typography--shoulder--spacing);
+    }
+
+    // Use the previous size/leading for spacing.
+    %__#{$atom-breakpoint}typography--spacing--previous {
+      --typography--leading--spacing: var(--typography--leading--previous, 1); // Default hasn’t set a --previous, so fall back to set-solid.
+      --typography--size--spacing:    var(--typography--size--previous);
+    }
+
+    // Cap-heights.
+    %__#{$atom-breakpoint}typography--spacing--caps {
+      --typography--cap-height: calc(#{$sans-cap-height} * var(--typography--size) * #{$sans-size-conversion}); // Calc a cap-height.
+    }
+
+
+    // Icon aliasing tweaks.
+    %__#{$atom-breakpoint}typography--icon-aliasing {
+      --typography--icon--translate-x: -0.5px;
+      --typography--icon--translate-y: -0.5px;
+
+      @include retina(2) {
+        --typography--icon--translate-x: -0.25px;
+        --typography--icon--translate-y: -0.25px;
+      }
+    }
+
+    %__#{$atom-breakpoint}typography--icon-aliasing--high {
+      @include retina(3) {
+        --typography--icon--translate-x: -0.1666667px;
+        --typography--icon--translate-y: -0.1666667px;
+      }
+
+      @include retina(4) {
+        --typography--icon--translate-x: -0.125px;
+        --typography--icon--translate-y: -0.125px;
+      }
+    }
+
+
+
+    // Spacing.
+    @include atom(baseline-spacing) {
+      // Target type elements.
+      &.typography {
+        @include variant-count(4, $default-count: 0) {
+          @extend %__#{$atom-breakpoint}typography--spacing--sequential;
+
+          @include __baseline-spacing;
+        }
+      }
+
+      // Target non-type elements, like explicit heights/margin/padding for buttons/images/containers.
+      &:not(.typography) {
+        @include variant-count(-4, 4, $default-count: 0) {
+          @include __baseline-spacing(margin-top);
+        }
+
+        @include variant-directions {
+          @include variant-count(-4, 4, $default-count: 0) {
+            @include __baseline-spacing(margin#{$variant-direction});
+          }
+        }
+
+        @include variant(height) {
+          @include variant-limits {
+            @include variant-count(24) {
+              @include __baseline-spacing(#{$variant-limit}#{$variant}, subtract);
+            }
+          }
+        }
+
+        @include variant(margin, padding) {
+          @include variant-directions {
+            @include variant-count(-4, 4, $default-count: 0) {
+              @include __baseline-spacing(#{$variant}#{$variant-direction});
+            }
+          }
+        }
+      }
+
+      @include variant(previous) {
+        &.typography {
+          @include variant-count(4, $default-count: 0) {
+            @extend %__#{$atom-breakpoint}typography--spacing--previous;
+            @extend %__#{$atom-breakpoint}typography--spacing--sequential;
+
+            @include __baseline-spacing;
+          }
+        }
+
+        // Usually pushing a container down, based on preceding type size.
+        &:not(.typography) {
+          @include variant-count(-4, 4, $default-count: 0) {
+            @extend %__#{$atom-breakpoint}typography--spacing--previous;
+
+            @include __baseline-spacing(margin-top);
+          }
+
+          @include variant(margin, padding) {
+            @include variant-directions(top) {
+              @include variant-count(-4, 4, $default-count: 0) {
+                @extend %__#{$atom-breakpoint}typography--spacing--previous;
+
+                @include __baseline-spacing(#{$variant}#{$variant-direction});
+              }
+            }
+          }
+        }
+      }
+
+      // Sometimes (like, say, sponsor logos), you don’t want to add/remove a shoulder.
+      @include variant(exact) {
+        &:not(.typography) {
+          @include variant(height) {
+            @include variant-limits {
+              @include variant-count(4) {
+                @include __baseline-spacing(#{$variant-limit}#{$variant}, none);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @include atom(cap-spacing) {
+      &.typography {
+        @include variant-count(4, $default-count: 1) {
+          @extend %__#{$atom-breakpoint}typography--spacing--caps;
+          @extend %__#{$atom-breakpoint}typography--spacing--sequential;
+
+          --typography--padding--top: calc(var(--typography--cap-height) * #{$variant-count});
+        }
+      }
+
+      &:not(.typography) {
+        @include variant(margin, padding) {
+          @include variant-directions {
+            @include variant-count(-4, 4, $default-count: 1) {
+              @extend %__#{$atom-breakpoint}typography--spacing--caps;
+
+              #{$variant}#{$variant-direction}: calc(var(--typography--cap-height) * #{$variant-count});
+            }
+          }
+        }
+      }
+    }
+
+
+
+    // Truncation.
+    @include atom(truncate) {
+      @include variant-count(6, $default-count: 1) {
+        --typography--bounding-extension:  calc(var(--typography--descender--clear) * #{$sans-spacing-conversion});
+        --typography--truncate-line-count: #{$variant-count};
+
+        // TODO Need a `max-height` fallback for browsers that don’t understand `line-clamp`.
+        -webkit-box-orient:  vertical;
+        -webkit-line-clamp:  var(--typography--truncate-line-count);
+        display:            -webkit-box;
+        overflow:            hidden;
+        padding-bottom:      var(--typography--bounding-extension);
+      }
+    }
+  }
+}
+
+
+
+// // Example type size atoms.
+// .typography\/var\/size {
+//   @include variant(small) {
+//     @include type-variable(--typography--size, 18);
+//   }
+//   @include variant(medium) {
+//     @include type-variable(--typography--size, 24);
+//   }
+// }
+
+
+
+// Example DOM, in “line-break” style. Atom classes are alphabetized. 'balance-text' is the only non-type atom we’d see on a paragraph element.
+// <p
+//   class="
+//     balance-text
+//     typography
+//     typography/var/baseline:body
+//     typography/var/size:small
+//     typography/var/weight:regular
+//     "
+//   >
+//   Lorem ipsum color sit amet.
+// </p>

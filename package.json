@@ -1,0 +1,19 @@
+{
+  "name": "moma-style",
+  "version": "1.0.0",
+  "description": "Atomic styles for MoMA digital properties",
+  "main": "dist/atoms.min.css",
+  "style": "dist/atoms.min.css",
+  "files": ["dist"],
+  "repository": "https://github.com/MuseumofModernArt/moma-style",
+  "author": "MoMA Digital Media",
+  "license": "SEE LICENSE IN README.MD",
+  "private": true,
+  "scripts": {
+    "install": "brew install sass/sass/sass",
+    "build-dev": "sass stylesheets/atoms.scss:dist/atoms.css",
+    "build-prod": "sass stylesheets/atoms.scss:dist/atoms.min.css --style=compressed",
+    "build": "yarn run build-dev && yarn run build-prod",
+    "watch": "sass --watch stylesheets/atoms.scss:dist/atoms.css"
+  }
+}

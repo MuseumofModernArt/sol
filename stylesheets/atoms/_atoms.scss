@@ -1,0 +1,85 @@
+$atom-delimiter:       \/;
+$variant-delimiter:    \:;
+$variant-decimal:      \.;
+$breakpoint-prefix:    \@;
+$breakpoint-delimiter: #{$variant-delimiter}#{$variant-delimiter};
+$block-prefix:         \!;
+
+
+
+@mixin atom($atoms...) {
+  @each $atom in $atoms {
+    $selector: &;
+    $atom:     #{'' + $atom} !global; // This concatenation is to clear SCSS compile warnings over certain names (like colors).
+
+    @at-root {
+      // TODO: break out this to be aware of nesting atoms. Right now can only handle breakpoints one level deep.
+      .#{$atom-breakpoint}#{strip-selector($selector)}#{$atom-delimiter}#{'' + $atom} {
+        @content;
+      }
+    }
+  }
+}
+
+
+
+@mixin atom-breakpoints($limited: false) {
+  @at-root {
+    $atom-breakpoint: null !global; // Pass back to the call site, starting empty.
+    $breakpoint-list: $breakpoints;
+
+    @if $limited {
+      $breakpoint-list: $breakpoints--limited;
+    }
+
+    @content; // Mobile first.
+
+    @each $direction, $breakpoint in $breakpoint-list {
+      @each $name, $break in $breakpoint {
+        @if $direction == width {
+          @include breakpoint($break) {
+            $atom-breakpoint: #{$breakpoint-prefix}#{str-replace(str-replace($name, '.', #{$variant-decimal}), ':', #{$variant-delimiter})}#{$breakpoint-delimiter} !global; // Pass back.
+
+            @content;
+          }
+        }
+        @else {
+          @if not $limited {
+            // Render landcapes after widths, for specificity.
+            @include breakpoint--landscape {
+              $atom-breakpoint: #{$breakpoint-prefix}landscape#{$breakpoint-delimiter} !global; // Pass back.
+
+              @content;
+            }
+
+            @include breakpoint($breakpoint__nonmobile) {
+              @include breakpoint--landscape {
+                $atom-breakpoint: #{$breakpoint-prefix}nonmobile#{$variant-delimiter}landscape#{$breakpoint-delimiter} !global; // Pass back.
+
+                @content;
+              }
+            }
+            // Then our lone height.
+            @include breakpoint--height($break) {
+              $atom-breakpoint: #{$breakpoint-prefix}#{$name}#{$breakpoint-delimiter} !global; // Pass back.
+
+              @content;
+            }
+          }
+        }
+      }
+    }
+
+    $atom-breakpoint: '' !global; // Clears after we run so that the atom mixin can use this when not in a breakpoint.
+  }
+}
+
+
+
+@mixin atom-block($block) {
+  .#{$block-prefix}#{$block} {
+    $atom-block: & !global;
+
+    @content;
+  }
+}

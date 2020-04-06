@@ -1,0 +1,294 @@
+// Pulled in from “legacy” layout doc.
+:root {
+  $page-spacing:                       2.4rem;
+  $page-spacing--landscape:            1.6rem;
+  $page-spacing--nonmobile:            2 * $page-spacing;
+  $page-spacing--nonmobile--landscape: 2 * $page-spacing--landscape;
+  $rights-maximum:                     200rem;
+
+  --page-spacing:          #{$page-spacing};
+  --page-spacing--fixed:   #{$page-spacing};
+
+  --page-width--extension: 0rem;
+  --page-width--layout:    calc(var(--page-width--visible) - var(--page-spacing--fixed) * 2);
+  --page-width--maximum:   #{$breakpoint__nonmobile--3};
+  --page-width--visible:   calc(100vw - var(--scrollbar-width)); // vw is unintuitively inside scrollbar.
+
+  --rights-maximum:        #{$rights-maximum};
+
+  --uneven-column-width--side: calc((var(--page-width--layout) - var(--page-spacing--fixed) * 2) / 3);                          // 1/3 without gutters.
+  --uneven-column-width--main: calc(var(--page-width--layout) - var(--uneven-column-width--side) - var(--page-spacing--fixed)); // Less another gutter.
+
+  @include breakpoint--landscape {
+    --page-spacing: #{$page-spacing--landscape};
+  }
+
+  @include breakpoint($breakpoint__nonmobile) {
+    --page-spacing:        #{$page-spacing--nonmobile};
+    --page-spacing--fixed: #{$page-spacing--nonmobile};
+
+    @include breakpoint--landscape {
+      --page-spacing: #{$page-spacing--nonmobile--landscape};
+
+      @include breakpoint--height($breakpoint__tall) {
+        --page-spacing: #{$page-spacing--nonmobile};
+      }
+    }
+  }
+
+  @include breakpoint($breakpoint__nonmobile--3) {
+    --page-width--layout:    calc(var(--page-width--maximum) - var(--page-spacing--fixed) * 2);
+    --page-width--extension: calc((var(--page-width--visible) - var(--page-width--maximum)) / 2);
+  }
+
+  @include breakpoint($breakpoint__max) {
+    --page-width--extension: calc((var(--rights-maximum) - var(--page-width--maximum)) / 2);
+  }
+}
+
+
+
+// For default/fixed reuse.
+@mixin __page-spacing($css-variable) {
+  // Default usage is margin-top, so it’s pulled out: .layout/page-spacing:1, .layout/page-spacing:2, etc.
+  @include variant-count(-4, 4, $default-count: 1) {
+    margin-top: calc(var(#{$css-variable}) * #{$variant-count}); // TODO Needs id/anchor nav offset selector.
+  };
+
+  // Next most common use-case: .layout/page-spacing:top:1, .layout/page-spacing:right:1, etc.
+  @include variant-directions {
+    @include variant-count(-4, 4, $default-count: 1) {
+      margin#{$variant-direction}: calc(var(#{$css-variable}) * #{$variant-count});
+    }
+  }
+
+  @include variant(height, width) {
+    @include variant-count(-4, 4) {
+      #{$variant}: calc(var(#{$css-variable}) * #{$variant-count});
+    }
+  }
+
+  // But every option is available: .layout/page-spacing:margin:1, .layout/page-spacing:margin:top:1, etc.
+  @include variant(margin, padding) {
+    @include variant-directions {
+      @include variant-count(-4, 4, $default-count: 1) {
+        #{$variant}#{$variant-direction}: calc(var(#{$css-variable}) * #{$variant-count});
+      }
+    }
+  }
+}
+
+
+
+%__margins-auto {
+  margin-left:  auto;
+  margin-right: auto;
+}
+
+%__page-width {
+  max-width: var(--page-width--maximum);
+  width:     var(--page-width--visible);
+}
+
+
+
+.layout {
+  @include atom(circle) {
+    --border-radius: 50%;
+
+    border-radius: var(--border-radius);
+  }
+
+
+
+  @include atom(wrapper) {
+    @extend %__margins-auto;
+    @extend %__page-width;
+
+    padding-left:  var(--page-spacing--fixed);
+    padding-right: var(--page-spacing--fixed);
+
+    @include variant(extension) {
+      @include variant(left, right) {
+        padding-#{$variant}: var(--page-width--extension);
+      }
+    }
+
+    @include variant(bleed) {
+      @extend %__margins-auto;
+      @extend %__page-width;
+    }
+
+    @include variant(rights-maximum) {
+      @extend %__margins-auto;
+
+      max-width: var(--rights-maximum);
+      width:     100%;
+    }
+  }
+
+
+
+  @include atom-breakpoints {
+    @include atom(block, inline-block, none) {
+      display: #{$atom};
+    }
+
+    @include atom(flex) {
+      $atom: &;
+
+      display: flex;
+
+      @include variant(column, row) {
+        @extend #{$atom};
+
+        $direction: $variant;
+
+        flex-direction: #{$variant};
+
+        @include variant(reverse) {
+          @extend #{$atom};
+
+          flex-direction: #{$direction}-#{$variant};
+        }
+      }
+
+      @include variant(center) {
+        @extend #{$atom};
+
+        align-items:     center;
+        justify-content: center;
+      }
+
+      @include variant(start, end) {
+        align-items: flex-#{$variant};
+      }
+
+      @include variant(justify) {
+        justify-content: space-between;
+      }
+
+      @include variant(nowrap, wrap) {
+        flex-wrap: #{$variant};
+      }
+
+      @include variant(grow, shrink) {
+        $direction: $variant;
+
+        flex-#{$direction}: 1;
+
+        @include variant(enable) {
+          @extend #{$variant-parent};
+        }
+
+        @include variant(disable) {
+          flex-#{$direction}: 0;
+        }
+
+        @include variant(clear) {
+          flex-#{$direction}: initial;
+        }
+      }
+    }
+
+
+
+    @include atom(fixed, relative, sticky) {
+      position: #{$atom};
+    }
+
+    @include atom(absolute) {
+      position: #{$atom};
+
+      @include variant(center) {
+        @extend #{$variant-parent};
+
+        left:      50%;
+        top:       50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    @include atom(top, right, bottom, left) {
+      $positions: 0, 50, 100;
+
+      @include variant-list($positions, '%', '\\%') {
+        #{$atom}: var(#{$variant-item});
+      }
+
+      @include variant(auto) {
+        #{$atom}: auto;
+      }
+
+      @include variant(clear) {
+        #{$atom}: initial;
+      }
+    }
+
+
+
+    @include atom(z-index) {
+      @include variant-count(-1, 10) {
+        --z-index: #{$variant-count};
+
+        z-index: var(--z-index);
+      }
+    }
+
+
+
+    @include atom(visible) {
+      opacity:    1;
+      visibility: visible;
+    }
+
+    @include atom(invisible) {
+      opacity:    0;
+      visibility: hidden;
+    }
+
+    @include atom(overflow) {
+      @include variant(auto, hidden, visible) {
+        overflow: #{$variant};
+      }
+    }
+
+
+
+    @include atom(height, width) {
+      @include variant-limits {
+        @include variant-percentages {
+          #{$variant-limit}#{$atom}: #{$variant-percentage};
+        }
+      }
+    }
+
+
+
+    // This trick only works when width-constrained, but that is most of the time.
+    @include atom(ratio-container) {
+      @include variant-ratios {
+        --ratio: #{$variant-ratio};
+
+        padding-top: calc(1 / var(--ratio) * 100%);
+        position:    relative;
+
+        > iframe, > img, > div, > picture { // Immediate child fills the container.
+          bottom:   0;
+          left:     0;
+          position: absolute;
+          right:    0;
+          top:      0;
+        }
+      }
+    }
+
+    @include atom(page-spacing) {
+      @include __page-spacing(--page-spacing);
+
+      @include variant(fixed) {
+        @include __page-spacing(--page-spacing--fixed);
+      }
+    }
+  }
+}
