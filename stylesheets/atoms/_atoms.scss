@@ -1,3 +1,60 @@
+@function __placeholder($selector) {
+  // Our un-escaped delimiters and CSS syntax.
+  $reserved:
+    str-replace(#{$block-prefix}, '\\'),
+    str-replace(#{$breakpoint-prefix}, '\\'),
+    str-replace(#{$breakpoint-delimiter}, '\\'),
+    str-replace(#{$variant-delimiter}, '\\'),
+    str-replace(#{$atom-delimiter}, '\\'),
+    '.',
+    '(',
+    ')',
+    '%'
+  ;
+
+  // Toss the first "." and un-escape the rest.
+  $selector: str-replace(strip-selector(#{$selector}), '\\');
+
+  @return "%#{str-replace-multiple(#{$selector}, $reserved, '--')}";
+}
+
+
+
+@function __selector-list($selectors) {
+  $classes:      ();
+  $placeholders: ();
+  $selectors:    split-chained-selector(#{$selectors});
+
+  // Split out classes.
+  @each $selector in $selectors {
+    @if str-index(#{$selector}, ".") == 1 {
+      $classes: append($classes, $selector, $separator: comma);
+    }
+    @else if str-index(#{$selector}, "%") == 1 {
+      $placeholders: append($placeholders, $selector, $separator: comma);
+    }
+  }
+
+  @if length($classes) > 0 {
+    // Make classes into placeholders.
+    @each $class in $classes {
+      $placeholder: __placeholder(first-selector($class));
+
+      // If there aren’t any placeholders, or there isn’t already this one.
+      @if length($placeholders) == 0 or str-index(#{$placeholders}, $placeholder) == null {
+        $placeholders: append($placeholders, $placeholder, $separator: comma);
+      }
+    }
+
+    // Add them back to the selectors.
+    $selectors: append($selectors, $placeholders, $separator: comma);
+  }
+
+  @return #{$selectors};
+}
+
+
+
 $atom-delimiter:       \/;
 $variant-delimiter:    \:;
 $variant-decimal:      \.;
@@ -9,12 +66,20 @@ $block-prefix:         \!;
 
 @mixin atom($atoms...) {
   @each $atom in $atoms {
-    $selector: &;
-    $atom:     #{'' + $atom} !global; // This concatenation is to clear SCSS compile warnings over certain names (like colors).
+    $atom-parent:   first-selector(&) !global;
+    $atom:          #{'' + $atom}     !global; // This concatenation is to clear SCSS compile warnings over certain names (like colors).
+    $atom-selector: $atom-parent;              // To start.
+
+    // Only insert the breakpoint once.
+    @if str-index(#{$atom-parent}, $breakpoint-prefix) {
+      $atom-selector: "#{$atom-parent}#{$atom-delimiter}#{$atom}";
+    }
+    @else {
+      $atom-selector: ".#{$atom-breakpoint}#{strip-selector($atom-parent)}#{$atom-delimiter}#{$atom}";
+    }
 
     @at-root {
-      // TODO: break out this to be aware of nesting atoms. Right now can only handle breakpoints one level deep.
-      .#{$atom-breakpoint}#{strip-selector($selector)}#{$atom-delimiter}#{'' + $atom} {
+      #{__selector-list($atom-selector)} {
         @content;
       }
     }

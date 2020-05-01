@@ -43,8 +43,7 @@
 
     // Back out at root, so we aren’t nesting extends.
     @at-root {
-      #{$variant-selector} {
-
+      #{__selector-list($variant-selector)} {
         @content;
       }
     }
@@ -58,13 +57,14 @@
 @mixin variant-list($list, $value-suffix: null, $variant-suffix: $value-suffix) { // Separate suffixes for value and generated class name (100% vs. 100\%).
   $selector-stem:      first-selector(&);
   $selector-remainder: remove-first-selector(&);
-  $selector-list:      &;
+  $selectors:          &;
   $variant-original:   $variant; // Store the original variant.
   $variant-item:       __css-var($selector-stem) !global; // Pass back to the call site.
 
   @each $value in $list {
     @include variant(#{$value}#{$variant-suffix}) {
-      $selector-list: append($selector-list, #{$selector-stem}#{$variant-delimiter}#{$value}#{$variant-suffix}#{$selector-remainder}, $separator: comma);
+      $selector:  #{$selector-stem}#{$variant-delimiter}#{$value}#{$variant-suffix}#{$selector-remainder};
+      $selectors: append($selectors, $selector, $separator: comma);
 
       #{__css-var($selector-stem)}: #{$value}#{$value-suffix};
     }
@@ -72,7 +72,7 @@
 
   // Avoiding @extend snowballing, just use the specific selector list.
   @at-root {
-    #{$selector-list} {
+    #{__selector-list($selectors)} {
       @content;
     }
   }
@@ -82,7 +82,7 @@
 
 
 
-@mixin variant-count($count, $count-upper: null, $default-count: null) {
+@mixin variant-count($count, $count-upper: null, $halves: true) {
   $count-lower: 0;
 
   @if $count-upper {
@@ -94,25 +94,44 @@
 
   $selector-stem:      first-selector(&);
   $selector-remainder: remove-first-selector(&);
-  $selector-list:      &;
+  $selectors:          &;
   $variant-original:   $variant; // Store the original variant.
   $variant-count:      var(#{__css-var($selector-stem)}) !global; // Pass back to the call site.
 
-  @if $variant == 'padding' and $count-lower < 0 {
+  @if str-index(#{$selectors}, 'padding') and $count-lower < 0 {
     $count-lower: 0; // You can’t have negative padding, so save some CSS.
   }
 
+  // Then go through counts.
   @for $count from $count-lower through $count-upper {
-    @include variant($count) {
-      $selector-list: append($selector-list, #{$selector-stem}#{$variant-delimiter}#{$count}#{$selector-remainder}, $separator: comma);
+    $selector: #{$selector-stem}#{$selector-remainder};
 
-      #{__css-var($selector-stem)}: #{$count};
+    @if $count == 1 {
+      // Base/default class (no :1 needed).
+      @at-root {
+        #{__selector-list($selector)} {
+          #{__css-var($selector-stem)}: #{$count};
+        }
+      }
+    }
+
+    @include variant($count) {
+      @if $count == 1 { // Tack on to default.
+        @extend #{__placeholder(first-selector($selector))};
+      }
+      @else {
+        #{__css-var($selector-stem)}: #{$count};
+      }
+
+      $selector:  #{$selector-stem}#{$variant-delimiter}#{$count}#{$selector-remainder};
+      $selectors: append($selectors, $selector, $separator: comma);
     }
 
     // Some half counts.
-    @if $count >= 0 and $count <= 3 {
+    @if $halves and $count >= 0 and $count <= 3 {
       @include variant(#{$count}#{$variant-decimal}5) {
-        $selector-list: append($selector-list, #{$selector-stem}#{$variant-delimiter}#{$count}#{$variant-decimal}5#{$selector-remainder}, $separator: comma);
+        $selector:  #{$selector-stem}#{$variant-delimiter}#{$count}#{$variant-decimal}5#{$selector-remainder};
+        $selectors: append($selectors, $selector, $separator: comma);
 
         #{__css-var($selector-stem)}: #{$count + 0.5};
       }
@@ -120,23 +139,15 @@
   }
 
   @include variant(clear) { // Also include a reset.
-    $selector-list: append($selector-list, #{$selector-stem}#{$variant-delimiter}#{$variant}#{$selector-remainder}, $separator: comma);
+    $selector:  #{$selector-stem}#{$variant-delimiter}#{$variant}#{$selector-remainder};
+    $selectors: append($selectors, $selector, $separator: comma);
 
     #{__css-var($selector-stem)}: initial;
   }
 
-  // What the base class (no :1) should match, if anything.
-  @if $default-count {
-    @at-root {
-      #{$selector-stem}#{$selector-remainder} {
-        #{__css-var($selector-stem)}: #{$default-count};
-      }
-    }
-  }
-
   // Avoiding @extend snowballing, just use the specific selector list.
   @at-root {
-    #{$selector-list} {
+    #{__selector-list($selectors)} {
       @content;
     }
   }
@@ -156,68 +167,71 @@
     @content;
   }
 
-  $variant-limit: '' !global; // Pass back to the call site empty.
+  $variant-limit: null !global; // Pass back to the call site empty.
 
   @content; // Render base variant.
 }
 
 @mixin variant-directions($directions...) {
-  $variant-original: $variant; // Store the original variant.
+  $variant-original:  $variant; // Store the original variant.
+  $variant-direction: null !global; // Pass back to the call site empty, to start.
 
   @if length($directions) == 0 {
-    $directions: top, right, bottom, left, all; // Default set, if not passed.
+    $directions: top, right, bottom, left; // Default set, if not passed.
   }
 
-  @include variant($directions...) {
-    @if $variant == 'all' {
-      $variant-direction: '' !global; // Pass back to the call site empty.
-    }
-    @else {
-      $variant-direction: -#{$variant} !global;  // Pass back to the call site with the hyphen.
-    }
+  @content;
 
-    $variant: $variant-original !global; // Restore original variant.
+  @include variant($directions...) {
+    $variant-direction: -#{$variant} !global;  // Pass back to the call site with the hyphen.
 
     @content;
   }
+
+  $variant: $variant-original !global; // Restore original variant.
 }
 
 
 
-@mixin variant-percentages {
+@mixin variant-percentages($percentages...) {
   $selector:         &;
   $selector-stem:    first-selector(&);
   $variant-original: $variant; // Store the original variant.
 
-  $percentages: 0, 10, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100; // Commonly used, thirds pulled out below.
+  @if length($percentages) == 0 {
+    $percentages: ();
+    $percent: 0;
+    $step: 5;
+
+    // every 5%
+    @while $percent <= 100 {
+      $percentages: append($percentages, $percent);
+      $percent: $percent + $step;
+    }
+
+    @include variant(33\%) { // Increased accuracy for thirds.
+      @extend #{$selector};
+      #{__css-var($selector-stem)}: percentage(1 / 3);
+    }
+
+    @include variant(66\%) {
+      @extend #{$selector};
+      #{__css-var($selector-stem)}: percentage(2 / 3);
+    }
+  }
 
   @include variant-list($percentages, '%', '\\%') {
     $variant-percentage: var(#{$variant-item}) !global; // Pass back to call site with a new name.
-
     @content;
-  }
-
-  @include variant(33\%) { // Increased accuracy for thirds.
-    @extend #{$selector};
-
-    #{__css-var($selector-stem)}: percentage(1 / 3);
-  }
-
-  @include variant(66\%) {
-    @extend #{$selector};
-
-    #{__css-var($selector-stem)}: percentage(2 / 3);
   }
 
   @include variant(auto) { // Also include resets.
     @extend #{$selector};
-
     #{__css-var($selector-stem)}: auto;
   }
 
   @include variant(clear) {
     @extend #{$selector};
-
     #{__css-var($selector-stem)}: initial;
   }
 
@@ -263,7 +277,7 @@
 @mixin variant-ratios {
   $selector-stem:      first-selector(&);
   $selector-remainder: remove-first-selector(&);
-  $selector-list:      &;
+  $selectors:          &;
   $variant-original:   $variant; // Store the original variant.
   $variant-ratio:      var(#{__css-var($selector-stem)}) !global; // Pass back to the call site.
 
@@ -272,8 +286,9 @@
   @each $horizontal in $ratios {
     @each $vertical in reverse($ratios) {
       @if $horizontal == 1 and $vertical == 1 {
-        @include variant(square, 1#{$variant-delimiter}1) { // Easy naming.
-          $selector-list: append($selector-list, #{$selector-stem}#{$variant-delimiter}#{$variant}#{$selector-remainder}, $separator: comma);
+        @include variant("1#{$variant-delimiter}1", square) { // Easy naming.
+          $selector:  #{$selector-stem}#{$variant-delimiter}#{$variant}#{$selector-remainder};
+          $selectors: append($selectors, $selector, $separator: comma);
 
           #{__css-var($selector-stem)}: #{$horizontal}; // Pass back to the call site.
         }
@@ -282,7 +297,8 @@
       @else if $horizontal != $vertical {
         @include variant($horizontal) {
           @include variant($vertical) {
-            $selector-list: append($selector-list, #{$selector-stem}#{$variant-delimiter}#{$horizontal}#{$variant-delimiter}#{$vertical}#{$selector-remainder}, $separator: comma);
+            $selector:  #{$selector-stem}#{$variant-delimiter}#{$horizontal}#{$variant-delimiter}#{$vertical}#{$selector-remainder};
+            $selectors: append($selectors, $selector, $separator: comma);
 
             #{__css-var($selector-stem)}: #{$horizontal / $vertical}; // Pass back to the call site.
           }
@@ -292,14 +308,15 @@
   }
 
   @include variant(clear) {
-    $selector-list: append($selector-list, #{$selector-stem}#{$variant-delimiter}#{$variant}#{$selector-remainder}, $separator: comma);
+    $selector:  #{$selector-stem}#{$variant-delimiter}#{$variant}#{$selector-remainder};
+    $selectors: append($selectors, $selector, $separator: comma);
 
     #{__css-var($selector-stem)}: initial;
   }
 
   // Avoiding @extend snowballing, just use the specific selector list.
   @at-root {
-    #{$selector-list} {
+    #{__selector-list($selectors)} {
       @content;
     }
   }

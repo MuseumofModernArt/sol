@@ -7,5 +7,7 @@ To build for development, run `yarn run build-dev`. If you want to watch, then r
 
 To make build for distribution, run `yarn run build`. This builds the css and the compressed css.
 
+To link with `moma-go`, in this folder, run `yarn link`. In `moma-go`, run `yarn link moma-style`. This creates a [symlink](https://classic.yarnpkg.com/en/docs/cli/link/) to your local version.
+
 # Usage
 You should just get `dist/atoms.css` or `dist/atoms.min.css`.

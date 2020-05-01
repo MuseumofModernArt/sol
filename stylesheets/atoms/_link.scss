@@ -208,29 +208,23 @@
         @extend %__active--background--touch;
       }
     }
-  }
-}
 
+    @include variant(inline) {
+      @extend %__cursor-pointer;
+      @extend %__link-focus;
 
+      border-left-color:  transparent;
+      border-left-style:  solid;
+      border-left-width:  calc(var(--link-enlargement) / 2);
+      border-right-color: transparent;
+      border-right-style: solid;
+      border-right-width: calc(var(--link-enlargement) / 2);
+      margin-left:        calc(-1 * var(--link-enlargement) / 2);
+      margin-right:       calc(-1 * var(--link-enlargement) / 2);
 
- // Classless links inside typography elements (usually from rendered markdown). On by default.
-.typography {
-  a {
-    @extend %__cursor-pointer;
-    @extend %__link-focus;
-
-    border-left-color:  transparent;
-    border-left-style:  solid;
-    border-left-width:  calc(var(--link-enlargement) / 2);
-    border-right-color: transparent;
-    border-right-style: solid;
-    border-right-width: calc(var(--link-enlargement) / 2);
-    margin-left:        calc(-1 * var(--link-enlargement) / 2);
-    margin-right:       calc(-1 * var(--link-enlargement) / 2);
-
-    .show-focus &:focus { // Disables our “underlines”.
-      background:  initial;
-      text-shadow: initial;
+      .show-focus &:focus {
+        @extend #{__placeholder("typography/underline:disable")}; // Disables our “underlines” when keyboard-focused.
+      }
     }
   }
 }

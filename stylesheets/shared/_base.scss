@@ -31,10 +31,16 @@ html {
   @return $string;
 }
 
-@function str-replace-multiple($string, $searches, $replace: '') {
+@function str-replace-multiple($string, $searches, $replace-root: '', $prepend-search: false) {
   $replaced-string: $string;
 
   @each $search in $searches {
+    $replace: $replace-root;
+
+    @if $prepend-search {
+      $replace: #{$replace}#{$search};
+    }
+
     $replaced-string: str-replace($replaced-string, $search, $replace);
   }
 
@@ -69,8 +75,16 @@ html {
   @return $default-font-size--preferred * strip-unit($number);
 }
 
+@function split-chained-selector($selector) {
+  $delimiter: ', ';
+
+  @return str-split(#{$selector}, $delimiter);
+}
+
 @function is-compound-selector($selector) {
-  @if $selector and length(simple-selectors($selector)) > 1 {
+  $selector: nth(split-chained-selector($selector), 1);
+
+  @if $selector and length(simple-selectors(#{$selector})) > 1 {
     @return true;
   }
   @else {
@@ -79,8 +93,10 @@ html {
 }
 
 @function first-selector($selector) {
+  $selector: nth(split-chained-selector($selector), 1);
+
   @if $selector {
-    @return nth(simple-selectors($selector), 1); // First part of compound selector.
+    @return nth(simple-selectors(#{$selector}), 1); // First part of compound selector.
   }
   @else {
     @return null;
@@ -88,8 +104,10 @@ html {
 }
 
 @function remove-first-selector($selector) {
+  $selector: nth(split-chained-selector($selector), 1);
+
   @if is-compound-selector($selector) { // Check for compound selectors.
-    @return str-replace(#{$selector}, first-selector($selector), ''); // Remove the first one.
+    @return str-replace(#{$selector}, first-selector(#{$selector}), ''); // Remove the first one.
   }
   @else {
     @return null;
@@ -111,6 +129,12 @@ html {
       $reversed-list: append($reversed-list, nth($list, abs($i)), $separator: comma);
    }
    @return $reversed-list;
+}
+
+
+
+@function hex-to-rgb($color) {
+  @return #{red($color)}, #{green($color)}, #{blue($color)};
 }
 
 
@@ -143,6 +167,21 @@ html {
   }
 
   @at-root #{$new-parent-selector-list} {
+    @content;
+  }
+}
+
+
+
+@mixin increase-specificity($level: 1) {
+  $increase: "";
+
+  @while $level > 0 {
+    $increase: "#{$increase}:not(._)"; // This this adds one level of class specificity (0, +1, 0).;
+    $level:    $level - 1;
+  }
+
+  &#{$increase} {
     @content;
   }
 }

@@ -23,40 +23,77 @@
       @include variant(small) {
         @include type-variable(--typography--size, $small); // SCSS can’t dynamically generate/use variable names, thus the repetition.
 
+        --typography--scale--down--2: initial;
+        --typography--scale--down:    initial;
+        --typography--scale--up:      #{abs($medium/$small)}; // Abs is for SCSS to render as a decimal.
+
         @include breakpoint($breakpoint__nonmobile) {
           @include type-variable(--typography--size, $small--nonmobile);
+
+          --typography--scale--up:    #{abs($medium--nonmobile/$small--nonmobile)};
         }
       }
 
       @include variant(medium) {
         @include type-variable(--typography--size, $medium);
 
+        --typography--scale--down--2: var(--typography--scale--down);
+        --typography--scale--down:    #{abs($small/$medium)};
+        --typography--scale--up:      #{abs($large/$medium)};
+
         @include breakpoint($breakpoint__nonmobile) {
           @include type-variable(--typography--size, $medium--nonmobile);
+
+          --typography--scale--down:  #{abs($small--nonmobile/$medium--nonmobile)};
+          --typography--scale--up:    #{abs($large--nonmobile/$medium--nonmobile)};
         }
       }
 
       @include variant(large) {
         @include type-variable(--typography--size, $large);
 
+        --typography--scale--down--2: #{abs($small/$large)};
+        --typography--scale--down:    #{abs($medium/$large)};
+        --typography--scale--up:      #{abs($extra-large/$large)};
+
         @include breakpoint($breakpoint__nonmobile) {
           @include type-variable(--typography--size, $large--nonmobile);
+
+          --typography--scale--down--2: #{abs($small--nonmobile/$large--nonmobile)};
+          --typography--scale--down:    #{abs($medium--nonmobile/$large--nonmobile)};
+          --typography--scale--up:      #{abs($extra-large--nonmobile/$large--nonmobile)};
         }
       }
 
       @include variant(extra-large) {
         @include type-variable(--typography--size, $extra-large);
 
+        --typography--scale--down--2: #{abs($medium/$extra-large)};
+        --typography--scale--down:    #{abs($large/$extra-large)};
+        --typography--scale--up:      #{abs($extra-extra-large/$extra-large)};
+
         @include breakpoint($breakpoint__nonmobile) {
           @include type-variable(--typography--size, $extra-large--nonmobile);
+
+          --typography--scale--down--2: #{abs($medium--nonmobile/$extra-large--nonmobile)};
+          --typography--scale--down:    #{abs($large--nonmobile/$extra-large--nonmobile)};
+          --typography--scale--up:      #{abs($extra-extra-large--nonmobile/$extra-large--nonmobile)};
         }
       }
 
       @include variant(extra-extra-large) {
         @include type-variable(--typography--size, $extra-extra-large);
 
+        --typography--scale--down--2: #{abs($large/$extra-extra-large)};
+        --typography--scale--down:    #{abs($extra-large/$extra-extra-large)};
+        --typography--scale--up:      #{abs($hero/$extra-extra-large)};
+
         @include breakpoint($breakpoint__nonmobile) {
           @include type-variable(--typography--size, $extra-extra-large--nonmobile);
+
+          --typography--scale--down--2: #{abs($large--nonmobile/$extra-extra-large--nonmobile)};
+          --typography--scale--down:    #{abs($extra-large--nonmobile/$extra-extra-large--nonmobile)};
+          --typography--scale--up:      #{abs($hero--nonmobile/$extra-extra-large--nonmobile)};
         }
       }
 
@@ -88,10 +125,15 @@
         }
       }
     }
+  }
 
-    // Discrete sizes available at our breakpoints.
-    @include atom-breakpoints {
-      @include atom(size) { // Repeated because atom-breakpoints assumes one level of hierarchy.
+  // Discrete sizes available at our breakpoints.
+  @include atom-breakpoints {
+    @include atom(var) {
+      @include atom(size) {
+        // Allow for per-breakpoint inline overrides.
+        --typography--size--override: var(#{__css-var(#{$atom-breakpoint}--typography--size)});
+
         @include variant(12, 14, 16, 18, 20, 22, 24, 30, 32, 36, 40, 48, 60, 80, 120) {
           @include type-variable(--typography--size, $variant);
         }

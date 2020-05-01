@@ -85,10 +85,10 @@
     @include variant(crop) {
       @extend %__disable--interaction;
 
-      height: 100%;
-      object-fit: cover;
-      width:  100%;
+      height:          100%;
+      object-fit:      cover;
       object-position: center var(--picture--object-position--y, center);
+      width:           100%;
 
       @include variant(top) {
         @extend #{$variant-parent};

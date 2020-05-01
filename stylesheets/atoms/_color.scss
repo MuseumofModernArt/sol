@@ -1,7 +1,3 @@
-@function __hex-to-rgb($color) {
-  @return #{red($color)}, #{green($color)}, #{blue($color)};
-}
-
 @function __color--css-var($color-level-1, $color-level-2: null) {
   @if $color-level-2 {
     @return --color--#{$color-level-1}--#{$color-level-2};
@@ -61,7 +57,7 @@ $colors: (
 @mixin __variant-alphas($background: null) {
   $selector-stem:      first-selector(&);
   $selector-remainder: remove-first-selector(&);
-  $selector-list:      &;
+  $selectors:          &;
 
   @each $alpha in $alphas {
     @include variant(#{$alpha}\%) {
@@ -72,12 +68,13 @@ $colors: (
         @extend %__alpha--#{$alpha};
       }
 
-      $selector-list: append($selector-list, #{$selector-stem}#{$variant-delimiter}#{$alpha}\%#{$selector-remainder}, $separator: comma);
+      $selector:  #{$selector-stem}#{$variant-delimiter}#{$alpha}\%#{$selector-remainder};
+      $selectors: append($selectors, $selector, $separator: comma);
     }
   }
 
   @at-root {
-    #{$selector-list} {
+    #{__selector-list($selectors)} {
       @content;
     }
   }
@@ -141,27 +138,33 @@ $colors: (
 // Reset/flatten colors on all elements for high-contrast.
 [data-high-contrast] {
   %__high-contrast {
-    --color: var(#{__color--css-var(black)});
+    --color:      var(#{__color--css-var(black)});
+    --color--rgb: var(#{__color--css-var--rgb(black)});
   }
 
   %__high-contrast--background {
-    --background-color: var(#{__color--css-var(white)});
+    --background-color:      var(#{__color--css-var(white)});
+    --background-color--rgb: var(#{__color--css-var--rgb(white)});
   }
 
   %__high-contrast--reverse {
-    --color: var(#{__color--css-var(white)});
+    --color:      var(#{__color--css-var(white)});
+    --color--rgb: var(#{__color--css-var--rgb(white)});
   }
 
   %__high-contrast--reverse--background {
-    --background-color: var(#{__color--css-var(black)});
+    --background-color:      var(#{__color--css-var(black)});
+    --background-color--rgb: var(#{__color--css-var--rgb(black)});
   }
 
   %__high-contrast--accent {
-    --color: var(#{__color--css-var(red)});
+    --color:      var(#{__color--css-var(red)});
+    --color--rgb: var(#{__color--css-var--rgb(red)});
   }
 
   %__high-contrast--accent--background {
-    --background-color: var(#{__color--css-var(red)});
+    --background-color:      var(#{__color--css-var(red)});
+    --background-color--rgb: var(#{__color--css-var--rgb(red)});
   }
 }
 
@@ -198,7 +201,7 @@ $colors: (
       @if map-has-key($value, hex) {
         $color-name--rgb:  __color--css-var--rgb($item);
         $color-name:       __color--css-var($item);
-        $color-value--rgb: __hex-to-rgb(map-get($value, hex));
+        $color-value--rgb: hex-to-rgb(map-get($value, hex));
         $color-value:      #{rgba}(#{$color-value--rgb}, 1); // The encapsulation on “rgba” is to prevent SCSS from using its function.
 
         $color-variables:  append($color-variables, (name: $color-name--rgb, value: $color-value--rgb));
@@ -247,7 +250,7 @@ $colors: (
         @each $grouped-item, $grouped-values in $value {
           $color-name--rgb:  __color--css-var--rgb($item, $grouped-item);
           $color-name:       __color--css-var($item, $grouped-item);
-          $color-value--rgb: __hex-to-rgb(map-get($grouped-values, hex));
+          $color-value--rgb: hex-to-rgb(map-get($grouped-values, hex));
           $color-value:      #{rgba}(#{$color-value--rgb}, 1);
 
           $color-variables:  append($color-variables, (name: $color-name--rgb, value: $color-value--rgb));
@@ -364,12 +367,14 @@ $colors: (
 
 
     // This just sets variables for atomic elements to use, vs. the legacy ones which also apply properties.
-    @include atom(accent-color) {
-      --color: var(--accent-color--on-light);
+    @include atom(accent) {
+      --color:      var(--accent-color--on-light);
+      --color--rgb: var(--accent-color--on-light--rgb);
 
       // TODO Unravel this?
       @include has-dark-background {
-        --color: var(--accent-color--on-dark);
+        --color:      var(--accent-color--on-dark);
+        --color--rgb: var(--accent-color--on-dark--rgb);
       }
     }
 
@@ -416,7 +421,7 @@ $colors: (
 
 
 
-    // Flips the color/background-color for children.
+    // Flips the color/background for children.
     @include atom(reverse) {
       --color--parent:                 var(--color);
       --color--rgb--parent:            var(--color--rgb);
@@ -457,7 +462,7 @@ $colors: (
     }
   }
 
-  @include atom(background-color) {
+  @include atom(background) {
     background-color: var(--background-color);
   }
 
