@@ -1,7 +1,7 @@
 # MoMA Style
 
 # Development
-To install, make sure you have homebrew installed, and then run `yarn install` to install Dart Sass.
+To install, make sure you have homebrew installed, and then run `yarn install-sass` to install Dart Sass.
 
 To build for development, run `yarn run build-dev`. If you want to watch, then run `yarn run watch`.
 
@@ -10,4 +10,4 @@ To make build for distribution, run `yarn run build`. This builds the css and th
 To link with `moma-go`, in this folder, run `yarn link`. In `moma-go`, run `yarn link moma-style`. This creates a [symlink](https://classic.yarnpkg.com/en/docs/cli/link/) to your local version.
 
 # Usage
-You should just get `dist/atoms.css` or `dist/atoms.min.css`.
+You should just get `dist/atoms.css` or `dist/atoms.min.css`. Fonts are also provided in the `dist` folder.
