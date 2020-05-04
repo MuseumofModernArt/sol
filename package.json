@@ -10,7 +10,7 @@
   "license": "SEE LICENSE IN README.MD",
   "private": true,
   "scripts": {
-    "brew-install-sass": "SASS=sass/sass/sass; if brew ls --versions $SASS; then brew upgrade $SASS; else brew install $SASS; fi",
+    "install-sass": "SASS=sass/sass/sass; if brew ls --versions $SASS; then brew upgrade $SASS; else brew install $SASS; fi",
     "build-dev": "sass stylesheets/atoms.scss:dist/atoms.css",
     "build-prod": "sass stylesheets/atoms.scss:dist/atoms.min.css --style=compressed",
     "build": "yarn run build-dev && yarn run build-prod",
