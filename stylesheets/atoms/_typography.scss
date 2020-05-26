@@ -109,6 +109,8 @@
   --typography--scale--major: 1.5;
   --typography--scale--prime: 2;
 
+  --typography--scale--clear: initial;
+
   --typography--ascenders:  330; // Highest ascender from the top of a capital “M”: Ẵ (“latin capital letter A with breve and tilde”).
   --typography--descenders: 200; // Max distance below baseline before the next line’s common ascenders are visible, clears a “j”. TODO: This shows ascenders at size:medium.
 
@@ -188,6 +190,7 @@
       line-height:    var(--typography--line-height);
       margin-left:    var(--typography--margin--left);
       margin-right:   var(--typography--margin--right);
+      max-width:      calc(100% - var(--typography--margin--left) - var(--typography--margin--right) + var(--rem-conversion)); // Forces wrapping in flex containers, with a pixel for rounding cover.
       overflow-wrap:  break-word; // Prevent container-breaking.
 
       // Pseudo-elements to negate the shoulders.
@@ -235,37 +238,6 @@
       }
     }
 
-    // Scales.
-    @include atom(scale) {
-      @include variant(minor, down, up, major, prime) {
-        --typography--scale: var(--typography--scale--#{$variant});
-
-        @if $variant == "major" or $variant == "prime" {
-          @extend %__scaled-solid;
-        }
-
-        @if $variant == "down" or $variant == "up" {
-          @include variant(1) { // One notch up.
-            @extend #{$variant-parent};
-          }
-        }
-
-        @if $variant == "down" {
-          @include variant(2) { // Two notches down.
-            --typography--scale: var(--typography--scale--down--#{$variant});
-          }
-        }
-      }
-
-      @at-root { // Here for ordering/efficiency.
-        %__scaled-solid {
-          --typography--line-height: var(--typography--font-size); // Set solid, at the larger size.
-
-          --typography--shift: calc(var(--typography--shoulder--bottom) * (var(--typography--scale) - 1) - var(--typography--leading--remainder)); // Shift to original baseline.
-        }
-      }
-    }
-
     // Icon shift overrides.
     @include atom(icon) {
       @include variant(cap) {
@@ -307,9 +279,11 @@
         var(--background-color) 0 calc(-1 * var(--typography--underline--clearing) / 3) // “North”
         ;
 
-      @include variant(disable) {
-        background:  initial;
-        text-shadow: initial;
+      @include increase-specificity {
+        @include variant(disable) {
+          background:  initial;
+          text-shadow: initial;
+        }
       }
     }
   }
@@ -429,7 +403,7 @@
 
     // Truncation.
     @include atom(truncate) {
-      @include variant-count(1, 6, $halves: false) {
+      @include variant-count(1, 6) {
         @extend #{__placeholder("#{$atom-breakpoint}layout/height:max:baseline:clear")};
 
         #{__css-var(#{$atom-breakpoint}--layout--height--max--baseline)}: #{$variant-count}; // Constrain the height.
@@ -449,6 +423,41 @@
 
         > * {
           box-sizing: border-box; // Margin/padding inside, if there are any children (links and such).
+        }
+      }
+    }
+
+
+    // Per-breakpoint variables.
+    @include atom(var) {
+      // Scales.
+      @include atom(scale) {
+        @include variant(minor, down, clear, up, major, prime) {
+          --typography--scale: var(--typography--scale--#{$variant});
+
+          @if $variant == "major" or $variant == "prime" {
+            @extend %__#{$atom-breakpoint}scaled-solid;
+          }
+
+          @if $variant == "down" or $variant == "up" {
+            @include variant(1) { // One notch up.
+              @extend #{$variant-parent};
+            }
+          }
+
+          @if $variant == "down" {
+            @include variant(2) { // Two notches down.
+              --typography--scale: var(--typography--scale--down--#{$variant});
+            }
+          }
+        }
+
+        @at-root { // Here for ordering/efficiency.
+          %__#{$atom-breakpoint}scaled-solid {
+            --typography--line-height: var(--typography--font-size); // Set solid, at the larger size.
+
+            --typography--shift: calc(var(--typography--shoulder--bottom) * (var(--typography--scale) - 1) - var(--typography--leading--remainder)); // Shift to original baseline.
+          }
         }
       }
     }

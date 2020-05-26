@@ -154,6 +154,7 @@
     display:    inline-flex;
     margin:     calc(-1 * var(--link-enlargement));
     padding:    var(--link-enlargement);
+    max-width:  100%;
 
     > * {
       box-sizing: border-box; // Back inside.
