@@ -4,7 +4,9 @@
   "description": "Atomic styles for MoMA digital properties",
   "main": "dist/atoms.min.css",
   "style": "dist/atoms.min.css",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "repository": "https://github.com/MuseumofModernArt/moma-style",
   "author": "MoMA Digital Media",
   "license": "SEE LICENSE IN README.MD",
@@ -15,5 +17,12 @@
     "build-prod": "sass stylesheets/atoms.scss:dist/atoms.min.css --style=compressed",
     "build": "yarn run build-dev && yarn run build-prod",
     "watch": "sass --watch --poll stylesheets/atoms.scss:dist/atoms.css"
+  },
+  "devDependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "balance-text": "^3.3.0"
   }
 }

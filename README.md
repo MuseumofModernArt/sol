@@ -20,7 +20,7 @@ To update, `yarn upgrade moma-style`. To update to a specific version, run `yarn
 # Usage
 You should just get `dist/atoms.css` or `dist/atoms.min.css`. Fonts are also provided in the `dist` folder.
 
-To add to your package manager, such as yarn, do `yarn add git+ssh://git@github.com:MuseumofModernArt/moma-style.git`. If you would like to lock to a specific version, append `#v1.0.0` to the end. More on all this [here](http://thecodebarbarian.com/github-is-my-favorite-private-npm-registry.html).
+To add to your package manager, such as yarn, do `yarn add github:MuseumofModernArt/moma-style`. If you would like to lock to a specific version, append `#v1.0.0` to the end. More on all this [here](http://thecodebarbarian.com/github-is-my-favorite-private-npm-registry.html).
 
 # Roadmap
 - v1.0 Initial release with just atoms.
