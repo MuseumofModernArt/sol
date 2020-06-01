@@ -15,7 +15,7 @@ Before creating a release, run `yarn build` to build the css files.
 
 Then use either `git` to create a release tag, or GitHub.
 
-To update, `yarn update moma-style`. To update to a specific version, run `yarn update moma-style@[version]`. More on semantic versioning [here](https://classic.yarnpkg.com/en/docs/dependency-versions#toc-semantic-versioning).
+To update, `yarn upgrade moma-style`. To update to a specific version, run `yarn upgrade moma-style#[version]`. More on semantic versioning [here](https://classic.yarnpkg.com/en/docs/dependency-versions#toc-semantic-versioning).
 
 # Usage
 You should just get `dist/atoms.css` or `dist/atoms.min.css`. Fonts are also provided in the `dist` folder.
