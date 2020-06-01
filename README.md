@@ -9,5 +9,22 @@ To make build for distribution, run `yarn run build`. This builds the css and th
 
 To link with `moma-go`, in this folder, run `yarn link`. In `moma-go`, run `yarn link moma-style`. This creates a [symlink](https://classic.yarnpkg.com/en/docs/cli/link/) to your local version.
 
+# Releases
+
+Before creating a release, run `yarn build` to build the css files.
+
+Then use either `git` to create a release tag, or GitHub.
+
+To update, `yarn update moma-style`. To update to a specific version, run `yarn update moma-style@[version]`. More on semantic versioning [here](https://classic.yarnpkg.com/en/docs/dependency-versions#toc-semantic-versioning).
+
 # Usage
 You should just get `dist/atoms.css` or `dist/atoms.min.css`. Fonts are also provided in the `dist` folder.
+
+To add to your package manager, such as yarn, do `yarn add git+ssh://git@github.com:MuseumofModernArt/moma-style.git`. [TK versioning].
+
+# Roadmap
+v1.0 Initial release with just atoms.
+v1.1 Any atoms changes that make this independent of .org.
+v1.2 Pull in high priority js.
+v1.3 Pull in lower priority js that will need to be rewritten in order to work.
+v1.4 New features such as bad browser banner in js.

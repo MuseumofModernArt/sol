@@ -32,7 +32,7 @@
     }
 
     @include atom(transition) {
-      @include atom(backdrop-filter, backdrop-filter, bottom, left, opacity, right, top, visibility) {
+      @include atom(backdrop-filter, backdrop-filter, bottom, left, opacity, right, top, transform, visibility) {
         $attribute: $atom;
 
         @include variant(duration, delay) {
@@ -73,6 +73,7 @@
                                 opacity,
                                 right,
                                 top,
+                                transform,
                                 visibility
                                 ;
     transition-delay:           var(--transition--backdrop-filter--delay, var(--transition--delay, 0ms)),
@@ -82,6 +83,7 @@
                                 var(--transition--opacity--delay,         var(--transition--delay, 0ms)),
                                 var(--transition--right--delay,           var(--transition--delay, 0ms)),
                                 var(--transition--top--delay,             var(--transition--delay, 0ms)),
+                                var(--transition--transform--delay,       var(--transition--delay, 0ms)),
                                 var(--transition--visibility--delay,      var(--transition--delay, 0ms))
                                 ;
     transition-duration:        var(--transition--backdrop-filter--duration, var(--transition--duration, 0ms)),
@@ -91,6 +93,7 @@
                                 var(--transition--opacity--duration,         var(--transition--duration, 0ms)),
                                 var(--transition--right--duration,           var(--transition--duration, 0ms)),
                                 var(--transition--top--duration,             var(--transition--duration, 0ms)),
+                                var(--transition--transform--duration,       var(--transition--duration, 0ms)),
                                 var(--transition--visibility--duration,      var(--transition--duration, 0ms))
                                 ;
     transition-timing-function: var(--transition--backdrop-filter--curve, var(--transition--curve, linear)),
@@ -100,6 +103,7 @@
                                 var(--transition--opacity--curve,         var(--transition--curve, linear)),
                                 var(--transition--right--curve,           var(--transition--curve, linear)),
                                 var(--transition--top--curve,             var(--transition--curve, linear)),
+                                var(--transition--transform--curve,       var(--transition--curve, linear)),
                                 var(--transition--visibility--curve,      var(--transition--curve, linear))
                                 ;
   }
