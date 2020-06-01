@@ -23,8 +23,8 @@ You should just get `dist/atoms.css` or `dist/atoms.min.css`. Fonts are also pro
 To add to your package manager, such as yarn, do `yarn add git+ssh://git@github.com:MuseumofModernArt/moma-style.git`. [TK versioning].
 
 # Roadmap
-v1.0 Initial release with just atoms.
-v1.1 Any atoms changes that make this independent of .org.
-v1.2 Pull in high priority js.
-v1.3 Pull in lower priority js that will need to be rewritten in order to work.
-v1.4 New features such as bad browser banner in js.
+- v1.0 Initial release with just atoms.
+- v1.1 Any atoms changes that make this independent of .org.
+- v1.2 Pull in high priority js.
+- v1.3 Pull in lower priority js that will need to be rewritten in order to work.
+- v1.4 New features such as bad browser banner in js.
