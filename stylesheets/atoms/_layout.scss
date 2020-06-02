@@ -259,7 +259,7 @@
           #{$variant-modifier}gap: var(#{__css-var(first-selector(&))}); // Allow for inlining.
 
           @include variant(page) {
-            @include variant-count($spacing-count--upper) {
+            @include variant-count($spacing-count--upper, $halves: true) {
               @if $variant-modifier == "column-" {
                 #{$variant-modifier}gap: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
               }
@@ -470,7 +470,7 @@
           }
 
           @include variant(page) {
-            @include variant-count($spacing-count--upper) {
+            @include variant-count($spacing-count--upper, $halves: true) {
               @if $atom == "width" {
                 #{$variant-modifier}#{$atom}: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
               }
@@ -528,7 +528,7 @@
           #{$atom}#{$variant-modifier}: var(#{__css-var(first-selector(&))}); // Allow for inlining.
 
           @include variant(page) {
-            @include variant-count($spacing-count--lower, $spacing-count--upper) {
+            @include variant-count($spacing-count--lower, $spacing-count--upper, $halves: true) {
               @if $variant-modifier == "-left" or $variant-modifier == "-right" {
                   #{$atom}#{$variant-modifier}: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
               }
