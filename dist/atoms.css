@@ -63549,9 +63549,11 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 
 .color\/var\/promo-color {
   --color: var(--color--promo, var(--color--black));
+  --color--rgb: var(--color--promo--rgb, var(--color--black--rgb));
 }
 .color\/var\/promo-color\:secondary {
   --color: var(--color--promo--secondary, var(--accent-color--on-light));
+  --color--rgb: var(--color--promo--secondary--rgb, var(--accent-color--on-light--rgb));
 }
 
 .color\/var\/accent {
@@ -63569,9 +63571,11 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 
 .color\/var\/background\/promo-color {
   --background-color: var(--color--promo--background, var(--color--gray--eee));
+  --background-color--rgb: var(--color--promo--background--rgb, var(--color--gray--eee--rgb));
 }
 .color\/var\/background\/promo-color\:secondary {
   --background-color: var(--color--promo--background--secondary, transparent);
+  --background-color--rgb: var(--color--promo--background--secondary--rgb, initial);
 }
 
 .color\/var\/reverse {
