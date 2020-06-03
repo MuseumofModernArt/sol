@@ -92,6 +92,7 @@
 
 @mixin variant-count($count, $count--upper: null, $default: 1, $halves: false, $sign: false) {
   $count--lower: 1;
+  $render-zero:  true;
 
   @if $count--upper {
     $count--lower: $count;
@@ -108,6 +109,11 @@
   $variant-count:      var(#{__css-var($selector-stem)}) !global; // Pass back to the call site.
   $variant-sign:       var(#{__css-var($selector-stem)}--sign, 1) !global;
 
+  @if $halves and $count--lower == 1 {
+    $count--lower: 0;
+    $render-zero:  false;
+  }
+
   // Then go through counts.
   @for $count from $count--lower through $count--upper {
     $selector: #{$selector-stem}#{$selector-remainder};
@@ -120,20 +126,21 @@
         }
       }
     }
+    @if $count != 0 or ($count == 0 and $render-zero) {
+      @include variant($count) {
+        @if $count == $default { // Tack on to default.
+          @extend #{__placeholder($selector-stem)};
+        }
+        @else {
+          #{__css-var($selector-stem)}: #{$count};
+        }
 
-    @include variant($count) {
-      @if $count == $default { // Tack on to default.
-        @extend #{__placeholder($selector-stem)};
-      }
-      @else {
-        #{__css-var($selector-stem)}: #{$count};
-      }
+        $selector:  #{$selector-stem}#{$variant-delimiter}#{$count}#{$selector-remainder};
+        $selectors: append($selectors, $selector, $separator: comma);
 
-      $selector:  #{$selector-stem}#{$variant-delimiter}#{$count}#{$selector-remainder};
-      $selectors: append($selectors, $selector, $separator: comma);
-
-      @if $sign and $count < 0 {
-        $negative-selectors: append($negative-selectors, $selector, $separator: comma);
+        @if $sign and $count < 0 {
+          $negative-selectors: append($negative-selectors, $selector, $separator: comma);
+        }
       }
     }
 
