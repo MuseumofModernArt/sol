@@ -374,6 +374,9 @@
       }
     }
 
+    @include atom(transform) {
+      transform: var(#{__css-var(first-selector(&))}); // Allow for inlining.
+    }
 
 
     @include atom(z-index) {
