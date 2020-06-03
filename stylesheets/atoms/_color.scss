@@ -92,9 +92,18 @@ $colors: (
   --color--ps1--background:            var(#{__color--css-var(black)});
   --color--ps1--background--secondary: var(#{__color--css-var(gray, 222)});
 
+  --color--ps1--rgb:                        var(#{__color--css-var--rgb(white)});
+  --color--ps1--secondary--rgb:             var(--accent-color--on-dark--rgb);
+  --color--ps1--background--rgb:            var(#{__color--css-var--rgb(black)});
+  --color--ps1--background--secondary--rgb: var(#{__color--css-var--rgb(gray, 222)});
+
   --color--collection:             var(#{__color--css-var(black)});
   --color--collection--secondary:  var(#{__color--css-var(brand, 10)});
   --color--collection--background: var(#{__color--css-var(brand, 6)});
+
+  --color--collection--rgb:             var(#{__color--css-var--rgb(black)});
+  --color--collection--secondary--rgb:  var(#{__color--css-var--rgb(brand, 10)});
+  --color--collection--background--rgb: var(#{__color--css-var--rgb(brand, 6)});
 }
 
 

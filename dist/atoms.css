@@ -63006,9 +63006,16 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --color--ps1--secondary: var(--accent-color--on-dark);
   --color--ps1--background: var(--color--black);
   --color--ps1--background--secondary: var(--color--gray--222);
+  --color--ps1--rgb: var(--color--white--rgb);
+  --color--ps1--secondary--rgb: var(--accent-color--on-dark--rgb);
+  --color--ps1--background--rgb: var(--color--black--rgb);
+  --color--ps1--background--secondary--rgb: var(--color--gray--222--rgb);
   --color--collection: var(--color--black);
   --color--collection--secondary: var(--color--brand--10);
   --color--collection--background: var(--color--brand--6);
+  --color--collection--rgb: var(--color--black--rgb);
+  --color--collection--secondary--rgb: var(--color--brand--10--rgb);
+  --color--collection--background--rgb: var(--color--brand--6--rgb);
 }
 
 .color\/var\/base-colors, :root {
