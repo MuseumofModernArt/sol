@@ -1,13 +1,17 @@
 # MoMA Style
 
 # Development
-To install, make sure you have homebrew installed, and then run `yarn install-sass` to install Dart Sass.
+1. To install, make sure you have homebrew installed, and then run this install Dart Sass<br>
+`yarn install-sass`
 
-To build for development, run `yarn run build-dev`. If you want to watch, then run `yarn run watch`.
+2. To build for development, run the first command. Or if you want to build and watch, use the second command<br>
+`yarn run build-dev` or `yarn run watch`
 
-To make build for distribution, run `yarn run build`. This builds the css and the compressed css.
+3. To make build for distribution, run the following. This builds the css and the compressed css
+`yarn run build`
 
-To link with `moma-go`, in this folder, run `yarn link`. In `moma-go`, run `yarn link moma-style`. This creates a [symlink](https://classic.yarnpkg.com/en/docs/cli/link/) to your local version.
+To link with `moma-go`, in the project folder, run `yarn link`.
+In `moma-go`, run `yarn link moma-style`. This creates a [symlink](https://classic.yarnpkg.com/en/docs/cli/link/) to your local version.
 
 # Releases
 
@@ -15,7 +19,7 @@ Before creating a release, run `yarn build` to build the css files.
 
 Then use either `git` to create a release tag, or GitHub.
 
-To update, `yarn upgrade moma-style`. To update to a specific version, run `yarn upgrade moma-style#[version]`. More on semantic versioning [here](https://classic.yarnpkg.com/en/docs/dependency-versions#toc-semantic-versioning).
+To update your version of the MoMA Style to the latest release, `yarn upgrade moma-style`. To update to a specific version, run `yarn upgrade moma-style#[version]`. More on semantic versioning [here](https://classic.yarnpkg.com/en/docs/dependency-versions#toc-semantic-versioning).
 
 # Usage
 You should just get `dist/atoms.css` or `dist/atoms.min.css`. Fonts are also provided in the `dist` folder.

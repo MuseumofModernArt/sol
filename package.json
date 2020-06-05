@@ -1,6 +1,6 @@
 {
   "name": "moma-style",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Atomic styles for MoMA digital properties",
   "main": "dist/atoms.min.css",
   "style": "dist/atoms.min.css",
