@@ -259,9 +259,17 @@
 
   // Underlines.
   @include atom(underline) {
-    // &.typography {
-    // // TODO Do we need underlines directly on .typography?
-    // }
+    &.typography {
+      // TODO Do we need underlines directly on .typography?
+      @include variant(disable) {
+        a {
+          @include increase-specificity {
+            background:  initial;
+            text-shadow: initial;
+          }
+        }
+      }
+    }
 
     // When on a descendant (as in Markdown).
     &:not(.typography) {
@@ -278,13 +286,6 @@
         var(--background-color) calc(-1 * var(--typography--underline--clearing)) calc(-1 * var(--typography--underline--clearing) / 3), // “Northwest”
         var(--background-color) 0 calc(-1 * var(--typography--underline--clearing) / 3) // “North”
         ;
-
-      @include increase-specificity {
-        @include variant(disable) {
-          background:  initial;
-          text-shadow: initial;
-        }
-      }
     }
   }
 

@@ -74274,16 +74274,17 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --typography--icon--shift--override: var(--typography--shift--x);
 }
 
+.typography\/underline\:disable.typography a:not(._), .show-focus .link\/focus\:inline:focus a:not(._), .show-focus .typography\/markdown\:headers a:focus:not([class]) a:not(._), .show-focus .typography\/markdown a:focus:not([class]) a:not(._), .typography\/markdown\:headers .show-focus a:focus:not([class]) a:not(._), .typography\/markdown .show-focus a:focus:not([class]) a:not(._), .show-focus .typography a:focus a:not(._), .typography .show-focus a:focus a:not(._) {
+  background: initial;
+  text-shadow: initial;
+}
+
 .typography\/underline:not(.typography), .typography\/markdown\:headers a:not(.typography):not([class]), .typography\/markdown a:not(.typography):not([class]), .typography a:not(.typography) {
   background-image: linear-gradient(to bottom, var(--color), var(--color) var(--typography--underline--thickness), transparent var(--typography--underline--thickness));
   background-position: calc(-1 * var(--typography--underline--margin)) calc(var(--typography--underline--top) + 1em);
   background-repeat: no-repeat;
   background-size: calc(100% + var(--typography--underline--margin) + var(--typography--margin--right)) 100%;
   text-shadow: var(--background-color) var(--typography--underline--clearing) 0, var(--background-color) var(--typography--underline--clearing) calc(var(--typography--underline--clearing) / 3), var(--background-color) 0 calc(var(--typography--underline--clearing) / 3), var(--background-color) calc(-1 * var(--typography--underline--clearing)) calc(var(--typography--underline--clearing) / 3), var(--background-color) calc(-1 * var(--typography--underline--clearing)) 0, var(--background-color) calc(-1 * var(--typography--underline--clearing)) calc(-1 * var(--typography--underline--clearing) / 3), var(--background-color) 0 calc(-1 * var(--typography--underline--clearing) / 3);
-}
-.typography\/underline\:disable:not(.typography):not(._), .show-focus .link\/focus\:inline:focus, .show-focus .typography\/markdown\:headers a:focus:not([class]), .show-focus .typography\/markdown a:focus:not([class]), .typography\/markdown\:headers .show-focus a:focus:not([class]), .typography\/markdown .show-focus a:focus:not([class]), .show-focus .typography a:focus, .typography .show-focus a:focus {
-  background: initial;
-  text-shadow: initial;
 }
 
 .typography\/tabular-numbers, .typography\/markdown\:headers ol:not([class]) > li:before, .typography\/markdown ol:not([class]) > li:before {
