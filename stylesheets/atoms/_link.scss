@@ -73,36 +73,6 @@
 
 
 
-%__link-focus {
-  @extend %__tap-highlight;
-
-  &:focus {
-    @extend %__outline;
-    @extend %__radius;
-  }
-
-  // Focus.js 'show-focus' shenanigans to prevent Chrome from displaying focus states on mouse clicks. Only show it for keyboard tabbing.
-  .show-focus &:focus {
-    @extend %__focus--shadow;
-  }
-
-  &:active {
-    @extend %__radius;
-  }
-
-  // Only on non-touch device (courtesy modernizr), otherwise they are sometimes sticky.
-  .no-touchevents &:active {
-    @extend %__active--background;
-  }
-
-  // Use standard active background if `ontouchstart` is specified.
-  .touchevents &[ontouchstart]:active {
-    @extend %__active--background--touch;
-  }
-}
-
-
-
 .link {
   @include atom(disable) {
     @extend %__disable--click;
@@ -148,7 +118,7 @@
 
   @include atom(focus) {
     @extend %__cursor-pointer;
-    @extend %__link-focus;
+    @extend %__tap-highlight;
 
     box-sizing: content-box; // Reset margin/padding outside of any specified height/width.
     display:    inline-flex;
@@ -158,6 +128,30 @@
 
     > * {
       box-sizing: border-box; // Back inside.
+    }
+
+    &:focus {
+      @extend %__outline;
+      @extend %__radius;
+    }
+
+    &:active {
+      @extend %__radius;
+    }
+
+    // Focus.js 'show-focus' shenanigans to prevent Chrome from displaying focus states on mouse clicks. Only show it for keyboard tabbing.
+    .show-focus &:focus {
+      @extend %__focus--shadow;
+    }
+
+    // Only on non-touch device (courtesy modernizr), otherwise they are sometimes sticky.
+    .no-touchevents &:active {
+      @extend %__active--background;
+    }
+
+    // Use standard active background if `ontouchstart` is specified.
+    .touchevents &[ontouchstart]:active {
+      @extend %__active--background--touch;
     }
 
     @include variant(contain) {
@@ -179,26 +173,26 @@
         outline: none;
       }
 
-      .show-focus &:focus {
-        box-shadow: none;
-      }
-
-      .no-touchevents &:active {
-        background-color: transparent;
-      }
-
       // Targeting for “link/focus” descendents, then styled as above.
       &:focus #{$variant-parent} {
         @extend %__radius;
         @extend %__outline;
       }
 
+      &:active #{$variant-parent} {
+        @extend %__radius;
+      }
+
+      .show-focus &:focus {
+        box-shadow: none;
+      }
+
       .show-focus &:focus #{$variant-parent} {
         @extend %__focus--shadow;
       }
 
-      &:active #{$variant-parent} {
-        @extend %__radius;
+      .no-touchevents &:active {
+        background-color: transparent;
       }
 
       .no-touchevents &:active #{$variant-parent} {
@@ -212,7 +206,7 @@
 
     @include variant(inline) {
       @extend %__cursor-pointer;
-      @extend %__link-focus;
+      @extend %__tap-highlight;
 
       border-left-color:  transparent;
       border-left-style:  solid;
@@ -223,8 +217,30 @@
       margin-left:        calc(-1 * var(--link-enlargement) / 2);
       margin-right:       calc(-1 * var(--link-enlargement) / 2);
 
+      &:focus {
+        @extend %__outline;
+        @extend %__radius;
+      }
+
+      &:active {
+        @extend %__radius;
+      }
+
+      // Focus.js 'show-focus' shenanigans to prevent Chrome from displaying focus states on mouse clicks. Only show it for keyboard tabbing.
       .show-focus &:focus {
         @extend #{__placeholder("typography/underline:disable")}; // Disables our “underlines” when keyboard-focused.
+        @extend %__focus--shadow;
+
+      }
+
+      // Only on non-touch device (courtesy modernizr), otherwise they are sometimes sticky.
+      .no-touchevents &:active {
+        @extend %__active--background;
+      }
+
+      // Use standard active background if `ontouchstart` is specified.
+      .touchevents &[ontouchstart]:active {
+        @extend %__active--background--touch;
       }
     }
   }
