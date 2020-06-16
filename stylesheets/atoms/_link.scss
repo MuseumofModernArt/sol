@@ -230,7 +230,6 @@
       .show-focus &:focus {
         @extend #{__placeholder("typography/underline:disable")}; // Disables our “underlines” when keyboard-focused.
         @extend %__focus--shadow;
-
       }
 
       // Only on non-touch device (courtesy modernizr), otherwise they are sometimes sticky.
