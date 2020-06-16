@@ -1,4 +1,5 @@
 import BalanceText from "balance-text";
+import { GetElementsList } from "./../util/util";
 
 const BalanceTextClass = 'balance-text';
 
@@ -6,8 +7,6 @@ export default class MoMABalanceText {
   constructor(className) {
     if (className) this.className = className;
     else this.className = BalanceTextClass;
-
-    this.els = document.getElementsByClassName(className);
 
     this.styleSheetCreated =
       document.querySelectorAll('style[data-owner="balance-text"]').length > 0;
@@ -60,14 +59,14 @@ export default class MoMABalanceText {
   }
 
   balance(els) {
-    if (!els) els = this.els;
+    if (!els) els = `.${this.className}`;
 
     if (!this.styleSheetCreated) {
       this.createStyleSheet(() => {
         this.balance(els);
       });
     } else {
-      let elsList = getElementsList(els);
+      let elsList = GetElementsList(els);
       elsList.forEach((el) => {
         el.dataset.inlineCss = el.style.cssText;
         el.style.cssText = "";
@@ -77,7 +76,6 @@ export default class MoMABalanceText {
         );
         el.classList.add("balance-text:measure");
       });
-
       BalanceText(elsList); // Native call without any foreach since the library does it itself.
 
       elsList.forEach((el) => {

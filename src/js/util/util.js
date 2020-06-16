@@ -1,11 +1,11 @@
-let IsMobileOrTablet = () => {
+const IsMobileOrTablet = () => {
   const iOS = /iOS|iPhone|iPad/g.test(navigator.userAgent);
   const android = /Android/g.test(navigator.userAgent);
 
   return android || iOS;
 }
 
-let DocumentReady = (fn) => {
+const DocumentReady = (fn) => {
   if (document.readyState !== 'loading') {
     fn();
   } else {
@@ -14,7 +14,7 @@ let DocumentReady = (fn) => {
 }
 
 // Custom get elements that filters stuff with no height (it or parent is display: none)
-let GetElementsList = (elements) => {
+const GetElementsList = (elements) => {
   if (!elements) return [];
 
   // is selector
@@ -29,7 +29,7 @@ let GetElementsList = (elements) => {
   return elsArray;
 }
 
-export default {
+export {
   IsMobileOrTablet,
   DocumentReady,
   GetElementsList,

@@ -9,7 +9,7 @@ export default class Focus {
   }
 }
 
-let ShowFocusOnTabPress = () => {
+const ShowFocusOnTabPress = () => {
   document.body.addEventListener("keydown", (e) => {
     if (e.which == KeyCodes.TAB) {
       document.documentElement.classList.add(ShowFocusClass);
@@ -17,7 +17,7 @@ let ShowFocusOnTabPress = () => {
   });
 }
 
-let RemoveFocusOnClick = () => {
+const RemoveFocusOnClick = () => {
   document.body.addEventListener("click", (e) => {
     if (e.clientX == 0 && e.clientY == 0) return;
     document.documentElement.classList.remove(ShowFocusClass);

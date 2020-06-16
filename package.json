@@ -14,12 +14,13 @@
   "scripts": {
     "install-sass": "SASS=sass/sass/sass; if brew ls --versions $SASS; then brew upgrade $SASS; else brew install $SASS; fi",
     "test": "jest",
-    "build-dev": "sass src/stylesheets/atoms.scss:dist/atoms.css",
-    "build-prod": "sass src/stylesheets/atoms.scss:dist/atoms.min.css --style=compressed",
-    "build": "yarn run build-dev && yarn run build-prod && yarn run build-webpack",
-    "watch-sass": "sass --watch --poll src/stylesheets/atoms.scss:dist/atoms.css",
+    "build-sass-dev": "sass src/stylesheets/atoms.scss:dist/atoms.css",
+    "build-sass-prod": "sass src/stylesheets/atoms.scss:dist/atoms.min.css --style=compressed",
     "build-webpack": "webpack -p --config webpack.config.js --mode production",
-    "watch-webpack": "webpack --progress --watch --config webpack.config.js --mode development"
+    "build": "yarn run build-sass-dev && yarn run build-sass-prod && yarn run build-webpack",
+    "watch-sass": "sass --watch --poll src/stylesheets/atoms.scss:dist/atoms.css",
+    "watch-webpack": "webpack --progress --watch --config webpack.config.js --mode development",
+    "watch": "yarn watch-sass & yarn watch-webpack"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
