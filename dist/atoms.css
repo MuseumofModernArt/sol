@@ -74208,6 +74208,11 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   width: var(--typography--font-size);
 }
 
+.typography\/underline\:disable:not(.typography), .show-focus .link\/focus\:inline:not(.typography):focus, .show-focus .typography\/markdown\:headers a:not(.typography):focus:not([class]), .show-focus .typography\/markdown a:not(.typography):focus:not([class]), .typography\/markdown\:headers .show-focus a:not(.typography):focus:not([class]), .typography\/markdown .show-focus a:not(.typography):focus:not([class]), .show-focus .typography a:not(.typography):focus, .typography .show-focus a:not(.typography):focus, .typography\/underline\:disable.typography a:not([class]), .show-focus .typography.link\/focus\:inline:focus a:not([class]), .show-focus .typography\/markdown\:headers a.typography:focus:not([class]) a:not([class]), .show-focus .typography\/markdown a.typography:focus:not([class]) a:not([class]), .typography\/markdown\:headers .show-focus a.typography:focus:not([class]) a:not([class]), .typography\/markdown .show-focus a.typography:focus:not([class]) a:not([class]), .show-focus .typography a.typography:focus a:not([class]), .typography .show-focus a.typography:focus a:not([class]) {
+  background: initial;
+  text-shadow: initial;
+}
+
 .typography\/face, .typography\/markdown\:headers strong, .typography\/markdown strong, .typography, .typography\/markdown\:headers > h4, .typography\/markdown\:headers > h3, .typography\/markdown\:headers > h2, .typography\/markdown\:headers pre, .typography\/markdown pre, .typography\/markdown\:headers ol:not([class]) > li, .typography\/markdown ol:not([class]) > li,
 .typography\/markdown\:headers ul:not([class]) > li,
 .typography\/markdown ul:not([class]) > li, .typography\/markdown\:headers p:not([class]), .typography\/markdown p:not([class]) {
@@ -74274,16 +74279,19 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --typography--icon--shift--override: var(--typography--shift--x);
 }
 
-.typography\/underline:not(.typography), .typography\/markdown\:headers a:not(.typography):not([class]), .typography\/markdown a:not(.typography):not([class]), .typography a:not(.typography) {
-  background-image: linear-gradient(to bottom, var(--color), var(--color) var(--typography--underline--thickness), transparent var(--typography--underline--thickness));
-  background-position: calc(-1 * var(--typography--underline--margin)) calc(var(--typography--underline--top) + 1em);
+.typography\/underline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a {
+  background-image: linear-gradient(to var(--typography--underline--direction, bottom), var(--color), var(--color) var(--typography--underline--thickness), transparent var(--typography--underline--thickness));
+  background-position: left calc(-1 * var(--typography--underline--margin)) var(--typography--underline--position, top calc(var(--typography--underline--top) + 1em));
   background-repeat: no-repeat;
   background-size: calc(100% + var(--typography--underline--margin) + var(--typography--margin--right)) 100%;
   text-shadow: var(--background-color) var(--typography--underline--clearing) 0, var(--background-color) var(--typography--underline--clearing) calc(var(--typography--underline--clearing) / 3), var(--background-color) 0 calc(var(--typography--underline--clearing) / 3), var(--background-color) calc(-1 * var(--typography--underline--clearing)) calc(var(--typography--underline--clearing) / 3), var(--background-color) calc(-1 * var(--typography--underline--clearing)) 0, var(--background-color) calc(-1 * var(--typography--underline--clearing)) calc(-1 * var(--typography--underline--clearing) / 3), var(--background-color) 0 calc(-1 * var(--typography--underline--clearing) / 3);
 }
-.typography\/underline\:disable:not(.typography):not(._), .show-focus .link\/focus\:inline:focus, .show-focus .typography\/markdown\:headers a:focus:not([class]), .show-focus .typography\/markdown a:focus:not([class]), .typography\/markdown\:headers .show-focus a:focus:not([class]), .typography\/markdown .show-focus a:focus:not([class]), .show-focus .typography a:focus, .typography .show-focus a:focus {
-  background: initial;
-  text-shadow: initial;
+.typography\/underline.typography {
+  --typography--underline--direction: top;
+  --typography--underline--offset: 3;
+  --typography--underline--position: bottom;
+  padding-bottom: calc(var(--typography--underline--thickness) + ((var(--typography--leading) - 1) + var(--typography--shoulder)) * 1em + var(--typography--underline--top));
+  margin-bottom: calc(-1 * (var(--typography--underline--thickness) + ((var(--typography--leading) - 1) + var(--typography--shoulder)) * 1em + var(--typography--underline--top)));
 }
 
 .typography\/tabular-numbers, .typography\/markdown\:headers ol:not([class]) > li:before, .typography\/markdown ol:not([class]) > li:before {
