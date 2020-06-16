@@ -66,7 +66,6 @@
   --typography--tracking:           0;
   --typography--underline--clear:   75;
   --typography--underline--inset:  -81;
-  --typography--underline--offset:  120;
   --typography--underline:          75;
   --typography--weight:             400;
 }
@@ -80,7 +79,6 @@
   --typography--tracking:          -20;  // Tracked in.
   --typography--underline--clear:   100; // Can’t exceed narrowest descender width, with this shadow implementation.
   --typography--underline--inset:  -59;  // Left edge of lowercase “m” (since links tend to start lowercase).
-  --typography--underline--offset:  56;  // Distance down from baseline. Lines up to bottom of descenders.
   --typography--underline:          133; // Height of crossbar on capital “E”.
   --typography--weight:             900; // Direct map to font stylesheet.
 }
@@ -126,6 +124,11 @@
   white-space: nowrap;
 }
 
+%__underline--disable {
+  background:  initial;
+  text-shadow: initial;
+}
+
 %__icon {
   @extend %color__svg--alpha !optional; // Optional flag, as external MoMA Sans file doesn’t get this?
 
@@ -158,7 +161,6 @@
     --typography--underline--margin:    calc(var(--typography--underline--inset) *  var(--tracking-conversion));
     --typography--underline--clearing:  calc(var(--typography--underline--clear) *  var(--tracking-conversion));
     --typography--underline--thickness: calc(var(--typography--underline) *         var(--tracking-conversion));
-    --typography--underline--top:       calc(var(--typography--underline--offset) * var(--tracking-conversion));
 
     --typography--bullet--size:         calc(var(--typography--bullet) *  var(--tracking-conversion));
 
@@ -211,7 +213,7 @@
   }
 
   // Classless links inside typography elements (usually from rendered markdown). On by default.
-  a {
+  a:not([class]) {
     @extend #{__placeholder("link/focus:inline")} !optional; // This doc can be used without links.
     @extend #{__placeholder("typography/underline")};
   }
@@ -259,31 +261,36 @@
 
   // Underlines.
   @include atom(underline) {
-    // &.typography {
-    // // TODO Do we need underlines directly on .typography?
-    // }
+    background-image:    linear-gradient(to top, var(--color), var(--color) var(--typography--underline--thickness), transparent var(--typography--underline--thickness)); // Gradient going up, type color to transparent, over the underline thickness distance.
+    background-position: calc(-1 * var(--typography--underline--margin)) bottom; // Centered left/right, on bottom of bounding box.
+    background-repeat:   no-repeat; // Prevent top/bottom from looping back over.
+    background-size:     calc(100% + var(--typography--underline--margin) + var(--typography--margin--right)); // Larger offsets would need a negative margin/padding on the bottom, but this covers us for now.
+    text-shadow: // Clear the descenders, if we know the background color.
+      var(--background-color) var(--typography--underline--clearing) 0, // “East”
+      var(--background-color) var(--typography--underline--clearing) calc(var(--typography--underline--clearing) / 3), // “Southeast”
+      var(--background-color) 0 calc(var(--typography--underline--clearing) / 3), // “South”
+      var(--background-color) calc(-1 * var(--typography--underline--clearing)) calc(var(--typography--underline--clearing) / 3), // “Southwest”
+      var(--background-color) calc(-1 * var(--typography--underline--clearing)) 0, // “West”
+      var(--background-color) calc(-1 * var(--typography--underline--clearing)) calc(-1 * var(--typography--underline--clearing) / 3), // “Northwest”
+      var(--background-color) 0 calc(-1 * var(--typography--underline--clearing) / 3) // “North”
+      ;
 
-    // When on a descendant (as in Markdown).
-    &:not(.typography) {
-      background-image:    linear-gradient(to bottom, var(--color), var(--color) var(--typography--underline--thickness), transparent var(--typography--underline--thickness)); // Gradient going down, type color to transparent, over the underline thickness distance.
-      background-position: calc(-1 * var(--typography--underline--margin)) calc(var(--typography--underline--top) + 1em); // Centered left/right, starting vertically at the baseline.
-      background-repeat:   no-repeat; // Prevent top/bottom from looping back over.
-      background-size:     calc(100% + var(--typography--underline--margin) + var(--typography--margin--right)) 100%; // Larger offsets would need a negative margin/padding on the bottom, but this covers us for now.
-      text-shadow: // Clear the descenders, if we know the background color.
-        var(--background-color) var(--typography--underline--clearing) 0, // “East”
-        var(--background-color) var(--typography--underline--clearing) calc(var(--typography--underline--clearing) / 3), // “Southeast”
-        var(--background-color) 0 calc(var(--typography--underline--clearing) / 3), // “South”
-        var(--background-color) calc(-1 * var(--typography--underline--clearing)) calc(var(--typography--underline--clearing) / 3), // “Southwest”
-        var(--background-color) calc(-1 * var(--typography--underline--clearing)) 0, // “West”
-        var(--background-color) calc(-1 * var(--typography--underline--clearing)) calc(-1 * var(--typography--underline--clearing) / 3), // “Northwest”
-        var(--background-color) 0 calc(-1 * var(--typography--underline--clearing) / 3) // “North”
-        ;
+    @at-root { // Don’t extend this part.
+      #{first-selector(&)}.typography {
+        padding-bottom: calc(var(--typography--underline--thickness) + ((var(--typography--leading) - 1) + var(--typography--shoulder)) * 1em);
+        margin-bottom: calc(-1 * calc(var(--typography--underline--thickness) + ((var(--typography--leading) - 1) + var(--typography--shoulder)) * 1em));
+      }
+    }
 
-      @include increase-specificity {
-        @include variant(disable) {
-          background:  initial;
-          text-shadow: initial;
+    @include variant(disable) { // TODO Messy extend with `show-focus` stuff, also double-nested links.
+      &.typography {
+        a:not([class]) { // Markdown descendants.
+          @extend %__underline--disable;
         }
+      }
+
+      &:not(.typography) {
+        @extend %__underline--disable;
       }
     }
   }

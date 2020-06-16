@@ -71229,37 +71229,37 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   user-select: auto;
 }
 
-.link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a, .link\/focus, .link\/cursor {
+.link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a:not([class]), .link\/focus, .link\/cursor {
   cursor: pointer;
   touch-action: manipulation;
 }
 
-.link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a, .link\/focus\:children, .link\/focus {
+.link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a:not([class]), .link\/focus\:children, .link\/focus {
   -webkit-tap-highlight-color: rgba(var(--color--focus--rgb), var(--color--tap-highlight--alpha));
 }
-[ontouchstart].link\/focus\:inline, .typography\/markdown\:headers a[ontouchstart]:not([class]), .typography\/markdown a[ontouchstart]:not([class]), .typography a[ontouchstart], [ontouchstart].link\/focus\:children, [ontouchstart].link\/focus {
+[ontouchstart].link\/focus\:inline, .typography\/markdown\:headers a[ontouchstart]:not([class]), .typography\/markdown a[ontouchstart]:not([class]), .typography a[ontouchstart]:not([class]), [ontouchstart].link\/focus\:children, [ontouchstart].link\/focus {
   -webkit-tap-highlight-color: transparent;
 }
 
-.link\/focus\:inline:focus, .typography\/markdown\:headers a:focus:not([class]), .typography\/markdown a:focus:not([class]), .typography a:focus, .link\/focus\:children:focus .link\/focus, .link\/focus:focus {
+.link\/focus\:inline:focus, .typography\/markdown\:headers a:focus:not([class]), .typography\/markdown a:focus:not([class]), .typography a:focus:not([class]), .link\/focus\:children:focus .link\/focus, .link\/focus:focus {
   outline: none;
   position: relative;
   z-index: 1;
 }
 
-.link\/focus\:inline:active, .typography\/markdown\:headers a:active:not([class]), .typography\/markdown a:active:not([class]), .typography a:active, .link\/focus\:inline:focus, .typography\/markdown\:headers a:focus:not([class]), .typography\/markdown a:focus:not([class]), .typography a:focus, .link\/focus\:children:active .link\/focus, .link\/focus\:children:focus .link\/focus, .link\/focus:active, .link\/focus:focus {
+.link\/focus\:inline:active, .typography\/markdown\:headers a:active:not([class]), .typography\/markdown a:active:not([class]), .typography a:active:not([class]), .link\/focus\:inline:focus, .typography\/markdown\:headers a:focus:not([class]), .typography\/markdown a:focus:not([class]), .typography a:focus:not([class]), .link\/focus\:children:active .link\/focus, .link\/focus\:children:focus .link\/focus, .link\/focus:active, .link\/focus:focus {
   border-radius: var(--border-radius, var(--focus-radius));
 }
 
-.show-focus .link\/focus\:inline:focus, .show-focus .typography\/markdown\:headers a:focus:not([class]), .show-focus .typography\/markdown a:focus:not([class]), .typography\/markdown\:headers .show-focus a:focus:not([class]), .typography\/markdown .show-focus a:focus:not([class]), .show-focus .typography a:focus, .typography .show-focus a:focus, .show-focus .link\/focus\:children:focus .link\/focus, .show-focus .link\/focus:focus {
+.show-focus .link\/focus\:inline:focus, .show-focus .typography\/markdown\:headers a:focus:not([class]), .show-focus .typography\/markdown a:focus:not([class]), .typography\/markdown\:headers .show-focus a:focus:not([class]), .typography\/markdown .show-focus a:focus:not([class]), .show-focus .typography a:focus:not([class]), .typography .show-focus a:focus:not([class]), .show-focus .link\/focus\:children:focus .link\/focus, .show-focus .link\/focus:focus {
   box-shadow: 0 0 0 var(--focus-thickness) var(--color--focus);
 }
 
-.no-touchevents .link\/focus\:inline:active, .no-touchevents .typography\/markdown\:headers a:active:not([class]), .no-touchevents .typography\/markdown a:active:not([class]), .typography\/markdown\:headers .no-touchevents a:active:not([class]), .typography\/markdown .no-touchevents a:active:not([class]), .no-touchevents .typography a:active, .typography .no-touchevents a:active, .no-touchevents .link\/focus\:children:active .link\/focus, .no-touchevents .link\/focus:active {
+.no-touchevents .link\/focus\:inline:active, .no-touchevents .typography\/markdown\:headers a:active:not([class]), .no-touchevents .typography\/markdown a:active:not([class]), .typography\/markdown\:headers .no-touchevents a:active:not([class]), .typography\/markdown .no-touchevents a:active:not([class]), .no-touchevents .typography a:active:not([class]), .typography .no-touchevents a:active:not([class]), .no-touchevents .link\/focus\:children:active .link\/focus, .no-touchevents .link\/focus:active {
   background-color: rgba(var(--color--focus--rgb), var(--color--active--alpha));
 }
 
-.touchevents .link\/focus\:inline[ontouchstart]:active, .touchevents .typography\/markdown\:headers a[ontouchstart]:active:not([class]), .touchevents .typography\/markdown a[ontouchstart]:active:not([class]), .typography\/markdown\:headers .touchevents a[ontouchstart]:active:not([class]), .typography\/markdown .touchevents a[ontouchstart]:active:not([class]), .touchevents .typography a[ontouchstart]:active, .typography .touchevents a[ontouchstart]:active, .touchevents .link\/focus\:children[ontouchstart]:active .link\/focus, .touchevents .link\/focus[ontouchstart]:active {
+.touchevents .link\/focus\:inline[ontouchstart]:active, .touchevents .typography\/markdown\:headers a[ontouchstart]:active:not([class]), .touchevents .typography\/markdown a[ontouchstart]:active:not([class]), .typography\/markdown\:headers .touchevents a[ontouchstart]:active:not([class]), .typography\/markdown .touchevents a[ontouchstart]:active:not([class]), .touchevents .typography a[ontouchstart]:active:not([class]), .typography .touchevents a[ontouchstart]:active:not([class]), .touchevents .link\/focus\:children[ontouchstart]:active .link\/focus, .touchevents .link\/focus[ontouchstart]:active {
   background-color: rgba(var(--color--focus--rgb), var(--color--tap-highlight--alpha));
 }
 
@@ -71289,7 +71289,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 .no-touchevents .link\/focus\:children:active {
   background-color: transparent;
 }
-.link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a {
+.link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a:not([class]) {
   border-left-color: transparent;
   border-left-style: solid;
   border-left-width: calc(var(--link-enlargement) / 2);
@@ -74138,7 +74138,6 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --typography--tracking: 0;
   --typography--underline--clear: 75;
   --typography--underline--inset: -81;
-  --typography--underline--offset: 120;
   --typography--underline: 75;
   --typography--weight: 400;
 }
@@ -74152,7 +74151,6 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --typography--tracking: -20;
   --typography--underline--clear: 100;
   --typography--underline--inset: -59;
-  --typography--underline--offset: 56;
   --typography--underline: 133;
   --typography--weight: 900;
 }
@@ -74193,6 +74191,11 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   white-space: nowrap;
 }
 
+.typography\/underline\:disable:not(.typography), .show-focus .link\/focus\:inline:not(.typography):focus, .show-focus .typography\/markdown\:headers a:not(.typography):focus:not([class]), .show-focus .typography\/markdown a:not(.typography):focus:not([class]), .typography\/markdown\:headers .show-focus a:not(.typography):focus:not([class]), .typography\/markdown .show-focus a:not(.typography):focus:not([class]), .show-focus .typography a:not(.typography):focus:not([class]), .typography .show-focus a:not(.typography):focus:not([class]), .typography\/underline\:disable.typography a:not([class]), .show-focus .typography.link\/focus\:inline:focus a:not([class]), .show-focus .typography\/markdown\:headers a.typography:focus:not([class]) a:not([class]), .show-focus .typography\/markdown a.typography:focus:not([class]) a:not([class]), .typography\/markdown\:headers .show-focus a.typography:focus:not([class]) a:not([class]), .typography\/markdown .show-focus a.typography:focus:not([class]) a:not([class]), .show-focus .typography a.typography:focus:not([class]) a:not([class]), .typography .show-focus a.typography:focus:not([class]) a:not([class]) {
+  background: initial;
+  text-shadow: initial;
+}
+
 .typography\/icon\:after, .typography\/icon\:after\:0deg, .typography\/icon\:after\:45deg, .typography\/icon\:after\:90deg, .typography\/icon\:after\:135deg, .typography\/icon\:after\:180deg, .typography\/icon\:after\:225deg, .typography\/icon\:after\:270deg, .typography\/icon\:after\:315deg, .typography\/icon\:after\:360deg, .typography\/icon\:before, .typography\/icon\:before\:0deg, .typography\/icon\:before\:45deg, .typography\/icon\:before\:90deg, .typography\/icon\:before\:135deg, .typography\/icon\:before\:180deg, .typography\/icon\:before\:225deg, .typography\/icon\:before\:270deg, .typography\/icon\:before\:315deg, .typography\/icon\:before\:360deg {
   --typography--icon--inset: -156;
   --typography--icon--margin: calc(var(--typography--icon--inset) * var(--tracking-conversion));
@@ -74217,7 +74220,6 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --typography--underline--margin: calc(var(--typography--underline--inset) * var(--tracking-conversion));
   --typography--underline--clearing: calc(var(--typography--underline--clear) * var(--tracking-conversion));
   --typography--underline--thickness: calc(var(--typography--underline) * var(--tracking-conversion));
-  --typography--underline--top: calc(var(--typography--underline--offset) * var(--tracking-conversion));
   --typography--bullet--size: calc(var(--typography--bullet) * var(--tracking-conversion));
   font-weight: var(--typography--weight);
   letter-spacing: var(--typography--letter-spacing);
@@ -74274,16 +74276,16 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --typography--icon--shift--override: var(--typography--shift--x);
 }
 
-.typography\/underline:not(.typography), .typography\/markdown\:headers a:not(.typography):not([class]), .typography\/markdown a:not(.typography):not([class]), .typography a:not(.typography) {
-  background-image: linear-gradient(to bottom, var(--color), var(--color) var(--typography--underline--thickness), transparent var(--typography--underline--thickness));
-  background-position: calc(-1 * var(--typography--underline--margin)) calc(var(--typography--underline--top) + 1em);
+.typography\/underline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a:not([class]) {
+  background-image: linear-gradient(to top, var(--color), var(--color) var(--typography--underline--thickness), transparent var(--typography--underline--thickness));
+  background-position: calc(-1 * var(--typography--underline--margin)) bottom;
   background-repeat: no-repeat;
-  background-size: calc(100% + var(--typography--underline--margin) + var(--typography--margin--right)) 100%;
+  background-size: calc(100% + var(--typography--underline--margin) + var(--typography--margin--right));
   text-shadow: var(--background-color) var(--typography--underline--clearing) 0, var(--background-color) var(--typography--underline--clearing) calc(var(--typography--underline--clearing) / 3), var(--background-color) 0 calc(var(--typography--underline--clearing) / 3), var(--background-color) calc(-1 * var(--typography--underline--clearing)) calc(var(--typography--underline--clearing) / 3), var(--background-color) calc(-1 * var(--typography--underline--clearing)) 0, var(--background-color) calc(-1 * var(--typography--underline--clearing)) calc(-1 * var(--typography--underline--clearing) / 3), var(--background-color) 0 calc(-1 * var(--typography--underline--clearing) / 3);
 }
-.typography\/underline\:disable:not(.typography):not(._), .show-focus .link\/focus\:inline:focus, .show-focus .typography\/markdown\:headers a:focus:not([class]), .show-focus .typography\/markdown a:focus:not([class]), .typography\/markdown\:headers .show-focus a:focus:not([class]), .typography\/markdown .show-focus a:focus:not([class]), .show-focus .typography a:focus, .typography .show-focus a:focus {
-  background: initial;
-  text-shadow: initial;
+.typography\/underline.typography {
+  padding-bottom: calc(var(--typography--underline--thickness) + ((var(--typography--leading) - 1) + var(--typography--shoulder)) * 1em);
+  margin-bottom: calc(-1 * calc(var(--typography--underline--thickness) + ((var(--typography--leading) - 1) + var(--typography--shoulder)) * 1em));
 }
 
 .typography\/tabular-numbers, .typography\/markdown\:headers ol:not([class]) > li:before, .typography\/markdown ol:not([class]) > li:before {
