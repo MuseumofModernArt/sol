@@ -92,9 +92,18 @@ $colors: (
   --color--ps1--background:            var(#{__color--css-var(black)});
   --color--ps1--background--secondary: var(#{__color--css-var(gray, 222)});
 
+  --color--ps1--rgb:                        var(#{__color--css-var--rgb(white)});
+  --color--ps1--secondary--rgb:             var(--accent-color--on-dark--rgb);
+  --color--ps1--background--rgb:            var(#{__color--css-var--rgb(black)});
+  --color--ps1--background--secondary--rgb: var(#{__color--css-var--rgb(gray, 222)});
+
   --color--collection:             var(#{__color--css-var(black)});
   --color--collection--secondary:  var(#{__color--css-var(brand, 10)});
   --color--collection--background: var(#{__color--css-var(brand, 6)});
+
+  --color--collection--rgb:             var(#{__color--css-var--rgb(black)});
+  --color--collection--secondary--rgb:  var(#{__color--css-var--rgb(brand, 10)});
+  --color--collection--background--rgb: var(#{__color--css-var--rgb(brand, 6)});
 }
 
 
@@ -333,12 +342,14 @@ $colors: (
     @include atom(promo-color) {
       @extend %__high-contrast;
 
-      --color: var(--color--promo, var(#{__color--css-var(black)}));
+      --color:      var(--color--promo,      var(#{__color--css-var(black)}));
+      --color--rgb: var(--color--promo--rgb, var(#{__color--css-var--rgb(black)}));
 
       @include variant(secondary) {
         @extend %__high-contrast--accent;
 
-        --color: var(--color--promo--secondary, var(--accent-color--on-light));
+        --color:      var(--color--promo--secondary,      var(--accent-color--on-light));
+        --color--rgb: var(--color--promo--secondary--rgb, var(--accent-color--on-light--rgb));
       }
     }
 
@@ -395,12 +406,14 @@ $colors: (
       @include atom(promo-color) {
         @extend %__high-contrast--background;
 
-        --background-color: var(--color--promo--background, var(#{__color--css-var(gray, eee)}));
+        --background-color:      var(--color--promo--background,      var(#{__color--css-var(gray, eee)}));
+        --background-color--rgb: var(--color--promo--background--rgb, var(#{__color--css-var--rgb(gray, eee)}));
 
         @include variant(secondary) {
           @extend %__high-contrast--background;
 
-          --background-color: var(--color--promo--background--secondary, transparent);
+          --background-color:      var(--color--promo--background--secondary,      transparent);
+          --background-color--rgb: var(--color--promo--background--secondary--rgb, initial);
         }
       }
 
