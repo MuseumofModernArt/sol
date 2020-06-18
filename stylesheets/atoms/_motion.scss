@@ -32,7 +32,7 @@
     }
 
     @include atom(transition) {
-      @include atom(backdrop-filter, backdrop-filter, bottom, left, opacity, right, top, transform, visibility) {
+      @include atom(backdrop-filter, backdrop-filter, bottom, left, max-height, max-width, opacity, right, top, transform, visibility) {
         $attribute: $atom;
 
         @include variant(duration, delay) {
@@ -70,6 +70,8 @@
                                 backdrop-filter,
                                 bottom,
                                 left,
+                                max-height,
+                                max-width,
                                 opacity,
                                 right,
                                 top,
@@ -80,6 +82,8 @@
                                 var(--transition--backdrop-filter--delay, var(--transition--delay, 0ms)),
                                 var(--transition--bottom--delay,          var(--transition--delay, 0ms)),
                                 var(--transition--left--delay,            var(--transition--delay, 0ms)),
+                                var(--transition--max-height--delay,      var(--transition--delay, 0ms)),
+                                var(--transition--max-width--delay,       var(--transition--delay, 0ms)),
                                 var(--transition--opacity--delay,         var(--transition--delay, 0ms)),
                                 var(--transition--right--delay,           var(--transition--delay, 0ms)),
                                 var(--transition--top--delay,             var(--transition--delay, 0ms)),
@@ -90,6 +94,8 @@
                                 var(--transition--backdrop-filter--duration, var(--transition--duration, 0ms)),
                                 var(--transition--bottom--duration,          var(--transition--duration, 0ms)),
                                 var(--transition--left--duration,            var(--transition--duration, 0ms)),
+                                var(--transition--max-height--duration,      var(--transition--duration, 0ms)),
+                                var(--transition--max-width--duration,       var(--transition--duration, 0ms)),
                                 var(--transition--opacity--duration,         var(--transition--duration, 0ms)),
                                 var(--transition--right--duration,           var(--transition--duration, 0ms)),
                                 var(--transition--top--duration,             var(--transition--duration, 0ms)),
@@ -100,6 +106,8 @@
                                 var(--transition--backdrop-filter--curve, var(--transition--curve, linear)),
                                 var(--transition--bottom--curve,          var(--transition--curve, linear)),
                                 var(--transition--left--curve,            var(--transition--curve, linear)),
+                                var(--transition--max-height--curve,      var(--transition--curve, linear)),
+                                var(--transition--max-width--curve,       var(--transition--curve, linear)),
                                 var(--transition--opacity--curve,         var(--transition--curve, linear)),
                                 var(--transition--right--curve,           var(--transition--curve, linear)),
                                 var(--transition--top--curve,             var(--transition--curve, linear)),

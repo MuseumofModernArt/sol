@@ -73243,6 +73243,374 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --transition--left--curve: var(--motion--var--transition--left--curve);
 }
 
+.motion\/var\/transition\/max-height\:duration\:0ms {
+  --motion--var--transition--max-height--duration:0ms;
+}
+
+.motion\/var\/transition\/max-height\:duration\:50ms {
+  --motion--var--transition--max-height--duration:50ms;
+}
+
+.motion\/var\/transition\/max-height\:duration\:100ms {
+  --motion--var--transition--max-height--duration:100ms;
+}
+
+.motion\/var\/transition\/max-height\:duration\:150ms {
+  --motion--var--transition--max-height--duration:150ms;
+}
+
+.motion\/var\/transition\/max-height\:duration\:200ms {
+  --motion--var--transition--max-height--duration:200ms;
+}
+
+.motion\/var\/transition\/max-height\:duration\:250ms {
+  --motion--var--transition--max-height--duration:250ms;
+}
+
+.motion\/var\/transition\/max-height\:duration\:300ms {
+  --motion--var--transition--max-height--duration:300ms;
+}
+
+.motion\/var\/transition\/max-height\:duration\:350ms {
+  --motion--var--transition--max-height--duration:350ms;
+}
+
+.motion\/var\/transition\/max-height\:duration\:400ms {
+  --motion--var--transition--max-height--duration:400ms;
+}
+
+.motion\/var\/transition\/max-height\:duration\:450ms {
+  --motion--var--transition--max-height--duration:450ms;
+}
+
+.motion\/var\/transition\/max-height\:duration\:500ms {
+  --motion--var--transition--max-height--duration:500ms;
+}
+
+.motion\/var\/transition\/max-height\:duration\:600ms {
+  --motion--var--transition--max-height--duration:600ms;
+}
+
+.motion\/var\/transition\/max-height\:duration\:800ms {
+  --motion--var--transition--max-height--duration:800ms;
+}
+
+.motion\/var\/transition\/max-height\:duration\:1000ms {
+  --motion--var--transition--max-height--duration:1000ms;
+}
+
+.motion\/var\/transition\/max-height\:duration\:1500ms {
+  --motion--var--transition--max-height--duration:1500ms;
+}
+
+.motion\/var\/transition\/max-height\:duration\:2000ms {
+  --motion--var--transition--max-height--duration:2000ms;
+}
+
+.motion\/var\/transition\/max-height\:duration\:3000ms {
+  --motion--var--transition--max-height--duration:3000ms;
+}
+
+.motion\/var\/transition\/max-height\:duration\:4000ms {
+  --motion--var--transition--max-height--duration:4000ms;
+}
+
+.motion\/var\/transition\/max-height\:duration, .motion\/var\/transition\/max-height\:duration\:0ms, .motion\/var\/transition\/max-height\:duration\:50ms, .motion\/var\/transition\/max-height\:duration\:100ms, .motion\/var\/transition\/max-height\:duration\:150ms, .motion\/var\/transition\/max-height\:duration\:200ms, .motion\/var\/transition\/max-height\:duration\:250ms, .motion\/var\/transition\/max-height\:duration\:300ms, .motion\/var\/transition\/max-height\:duration\:350ms, .motion\/var\/transition\/max-height\:duration\:400ms, .motion\/var\/transition\/max-height\:duration\:450ms, .motion\/var\/transition\/max-height\:duration\:500ms, .motion\/var\/transition\/max-height\:duration\:600ms, .motion\/var\/transition\/max-height\:duration\:800ms, .motion\/var\/transition\/max-height\:duration\:1000ms, .motion\/var\/transition\/max-height\:duration\:1500ms, .motion\/var\/transition\/max-height\:duration\:2000ms, .motion\/var\/transition\/max-height\:duration\:3000ms, .motion\/var\/transition\/max-height\:duration\:4000ms {
+  --transition--max-height--duration: var(--motion--var--transition--max-height--duration);
+}
+
+.motion\/var\/transition\/max-height\:delay\:0ms {
+  --motion--var--transition--max-height--delay:0ms;
+}
+
+.motion\/var\/transition\/max-height\:delay\:50ms {
+  --motion--var--transition--max-height--delay:50ms;
+}
+
+.motion\/var\/transition\/max-height\:delay\:100ms {
+  --motion--var--transition--max-height--delay:100ms;
+}
+
+.motion\/var\/transition\/max-height\:delay\:150ms {
+  --motion--var--transition--max-height--delay:150ms;
+}
+
+.motion\/var\/transition\/max-height\:delay\:200ms {
+  --motion--var--transition--max-height--delay:200ms;
+}
+
+.motion\/var\/transition\/max-height\:delay\:250ms {
+  --motion--var--transition--max-height--delay:250ms;
+}
+
+.motion\/var\/transition\/max-height\:delay\:300ms {
+  --motion--var--transition--max-height--delay:300ms;
+}
+
+.motion\/var\/transition\/max-height\:delay\:350ms {
+  --motion--var--transition--max-height--delay:350ms;
+}
+
+.motion\/var\/transition\/max-height\:delay\:400ms {
+  --motion--var--transition--max-height--delay:400ms;
+}
+
+.motion\/var\/transition\/max-height\:delay\:450ms {
+  --motion--var--transition--max-height--delay:450ms;
+}
+
+.motion\/var\/transition\/max-height\:delay\:500ms {
+  --motion--var--transition--max-height--delay:500ms;
+}
+
+.motion\/var\/transition\/max-height\:delay\:600ms {
+  --motion--var--transition--max-height--delay:600ms;
+}
+
+.motion\/var\/transition\/max-height\:delay\:800ms {
+  --motion--var--transition--max-height--delay:800ms;
+}
+
+.motion\/var\/transition\/max-height\:delay\:1000ms {
+  --motion--var--transition--max-height--delay:1000ms;
+}
+
+.motion\/var\/transition\/max-height\:delay\:1500ms {
+  --motion--var--transition--max-height--delay:1500ms;
+}
+
+.motion\/var\/transition\/max-height\:delay\:2000ms {
+  --motion--var--transition--max-height--delay:2000ms;
+}
+
+.motion\/var\/transition\/max-height\:delay\:3000ms {
+  --motion--var--transition--max-height--delay:3000ms;
+}
+
+.motion\/var\/transition\/max-height\:delay\:4000ms {
+  --motion--var--transition--max-height--delay:4000ms;
+}
+
+.motion\/var\/transition\/max-height\:delay, .motion\/var\/transition\/max-height\:delay\:0ms, .motion\/var\/transition\/max-height\:delay\:50ms, .motion\/var\/transition\/max-height\:delay\:100ms, .motion\/var\/transition\/max-height\:delay\:150ms, .motion\/var\/transition\/max-height\:delay\:200ms, .motion\/var\/transition\/max-height\:delay\:250ms, .motion\/var\/transition\/max-height\:delay\:300ms, .motion\/var\/transition\/max-height\:delay\:350ms, .motion\/var\/transition\/max-height\:delay\:400ms, .motion\/var\/transition\/max-height\:delay\:450ms, .motion\/var\/transition\/max-height\:delay\:500ms, .motion\/var\/transition\/max-height\:delay\:600ms, .motion\/var\/transition\/max-height\:delay\:800ms, .motion\/var\/transition\/max-height\:delay\:1000ms, .motion\/var\/transition\/max-height\:delay\:1500ms, .motion\/var\/transition\/max-height\:delay\:2000ms, .motion\/var\/transition\/max-height\:delay\:3000ms, .motion\/var\/transition\/max-height\:delay\:4000ms {
+  --transition--max-height--delay: var(--motion--var--transition--max-height--delay);
+}
+
+.motion\/var\/transition\/max-height\:curve\:ease {
+  --motion--var--transition--max-height--curve:ease;
+}
+
+.motion\/var\/transition\/max-height\:curve\:ease-in {
+  --motion--var--transition--max-height--curve:ease-in;
+}
+
+.motion\/var\/transition\/max-height\:curve\:ease-out {
+  --motion--var--transition--max-height--curve:ease-out;
+}
+
+.motion\/var\/transition\/max-height\:curve\:ease-in-out {
+  --motion--var--transition--max-height--curve:ease-in-out;
+}
+
+.motion\/var\/transition\/max-height\:curve\:linear {
+  --motion--var--transition--max-height--curve:linear;
+}
+
+.motion\/var\/transition\/max-height\:curve\:step-start {
+  --motion--var--transition--max-height--curve:step-start;
+}
+
+.motion\/var\/transition\/max-height\:curve\:step-end {
+  --motion--var--transition--max-height--curve:step-end;
+}
+
+.motion\/var\/transition\/max-height\:curve, .motion\/var\/transition\/max-height\:curve\:ease, .motion\/var\/transition\/max-height\:curve\:ease-in, .motion\/var\/transition\/max-height\:curve\:ease-out, .motion\/var\/transition\/max-height\:curve\:ease-in-out, .motion\/var\/transition\/max-height\:curve\:linear, .motion\/var\/transition\/max-height\:curve\:step-start, .motion\/var\/transition\/max-height\:curve\:step-end {
+  --transition--max-height--curve: var(--motion--var--transition--max-height--curve);
+}
+
+.motion\/var\/transition\/max-width\:duration\:0ms {
+  --motion--var--transition--max-width--duration:0ms;
+}
+
+.motion\/var\/transition\/max-width\:duration\:50ms {
+  --motion--var--transition--max-width--duration:50ms;
+}
+
+.motion\/var\/transition\/max-width\:duration\:100ms {
+  --motion--var--transition--max-width--duration:100ms;
+}
+
+.motion\/var\/transition\/max-width\:duration\:150ms {
+  --motion--var--transition--max-width--duration:150ms;
+}
+
+.motion\/var\/transition\/max-width\:duration\:200ms {
+  --motion--var--transition--max-width--duration:200ms;
+}
+
+.motion\/var\/transition\/max-width\:duration\:250ms {
+  --motion--var--transition--max-width--duration:250ms;
+}
+
+.motion\/var\/transition\/max-width\:duration\:300ms {
+  --motion--var--transition--max-width--duration:300ms;
+}
+
+.motion\/var\/transition\/max-width\:duration\:350ms {
+  --motion--var--transition--max-width--duration:350ms;
+}
+
+.motion\/var\/transition\/max-width\:duration\:400ms {
+  --motion--var--transition--max-width--duration:400ms;
+}
+
+.motion\/var\/transition\/max-width\:duration\:450ms {
+  --motion--var--transition--max-width--duration:450ms;
+}
+
+.motion\/var\/transition\/max-width\:duration\:500ms {
+  --motion--var--transition--max-width--duration:500ms;
+}
+
+.motion\/var\/transition\/max-width\:duration\:600ms {
+  --motion--var--transition--max-width--duration:600ms;
+}
+
+.motion\/var\/transition\/max-width\:duration\:800ms {
+  --motion--var--transition--max-width--duration:800ms;
+}
+
+.motion\/var\/transition\/max-width\:duration\:1000ms {
+  --motion--var--transition--max-width--duration:1000ms;
+}
+
+.motion\/var\/transition\/max-width\:duration\:1500ms {
+  --motion--var--transition--max-width--duration:1500ms;
+}
+
+.motion\/var\/transition\/max-width\:duration\:2000ms {
+  --motion--var--transition--max-width--duration:2000ms;
+}
+
+.motion\/var\/transition\/max-width\:duration\:3000ms {
+  --motion--var--transition--max-width--duration:3000ms;
+}
+
+.motion\/var\/transition\/max-width\:duration\:4000ms {
+  --motion--var--transition--max-width--duration:4000ms;
+}
+
+.motion\/var\/transition\/max-width\:duration, .motion\/var\/transition\/max-width\:duration\:0ms, .motion\/var\/transition\/max-width\:duration\:50ms, .motion\/var\/transition\/max-width\:duration\:100ms, .motion\/var\/transition\/max-width\:duration\:150ms, .motion\/var\/transition\/max-width\:duration\:200ms, .motion\/var\/transition\/max-width\:duration\:250ms, .motion\/var\/transition\/max-width\:duration\:300ms, .motion\/var\/transition\/max-width\:duration\:350ms, .motion\/var\/transition\/max-width\:duration\:400ms, .motion\/var\/transition\/max-width\:duration\:450ms, .motion\/var\/transition\/max-width\:duration\:500ms, .motion\/var\/transition\/max-width\:duration\:600ms, .motion\/var\/transition\/max-width\:duration\:800ms, .motion\/var\/transition\/max-width\:duration\:1000ms, .motion\/var\/transition\/max-width\:duration\:1500ms, .motion\/var\/transition\/max-width\:duration\:2000ms, .motion\/var\/transition\/max-width\:duration\:3000ms, .motion\/var\/transition\/max-width\:duration\:4000ms {
+  --transition--max-width--duration: var(--motion--var--transition--max-width--duration);
+}
+
+.motion\/var\/transition\/max-width\:delay\:0ms {
+  --motion--var--transition--max-width--delay:0ms;
+}
+
+.motion\/var\/transition\/max-width\:delay\:50ms {
+  --motion--var--transition--max-width--delay:50ms;
+}
+
+.motion\/var\/transition\/max-width\:delay\:100ms {
+  --motion--var--transition--max-width--delay:100ms;
+}
+
+.motion\/var\/transition\/max-width\:delay\:150ms {
+  --motion--var--transition--max-width--delay:150ms;
+}
+
+.motion\/var\/transition\/max-width\:delay\:200ms {
+  --motion--var--transition--max-width--delay:200ms;
+}
+
+.motion\/var\/transition\/max-width\:delay\:250ms {
+  --motion--var--transition--max-width--delay:250ms;
+}
+
+.motion\/var\/transition\/max-width\:delay\:300ms {
+  --motion--var--transition--max-width--delay:300ms;
+}
+
+.motion\/var\/transition\/max-width\:delay\:350ms {
+  --motion--var--transition--max-width--delay:350ms;
+}
+
+.motion\/var\/transition\/max-width\:delay\:400ms {
+  --motion--var--transition--max-width--delay:400ms;
+}
+
+.motion\/var\/transition\/max-width\:delay\:450ms {
+  --motion--var--transition--max-width--delay:450ms;
+}
+
+.motion\/var\/transition\/max-width\:delay\:500ms {
+  --motion--var--transition--max-width--delay:500ms;
+}
+
+.motion\/var\/transition\/max-width\:delay\:600ms {
+  --motion--var--transition--max-width--delay:600ms;
+}
+
+.motion\/var\/transition\/max-width\:delay\:800ms {
+  --motion--var--transition--max-width--delay:800ms;
+}
+
+.motion\/var\/transition\/max-width\:delay\:1000ms {
+  --motion--var--transition--max-width--delay:1000ms;
+}
+
+.motion\/var\/transition\/max-width\:delay\:1500ms {
+  --motion--var--transition--max-width--delay:1500ms;
+}
+
+.motion\/var\/transition\/max-width\:delay\:2000ms {
+  --motion--var--transition--max-width--delay:2000ms;
+}
+
+.motion\/var\/transition\/max-width\:delay\:3000ms {
+  --motion--var--transition--max-width--delay:3000ms;
+}
+
+.motion\/var\/transition\/max-width\:delay\:4000ms {
+  --motion--var--transition--max-width--delay:4000ms;
+}
+
+.motion\/var\/transition\/max-width\:delay, .motion\/var\/transition\/max-width\:delay\:0ms, .motion\/var\/transition\/max-width\:delay\:50ms, .motion\/var\/transition\/max-width\:delay\:100ms, .motion\/var\/transition\/max-width\:delay\:150ms, .motion\/var\/transition\/max-width\:delay\:200ms, .motion\/var\/transition\/max-width\:delay\:250ms, .motion\/var\/transition\/max-width\:delay\:300ms, .motion\/var\/transition\/max-width\:delay\:350ms, .motion\/var\/transition\/max-width\:delay\:400ms, .motion\/var\/transition\/max-width\:delay\:450ms, .motion\/var\/transition\/max-width\:delay\:500ms, .motion\/var\/transition\/max-width\:delay\:600ms, .motion\/var\/transition\/max-width\:delay\:800ms, .motion\/var\/transition\/max-width\:delay\:1000ms, .motion\/var\/transition\/max-width\:delay\:1500ms, .motion\/var\/transition\/max-width\:delay\:2000ms, .motion\/var\/transition\/max-width\:delay\:3000ms, .motion\/var\/transition\/max-width\:delay\:4000ms {
+  --transition--max-width--delay: var(--motion--var--transition--max-width--delay);
+}
+
+.motion\/var\/transition\/max-width\:curve\:ease {
+  --motion--var--transition--max-width--curve:ease;
+}
+
+.motion\/var\/transition\/max-width\:curve\:ease-in {
+  --motion--var--transition--max-width--curve:ease-in;
+}
+
+.motion\/var\/transition\/max-width\:curve\:ease-out {
+  --motion--var--transition--max-width--curve:ease-out;
+}
+
+.motion\/var\/transition\/max-width\:curve\:ease-in-out {
+  --motion--var--transition--max-width--curve:ease-in-out;
+}
+
+.motion\/var\/transition\/max-width\:curve\:linear {
+  --motion--var--transition--max-width--curve:linear;
+}
+
+.motion\/var\/transition\/max-width\:curve\:step-start {
+  --motion--var--transition--max-width--curve:step-start;
+}
+
+.motion\/var\/transition\/max-width\:curve\:step-end {
+  --motion--var--transition--max-width--curve:step-end;
+}
+
+.motion\/var\/transition\/max-width\:curve, .motion\/var\/transition\/max-width\:curve\:ease, .motion\/var\/transition\/max-width\:curve\:ease-in, .motion\/var\/transition\/max-width\:curve\:ease-out, .motion\/var\/transition\/max-width\:curve\:ease-in-out, .motion\/var\/transition\/max-width\:curve\:linear, .motion\/var\/transition\/max-width\:curve\:step-start, .motion\/var\/transition\/max-width\:curve\:step-end {
+  --transition--max-width--curve: var(--motion--var--transition--max-width--curve);
+}
+
 .motion\/var\/transition\/opacity\:duration\:0ms {
   --motion--var--transition--opacity--duration:0ms;
 }
@@ -74178,10 +74546,10 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 }
 
 .motion\/transition {
-  transition-property: -webkit-backdrop-filter, backdrop-filter, bottom, left, opacity, right, top, transform, visibility;
-  transition-delay: var(--transition--backdrop-filter--delay, var(--transition--delay, 0ms)), var(--transition--backdrop-filter--delay, var(--transition--delay, 0ms)), var(--transition--bottom--delay, var(--transition--delay, 0ms)), var(--transition--left--delay, var(--transition--delay, 0ms)), var(--transition--opacity--delay, var(--transition--delay, 0ms)), var(--transition--right--delay, var(--transition--delay, 0ms)), var(--transition--top--delay, var(--transition--delay, 0ms)), var(--transition--transform--delay, var(--transition--delay, 0ms)), var(--transition--visibility--delay, var(--transition--delay, 0ms));
-  transition-duration: var(--transition--backdrop-filter--duration, var(--transition--duration, 0ms)), var(--transition--backdrop-filter--duration, var(--transition--duration, 0ms)), var(--transition--bottom--duration, var(--transition--duration, 0ms)), var(--transition--left--duration, var(--transition--duration, 0ms)), var(--transition--opacity--duration, var(--transition--duration, 0ms)), var(--transition--right--duration, var(--transition--duration, 0ms)), var(--transition--top--duration, var(--transition--duration, 0ms)), var(--transition--transform--duration, var(--transition--duration, 0ms)), var(--transition--visibility--duration, var(--transition--duration, 0ms));
-  transition-timing-function: var(--transition--backdrop-filter--curve, var(--transition--curve, linear)), var(--transition--backdrop-filter--curve, var(--transition--curve, linear)), var(--transition--bottom--curve, var(--transition--curve, linear)), var(--transition--left--curve, var(--transition--curve, linear)), var(--transition--opacity--curve, var(--transition--curve, linear)), var(--transition--right--curve, var(--transition--curve, linear)), var(--transition--top--curve, var(--transition--curve, linear)), var(--transition--transform--curve, var(--transition--curve, linear)), var(--transition--visibility--curve, var(--transition--curve, linear));
+  transition-property: -webkit-backdrop-filter, backdrop-filter, bottom, left, max-height, max-width, opacity, right, top, transform, visibility;
+  transition-delay: var(--transition--backdrop-filter--delay, var(--transition--delay, 0ms)), var(--transition--backdrop-filter--delay, var(--transition--delay, 0ms)), var(--transition--bottom--delay, var(--transition--delay, 0ms)), var(--transition--left--delay, var(--transition--delay, 0ms)), var(--transition--max-height--delay, var(--transition--delay, 0ms)), var(--transition--max-width--delay, var(--transition--delay, 0ms)), var(--transition--opacity--delay, var(--transition--delay, 0ms)), var(--transition--right--delay, var(--transition--delay, 0ms)), var(--transition--top--delay, var(--transition--delay, 0ms)), var(--transition--transform--delay, var(--transition--delay, 0ms)), var(--transition--visibility--delay, var(--transition--delay, 0ms));
+  transition-duration: var(--transition--backdrop-filter--duration, var(--transition--duration, 0ms)), var(--transition--backdrop-filter--duration, var(--transition--duration, 0ms)), var(--transition--bottom--duration, var(--transition--duration, 0ms)), var(--transition--left--duration, var(--transition--duration, 0ms)), var(--transition--max-height--duration, var(--transition--duration, 0ms)), var(--transition--max-width--duration, var(--transition--duration, 0ms)), var(--transition--opacity--duration, var(--transition--duration, 0ms)), var(--transition--right--duration, var(--transition--duration, 0ms)), var(--transition--top--duration, var(--transition--duration, 0ms)), var(--transition--transform--duration, var(--transition--duration, 0ms)), var(--transition--visibility--duration, var(--transition--duration, 0ms));
+  transition-timing-function: var(--transition--backdrop-filter--curve, var(--transition--curve, linear)), var(--transition--backdrop-filter--curve, var(--transition--curve, linear)), var(--transition--bottom--curve, var(--transition--curve, linear)), var(--transition--left--curve, var(--transition--curve, linear)), var(--transition--max-height--curve, var(--transition--curve, linear)), var(--transition--max-width--curve, var(--transition--curve, linear)), var(--transition--opacity--curve, var(--transition--curve, linear)), var(--transition--right--curve, var(--transition--curve, linear)), var(--transition--top--curve, var(--transition--curve, linear)), var(--transition--transform--curve, var(--transition--curve, linear)), var(--transition--visibility--curve, var(--transition--curve, linear));
 }
 
 :root {
