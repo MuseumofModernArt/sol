@@ -376,6 +376,12 @@
 
 
 
+    @include atom(transform) {
+      transform: var(#{__css-var(first-selector(&))}); // Allow for inlining.
+    }
+
+
+
     @include atom(z-index) {
       @include variant-count(-1, 10, $default: false) {
         --z-index: #{$variant-count};
