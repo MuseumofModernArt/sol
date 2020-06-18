@@ -1383,6 +1383,10 @@ input::-webkit-input-placeholder {
   --layout--left:initial;
 }
 
+.layout\/transform {
+  transform: var(--layout--transform);
+}
+
 .layout\/z-index\:-1 {
   --layout--z-index:-1;
 }
@@ -5562,6 +5566,10 @@ input::-webkit-input-placeholder {
     --mobile--1-25--layout--left:initial;
   }
 
+  .\@mobile\:1\.25\:\:layout\/transform {
+    transform: var(--mobile--1-25--layout--transform);
+  }
+
   .\@mobile\:1\.25\:\:layout\/z-index\:-1 {
     --mobile--1-25--layout--z-index:-1;
   }
@@ -9711,6 +9719,10 @@ input::-webkit-input-placeholder {
 
   .\@mobile\:1\.5\:\:layout\/left\:clear {
     --mobile--1-5--layout--left:initial;
+  }
+
+  .\@mobile\:1\.5\:\:layout\/transform {
+    transform: var(--mobile--1-5--layout--transform);
   }
 
   .\@mobile\:1\.5\:\:layout\/z-index\:-1 {
@@ -13864,6 +13876,10 @@ input::-webkit-input-placeholder {
     --mobile--1-75--layout--left:initial;
   }
 
+  .\@mobile\:1\.75\:\:layout\/transform {
+    transform: var(--mobile--1-75--layout--transform);
+  }
+
   .\@mobile\:1\.75\:\:layout\/z-index\:-1 {
     --mobile--1-75--layout--z-index:-1;
   }
@@ -18013,6 +18029,10 @@ input::-webkit-input-placeholder {
 
   .\@mobile\:2\:\:layout\/left\:clear {
     --mobile--2--layout--left:initial;
+  }
+
+  .\@mobile\:2\:\:layout\/transform {
+    transform: var(--mobile--2--layout--transform);
   }
 
   .\@mobile\:2\:\:layout\/z-index\:-1 {
@@ -22166,6 +22186,10 @@ input::-webkit-input-placeholder {
     --mobile--2-5--layout--left:initial;
   }
 
+  .\@mobile\:2\.5\:\:layout\/transform {
+    transform: var(--mobile--2-5--layout--transform);
+  }
+
   .\@mobile\:2\.5\:\:layout\/z-index\:-1 {
     --mobile--2-5--layout--z-index:-1;
   }
@@ -26315,6 +26339,10 @@ input::-webkit-input-placeholder {
 
   .\@mobile\:3\:\:layout\/left\:clear {
     --mobile--3--layout--left:initial;
+  }
+
+  .\@mobile\:3\:\:layout\/transform {
+    transform: var(--mobile--3--layout--transform);
   }
 
   .\@mobile\:3\:\:layout\/z-index\:-1 {
@@ -30468,6 +30496,10 @@ input::-webkit-input-placeholder {
     --mobile--3-5--layout--left:initial;
   }
 
+  .\@mobile\:3\.5\:\:layout\/transform {
+    transform: var(--mobile--3-5--layout--transform);
+  }
+
   .\@mobile\:3\.5\:\:layout\/z-index\:-1 {
     --mobile--3-5--layout--z-index:-1;
   }
@@ -34617,6 +34649,10 @@ input::-webkit-input-placeholder {
 
   .\@mobile\:3\.75\:\:layout\/left\:clear {
     --mobile--3-75--layout--left:initial;
+  }
+
+  .\@mobile\:3\.75\:\:layout\/transform {
+    transform: var(--mobile--3-75--layout--transform);
   }
 
   .\@mobile\:3\.75\:\:layout\/z-index\:-1 {
@@ -38770,6 +38806,10 @@ input::-webkit-input-placeholder {
     --nonmobile--layout--left:initial;
   }
 
+  .\@nonmobile\:\:layout\/transform {
+    transform: var(--nonmobile--layout--transform);
+  }
+
   .\@nonmobile\:\:layout\/z-index\:-1 {
     --nonmobile--layout--z-index:-1;
   }
@@ -42919,6 +42959,10 @@ input::-webkit-input-placeholder {
 
   .\@nonmobile\:2\:\:layout\/left\:clear {
     --nonmobile--2--layout--left:initial;
+  }
+
+  .\@nonmobile\:2\:\:layout\/transform {
+    transform: var(--nonmobile--2--layout--transform);
   }
 
   .\@nonmobile\:2\:\:layout\/z-index\:-1 {
@@ -47072,6 +47116,10 @@ input::-webkit-input-placeholder {
     --nonmobile--3--layout--left:initial;
   }
 
+  .\@nonmobile\:3\:\:layout\/transform {
+    transform: var(--nonmobile--3--layout--transform);
+  }
+
   .\@nonmobile\:3\:\:layout\/z-index\:-1 {
     --nonmobile--3--layout--z-index:-1;
   }
@@ -51221,6 +51269,10 @@ input::-webkit-input-placeholder {
 
   .\@nonmobile\:4\:\:layout\/left\:clear {
     --nonmobile--4--layout--left:initial;
+  }
+
+  .\@nonmobile\:4\:\:layout\/transform {
+    transform: var(--nonmobile--4--layout--transform);
   }
 
   .\@nonmobile\:4\:\:layout\/z-index\:-1 {
@@ -55374,6 +55426,10 @@ input::-webkit-input-placeholder {
     --max--layout--left:initial;
   }
 
+  .\@max\:\:layout\/transform {
+    transform: var(--max--layout--transform);
+  }
+
   .\@max\:\:layout\/z-index\:-1 {
     --max--layout--z-index:-1;
   }
@@ -59523,6 +59579,10 @@ input::-webkit-input-placeholder {
 
   .\@landscape\:\:layout\/left\:clear {
     --landscape--layout--left:initial;
+  }
+
+  .\@landscape\:\:layout\/transform {
+    transform: var(--landscape--layout--transform);
   }
 
   .\@landscape\:\:layout\/z-index\:-1 {
@@ -63676,6 +63736,10 @@ input::-webkit-input-placeholder {
     --nonmobile--landscape--layout--left:initial;
   }
 
+  .\@nonmobile\:landscape\:\:layout\/transform {
+    transform: var(--nonmobile--landscape--layout--transform);
+  }
+
   .\@nonmobile\:landscape\:\:layout\/z-index\:-1 {
     --nonmobile--landscape--layout--z-index:-1;
   }
@@ -67825,6 +67889,10 @@ input::-webkit-input-placeholder {
 
   .\@tall\:\:layout\/left\:clear {
     --tall--layout--left:initial;
+  }
+
+  .\@tall\:\:layout\/transform {
+    transform: var(--tall--layout--transform);
   }
 
   .\@tall\:\:layout\/z-index\:-1 {
