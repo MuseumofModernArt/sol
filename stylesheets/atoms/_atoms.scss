@@ -18,6 +18,22 @@
   @return "%#{str-replace-multiple(#{$selector}, $reserved, '--')}";
 }
 
+@function __class($selector) {
+  // This one makes a compiled class by escaping.
+  $reserved:
+    str-replace(#{$block-prefix}, '\\'),
+    str-replace(#{$breakpoint-prefix}, '\\'), // But not breakpoint-delimiter, since it is just two variants right now.
+    str-replace(#{$variant-delimiter}, '\\'),
+    str-replace(#{$atom-delimiter}, '\\'),
+    '.',
+    '(',
+    ')',
+    '%'
+  ;
+
+  @return ".#{str-replace-multiple(#{$selector}, $reserved, '\\', true)}";
+}
+
 
 
 @function __selector-list($selectors) {
