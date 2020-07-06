@@ -236,9 +236,11 @@ $colors: (
             @include __variant-alphas($background: true) {
               @if $item == red {
                 @extend %__high-contrast--accent--background;
+                @extend %__high-contrast--reverse;
               }
               @else {
                 @extend %__high-contrast--background;
+                @extend %__high-contrast;
               }
 
               // Invert base colors for dark values.
@@ -286,9 +288,11 @@ $colors: (
                 @include __variant-alphas($background: true) {
                   @if $item == brand {
                     @extend %__high-contrast--accent--background;
+                    @extend %__high-contrast--reverse;
                   }
                   @else {
                     @extend %__high-contrast--background;
+                    @extend %__high-contrast;
                   }
 
                   // Invert base colors for dark values.
@@ -396,6 +400,7 @@ $colors: (
       @include atom(alpha) {
         @include __variant-alphas($background: true) {
           @extend %__high-contrast--background;
+          @extend %__high-contrast;
 
           --background-color: rgba(var(--background-color--rgb), var(--background-color--alpha, 1));
         }
@@ -405,12 +410,14 @@ $colors: (
 
       @include atom(promo-color) {
         @extend %__high-contrast--background;
+        @extend %__high-contrast;
 
         --background-color:      var(--color--promo--background,      var(#{__color--css-var(gray, eee)}));
         --background-color--rgb: var(--color--promo--background--rgb, var(#{__color--css-var--rgb(gray, eee)}));
 
         @include variant(secondary) {
           @extend %__high-contrast--background;
+          @extend %__high-contrast;
 
           --background-color:      var(--color--promo--background--secondary,      transparent);
           --background-color--rgb: var(--color--promo--background--secondary--rgb, initial);
@@ -421,13 +428,16 @@ $colors: (
 
       @include atom(high-contrast) {
         @extend %__high-contrast--background;
+        @extend %__high-contrast;
 
         @include variant(accent) {
           @extend %__high-contrast--accent--background;
+          @extend %__high-contrast--reverse;
         }
 
         @include variant(reverse) {
           @extend %__high-contrast--reverse--background;
+          @extend %__high-contrast;
         }
       }
     }
