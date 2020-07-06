@@ -437,7 +437,7 @@ $colors: (
 
         @include variant(reverse) {
           @extend %__high-contrast--reverse--background;
-          @extend %__high-contrast;
+          @extend %__high-contrast--reverse;
         }
       }
     }
