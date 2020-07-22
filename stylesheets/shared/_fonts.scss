@@ -14,23 +14,32 @@ $font-weight--bold:        900;
 
 
 // Uses ‘lang’ attribute for selecting, usually on <html>.
-:root {
+:root,
+:lang(en) {
   --language-font-face: "MoMA Sans"; // Some browsers don’t like empty variables in a font stack.
 }
 
 :lang(zh-Hans) {
+  @extend %font-family;
+
   --language-font-face: "Noto Sans SC";
 }
 
 :lang(zh-Hant) {
+  @extend %font-family;
+
   --language-font-face: "Noto Sans TC";
 }
 
 :lang(ko) {
+  @extend %font-family;
+
   --language-font-face: "Noto Sans KR";
 }
 
 :lang(ja) {
+  @extend %font-family;
+
   --language-font-face: "Noto Sans JP";
 }
 
@@ -45,6 +54,8 @@ body {
   font-weight:             $font-weight--regular;
   text-rendering:          optimizeLegibility;
 }
+
+
 
 em, i {
   font-style: italic;
@@ -63,7 +74,7 @@ del {
 }
 
 a {
-  color: inherit;
+  color:           inherit;
   text-decoration: none;
 }
 
@@ -78,27 +89,10 @@ button {
 input {
   @extend %font-family;
 
-  &.placeholder {
+  &::placeholder {
     @extend %font-family;
-  }
-
-  &:-moz-placeholder {
-    @extend %font-family;
-  }
-
-  &::-moz-placeholder {
-    @extend %font-family;
-  }
-
-  &:-ms-input-placeholder {
-    @extend %font-family;
-  }
-
-  &::-webkit-input-placeholder {
-    @extend %font-family; // This is all very dumb, but necessary. User-agent stylesheets for these are agressive.
   }
 }
-
 
 
 

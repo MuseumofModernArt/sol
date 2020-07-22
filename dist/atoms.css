@@ -68,11 +68,12 @@ html {
   box-sizing: border-box;
 }
 
-input::-webkit-input-placeholder, input:-ms-input-placeholder, input::-moz-placeholder, input:-moz-placeholder, input.placeholder, button, form, input, body {
+input::placeholder, button, form, input, body, :lang(ja), :lang(ko), :lang(zh-Hant), :lang(zh-Hans) {
   font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
 }
 
-:root {
+:root,
+:lang(en) {
   --language-font-face: "MoMA Sans";
 }
 
