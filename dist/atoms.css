@@ -68,6 +68,10 @@ html {
   box-sizing: border-box;
 }
 
+input::-webkit-input-placeholder, input:-ms-input-placeholder, input::-moz-placeholder, input:-moz-placeholder, input.placeholder, button, form, input, body {
+  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
+}
+
 :root {
   --language-font-face: "MoMA Sans";
 }
@@ -91,7 +95,6 @@ html {
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
   font-kerning: normal;
   font-weight: 400;
   text-rendering: optimizeLegibility;
@@ -114,33 +117,6 @@ del {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-form, input {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
-}
-
-button {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
-}
-
-input {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
-}
-input.placeholder {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
-}
-input:-moz-placeholder {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
-}
-input::-moz-placeholder {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
-}
-input:-ms-input-placeholder {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
-}
-input::-webkit-input-placeholder {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
 }
 
 @font-face {
