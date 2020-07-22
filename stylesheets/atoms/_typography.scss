@@ -156,14 +156,16 @@
 .typography {
   // Basic weight/spacing, so it can be extended separately.
   @include atom(face) {
-    --typography--letter-spacing:       calc(var(--typography--tracking) *          var(--tracking-conversion)); // Render the actual values.
-    --typography--margin--left:         calc(var(--typography--inset--left) *       var(--tracking-conversion));
-    --typography--margin--right:        calc(var(--typography--inset--right) *      var(--tracking-conversion));
+    --typography--tracking--override:   var(--typography--tracking); // Allows reset/clear.
+    --typography--letter-spacing:       calc(var(--typography--tracking--override, var(--typography--tracking)) * var(--tracking-conversion)); // Render the actual values.
 
-    --typography--underline--margin:    calc(var(--typography--underline--inset) *  var(--tracking-conversion));
-    --typography--underline--clearing:  calc(var(--typography--underline--clear) *  var(--tracking-conversion));
-    --typography--underline--thickness: calc(var(--typography--underline) *         var(--tracking-conversion));
-    --typography--underline--top:       calc(var(--typography--underline--offset) * var(--tracking-conversion));
+    --typography--margin--left:         calc(var(--typography--inset--left) *        var(--tracking-conversion));
+    --typography--margin--right:        calc(var(--typography--inset--right) *       var(--tracking-conversion));
+
+    --typography--underline--margin:    calc(var(--typography--underline--inset) *   var(--tracking-conversion));
+    --typography--underline--clearing:  calc(var(--typography--underline--clear) *   var(--tracking-conversion));
+    --typography--underline--thickness: calc(var(--typography--underline) *          var(--tracking-conversion));
+    --typography--underline--top:       calc(var(--typography--underline--offset) *  var(--tracking-conversion));
 
     --typography--bullet--size:         calc(var(--typography--bullet) *  var(--tracking-conversion));
 
@@ -177,7 +179,7 @@
 
     @at-root { // Here for ordering/efficiency.
       %__tracking--cjk {
-        --typography--tracking: 0;
+        --typography--tracking--override: 0;
       }
     }
   }

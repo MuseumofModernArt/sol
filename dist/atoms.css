@@ -74629,7 +74629,8 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 .typography\/face, .typography\/markdown\:headers strong, .typography\/markdown strong, .typography, .typography\/markdown\:headers > h4, .typography\/markdown\:headers > h3, .typography\/markdown\:headers > h2, .typography\/markdown\:headers pre, .typography\/markdown pre, .typography\/markdown\:headers ol:not([class]) > li, .typography\/markdown ol:not([class]) > li,
 .typography\/markdown\:headers ul:not([class]) > li,
 .typography\/markdown ul:not([class]) > li, .typography\/markdown\:headers p:not([class]), .typography\/markdown p:not([class]) {
-  --typography--letter-spacing: calc(var(--typography--tracking) * var(--tracking-conversion));
+  --typography--tracking--override: var(--typography--tracking);
+  --typography--letter-spacing: calc(var(--typography--tracking--override, var(--typography--tracking)) * var(--tracking-conversion));
   --typography--margin--left: calc(var(--typography--inset--left) * var(--tracking-conversion));
   --typography--margin--right: calc(var(--typography--inset--right) * var(--tracking-conversion));
   --typography--underline--margin: calc(var(--typography--underline--inset) * var(--tracking-conversion));
@@ -74641,7 +74642,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   letter-spacing: var(--typography--letter-spacing);
 }
 .typography\/face\:ja, .typography\/face\:ko, .typography\/face\:zh-hans, .typography\/face\:zh-hant {
-  --typography--tracking: 0;
+  --typography--tracking--override: 0;
 }
 
 .typography, .typography\/markdown\:headers > h4, .typography\/markdown\:headers > h3, .typography\/markdown\:headers > h2, .typography\/markdown\:headers pre, .typography\/markdown pre, .typography\/markdown\:headers ol:not([class]) > li, .typography\/markdown ol:not([class]) > li,
