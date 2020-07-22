@@ -169,6 +169,17 @@
 
     font-weight:    var(--typography--weight);
     letter-spacing: var(--typography--letter-spacing);
+
+    // For language-specific tweaks (when not mixed with latin/Sans characters).
+    @include variant(ja, ko, zh-hans, zh-hant) {
+      @extend %__tracking--cjk;
+    }
+
+    @at-root { // Here for ordering/efficiency.
+      %__tracking--cjk {
+        --typography--tracking: 0;
+      }
+    }
   }
 
   @at-root {

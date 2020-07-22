@@ -74640,6 +74640,9 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   font-weight: var(--typography--weight);
   letter-spacing: var(--typography--letter-spacing);
 }
+.typography\/face\:ja, .typography\/face\:ko, .typography\/face\:zh-hans, .typography\/face\:zh-hant {
+  --typography--tracking: 0;
+}
 
 .typography, .typography\/markdown\:headers > h4, .typography\/markdown\:headers > h3, .typography\/markdown\:headers > h2, .typography\/markdown\:headers pre, .typography\/markdown pre, .typography\/markdown\:headers ol:not([class]) > li, .typography\/markdown ol:not([class]) > li,
 .typography\/markdown\:headers ul:not([class]) > li,
