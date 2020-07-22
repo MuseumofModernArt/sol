@@ -68,7 +68,12 @@ html {
   box-sizing: border-box;
 }
 
-:root {
+input::placeholder, button, form, input, body, :lang(ja), :lang(ko), :lang(zh-Hant), :lang(zh-Hans) {
+  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
+}
+
+:root,
+:lang(en) {
   --language-font-face: "MoMA Sans";
 }
 
@@ -91,7 +96,6 @@ html {
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
   font-kerning: normal;
   font-weight: 400;
   text-rendering: optimizeLegibility;
@@ -114,33 +118,6 @@ del {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-form, input {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
-}
-
-button {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
-}
-
-input {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
-}
-input.placeholder {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
-}
-input:-moz-placeholder {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
-}
-input::-moz-placeholder {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
-}
-input:-ms-input-placeholder {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
-}
-input::-webkit-input-placeholder {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
 }
 
 @font-face {
@@ -74649,10 +74626,11 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   text-shadow: initial;
 }
 
-.typography\/face, .typography\/markdown\:headers strong, .typography\/markdown strong, .typography, .typography\/markdown\:headers > h4, .typography\/markdown\:headers > h3, .typography\/markdown\:headers > h2, .typography\/markdown\:headers pre, .typography\/markdown pre, .typography\/markdown\:headers ol:not([class]) > li, .typography\/markdown ol:not([class]) > li,
+.typography\/face, .typography\/face\:zh-hant, .typography\/face\:zh-hans, .typography\/face\:ko, .typography\/face\:ja, .typography\/markdown\:headers strong, .typography\/markdown strong, .typography, .typography\/markdown\:headers > h4, .typography\/markdown\:headers > h3, .typography\/markdown\:headers > h2, .typography\/markdown\:headers pre, .typography\/markdown pre, .typography\/markdown\:headers ol:not([class]) > li, .typography\/markdown ol:not([class]) > li,
 .typography\/markdown\:headers ul:not([class]) > li,
 .typography\/markdown ul:not([class]) > li, .typography\/markdown\:headers p:not([class]), .typography\/markdown p:not([class]) {
-  --typography--letter-spacing: calc(var(--typography--tracking) * var(--tracking-conversion));
+  --typography--tracking--override: var(--typography--tracking);
+  --typography--letter-spacing: calc(var(--typography--tracking--override, var(--typography--tracking)) * var(--tracking-conversion));
   --typography--margin--left: calc(var(--typography--inset--left) * var(--tracking-conversion));
   --typography--margin--right: calc(var(--typography--inset--right) * var(--tracking-conversion));
   --typography--underline--margin: calc(var(--typography--underline--inset) * var(--tracking-conversion));
@@ -74662,6 +74640,9 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --typography--bullet--size: calc(var(--typography--bullet) * var(--tracking-conversion));
   font-weight: var(--typography--weight);
   letter-spacing: var(--typography--letter-spacing);
+}
+.typography\/face\:ja, .typography\/face\:ko, .typography\/face\:zh-hans, .typography\/face\:zh-hant {
+  --typography--tracking--override: 0;
 }
 
 .typography, .typography\/markdown\:headers > h4, .typography\/markdown\:headers > h3, .typography\/markdown\:headers > h2, .typography\/markdown\:headers pre, .typography\/markdown pre, .typography\/markdown\:headers ol:not([class]) > li, .typography\/markdown ol:not([class]) > li,
