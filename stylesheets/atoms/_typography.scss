@@ -174,6 +174,8 @@
 
     // For language-specific tweaks (when not mixed with latin/Sans characters).
     @include variant(ja, ko, zh-hans, zh-hant) {
+      @extend #{$variant-parent};
+
       @extend %__tracking--cjk;
     }
 
