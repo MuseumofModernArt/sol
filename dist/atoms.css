@@ -59,6 +59,10 @@ details summary::-webkit-details-marker {
   display: none;
 }
 
+button > * {
+  position: relative;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   font-size: 62.5%;
