@@ -474,7 +474,6 @@ a {
 }
 :root {
   --rem-conversion: 0.1rem;
-  --tracking-conversion: 0.001em;
   --page-spacing: 2.4rem;
   --page-spacing--fixed: 2.4rem;
   --page-width--extension: 0rem;
@@ -74547,36 +74546,36 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 }
 
 .typography\/var\/weight\:regular, .typography\/markdown\:headers, .typography\/markdown {
-  --typography--bullet: 280;
-  --typography--icon--space: 649;
-  --typography--icon--stroke: 76;
-  --typography--inset--left: -97;
-  --typography--inset--right: -74;
+  --typography--bullet: 0.280;
+  --typography--icon--space: 0.649;
+  --typography--icon--stroke: 0.076;
+  --typography--inset--left: -0.097;
+  --typography--inset--right: -0.074;
   --typography--tracking: 0;
-  --typography--underline--clear: 75;
-  --typography--underline--inset: -81;
-  --typography--underline--offset: 120;
-  --typography--underline: 75;
+  --typography--underline--clear: 0.075;
+  --typography--underline--inset: -0.081;
+  --typography--underline--offset: 0.120;
+  --typography--underline: 0.075;
   --typography--weight: 400;
 }
 
 :root, .typography\/var\/weight\:bold, .typography\/markdown\:headers > h4, .typography\/markdown\:headers > h3, .typography\/markdown\:headers > h2, .typography\/markdown\:headers strong, .typography\/markdown strong {
-  --typography--bullet: 305;
-  --typography--icon--space: 444;
-  --typography--icon--stroke: 149;
-  --typography--inset--left: -71;
-  --typography--inset--right: -35;
-  --typography--tracking: -20;
-  --typography--underline--clear: 100;
-  --typography--underline--inset: -59;
-  --typography--underline--offset: 56;
-  --typography--underline: 133;
+  --typography--bullet: 0.305;
+  --typography--icon--space: 0.444;
+  --typography--icon--stroke: 0.149;
+  --typography--inset--left: -0.071;
+  --typography--inset--right: -0.035;
+  --typography--tracking: -0.020;
+  --typography--underline--clear: 0.100;
+  --typography--underline--inset: -0.059;
+  --typography--underline--offset: 0.056;
+  --typography--underline: 0.133;
   --typography--weight: 900;
 }
 
 .typography\/var\/baseline\:body, .typography\/markdown\:headers, .typography\/markdown {
   --typography--leading: 1.3333333333;
-  --typography--descenders: 231;
+  --typography--descenders: 0.231;
   --typography--scale--minor: 0.8888888889;
   --typography--scale--major: 1.3333333333;
   --typography--scale--prime: 2;
@@ -74596,8 +74595,8 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --typography--scale--major: 1.5;
   --typography--scale--prime: 2;
   --typography--scale--clear: initial;
-  --typography--ascenders: 330;
-  --typography--descenders: 200;
+  --typography--ascenders: 0.330;
+  --typography--descenders: 0.200;
 }
 @media (min-width: 768px) {
   :root, .typography\/var\/baseline\:solid {
@@ -74611,10 +74610,10 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 }
 
 .typography\/icon\:after, .typography\/icon\:after\:0deg, .typography\/icon\:after\:45deg, .typography\/icon\:after\:90deg, .typography\/icon\:after\:135deg, .typography\/icon\:after\:180deg, .typography\/icon\:after\:225deg, .typography\/icon\:after\:270deg, .typography\/icon\:after\:315deg, .typography\/icon\:after\:360deg, .typography\/icon\:before, .typography\/icon\:before\:0deg, .typography\/icon\:before\:45deg, .typography\/icon\:before\:90deg, .typography\/icon\:before\:135deg, .typography\/icon\:before\:180deg, .typography\/icon\:before\:225deg, .typography\/icon\:before\:270deg, .typography\/icon\:before\:315deg, .typography\/icon\:before\:360deg {
-  --typography--icon--inset: -156;
-  --typography--icon--margin: calc(var(--typography--icon--inset) * var(--tracking-conversion));
-  --typography--icon--space--width: calc(var(--typography--icon--space) * var(--tracking-conversion));
-  --typography--icon--stroke-width: calc(var(--typography--icon--stroke) * var(--tracking-conversion));
+  --typography--icon--inset: -0.156;
+  --typography--icon--margin: calc(var(--typography--icon--inset) * 1em);
+  --typography--icon--space--width: calc(var(--typography--icon--space) * 1em);
+  --typography--icon--stroke-width: calc(var(--typography--icon--stroke) * 1em);
   height: var(--typography--font-size);
   margin-bottom: calc(-1 * var(--typography--font-size) * var(--typography--icon--shift--override, var(--typography--icon--shift)));
   margin-left: var(--typography--icon--margin--left);
@@ -74634,14 +74633,14 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 .typography\/markdown\:headers ul:not([class]) > li,
 .typography\/markdown ul:not([class]) > li, .typography\/markdown\:headers p:not([class]), .typography\/markdown p:not([class]) {
   --typography--tracking--override: var(--typography--tracking);
-  --typography--letter-spacing: calc(var(--typography--tracking--override, var(--typography--tracking)) * var(--tracking-conversion));
-  --typography--margin--left: calc(var(--typography--inset--left) * var(--tracking-conversion));
-  --typography--margin--right: calc(var(--typography--inset--right) * var(--tracking-conversion));
-  --typography--underline--margin: calc(var(--typography--underline--inset) * var(--tracking-conversion));
-  --typography--underline--clearing: calc(var(--typography--underline--clear) * var(--tracking-conversion));
-  --typography--underline--thickness: calc(var(--typography--underline) * var(--tracking-conversion));
-  --typography--underline--top: calc(var(--typography--underline--offset) * var(--tracking-conversion));
-  --typography--bullet--size: calc(var(--typography--bullet) * var(--tracking-conversion));
+  --typography--letter-spacing: calc(var(--typography--tracking--override, var(--typography--tracking)) * 1em);
+  --typography--margin--left: calc(var(--typography--inset--left) * 1em);
+  --typography--margin--right: calc(var(--typography--inset--right) * 1em);
+  --typography--underline--margin: calc(var(--typography--underline--inset) * 1em);
+  --typography--underline--clearing: calc(var(--typography--underline--clear) * 1em);
+  --typography--underline--thickness: calc(var(--typography--underline) * 1em);
+  --typography--underline--top: calc(var(--typography--underline--offset) * 1em);
+  --typography--bullet--size: calc(var(--typography--bullet) * 1em);
   font-weight: var(--typography--weight);
   letter-spacing: var(--typography--letter-spacing);
 }
@@ -74659,8 +74658,8 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --typography--shift: calc((var(--typography--shoulder) + var(--typography--shoulder--top)) * (1 - var(--typography--scale)));
   --typography--leading--bottom: calc(var(--typography--shoulder--bottom) + var(--typography--leading--remainder) + var(--typography--shift, 0));
   --typography--leading--top: calc(var(--typography--shoulder--top) + var(--typography--leading--remainder) - var(--typography--shift, 0));
-  --typography--margin--bottom: calc(var(--typography--leading--bottom) * -1em);
-  --typography--margin--top: calc(var(--typography--leading--top) * -1em);
+  --typography--margin--bottom: calc(-1 * var(--typography--leading--bottom) * var(--typography--size--rendered));
+  --typography--margin--top: calc(-1 * var(--typography--leading--top) * var(--typography--size--rendered));
   color: var(--color);
   display: flow-root;
   font-size: var(--typography--font-size);
@@ -74677,6 +74676,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 .typography\/markdown ul:not([class]) > li:after, .typography\/markdown\:headers p:not([class]):after, .typography\/markdown p:not([class]):after {
   content: "";
   display: block;
+  visibility: hidden;
 }
 .typography:before, .typography\/markdown\:headers > h4:before, .typography\/markdown\:headers > h3:before, .typography\/markdown\:headers > h2:before, .typography\/markdown\:headers pre:before, .typography\/markdown pre:before, .typography\/markdown\:headers ol:not([class]) > li:before, .typography\/markdown ol:not([class]) > li:before,
 .typography\/markdown\:headers ul:not([class]) > li:before,
@@ -74913,8 +74913,8 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 
 .typography\/truncate, .typography\/truncate\:1, .typography\/truncate\:2, .typography\/truncate\:3, .typography\/truncate\:4, .typography\/truncate\:5, .typography\/truncate\:6, .typography\/truncate\:clear {
   --layout--height--max--baseline:var(--typography--truncate);
-  --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * var(--tracking-conversion));
-  --typography--shoulder-extension--top: calc(var(--typography--ascenders) * var(--tracking-conversion));
+  --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * 1em);
+  --typography--shoulder-extension--top: calc(var(--typography--ascenders) * 1em);
   -webkit-box-orient: vertical;
   -webkit-line-clamp: var(--typography--truncate);
   box-sizing: content-box;
@@ -74996,8 +74996,8 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 
   .\@mobile\:1\.25\:\:typography\/truncate, .\@mobile\:1\.25\:\:typography\/truncate\:1, .\@mobile\:1\.25\:\:typography\/truncate\:2, .\@mobile\:1\.25\:\:typography\/truncate\:3, .\@mobile\:1\.25\:\:typography\/truncate\:4, .\@mobile\:1\.25\:\:typography\/truncate\:5, .\@mobile\:1\.25\:\:typography\/truncate\:6, .\@mobile\:1\.25\:\:typography\/truncate\:clear {
     --mobile--1-25--layout--height--max--baseline:var(--mobile--1-25--typography--truncate);
-    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * var(--tracking-conversion));
-    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * var(--tracking-conversion));
+    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * 1em);
+    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * 1em);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--mobile--1-25--typography--truncate);
     box-sizing: content-box;
@@ -75097,8 +75097,8 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 
   .\@mobile\:1\.5\:\:typography\/truncate, .\@mobile\:1\.5\:\:typography\/truncate\:1, .\@mobile\:1\.5\:\:typography\/truncate\:2, .\@mobile\:1\.5\:\:typography\/truncate\:3, .\@mobile\:1\.5\:\:typography\/truncate\:4, .\@mobile\:1\.5\:\:typography\/truncate\:5, .\@mobile\:1\.5\:\:typography\/truncate\:6, .\@mobile\:1\.5\:\:typography\/truncate\:clear {
     --mobile--1-5--layout--height--max--baseline:var(--mobile--1-5--typography--truncate);
-    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * var(--tracking-conversion));
-    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * var(--tracking-conversion));
+    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * 1em);
+    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * 1em);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--mobile--1-5--typography--truncate);
     box-sizing: content-box;
@@ -75198,8 +75198,8 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 
   .\@mobile\:1\.75\:\:typography\/truncate, .\@mobile\:1\.75\:\:typography\/truncate\:1, .\@mobile\:1\.75\:\:typography\/truncate\:2, .\@mobile\:1\.75\:\:typography\/truncate\:3, .\@mobile\:1\.75\:\:typography\/truncate\:4, .\@mobile\:1\.75\:\:typography\/truncate\:5, .\@mobile\:1\.75\:\:typography\/truncate\:6, .\@mobile\:1\.75\:\:typography\/truncate\:clear {
     --mobile--1-75--layout--height--max--baseline:var(--mobile--1-75--typography--truncate);
-    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * var(--tracking-conversion));
-    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * var(--tracking-conversion));
+    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * 1em);
+    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * 1em);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--mobile--1-75--typography--truncate);
     box-sizing: content-box;
@@ -75299,8 +75299,8 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 
   .\@mobile\:2\:\:typography\/truncate, .\@mobile\:2\:\:typography\/truncate\:1, .\@mobile\:2\:\:typography\/truncate\:2, .\@mobile\:2\:\:typography\/truncate\:3, .\@mobile\:2\:\:typography\/truncate\:4, .\@mobile\:2\:\:typography\/truncate\:5, .\@mobile\:2\:\:typography\/truncate\:6, .\@mobile\:2\:\:typography\/truncate\:clear {
     --mobile--2--layout--height--max--baseline:var(--mobile--2--typography--truncate);
-    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * var(--tracking-conversion));
-    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * var(--tracking-conversion));
+    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * 1em);
+    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * 1em);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--mobile--2--typography--truncate);
     box-sizing: content-box;
@@ -75400,8 +75400,8 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 
   .\@mobile\:2\.5\:\:typography\/truncate, .\@mobile\:2\.5\:\:typography\/truncate\:1, .\@mobile\:2\.5\:\:typography\/truncate\:2, .\@mobile\:2\.5\:\:typography\/truncate\:3, .\@mobile\:2\.5\:\:typography\/truncate\:4, .\@mobile\:2\.5\:\:typography\/truncate\:5, .\@mobile\:2\.5\:\:typography\/truncate\:6, .\@mobile\:2\.5\:\:typography\/truncate\:clear {
     --mobile--2-5--layout--height--max--baseline:var(--mobile--2-5--typography--truncate);
-    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * var(--tracking-conversion));
-    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * var(--tracking-conversion));
+    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * 1em);
+    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * 1em);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--mobile--2-5--typography--truncate);
     box-sizing: content-box;
@@ -75501,8 +75501,8 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 
   .\@mobile\:3\:\:typography\/truncate, .\@mobile\:3\:\:typography\/truncate\:1, .\@mobile\:3\:\:typography\/truncate\:2, .\@mobile\:3\:\:typography\/truncate\:3, .\@mobile\:3\:\:typography\/truncate\:4, .\@mobile\:3\:\:typography\/truncate\:5, .\@mobile\:3\:\:typography\/truncate\:6, .\@mobile\:3\:\:typography\/truncate\:clear {
     --mobile--3--layout--height--max--baseline:var(--mobile--3--typography--truncate);
-    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * var(--tracking-conversion));
-    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * var(--tracking-conversion));
+    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * 1em);
+    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * 1em);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--mobile--3--typography--truncate);
     box-sizing: content-box;
@@ -75602,8 +75602,8 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 
   .\@mobile\:3\.5\:\:typography\/truncate, .\@mobile\:3\.5\:\:typography\/truncate\:1, .\@mobile\:3\.5\:\:typography\/truncate\:2, .\@mobile\:3\.5\:\:typography\/truncate\:3, .\@mobile\:3\.5\:\:typography\/truncate\:4, .\@mobile\:3\.5\:\:typography\/truncate\:5, .\@mobile\:3\.5\:\:typography\/truncate\:6, .\@mobile\:3\.5\:\:typography\/truncate\:clear {
     --mobile--3-5--layout--height--max--baseline:var(--mobile--3-5--typography--truncate);
-    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * var(--tracking-conversion));
-    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * var(--tracking-conversion));
+    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * 1em);
+    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * 1em);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--mobile--3-5--typography--truncate);
     box-sizing: content-box;
@@ -75703,8 +75703,8 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 
   .\@mobile\:3\.75\:\:typography\/truncate, .\@mobile\:3\.75\:\:typography\/truncate\:1, .\@mobile\:3\.75\:\:typography\/truncate\:2, .\@mobile\:3\.75\:\:typography\/truncate\:3, .\@mobile\:3\.75\:\:typography\/truncate\:4, .\@mobile\:3\.75\:\:typography\/truncate\:5, .\@mobile\:3\.75\:\:typography\/truncate\:6, .\@mobile\:3\.75\:\:typography\/truncate\:clear {
     --mobile--3-75--layout--height--max--baseline:var(--mobile--3-75--typography--truncate);
-    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * var(--tracking-conversion));
-    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * var(--tracking-conversion));
+    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * 1em);
+    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * 1em);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--mobile--3-75--typography--truncate);
     box-sizing: content-box;
@@ -75804,8 +75804,8 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 
   .\@nonmobile\:\:typography\/truncate, .\@nonmobile\:\:typography\/truncate\:1, .\@nonmobile\:\:typography\/truncate\:2, .\@nonmobile\:\:typography\/truncate\:3, .\@nonmobile\:\:typography\/truncate\:4, .\@nonmobile\:\:typography\/truncate\:5, .\@nonmobile\:\:typography\/truncate\:6, .\@nonmobile\:\:typography\/truncate\:clear {
     --nonmobile--layout--height--max--baseline:var(--nonmobile--typography--truncate);
-    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * var(--tracking-conversion));
-    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * var(--tracking-conversion));
+    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * 1em);
+    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * 1em);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--nonmobile--typography--truncate);
     box-sizing: content-box;
@@ -75893,8 +75893,8 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 
   .\@nonmobile\:2\:\:typography\/truncate, .\@nonmobile\:2\:\:typography\/truncate\:1, .\@nonmobile\:2\:\:typography\/truncate\:2, .\@nonmobile\:2\:\:typography\/truncate\:3, .\@nonmobile\:2\:\:typography\/truncate\:4, .\@nonmobile\:2\:\:typography\/truncate\:5, .\@nonmobile\:2\:\:typography\/truncate\:6, .\@nonmobile\:2\:\:typography\/truncate\:clear {
     --nonmobile--2--layout--height--max--baseline:var(--nonmobile--2--typography--truncate);
-    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * var(--tracking-conversion));
-    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * var(--tracking-conversion));
+    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * 1em);
+    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * 1em);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--nonmobile--2--typography--truncate);
     box-sizing: content-box;
@@ -75982,8 +75982,8 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 
   .\@nonmobile\:3\:\:typography\/truncate, .\@nonmobile\:3\:\:typography\/truncate\:1, .\@nonmobile\:3\:\:typography\/truncate\:2, .\@nonmobile\:3\:\:typography\/truncate\:3, .\@nonmobile\:3\:\:typography\/truncate\:4, .\@nonmobile\:3\:\:typography\/truncate\:5, .\@nonmobile\:3\:\:typography\/truncate\:6, .\@nonmobile\:3\:\:typography\/truncate\:clear {
     --nonmobile--3--layout--height--max--baseline:var(--nonmobile--3--typography--truncate);
-    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * var(--tracking-conversion));
-    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * var(--tracking-conversion));
+    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * 1em);
+    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * 1em);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--nonmobile--3--typography--truncate);
     box-sizing: content-box;
@@ -76071,8 +76071,8 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 
   .\@nonmobile\:4\:\:typography\/truncate, .\@nonmobile\:4\:\:typography\/truncate\:1, .\@nonmobile\:4\:\:typography\/truncate\:2, .\@nonmobile\:4\:\:typography\/truncate\:3, .\@nonmobile\:4\:\:typography\/truncate\:4, .\@nonmobile\:4\:\:typography\/truncate\:5, .\@nonmobile\:4\:\:typography\/truncate\:6, .\@nonmobile\:4\:\:typography\/truncate\:clear {
     --nonmobile--4--layout--height--max--baseline:var(--nonmobile--4--typography--truncate);
-    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * var(--tracking-conversion));
-    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * var(--tracking-conversion));
+    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * 1em);
+    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * 1em);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--nonmobile--4--typography--truncate);
     box-sizing: content-box;
@@ -76160,8 +76160,8 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 
   .\@max\:\:typography\/truncate, .\@max\:\:typography\/truncate\:1, .\@max\:\:typography\/truncate\:2, .\@max\:\:typography\/truncate\:3, .\@max\:\:typography\/truncate\:4, .\@max\:\:typography\/truncate\:5, .\@max\:\:typography\/truncate\:6, .\@max\:\:typography\/truncate\:clear {
     --max--layout--height--max--baseline:var(--max--typography--truncate);
-    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * var(--tracking-conversion));
-    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * var(--tracking-conversion));
+    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * 1em);
+    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * 1em);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--max--typography--truncate);
     box-sizing: content-box;
@@ -76261,8 +76261,8 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 
   .\@landscape\:\:typography\/truncate, .\@landscape\:\:typography\/truncate\:1, .\@landscape\:\:typography\/truncate\:2, .\@landscape\:\:typography\/truncate\:3, .\@landscape\:\:typography\/truncate\:4, .\@landscape\:\:typography\/truncate\:5, .\@landscape\:\:typography\/truncate\:6, .\@landscape\:\:typography\/truncate\:clear {
     --landscape--layout--height--max--baseline:var(--landscape--typography--truncate);
-    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * var(--tracking-conversion));
-    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * var(--tracking-conversion));
+    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * 1em);
+    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * 1em);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--landscape--typography--truncate);
     box-sizing: content-box;
@@ -76362,8 +76362,8 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 
   .\@nonmobile\:landscape\:\:typography\/truncate, .\@nonmobile\:landscape\:\:typography\/truncate\:1, .\@nonmobile\:landscape\:\:typography\/truncate\:2, .\@nonmobile\:landscape\:\:typography\/truncate\:3, .\@nonmobile\:landscape\:\:typography\/truncate\:4, .\@nonmobile\:landscape\:\:typography\/truncate\:5, .\@nonmobile\:landscape\:\:typography\/truncate\:6, .\@nonmobile\:landscape\:\:typography\/truncate\:clear {
     --nonmobile--landscape--layout--height--max--baseline:var(--nonmobile--landscape--typography--truncate);
-    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * var(--tracking-conversion));
-    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * var(--tracking-conversion));
+    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * 1em);
+    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * 1em);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--nonmobile--landscape--typography--truncate);
     box-sizing: content-box;
@@ -76451,8 +76451,8 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 
   .\@tall\:\:typography\/truncate, .\@tall\:\:typography\/truncate\:1, .\@tall\:\:typography\/truncate\:2, .\@tall\:\:typography\/truncate\:3, .\@tall\:\:typography\/truncate\:4, .\@tall\:\:typography\/truncate\:5, .\@tall\:\:typography\/truncate\:6, .\@tall\:\:typography\/truncate\:clear {
     --tall--layout--height--max--baseline:var(--tall--typography--truncate);
-    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * var(--tracking-conversion));
-    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * var(--tracking-conversion));
+    --typography--shoulder-extension--bottom: calc(var(--typography--descenders) * 1em);
+    --typography--shoulder-extension--top: calc(var(--typography--ascenders) * 1em);
     -webkit-box-orient: vertical;
     -webkit-line-clamp: var(--tall--typography--truncate);
     box-sizing: content-box;
@@ -78528,7 +78528,7 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
 .typography\/markdown\:headers blockquote:not([class]) blockquote:not([class]), .typography\/markdown blockquote:not([class]) blockquote:not([class]) {
   background-image: linear-gradient(var(--color), var(--color));
   background-repeat: no-repeat;
-  background-size: calc((var(--typography--bullet) / 2 / 1000) * var(--typography--size) * var(--rem-conversion)) 100%;
+  background-size: calc((var(--typography--bullet) / 2) * var(--typography--size) * var(--rem-conversion)) 100%;
 }
 .typography\/markdown\:headers ol:not([class]) > li > p, .typography\/markdown ol:not([class]) > li > p,
 .typography\/markdown\:headers ol:not([class]) > li > blockquote > p,
