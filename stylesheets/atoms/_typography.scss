@@ -131,9 +131,9 @@
 
   --typography--icon--inset: -156; // Optical “safe area” in embedded SVGs.
 
-  --typography--icon--margin:       calc(var(--typography--icon--inset) *  var(--tracking-conversion)); // Same.
-  --typography--icon--space--width: calc(var(--typography--icon--space) *  var(--tracking-conversion)); // Render the actual values.
-  --typography--icon--stroke-width: calc(var(--typography--icon--stroke) * var(--tracking-conversion)); // Same.
+  --typography--icon--margin:       calc(var(--typography--icon--inset) *  var(--em-conversion)); // Same.
+  --typography--icon--space--width: calc(var(--typography--icon--space) *  var(--em-conversion)); // Render the actual values.
+  --typography--icon--stroke-width: calc(var(--typography--icon--stroke) * var(--em-conversion)); // Same.
 
   height:        var(--typography--font-size);
   margin-bottom: calc(-1 * var(--typography--font-size) * var(--typography--icon--shift--override, var(--typography--icon--shift))); // Vertical centering.
@@ -157,17 +157,17 @@
   // Basic weight/spacing, so it can be extended separately.
   @include atom(face) {
     --typography--tracking--override:   var(--typography--tracking); // Allows reset/clear.
-    --typography--letter-spacing:       calc(var(--typography--tracking--override, var(--typography--tracking)) * var(--tracking-conversion)); // Render the actual values.
+    --typography--letter-spacing:       calc(var(--typography--tracking--override, var(--typography--tracking)) * var(--em-conversion)); // Render the actual values.
 
-    --typography--margin--left:         calc(var(--typography--inset--left) *  var(--tracking-conversion));
-    --typography--margin--right:        calc(var(--typography--inset--right) * var(--tracking-conversion));
+    --typography--margin--left:         calc(var(--typography--inset--left) *  var(--em-conversion));
+    --typography--margin--right:        calc(var(--typography--inset--right) * var(--em-conversion));
 
-    --typography--underline--margin:    calc(var(--typography--underline--inset) *  var(--tracking-conversion));
-    --typography--underline--clearing:  calc(var(--typography--underline--clear) *  var(--tracking-conversion));
-    --typography--underline--thickness: calc(var(--typography--underline) *         var(--tracking-conversion));
-    --typography--underline--top:       calc(var(--typography--underline--offset) * var(--tracking-conversion));
+    --typography--underline--margin:    calc(var(--typography--underline--inset) *  var(--em-conversion));
+    --typography--underline--clearing:  calc(var(--typography--underline--clear) *  var(--em-conversion));
+    --typography--underline--thickness: calc(var(--typography--underline) *         var(--em-conversion));
+    --typography--underline--top:       calc(var(--typography--underline--offset) * var(--em-conversion));
 
-    --typography--bullet--size:         calc(var(--typography--bullet) *  var(--tracking-conversion));
+    --typography--bullet--size:         calc(var(--typography--bullet) *  var(--em-conversion));
 
     font-weight:    var(--typography--weight);
     letter-spacing: var(--typography--letter-spacing);
@@ -447,8 +447,8 @@
 
         #{__css-var(#{$atom-breakpoint}--layout--height--max--baseline)}: #{$variant-count}; // Constrain the height.
 
-        --typography--shoulder-extension--bottom:  calc(var(--typography--descenders) * var(--tracking-conversion));
-        --typography--shoulder-extension--top:     calc(var(--typography--ascenders) *  var(--tracking-conversion));
+        --typography--shoulder-extension--bottom:  calc(var(--typography--descenders) * var(--em-conversion));
+        --typography--shoulder-extension--top:     calc(var(--typography--ascenders) *  var(--em-conversion));
 
         -webkit-box-orient:  vertical;          // This is kind of like column.
         -webkit-line-clamp:  #{$variant-count}; // For modern browsers, applies the ellipsis.
