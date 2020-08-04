@@ -126,24 +126,33 @@
   white-space: nowrap;
 }
 
+
+
 %__icon {
-  @extend %color__svg--alpha !optional; // Optional flag, as external MoMA Sans file doesn’t get this?
+    @extend %color__svg--alpha;
 
-  --typography--icon--inset: -0.156; // Optical “safe area” in embedded SVGs.
+  --typography--icon--size:         var(--typography--font-size, calc(var(--typography--size--override, var(--typography--size)) * var(--rem-conversion))); // Render the actual value.
+  --typography--icon--stroke-width: calc(var(--typography--icon--stroke) * var(--typography--icon--size)); // Same.
 
-  --typography--icon--margin:       calc(var(--typography--icon--inset) *  1em); // Same.
-  --typography--icon--space--width: calc(var(--typography--icon--space) *  1em); // Render the actual values.
-  --typography--icon--stroke-width: calc(var(--typography--icon--stroke) * 1em); // Same.
+  height:       var(--typography--icon--size);
+  stroke-width: var(--typography--icon--stroke-width);
+  transform:    translate(var(--typography--icon--translate-x, 0), var(--typography--icon--translate-y, 0)) rotate(var(--typography--icon--rotate, 0)); // X/Y shift for aliasing tweaks.
+  width:        var(--typography--icon--size);
+}
 
-  height:        var(--typography--font-size);
+%__icon--embedded {
+  --typography--icon--inset: -0.156; // Optical “safe area” in embedded/inline SVGs.
+
+  --typography--icon--margin:       calc(var(--typography--icon--inset) *  1em); // Render the actual values.
+  --typography--icon--space--width: calc(var(--typography--icon--space) *  1em); // Same.
+
   margin-bottom: calc(-1 * var(--typography--font-size) * var(--typography--icon--shift--override, var(--typography--icon--shift))); // Vertical centering.
   margin-left:   var(--typography--icon--margin--left);
   margin-right:  var(--typography--icon--margin--right);
   margin-top:    calc(var(--typography--margin--bottom) + var(--typography--margin--top)); // Match shoulder “height” from type.
-  stroke-width:  var(--typography--icon--stroke-width);
-  transform:     translate(var(--typography--icon--translate-x, 0), var(--typography--icon--translate-y, 0)) rotate(var(--typography--icon--rotate, 0)); // X/Y shift for aliasing tweaks.
-  width:         var(--typography--font-size);
 }
+
+
 
 %__underline--disable {
   background:  initial;
@@ -350,8 +359,15 @@
 
   // Icons.
   @include atom(icon) {
+    @include variant-rotations {
+      @extend %__icon;
+
+      --typography--icon--rotate: #{$variant-rotation};
+    }
+
     @include variant(before, after) {
       @include variant-rotations {
+        @extend %__icon--embedded;
         @extend %__icon;
 
         --typography--icon--rotate: #{$variant-rotation};

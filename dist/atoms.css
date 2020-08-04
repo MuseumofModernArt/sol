@@ -71552,7 +71552,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --background-color--rgb: var(--color--red--rgb);
 }
 
-.typography\/icon\:after, .typography\/icon\:after\:0deg, .typography\/icon\:after\:45deg, .typography\/icon\:after\:90deg, .typography\/icon\:after\:135deg, .typography\/icon\:after\:180deg, .typography\/icon\:after\:225deg, .typography\/icon\:after\:270deg, .typography\/icon\:after\:315deg, .typography\/icon\:after\:360deg, .typography\/icon\:before, .typography\/icon\:before\:0deg, .typography\/icon\:before\:45deg, .typography\/icon\:before\:90deg, .typography\/icon\:before\:135deg, .typography\/icon\:before\:180deg, .typography\/icon\:before\:225deg, .typography\/icon\:before\:270deg, .typography\/icon\:before\:315deg, .typography\/icon\:before\:360deg, svg.color\/all,
+.typography\/icon\:after, .typography\/icon\:after\:0deg, .typography\/icon\:after\:45deg, .typography\/icon\:after\:90deg, .typography\/icon\:after\:135deg, .typography\/icon\:after\:180deg, .typography\/icon\:after\:225deg, .typography\/icon\:after\:270deg, .typography\/icon\:after\:315deg, .typography\/icon\:after\:360deg, .typography\/icon\:before, .typography\/icon\:before\:0deg, .typography\/icon\:before\:45deg, .typography\/icon\:before\:90deg, .typography\/icon\:before\:135deg, .typography\/icon\:before\:180deg, .typography\/icon\:before\:225deg, .typography\/icon\:before\:270deg, .typography\/icon\:before\:315deg, .typography\/icon\:before\:360deg, .typography\/icon, .typography\/icon\:0deg, .typography\/icon\:45deg, .typography\/icon\:90deg, .typography\/icon\:135deg, .typography\/icon\:180deg, .typography\/icon\:225deg, .typography\/icon\:270deg, .typography\/icon\:315deg, .typography\/icon\:360deg, svg.color\/all,
 .color\/all {
   fill: rgba(var(--color--rgb, --color--black--rgb), 1);
   opacity: var(--color--alpha, 1);
@@ -74609,19 +74609,23 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   white-space: nowrap;
 }
 
+.typography\/icon\:after, .typography\/icon\:after\:0deg, .typography\/icon\:after\:45deg, .typography\/icon\:after\:90deg, .typography\/icon\:after\:135deg, .typography\/icon\:after\:180deg, .typography\/icon\:after\:225deg, .typography\/icon\:after\:270deg, .typography\/icon\:after\:315deg, .typography\/icon\:after\:360deg, .typography\/icon\:before, .typography\/icon\:before\:0deg, .typography\/icon\:before\:45deg, .typography\/icon\:before\:90deg, .typography\/icon\:before\:135deg, .typography\/icon\:before\:180deg, .typography\/icon\:before\:225deg, .typography\/icon\:before\:270deg, .typography\/icon\:before\:315deg, .typography\/icon\:before\:360deg, .typography\/icon, .typography\/icon\:0deg, .typography\/icon\:45deg, .typography\/icon\:90deg, .typography\/icon\:135deg, .typography\/icon\:180deg, .typography\/icon\:225deg, .typography\/icon\:270deg, .typography\/icon\:315deg, .typography\/icon\:360deg {
+  --typography--icon--size: var(--typography--font-size, calc(var(--typography--size--override, var(--typography--size)) * var(--rem-conversion)));
+  --typography--icon--stroke-width: calc(var(--typography--icon--stroke) * var(--typography--icon--size));
+  height: var(--typography--icon--size);
+  stroke-width: var(--typography--icon--stroke-width);
+  transform: translate(var(--typography--icon--translate-x, 0), var(--typography--icon--translate-y, 0)) rotate(var(--typography--icon--rotate, 0));
+  width: var(--typography--icon--size);
+}
+
 .typography\/icon\:after, .typography\/icon\:after\:0deg, .typography\/icon\:after\:45deg, .typography\/icon\:after\:90deg, .typography\/icon\:after\:135deg, .typography\/icon\:after\:180deg, .typography\/icon\:after\:225deg, .typography\/icon\:after\:270deg, .typography\/icon\:after\:315deg, .typography\/icon\:after\:360deg, .typography\/icon\:before, .typography\/icon\:before\:0deg, .typography\/icon\:before\:45deg, .typography\/icon\:before\:90deg, .typography\/icon\:before\:135deg, .typography\/icon\:before\:180deg, .typography\/icon\:before\:225deg, .typography\/icon\:before\:270deg, .typography\/icon\:before\:315deg, .typography\/icon\:before\:360deg {
   --typography--icon--inset: -0.156;
   --typography--icon--margin: calc(var(--typography--icon--inset) * 1em);
   --typography--icon--space--width: calc(var(--typography--icon--space) * 1em);
-  --typography--icon--stroke-width: calc(var(--typography--icon--stroke) * 1em);
-  height: var(--typography--font-size);
   margin-bottom: calc(-1 * var(--typography--font-size) * var(--typography--icon--shift--override, var(--typography--icon--shift)));
   margin-left: var(--typography--icon--margin--left);
   margin-right: var(--typography--icon--margin--right);
   margin-top: calc(var(--typography--margin--bottom) + var(--typography--margin--top));
-  stroke-width: var(--typography--icon--stroke-width);
-  transform: translate(var(--typography--icon--translate-x, 0), var(--typography--icon--translate-y, 0)) rotate(var(--typography--icon--rotate, 0));
-  width: var(--typography--font-size);
 }
 
 .typography\/underline\:disable:not(.typography), .show-focus .link\/focus\:inline:not(.typography):focus, .show-focus .typography\/markdown\:headers a:not(.typography):focus:not([class]), .show-focus .typography\/markdown a:not(.typography):focus:not([class]), .typography\/markdown\:headers .show-focus a:not(.typography):focus:not([class]), .typography\/markdown .show-focus a:not(.typography):focus:not([class]), .show-focus .typography a:not(.typography):focus, .typography .show-focus a:not(.typography):focus, .typography\/underline\:disable.typography a:not([class]), .show-focus .typography.link\/focus\:inline:focus a:not([class]), .show-focus .typography\/markdown\:headers a.typography:focus:not([class]) a:not([class]), .show-focus .typography\/markdown a.typography:focus:not([class]) a:not([class]), .typography\/markdown\:headers .show-focus a.typography:focus:not([class]) a:not([class]), .typography\/markdown .show-focus a.typography:focus:not([class]) a:not([class]), .show-focus .typography a.typography:focus a:not([class]), .typography .show-focus a.typography:focus a:not([class]) {
@@ -74732,6 +74736,46 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 
 .typography\/tabular-numbers, .typography\/markdown\:headers ol:not([class]) > li:before, .typography\/markdown ol:not([class]) > li:before {
   font-variant-numeric: tabular-nums;
+}
+
+.typography\/icon\:0deg {
+  --typography--icon:0deg;
+}
+
+.typography\/icon\:45deg {
+  --typography--icon:45deg;
+}
+
+.typography\/icon\:90deg {
+  --typography--icon:90deg;
+}
+
+.typography\/icon\:135deg {
+  --typography--icon:135deg;
+}
+
+.typography\/icon\:180deg {
+  --typography--icon:180deg;
+}
+
+.typography\/icon\:225deg {
+  --typography--icon:225deg;
+}
+
+.typography\/icon\:270deg {
+  --typography--icon:270deg;
+}
+
+.typography\/icon\:315deg {
+  --typography--icon:315deg;
+}
+
+.typography\/icon\:360deg {
+  --typography--icon:360deg;
+}
+
+.typography\/icon, .typography\/icon\:0deg, .typography\/icon\:45deg, .typography\/icon\:90deg, .typography\/icon\:135deg, .typography\/icon\:180deg, .typography\/icon\:225deg, .typography\/icon\:270deg, .typography\/icon\:315deg, .typography\/icon\:360deg {
+  --typography--icon--rotate: var(--typography--icon);
 }
 
 .typography\/icon\:before\:0deg {
