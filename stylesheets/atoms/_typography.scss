@@ -5,7 +5,7 @@
 
   --typography--shoulder:         calc(1 - var(--typography--cap-height)); // Remainder/overhang.
   --typography--shoulder--top:    calc(var(--typography--shoulder) - var(--typography--shoulder--bottom));
-  --typography--shoulder--bottom: 0.104; // Vertical centering in Chrome’s bounding box. Safari is “close enough”.
+  --typography--shoulder--bottom: 0.101; // Vertical centering in Chrome’s bounding box, across most sizes.
 
   --typography--shift--cap: calc(var(--typography--shoulder) / 2);  // For centering on caps.
   --typography--shift--x:   calc((1 - var(--typography--x-height)) / 2);
