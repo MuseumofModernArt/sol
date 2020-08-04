@@ -74681,7 +74681,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 .typography:before, .typography\/markdown\:headers > h4:before, .typography\/markdown\:headers > h3:before, .typography\/markdown\:headers > h2:before, .typography\/markdown\:headers pre:before, .typography\/markdown pre:before, .typography\/markdown\:headers ol:not([class]) > li:before, .typography\/markdown ol:not([class]) > li:before,
 .typography\/markdown\:headers ul:not([class]) > li:before,
 .typography\/markdown ul:not([class]) > li:before, .typography\/markdown\:headers p:not([class]):before, .typography\/markdown p:not([class]):before {
-  margin-top: calc(var(--typography--margin--top) + var(--typography--margin--top--shift, 0em));
+  margin-top: calc(var(--typography--margin--top) - (var(--typography--margin--top--shift, 0) * var(--typography--size--rendered)));
 }
 .typography:after, .typography\/markdown\:headers > h4:after, .typography\/markdown\:headers > h3:after, .typography\/markdown\:headers > h2:after, .typography\/markdown\:headers pre:after, .typography\/markdown pre:after, .typography\/markdown\:headers ol:not([class]) > li:after, .typography\/markdown ol:not([class]) > li:after,
 .typography\/markdown\:headers ul:not([class]) > li:after,
@@ -74705,7 +74705,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 }
 
 .typography\/var\/top\:x {
-  --typography--margin--top--shift: calc((var(--typography--cap-height) - var(--typography--x-height)) * -1em);
+  --typography--margin--top--shift: calc(var(--typography--cap-height) - var(--typography--x-height));
 }
 
 .typography\/underline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a {

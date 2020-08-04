@@ -221,7 +221,8 @@
       }
 
       &:before {
-        margin-top: calc(var(--typography--margin--top) + var(--typography--margin--top--shift, 0em)); // Pulls bounding box down to cap-height.
+        // Pulls bounding box down to cap-height, unless there is a shift.
+        margin-top: calc(var(--typography--margin--top) - (var(--typography--margin--top--shift, 0) * var(--typography--size--rendered)));
       }
 
       &:after {
@@ -275,7 +276,7 @@
 
       }
       @include variant(x) {
-        --typography--margin--top--shift: calc((var(--typography--cap-height) - var(--typography--x-height)) * -1em); // Bring bounding box down to x-height.
+        --typography--margin--top--shift: calc(var(--typography--cap-height) - var(--typography--x-height)); // Bring bounding box down to x-height.
       }
     }
   }
