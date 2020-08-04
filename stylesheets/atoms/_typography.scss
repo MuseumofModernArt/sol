@@ -156,6 +156,8 @@
 .typography {
   // Basic weight/spacing, so it can be extended separately.
   @include atom(face) {
+    $face: &;
+
     --typography--tracking--override:   var(--typography--tracking); // Allows reset/clear.
     --typography--letter-spacing:       calc(var(--typography--tracking--override, var(--typography--tracking)) * 1em); // Render the actual values.
 
@@ -173,16 +175,29 @@
     letter-spacing: var(--typography--letter-spacing);
 
     // For language-specific tweaks (when not mixed with latin/Sans characters).
-    @include variant(ja, ko, zh-hans, zh-hant) {
-      @extend #{$variant-parent};
-
-      @extend %__tracking--cjk;
+    @at-root {
+      %__tracking--kanji {
+        --typography--tracking--override: 0.040;
+      }
     }
 
-    @at-root { // Here for ordering/efficiency.
-      %__tracking--cjk {
-        --typography--tracking--override: 0;
+    @include variant(ja, zh-hans, zh-hant) {
+      @extend #{$face};
+      @extend %__tracking--kanji;
+
+      @if $variant == "ja" {
+        @include variant(kana) { // For kana-only, much tighter.
+          @extend #{$face};
+
+          --typography--tracking--override: -0.100;
+        }
       }
+    }
+
+    @include variant(ko) {
+      @extend #{$face};
+
+      --typography--tracking--override: 0;
     }
   }
 
