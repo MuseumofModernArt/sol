@@ -201,8 +201,8 @@
       --typography--leading--bottom:    calc(var(--typography--shoulder--bottom) + var(--typography--leading--remainder) + var(--typography--shift, 0));
       --typography--leading--top:       calc(var(--typography--shoulder--top) +    var(--typography--leading--remainder) - var(--typography--shift, 0));
 
-      --typography--margin--bottom:     calc(-1 * var(--typography--leading--bottom) * var(--typography--size--rendered)); // Total space below.
-      --typography--margin--top:        calc(-1 * var(--typography--leading--top) *    var(--typography--size--rendered)); // And above.
+      --typography--margin--bottom:     calc(var(--typography--leading--bottom) * -1em); // Total space below.
+      --typography--margin--top:        calc(var(--typography--leading--top) *    -1em); // And above.
 
       color:          var(--color);
       display:        flow-root; // Need to have this for the negative margins to work properly. Falls back to block on older browsers.
