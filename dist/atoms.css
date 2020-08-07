@@ -71277,37 +71277,37 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   user-select: auto;
 }
 
-.link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a, .link\/focus, .link\/cursor {
+.link\/focus\:within, .link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a, .link\/focus, .link\/cursor {
   cursor: pointer;
   touch-action: manipulation;
 }
 
-.link\/focus\:children, .link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a, .link\/focus {
+.link\/focus\:within, .link\/focus\:children, .link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a, .link\/focus {
   -webkit-tap-highlight-color: rgba(var(--color--focus--rgb), var(--color--tap-highlight--alpha));
 }
-[ontouchstart].link\/focus\:children, [ontouchstart].link\/focus\:inline, .typography\/markdown\:headers a[ontouchstart]:not([class]), .typography\/markdown a[ontouchstart]:not([class]), .typography a[ontouchstart], [ontouchstart].link\/focus {
+[ontouchstart].link\/focus\:within, [ontouchstart].link\/focus\:children, [ontouchstart].link\/focus\:inline, .typography\/markdown\:headers a[ontouchstart]:not([class]), .typography\/markdown a[ontouchstart]:not([class]), .typography a[ontouchstart], [ontouchstart].link\/focus {
   -webkit-tap-highlight-color: transparent;
 }
 
-.link\/focus\:children:focus .link\/focus, .link\/focus\:inline:focus, .typography\/markdown\:headers a:focus:not([class]), .typography\/markdown a:focus:not([class]), .typography a:focus, .link\/focus:focus {
+.link\/focus\:within:focus-within, .link\/focus\:children:focus .link\/focus, .link\/focus\:inline:focus, .typography\/markdown\:headers a:focus:not([class]), .typography\/markdown a:focus:not([class]), .typography a:focus, .link\/focus:focus {
   outline: none;
   position: relative;
   z-index: 1;
 }
 
-.link\/focus\:children:active .link\/focus, .link\/focus\:children:focus .link\/focus, .link\/focus\:inline:active, .typography\/markdown\:headers a:active:not([class]), .typography\/markdown a:active:not([class]), .typography a:active, .link\/focus:active, .link\/focus\:inline:focus, .typography\/markdown\:headers a:focus:not([class]), .typography\/markdown a:focus:not([class]), .typography a:focus, .link\/focus:focus {
+.link\/focus\:within:active, .link\/focus\:within:focus-within, .link\/focus\:children:active .link\/focus, .link\/focus\:children:focus .link\/focus, .link\/focus\:inline:active, .typography\/markdown\:headers a:active:not([class]), .typography\/markdown a:active:not([class]), .typography a:active, .link\/focus:active, .link\/focus\:inline:focus, .typography\/markdown\:headers a:focus:not([class]), .typography\/markdown a:focus:not([class]), .typography a:focus, .link\/focus:focus {
   border-radius: var(--border-radius, var(--focus-radius));
 }
 
-.show-focus .link\/focus\:children:focus .link\/focus, .show-focus .link\/focus\:inline:focus, .show-focus .typography\/markdown\:headers a:focus:not([class]), .show-focus .typography\/markdown a:focus:not([class]), .typography\/markdown\:headers .show-focus a:focus:not([class]), .typography\/markdown .show-focus a:focus:not([class]), .show-focus .typography a:focus, .typography .show-focus a:focus, .show-focus .link\/focus:focus {
+.show-focus .link\/focus\:within:focus-within, .show-focus .link\/focus\:children:focus .link\/focus, .show-focus .link\/focus\:inline:focus, .show-focus .typography\/markdown\:headers a:focus:not([class]), .show-focus .typography\/markdown a:focus:not([class]), .typography\/markdown\:headers .show-focus a:focus:not([class]), .typography\/markdown .show-focus a:focus:not([class]), .show-focus .typography a:focus, .typography .show-focus a:focus, .show-focus .link\/focus:focus {
   box-shadow: 0 0 0 var(--focus-thickness) var(--color--focus);
 }
 
-.no-touchevents .link\/focus\:children:active .link\/focus, .no-touchevents .link\/focus\:inline:active, .no-touchevents .typography\/markdown\:headers a:active:not([class]), .no-touchevents .typography\/markdown a:active:not([class]), .typography\/markdown\:headers .no-touchevents a:active:not([class]), .typography\/markdown .no-touchevents a:active:not([class]), .no-touchevents .typography a:active, .typography .no-touchevents a:active, .no-touchevents .link\/focus:active {
+.no-touchevents .link\/focus\:within:active, .no-touchevents .link\/focus\:children:active .link\/focus, .no-touchevents .link\/focus\:inline:active, .no-touchevents .typography\/markdown\:headers a:active:not([class]), .no-touchevents .typography\/markdown a:active:not([class]), .typography\/markdown\:headers .no-touchevents a:active:not([class]), .typography\/markdown .no-touchevents a:active:not([class]), .no-touchevents .typography a:active, .typography .no-touchevents a:active, .no-touchevents .link\/focus:active {
   background-color: rgba(var(--color--focus--rgb), var(--color--active--alpha));
 }
 
-.touchevents .link\/focus\:children[ontouchstart]:active .link\/focus, .touchevents [ontouchstart].link\/focus\:inline:active, .touchevents .typography\/markdown\:headers a[ontouchstart]:active:not([class]), .touchevents .typography\/markdown a[ontouchstart]:active:not([class]), .typography\/markdown\:headers .touchevents a[ontouchstart]:active:not([class]), .typography\/markdown .touchevents a[ontouchstart]:active:not([class]), .touchevents .typography a[ontouchstart]:active, .typography .touchevents a[ontouchstart]:active, .touchevents [ontouchstart].link\/focus:active {
+.touchevents .link\/focus\:within[ontouchstart]:active, .touchevents .link\/focus\:children[ontouchstart]:active .link\/focus, .touchevents [ontouchstart].link\/focus\:inline:active, .touchevents .typography\/markdown\:headers a[ontouchstart]:active:not([class]), .touchevents .typography\/markdown a[ontouchstart]:active:not([class]), .typography\/markdown\:headers .touchevents a[ontouchstart]:active:not([class]), .typography\/markdown .touchevents a[ontouchstart]:active:not([class]), .touchevents .typography a[ontouchstart]:active, .typography .touchevents a[ontouchstart]:active, .touchevents [ontouchstart].link\/focus:active {
   background-color: rgba(var(--color--focus--rgb), var(--color--tap-highlight--alpha));
 }
 
@@ -71347,6 +71347,26 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   margin-left: calc(-1 * var(--link-enlargement) / 2);
   margin-right: calc(-1 * var(--link-enlargement) / 2);
 }
+.link\/focus\:within {
+  box-sizing: content-box;
+  display: inline-flex;
+  margin: calc(-1 * var(--link-enlargement));
+  padding: var(--link-enlargement);
+  max-width: 100%;
+}
+.link\/focus\:within > * {
+  box-sizing: border-box;
+}
+.link\/focus\:disable:focus {
+  outline: none;
+}
+.show-focus .link\/focus\:disable:focus {
+  box-shadow: none;
+}
+.no-touchevents .link\/focus\:disable:active {
+  background-color: transparent;
+}
+
 img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:crop\:top, img.picture\/image {
   -webkit-touch-callout: none;
 }
