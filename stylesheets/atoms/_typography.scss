@@ -130,7 +130,7 @@
 
 
 %__icon {
-    @extend %color__svg--alpha;
+  @extend %color__svg--alpha;
 
   --typography--icon--size:         var(--typography--font-size, calc(var(--typography--size--override, var(--typography--size)) * var(--rem-conversion))); // Render the actual value.
   --typography--icon--stroke-width: calc(var(--typography--icon--stroke) * var(--typography--icon--size)); // Same.
@@ -256,9 +256,10 @@
     }
   }
 
+
   // Classless links inside typography elements (usually from rendered markdown). On by default.
   a {
-    @extend #{__placeholder("link/focus:inline")} !optional; // This doc can be used without links.
+    @extend #{__placeholder("link/focus:inline")};
     @extend #{__placeholder("typography/underline")};
   }
 
