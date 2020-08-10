@@ -6,6 +6,7 @@
   --typography--shoulder:         calc(1 - var(--typography--cap-height)); // Remainder/overhang.
   --typography--shoulder--top:    calc(var(--typography--shoulder) - var(--typography--shoulder--bottom));
   --typography--shoulder--bottom: 0.101; // Vertical centering in Chrome’s bounding box, across most sizes.
+  --typography--shoulder--input:  0.099; // Slightly different in inputs, for whatever reason.
 
   --typography--shift--cap: calc(var(--typography--shoulder) / 2);  // For centering on caps.
   --typography--shift--x:   calc((1 - var(--typography--x-height)) / 2);
@@ -267,6 +268,28 @@
 
     margin-top: var(--layout--typography--leading-shoulder); // Equivalent to .layout/margin:top:baseline:0.
   }
+
+  // Negate input bounding boxes.
+  @at-root {
+    input#{&} {
+      margin-bottom: calc(var(--typography--margin--bottom) - var(--typography--shoulder--input) * 1em);
+      margin-top:    calc(var(--typography--margin--top) - var(--typography--shoulder--input) * 1em);
+      width:         calc(100% - var(--typography--margin--left) - var(--typography--margin--right));
+
+      &::placeholder {
+        color:       rgba(var(--color--rgb), 0.20); // Ahead of discrete atoms.
+        line-height: normal; // Fixes Safari vertical alignment.
+      }
+
+      // Inputs can’t use the pseudo-elements.
+      &:before,
+      &:after {
+        content: initial;
+      }
+    }
+  }
+
+
 
   @include atom(var) {
     // Weights.

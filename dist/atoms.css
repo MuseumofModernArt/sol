@@ -74551,6 +74551,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --typography--shoulder: calc(1 - var(--typography--cap-height));
   --typography--shoulder--top: calc(var(--typography--shoulder) - var(--typography--shoulder--bottom));
   --typography--shoulder--bottom: 0.101;
+  --typography--shoulder--input: 0.099;
   --typography--shift--cap: calc(var(--typography--shoulder) / 2);
   --typography--shift--x: calc((1 - var(--typography--x-height)) / 2);
   --typography--size: 10;
@@ -74716,6 +74717,19 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 .typography + .typography {
   margin-top: var(--layout--typography--leading-shoulder);
 }
+input.typography {
+  margin-bottom: calc(var(--typography--margin--bottom) - var(--typography--shoulder--input) * 1em);
+  margin-top: calc(var(--typography--margin--top) - var(--typography--shoulder--input) * 1em);
+  width: calc(100% - var(--typography--margin--left) - var(--typography--margin--right));
+}
+input.typography::placeholder {
+  color: rgba(var(--color--rgb), 0.2);
+  line-height: normal;
+}
+input.typography:before, input.typography:after {
+  content: initial;
+}
+
 .typography\/var\/icon\:cap {
   --typography--icon--shift--override: var(--typography--shift--cap);
 }
