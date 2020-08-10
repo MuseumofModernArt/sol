@@ -74724,7 +74724,11 @@ input.typography {
 }
 input.typography::placeholder {
   color: rgba(var(--color--rgb), 0.2);
-  line-height: normal;
+}
+@supports (-webkit-hyphens: none) {
+  input.typography::placeholder {
+    line-height: normal;
+  }
 }
 input.typography:before, input.typography:after {
   content: initial;

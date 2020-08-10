@@ -279,7 +279,10 @@
 
       &::placeholder {
         color:       rgba(var(--color--rgb), 0.20); // Ahead of discrete atoms.
-        line-height: normal; // Fixes Safari vertical alignment.
+
+        @include browser-specific(safari) {
+          line-height: normal; // Fixes Safari vertical alignment.
+        }
       }
 
       // Inputs can’t use the pseudo-elements.
