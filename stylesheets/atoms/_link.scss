@@ -76,13 +76,13 @@
 %__link-focus {
   @extend %__tap-highlight;
 
-  &:focus {
+  &:focus, &:focus-within {
     @extend %__outline;
     @extend %__radius;
   }
 
   // Focus.js 'show-focus' shenanigans to prevent Chrome from displaying focus states on mouse clicks. Only show it for keyboard tabbing.
-  .show-focus &:focus {
+  .show-focus &:focus, .show-focus &:focus-within {
     @extend %__focus--shadow;
   }
 
@@ -225,6 +225,20 @@
 
       .show-focus &:focus {
         @extend #{__placeholder("typography/underline:disable")}; // Disables our “underlines” when keyboard-focused.
+      }
+    }
+
+    @include variant(disable) {
+      &:focus {
+        outline: none;
+      }
+
+      .show-focus &:focus {
+        box-shadow: none;
+      }
+
+      .no-touchevents &:active {
+        background-color: transparent;
       }
     }
   }
