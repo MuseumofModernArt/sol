@@ -78,7 +78,7 @@
   --typography--icon--stroke:       0.149; // Thickness of right-arrow icon stem.
   --typography--inset--left:       -0.071; // Optical insets, at Bold weight. Left edge of capital "M".
   --typography--inset--right:      -0.035; // Right edge of lowercase “m” (since lines tend to end lowercase).
-  --typography--tracking:          -0.020; // Tracked in.
+  --typography--tracking:          -0.020; // Tracked in. This corresponds to a -20 (thousdanths-of-em) in Adobe parlance.
   --typography--underline--clear:   0.100; // Can’t exceed narrowest descender width, with this shadow implementation.
   --typography--underline--inset:  -0.059; // Left edge of lowercase “m” (since links tend to start lowercase).
   --typography--underline--offset:  0.056; // Distance down from baseline. Lines up to bottom of descenders.
