@@ -74760,7 +74760,7 @@ input.typography:before, input.typography:after {
 }
 .typography\/underline.typography {
   --typography--underline--direction: top;
-  --typography--underline--offset: 3;
+  --typography--underline--offset: 0.003;
   --typography--underline--position: bottom;
   padding-bottom: calc(var(--typography--underline--thickness) + ((var(--typography--leading) - 1) + var(--typography--shoulder)) * 1em + var(--typography--underline--top));
   margin-bottom: calc(-1 * (var(--typography--underline--thickness) + ((var(--typography--leading) - 1) + var(--typography--shoulder)) * 1em + var(--typography--underline--top)));

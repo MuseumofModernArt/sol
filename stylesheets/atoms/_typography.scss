@@ -359,7 +359,7 @@
     @at-root {
       #{first-selector(&)}.typography { // Don’t extend this part.
         --typography--underline--direction: top; // Drawn from the bottom of the container, going to top.
-        --typography--underline--offset:    3;
+        --typography--underline--offset:    0.003;
         --typography--underline--position:  bottom;
 
         padding-bottom: calc(var(--typography--underline--thickness) + ((var(--typography--leading) - 1) + var(--typography--shoulder)) * 1em + var(--typography--underline--top));
