@@ -241,8 +241,9 @@
       // Pseudo-elements to negate the shoulders.
       &:before,
       &:after {
-        content: '';
-        display: block;
+        content:    '';
+        display:    block;
+        visibility: hidden;
       }
 
       &:before {
