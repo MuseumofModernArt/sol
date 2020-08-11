@@ -13,6 +13,10 @@ const DocumentReady = (fn) => {
   }
 }
 
+const WindowHasSize = () => {
+  return window.innerHeight > 0 && window.innerWidth > 0;
+}
+
 // Custom get elements that filters stuff with no height (it or parent is display: none)
 const GetElementsList = (elements) => {
   if (!elements) return [];
@@ -32,5 +36,6 @@ const GetElementsList = (elements) => {
 export {
   IsMobileOrTablet,
   DocumentReady,
+  WindowHasSize,
   GetElementsList,
 }
