@@ -6,7 +6,7 @@
   --typography--shoulder:         calc(1 - var(--typography--cap-height)); // Remainder/overhang.
   --typography--shoulder--top:    calc(var(--typography--shoulder) - var(--typography--shoulder--bottom));
   --typography--shoulder--bottom: 0.101; // Vertical centering in Chrome’s bounding box, across most sizes.
-  --typography--shoulder--input:  0.099; // Slightly different in inputs, for whatever reason.
+  --typography--shoulder--input:  0.091; // Slightly different in inputs, for whatever reason.
 
   --typography--shift--cap: calc(var(--typography--shoulder) / 2);  // For centering on caps.
   --typography--shift--x:   calc((1 - var(--typography--x-height)) / 2);
@@ -230,13 +230,17 @@
       --typography--margin--top:        calc(-1 * var(--typography--leading--top) *    var(--typography--size--rendered)); // And above.
 
       color:          var(--color);
-      display:        flow-root; // Need to have this for the negative margins to work properly. Falls back to block on older browsers.
+      display:        block; // Fallback in lieu of `flow-root` support.
       font-size:      var(--typography--font-size);
       line-height:    var(--typography--line-height);
       margin-left:    var(--typography--margin--left);
       margin-right:   var(--typography--margin--right);
       max-width:      calc(100% - var(--typography--margin--left) - var(--typography--margin--right) + var(--rem-conversion)); // Forces wrapping in flex containers, with a pixel for rounding cover.
       overflow-wrap:  break-word; // Prevent container-breaking.
+
+      @supports (display: flow-root) {
+        display: flow-root; // For the negative margins to work without flex parents, in recent browsers.
+      }
 
       // Pseudo-elements to negate the shoulders.
       &:before,
