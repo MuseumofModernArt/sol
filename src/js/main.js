@@ -1,9 +1,9 @@
+import * as Util from "./util/util";
 import MoMABalanceText from './moma-balance-text/moma-balance-text';
 import Focus from './focus/focus';
 import Viewporter from './viewporter/viewporter';
 import AccentColor from './accent-color/accent-color';
 import Modernizr from './modernizr/modernizr';
-import * as Util from './util/util';
 
 class MoMAStyle {
   constructor() {
@@ -45,4 +45,5 @@ export {
   Viewporter,
   AccentColor,
   Modernizr,
+  Util,
 };
