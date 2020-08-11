@@ -30,22 +30,13 @@
     }
   }
   @if index($browsers, 'safari') {
-    @supports (-webkit-marquee-repetition:infinite) and (object-fit:fill) {
+    @supports (-webkit-hyphens:none) {
       @content;
     }
   }
-  @if index($browsers, 'safari--10') {
-    @media not all and (min-resolution:.001dpcm) {
-      @supports (-webkit-appearance:none) and (not (stroke-color:transparent)) {
-        @content;
-      }
-    }
-  }
   @if index($browsers, 'safari--mobile') {
-    @supports (-webkit-marquee-repetition:infinite) and (object-fit:fill) {
-      @supports (-webkit-overflow-scrolling: touch) { // Target iOS subset.
-        @content;
-      }
+    @supports (-webkit-hyphens:none) and (-webkit-overflow-scrolling: touch) { // Target iOS subset.
+      @content;
     }
   }
   @if index($browsers, 'chrome') {

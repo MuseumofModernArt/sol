@@ -75,3 +75,10 @@ details {
     display: none;
   }
 }
+
+// Fix for button descendants clipping in Safari (looks like overflow: hidden).
+button {
+  > * {
+    position: relative;
+  }
+}
