@@ -6,6 +6,7 @@
   --typography--shoulder:         calc(1 - var(--typography--cap-height)); // Remainder/overhang.
   --typography--shoulder--top:    calc(var(--typography--shoulder) - var(--typography--shoulder--bottom));
   --typography--shoulder--bottom: 0.101; // Vertical centering in Chrome’s bounding box, across most sizes.
+  --typography--shoulder--input:  0.099; // Slightly different in inputs, for whatever reason.
 
   --typography--shift--cap: calc(var(--typography--shoulder) / 2);  // For centering on caps.
   --typography--shift--x:   calc((1 - var(--typography--x-height)) / 2);
@@ -77,7 +78,7 @@
   --typography--icon--stroke:       0.149; // Thickness of right-arrow icon stem.
   --typography--inset--left:       -0.071; // Optical insets, at Bold weight. Left edge of capital "M".
   --typography--inset--right:      -0.035; // Right edge of lowercase “m” (since lines tend to end lowercase).
-  --typography--tracking:          -0.020; // Tracked in.
+  --typography--tracking:          -0.020; // Tracked in. This corresponds to a -20 (thousdanths-of-em) in Adobe parlance.
   --typography--underline--clear:   0.100; // Can’t exceed narrowest descender width, with this shadow implementation.
   --typography--underline--inset:  -0.059; // Left edge of lowercase “m” (since links tend to start lowercase).
   --typography--underline--offset:  0.056; // Distance down from baseline. Lines up to bottom of descenders.
@@ -126,24 +127,33 @@
   white-space: nowrap;
 }
 
+
+
 %__icon {
-  @extend %color__svg--alpha !optional; // Optional flag, as external MoMA Sans file doesn’t get this?
+  @extend %color__svg--alpha;
 
-  --typography--icon--inset: -0.156; // Optical “safe area” in embedded SVGs.
+  --typography--icon--size:         var(--typography--font-size, calc(var(--typography--size--override, var(--typography--size)) * var(--rem-conversion))); // Render the actual value.
+  --typography--icon--stroke-width: calc(var(--typography--icon--stroke) * var(--typography--icon--size)); // Same.
 
-  --typography--icon--margin:       calc(var(--typography--icon--inset) *  1em); // Same.
-  --typography--icon--space--width: calc(var(--typography--icon--space) *  1em); // Render the actual values.
-  --typography--icon--stroke-width: calc(var(--typography--icon--stroke) * 1em); // Same.
+  height:       var(--typography--icon--size);
+  stroke-width: var(--typography--icon--stroke-width);
+  transform:    translate(var(--typography--icon--translate-x, 0), var(--typography--icon--translate-y, 0)) rotate(var(--typography--icon--rotate, 0)); // X/Y shift for aliasing tweaks.
+  width:        var(--typography--icon--size);
+}
 
-  height:        var(--typography--font-size);
+%__icon--embedded {
+  --typography--icon--inset: -0.156; // Optical “safe area” in embedded/inline SVGs.
+
+  --typography--icon--margin:       calc(var(--typography--icon--inset) *  1em); // Render the actual values.
+  --typography--icon--space--width: calc(var(--typography--icon--space) *  1em); // Same.
+
   margin-bottom: calc(-1 * var(--typography--font-size) * var(--typography--icon--shift--override, var(--typography--icon--shift))); // Vertical centering.
   margin-left:   var(--typography--icon--margin--left);
   margin-right:  var(--typography--icon--margin--right);
   margin-top:    calc(var(--typography--margin--bottom) + var(--typography--margin--top)); // Match shoulder “height” from type.
-  stroke-width:  var(--typography--icon--stroke-width);
-  transform:     translate(var(--typography--icon--translate-x, 0), var(--typography--icon--translate-y, 0)) rotate(var(--typography--icon--rotate, 0)); // X/Y shift for aliasing tweaks.
-  width:         var(--typography--font-size);
 }
+
+
 
 %__underline--disable {
   background:  initial;
@@ -231,8 +241,9 @@
       // Pseudo-elements to negate the shoulders.
       &:before,
       &:after {
-        content: '';
-        display: block;
+        content:    '';
+        display:    block;
+        visibility: hidden;
       }
 
       &:before {
@@ -246,9 +257,10 @@
     }
   }
 
+
   // Classless links inside typography elements (usually from rendered markdown). On by default.
   a {
-    @extend #{__placeholder("link/focus:inline")} !optional; // This doc can be used without links.
+    @extend #{__placeholder("link/focus:inline")};
     @extend #{__placeholder("typography/underline")};
   }
 
@@ -258,6 +270,31 @@
 
     margin-top: var(--layout--typography--leading-shoulder); // Equivalent to .layout/margin:top:baseline:0.
   }
+
+  // Negate input bounding boxes.
+  @at-root {
+    input#{&} {
+      margin-bottom: calc(var(--typography--margin--bottom) - var(--typography--shoulder--input) * 1em);
+      margin-top:    calc(var(--typography--margin--top) - var(--typography--shoulder--input) * 1em);
+      width:         calc(100% - var(--typography--margin--left) - var(--typography--margin--right));
+
+      &::placeholder {
+        color:       rgba(var(--color--rgb), 0.20); // Ahead of discrete atoms.
+
+        @include browser-specific(safari) {
+          line-height: normal; // Fixes Safari vertical alignment.
+        }
+      }
+
+      // Inputs can’t use the pseudo-elements.
+      &:before,
+      &:after {
+        content: initial;
+      }
+    }
+  }
+
+
 
   @include atom(var) {
     // Weights.
@@ -322,7 +359,7 @@
     @at-root {
       #{first-selector(&)}.typography { // Don’t extend this part.
         --typography--underline--direction: top; // Drawn from the bottom of the container, going to top.
-        --typography--underline--offset:    3;
+        --typography--underline--offset:    0.003;
         --typography--underline--position:  bottom;
 
         padding-bottom: calc(var(--typography--underline--thickness) + ((var(--typography--leading) - 1) + var(--typography--shoulder)) * 1em + var(--typography--underline--top));
@@ -350,8 +387,15 @@
 
   // Icons.
   @include atom(icon) {
+    @include variant-rotations {
+      @extend %__icon;
+
+      --typography--icon--rotate: #{$variant-rotation};
+    }
+
     @include variant(before, after) {
       @include variant-rotations {
+        @extend %__icon--embedded;
         @extend %__icon;
 
         --typography--icon--rotate: #{$variant-rotation};

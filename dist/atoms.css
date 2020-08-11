@@ -71277,38 +71277,50 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   user-select: auto;
 }
 
-.link\/focus\:within, .link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a, .link\/focus, .link\/cursor {
+.link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a, .link\/focus, .link\/cursor {
   cursor: pointer;
   touch-action: manipulation;
 }
 
-.link\/focus\:within, .link\/focus\:children, .link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a, .link\/focus {
+.link\/focus\:children, .link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a, .link\/focus {
   -webkit-tap-highlight-color: rgba(var(--color--focus--rgb), var(--color--tap-highlight--alpha));
 }
-[ontouchstart].link\/focus\:within, [ontouchstart].link\/focus\:children, [ontouchstart].link\/focus\:inline, .typography\/markdown\:headers a[ontouchstart]:not([class]), .typography\/markdown a[ontouchstart]:not([class]), .typography a[ontouchstart], [ontouchstart].link\/focus {
+[ontouchstart].link\/focus\:children, [ontouchstart].link\/focus\:inline, .typography\/markdown\:headers a[ontouchstart]:not([class]), .typography\/markdown a[ontouchstart]:not([class]), .typography a[ontouchstart], [ontouchstart].link\/focus {
   -webkit-tap-highlight-color: transparent;
 }
 
-.link\/focus\:within:focus-within, .link\/focus\:children:focus .link\/focus, .link\/focus\:inline:focus, .typography\/markdown\:headers a:focus:not([class]), .typography\/markdown a:focus:not([class]), .typography a:focus, .link\/focus:focus {
+.link\/focus\:children:focus .link\/focus, .link\/focus:focus-within, .link\/focus\:inline:focus, .typography\/markdown\:headers a:focus:not([class]), .typography\/markdown a:focus:not([class]), .typography a:focus, .link\/focus:focus {
   outline: none;
   position: relative;
   z-index: 1;
 }
 
-.link\/focus\:within:active, .link\/focus\:within:focus-within, .link\/focus\:children:active .link\/focus, .link\/focus\:children:focus .link\/focus, .link\/focus\:inline:active, .typography\/markdown\:headers a:active:not([class]), .typography\/markdown a:active:not([class]), .typography a:active, .link\/focus:active, .link\/focus\:inline:focus, .typography\/markdown\:headers a:focus:not([class]), .typography\/markdown a:focus:not([class]), .typography a:focus, .link\/focus:focus {
+.link\/focus\:children:focus, .link\/focus input:focus {
+  outline: none;
+}
+
+.link\/focus\:children:active .link\/focus, .link\/focus\:children:focus .link\/focus, .link\/focus:focus-within, .link\/focus\:inline:active, .typography\/markdown\:headers a:active:not([class]), .typography\/markdown a:active:not([class]), .typography a:active, .link\/focus:active, .link\/focus\:inline:focus, .typography\/markdown\:headers a:focus:not([class]), .typography\/markdown a:focus:not([class]), .typography a:focus, .link\/focus:focus {
   border-radius: var(--border-radius, var(--focus-radius));
 }
 
-.show-focus .link\/focus\:within:focus-within, .show-focus .link\/focus\:children:focus .link\/focus, .show-focus .link\/focus\:inline:focus, .show-focus .typography\/markdown\:headers a:focus:not([class]), .show-focus .typography\/markdown a:focus:not([class]), .typography\/markdown\:headers .show-focus a:focus:not([class]), .typography\/markdown .show-focus a:focus:not([class]), .show-focus .typography a:focus, .typography .show-focus a:focus, .show-focus .link\/focus:focus {
+.show-focus .link\/focus\:children:focus .link\/focus, .show-focus .link\/focus:focus-within, .show-focus .link\/focus\:inline:focus, .show-focus .typography\/markdown\:headers a:focus:not([class]), .show-focus .typography\/markdown a:focus:not([class]), .typography\/markdown\:headers .show-focus a:focus:not([class]), .typography\/markdown .show-focus a:focus:not([class]), .show-focus .typography a:focus, .typography .show-focus a:focus, .show-focus .link\/focus:focus {
   box-shadow: 0 0 0 var(--focus-thickness) var(--color--focus);
 }
 
-.no-touchevents .link\/focus\:within:active, .no-touchevents .link\/focus\:children:active .link\/focus, .no-touchevents .link\/focus\:inline:active, .no-touchevents .typography\/markdown\:headers a:active:not([class]), .no-touchevents .typography\/markdown a:active:not([class]), .typography\/markdown\:headers .no-touchevents a:active:not([class]), .typography\/markdown .no-touchevents a:active:not([class]), .no-touchevents .typography a:active, .typography .no-touchevents a:active, .no-touchevents .link\/focus:active {
+.show-focus .link\/focus\:children:focus, .link\/focus input:focus {
+  box-shadow: none;
+}
+
+.no-touchevents .link\/focus\:children:active .link\/focus, .no-touchevents .link\/focus\:inline:active, .no-touchevents .typography\/markdown\:headers a:active:not([class]), .no-touchevents .typography\/markdown a:active:not([class]), .typography\/markdown\:headers .no-touchevents a:active:not([class]), .typography\/markdown .no-touchevents a:active:not([class]), .no-touchevents .typography a:active, .typography .no-touchevents a:active, .no-touchevents .link\/focus:active {
   background-color: rgba(var(--color--focus--rgb), var(--color--active--alpha));
 }
 
-.touchevents .link\/focus\:within[ontouchstart]:active, .touchevents .link\/focus\:children[ontouchstart]:active .link\/focus, .touchevents [ontouchstart].link\/focus\:inline:active, .touchevents .typography\/markdown\:headers a[ontouchstart]:active:not([class]), .touchevents .typography\/markdown a[ontouchstart]:active:not([class]), .typography\/markdown\:headers .touchevents a[ontouchstart]:active:not([class]), .typography\/markdown .touchevents a[ontouchstart]:active:not([class]), .touchevents .typography a[ontouchstart]:active, .typography .touchevents a[ontouchstart]:active, .touchevents [ontouchstart].link\/focus:active {
+.touchevents .link\/focus\:children[ontouchstart]:active .link\/focus, .touchevents [ontouchstart].link\/focus\:inline:active, .touchevents .typography\/markdown\:headers a[ontouchstart]:active:not([class]), .touchevents .typography\/markdown a[ontouchstart]:active:not([class]), .typography\/markdown\:headers .touchevents a[ontouchstart]:active:not([class]), .typography\/markdown .touchevents a[ontouchstart]:active:not([class]), .touchevents .typography a[ontouchstart]:active, .typography .touchevents a[ontouchstart]:active, .touchevents [ontouchstart].link\/focus:active {
   background-color: rgba(var(--color--focus--rgb), var(--color--tap-highlight--alpha));
+}
+
+.no-touchevents .link\/focus\:children:active {
+  background-color: transparent;
 }
 
 .link\/focus {
@@ -71328,15 +71340,6 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   padding-top: calc(2 * var(--link-enlargement));
 }
 
-.link\/focus\:children:focus {
-  outline: none;
-}
-.show-focus .link\/focus\:children:focus {
-  box-shadow: none;
-}
-.no-touchevents .link\/focus\:children:active {
-  background-color: transparent;
-}
 .link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a {
   border-left-color: transparent;
   border-left-style: solid;
@@ -71347,26 +71350,6 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   margin-left: calc(-1 * var(--link-enlargement) / 2);
   margin-right: calc(-1 * var(--link-enlargement) / 2);
 }
-.link\/focus\:within {
-  box-sizing: content-box;
-  display: inline-flex;
-  margin: calc(-1 * var(--link-enlargement));
-  padding: var(--link-enlargement);
-  max-width: 100%;
-}
-.link\/focus\:within > * {
-  box-sizing: border-box;
-}
-.link\/focus\:disable:focus {
-  outline: none;
-}
-.show-focus .link\/focus\:disable:focus {
-  box-shadow: none;
-}
-.no-touchevents .link\/focus\:disable:active {
-  background-color: transparent;
-}
-
 img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:crop\:top, img.picture\/image {
   -webkit-touch-callout: none;
 }
@@ -71572,7 +71555,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --background-color--rgb: var(--color--red--rgb);
 }
 
-.typography\/icon\:after, .typography\/icon\:after\:0deg, .typography\/icon\:after\:45deg, .typography\/icon\:after\:90deg, .typography\/icon\:after\:135deg, .typography\/icon\:after\:180deg, .typography\/icon\:after\:225deg, .typography\/icon\:after\:270deg, .typography\/icon\:after\:315deg, .typography\/icon\:after\:360deg, .typography\/icon\:before, .typography\/icon\:before\:0deg, .typography\/icon\:before\:45deg, .typography\/icon\:before\:90deg, .typography\/icon\:before\:135deg, .typography\/icon\:before\:180deg, .typography\/icon\:before\:225deg, .typography\/icon\:before\:270deg, .typography\/icon\:before\:315deg, .typography\/icon\:before\:360deg, svg.color\/all,
+.typography\/icon\:after, .typography\/icon\:after\:0deg, .typography\/icon\:after\:45deg, .typography\/icon\:after\:90deg, .typography\/icon\:after\:135deg, .typography\/icon\:after\:180deg, .typography\/icon\:after\:225deg, .typography\/icon\:after\:270deg, .typography\/icon\:after\:315deg, .typography\/icon\:after\:360deg, .typography\/icon\:before, .typography\/icon\:before\:0deg, .typography\/icon\:before\:45deg, .typography\/icon\:before\:90deg, .typography\/icon\:before\:135deg, .typography\/icon\:before\:180deg, .typography\/icon\:before\:225deg, .typography\/icon\:before\:270deg, .typography\/icon\:before\:315deg, .typography\/icon\:before\:360deg, .typography\/icon, .typography\/icon\:0deg, .typography\/icon\:45deg, .typography\/icon\:90deg, .typography\/icon\:135deg, .typography\/icon\:180deg, .typography\/icon\:225deg, .typography\/icon\:270deg, .typography\/icon\:315deg, .typography\/icon\:360deg, svg.color\/all,
 .color\/all {
   fill: rgba(var(--color--rgb, --color--black--rgb), 1);
   opacity: var(--color--alpha, 1);
@@ -74558,6 +74541,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --typography--shoulder: calc(1 - var(--typography--cap-height));
   --typography--shoulder--top: calc(var(--typography--shoulder) - var(--typography--shoulder--bottom));
   --typography--shoulder--bottom: 0.101;
+  --typography--shoulder--input: 0.099;
   --typography--shift--cap: calc(var(--typography--shoulder) / 2);
   --typography--shift--x: calc((1 - var(--typography--x-height)) / 2);
   --typography--size: 10;
@@ -74629,19 +74613,23 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   white-space: nowrap;
 }
 
+.typography\/icon\:after, .typography\/icon\:after\:0deg, .typography\/icon\:after\:45deg, .typography\/icon\:after\:90deg, .typography\/icon\:after\:135deg, .typography\/icon\:after\:180deg, .typography\/icon\:after\:225deg, .typography\/icon\:after\:270deg, .typography\/icon\:after\:315deg, .typography\/icon\:after\:360deg, .typography\/icon\:before, .typography\/icon\:before\:0deg, .typography\/icon\:before\:45deg, .typography\/icon\:before\:90deg, .typography\/icon\:before\:135deg, .typography\/icon\:before\:180deg, .typography\/icon\:before\:225deg, .typography\/icon\:before\:270deg, .typography\/icon\:before\:315deg, .typography\/icon\:before\:360deg, .typography\/icon, .typography\/icon\:0deg, .typography\/icon\:45deg, .typography\/icon\:90deg, .typography\/icon\:135deg, .typography\/icon\:180deg, .typography\/icon\:225deg, .typography\/icon\:270deg, .typography\/icon\:315deg, .typography\/icon\:360deg {
+  --typography--icon--size: var(--typography--font-size, calc(var(--typography--size--override, var(--typography--size)) * var(--rem-conversion)));
+  --typography--icon--stroke-width: calc(var(--typography--icon--stroke) * var(--typography--icon--size));
+  height: var(--typography--icon--size);
+  stroke-width: var(--typography--icon--stroke-width);
+  transform: translate(var(--typography--icon--translate-x, 0), var(--typography--icon--translate-y, 0)) rotate(var(--typography--icon--rotate, 0));
+  width: var(--typography--icon--size);
+}
+
 .typography\/icon\:after, .typography\/icon\:after\:0deg, .typography\/icon\:after\:45deg, .typography\/icon\:after\:90deg, .typography\/icon\:after\:135deg, .typography\/icon\:after\:180deg, .typography\/icon\:after\:225deg, .typography\/icon\:after\:270deg, .typography\/icon\:after\:315deg, .typography\/icon\:after\:360deg, .typography\/icon\:before, .typography\/icon\:before\:0deg, .typography\/icon\:before\:45deg, .typography\/icon\:before\:90deg, .typography\/icon\:before\:135deg, .typography\/icon\:before\:180deg, .typography\/icon\:before\:225deg, .typography\/icon\:before\:270deg, .typography\/icon\:before\:315deg, .typography\/icon\:before\:360deg {
   --typography--icon--inset: -0.156;
   --typography--icon--margin: calc(var(--typography--icon--inset) * 1em);
   --typography--icon--space--width: calc(var(--typography--icon--space) * 1em);
-  --typography--icon--stroke-width: calc(var(--typography--icon--stroke) * 1em);
-  height: var(--typography--font-size);
   margin-bottom: calc(-1 * var(--typography--font-size) * var(--typography--icon--shift--override, var(--typography--icon--shift)));
   margin-left: var(--typography--icon--margin--left);
   margin-right: var(--typography--icon--margin--right);
   margin-top: calc(var(--typography--margin--bottom) + var(--typography--margin--top));
-  stroke-width: var(--typography--icon--stroke-width);
-  transform: translate(var(--typography--icon--translate-x, 0), var(--typography--icon--translate-y, 0)) rotate(var(--typography--icon--rotate, 0));
-  width: var(--typography--font-size);
 }
 
 .typography\/underline\:disable:not(.typography), .show-focus .link\/focus\:inline:not(.typography):focus, .show-focus .typography\/markdown\:headers a:not(.typography):focus:not([class]), .show-focus .typography\/markdown a:not(.typography):focus:not([class]), .typography\/markdown\:headers .show-focus a:not(.typography):focus:not([class]), .typography\/markdown .show-focus a:not(.typography):focus:not([class]), .show-focus .typography a:not(.typography):focus, .typography .show-focus a:not(.typography):focus, .typography\/underline\:disable.typography a:not([class]), .show-focus .typography.link\/focus\:inline:focus a:not([class]), .show-focus .typography\/markdown\:headers a.typography:focus:not([class]) a:not([class]), .show-focus .typography\/markdown a.typography:focus:not([class]) a:not([class]), .typography\/markdown\:headers .show-focus a.typography:focus:not([class]) a:not([class]), .typography\/markdown .show-focus a.typography:focus:not([class]) a:not([class]), .show-focus .typography a.typography:focus a:not([class]), .typography .show-focus a.typography:focus a:not([class]) {
@@ -74704,6 +74692,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 .typography\/markdown ul:not([class]) > li:after, .typography\/markdown\:headers p:not([class]):after, .typography\/markdown p:not([class]):after {
   content: "";
   display: block;
+  visibility: hidden;
 }
 .typography:before, .typography\/markdown\:headers > h4:before, .typography\/markdown\:headers > h3:before, .typography\/markdown\:headers > h2:before, .typography\/markdown\:headers pre:before, .typography\/markdown pre:before, .typography\/markdown\:headers ol:not([class]) > li:before, .typography\/markdown ol:not([class]) > li:before,
 .typography\/markdown\:headers ul:not([class]) > li:before,
@@ -74719,6 +74708,23 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 .typography + .typography {
   margin-top: var(--layout--typography--leading-shoulder);
 }
+input.typography {
+  margin-bottom: calc(var(--typography--margin--bottom) - var(--typography--shoulder--input) * 1em);
+  margin-top: calc(var(--typography--margin--top) - var(--typography--shoulder--input) * 1em);
+  width: calc(100% - var(--typography--margin--left) - var(--typography--margin--right));
+}
+input.typography::placeholder {
+  color: rgba(var(--color--rgb), 0.2);
+}
+@supports (-webkit-hyphens: none) {
+  input.typography::placeholder {
+    line-height: normal;
+  }
+}
+input.typography:before, input.typography:after {
+  content: initial;
+}
+
 .typography\/var\/icon\:cap {
   --typography--icon--shift--override: var(--typography--shift--cap);
 }
@@ -74744,7 +74750,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 }
 .typography\/underline.typography {
   --typography--underline--direction: top;
-  --typography--underline--offset: 3;
+  --typography--underline--offset: 0.003;
   --typography--underline--position: bottom;
   padding-bottom: calc(var(--typography--underline--thickness) + ((var(--typography--leading) - 1) + var(--typography--shoulder)) * 1em + var(--typography--underline--top));
   margin-bottom: calc(-1 * (var(--typography--underline--thickness) + ((var(--typography--leading) - 1) + var(--typography--shoulder)) * 1em + var(--typography--underline--top)));
@@ -74752,6 +74758,46 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 
 .typography\/tabular-numbers, .typography\/markdown\:headers ol:not([class]) > li:before, .typography\/markdown ol:not([class]) > li:before {
   font-variant-numeric: tabular-nums;
+}
+
+.typography\/icon\:0deg {
+  --typography--icon:0deg;
+}
+
+.typography\/icon\:45deg {
+  --typography--icon:45deg;
+}
+
+.typography\/icon\:90deg {
+  --typography--icon:90deg;
+}
+
+.typography\/icon\:135deg {
+  --typography--icon:135deg;
+}
+
+.typography\/icon\:180deg {
+  --typography--icon:180deg;
+}
+
+.typography\/icon\:225deg {
+  --typography--icon:225deg;
+}
+
+.typography\/icon\:270deg {
+  --typography--icon:270deg;
+}
+
+.typography\/icon\:315deg {
+  --typography--icon:315deg;
+}
+
+.typography\/icon\:360deg {
+  --typography--icon:360deg;
+}
+
+.typography\/icon, .typography\/icon\:0deg, .typography\/icon\:45deg, .typography\/icon\:90deg, .typography\/icon\:135deg, .typography\/icon\:180deg, .typography\/icon\:225deg, .typography\/icon\:270deg, .typography\/icon\:315deg, .typography\/icon\:360deg {
+  --typography--icon--rotate: var(--typography--icon);
 }
 
 .typography\/icon\:before\:0deg {
