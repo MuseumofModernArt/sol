@@ -74541,7 +74541,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --typography--shoulder: calc(1 - var(--typography--cap-height));
   --typography--shoulder--top: calc(var(--typography--shoulder) - var(--typography--shoulder--bottom));
   --typography--shoulder--bottom: 0.101;
-  --typography--shoulder--input: 0.099;
+  --typography--shoulder--input: 0.091;
   --typography--shift--cap: calc(var(--typography--shoulder) / 2);
   --typography--shift--x: calc((1 - var(--typography--x-height)) / 2);
   --typography--size: 10;
