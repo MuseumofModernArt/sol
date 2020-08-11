@@ -1,19 +1,19 @@
 const highlightColors = {
-  0: "accent-color--january",
-  1: "accent-color--february",
-  2: "accent-color--march",
-  3: "accent-color--april",
-  4: "accent-color--may",
-  5: "accent-color--june",
-  6: "accent-color--july",
-  7: "accent-color--august",
-  8: "accent-color--september",
-  9: "accent-color--october",
-  10: "accent-color--november",
-  11: "accent-color--december",
+  0: 'accent-color--january',
+  1: 'accent-color--february',
+  2: 'accent-color--march',
+  3: 'accent-color--april',
+  4: 'accent-color--may',
+  5: 'accent-color--june',
+  6: 'accent-color--july',
+  7: 'accent-color--august',
+  8: 'accent-color--september',
+  9: 'accent-color--october',
+  10: 'accent-color--november',
+  11: 'accent-color--december',
 };
 
-const cookieKey = "sessionHighlightColor";
+const cookieKey = 'sessionHighlightColor';
 const accentColorClassRegex = /accent-color--\S+/;
 
 const getRandomInt = (min, max) => {
@@ -47,7 +47,7 @@ export default class AccentColor {
     const pattern = new RegExp(`(?:(?:^|.*;\\s*)${cookieKey}\\s*\\=\\s*([^;]*).*$)|^.*$`);
     const cookieValue = document.cookie.replace(
       pattern,
-      "$1"
+      '$1'
     );
     this.colorKey = parseInt(cookieValue);
   }
