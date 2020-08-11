@@ -1,5 +1,5 @@
-import BalanceText from "balance-text";
-import { GetElementsList } from "./../util/util";
+import BalanceText from 'balance-text';
+import { GetElementsList } from './../util/util';
 
 const BalanceTextClass = 'balance-text';
 
@@ -14,9 +14,9 @@ export default class MoMABalanceText {
   }
 
   createStyleSheet(callback) {
-    let styleSheet = document.createElement("style");
-    styleSheet.setAttribute("type", "text/css");
-    styleSheet.dataset.owner = "balance-text";
+    let styleSheet = document.createElement('style');
+    styleSheet.setAttribute('type', 'text/css');
+    styleSheet.setAttribute('data-owner', 'balance-text');
     /*
       Create our BalanceText override classes for a clean calculation.
       BalanceText also applies these as temporary styles as part of its algorithm:
@@ -68,30 +68,30 @@ export default class MoMABalanceText {
     } else {
       let elsList = GetElementsList(els);
       elsList.forEach((el) => {
-        el.dataset.inlineCss = el.style.cssText;
-        el.style.cssText = "";
+        el.setAttribute('data-inline-css', el.style.cssText);
+        el.style.cssText = '';
         el.innerHTML = el.innerHTML.replace(
           /\u00ad/g,
           '<span data-owner="balance-text-placeholder-softhyphen"></span>'
         );
-        el.classList.add("balance-text:measure");
+        el.classList.add('balance-text:measure');
       });
       BalanceText(elsList); // Native call without any foreach since the library does it itself.
 
       elsList.forEach((el) => {
-        el.classList.remove("balance-text:measure");
+        el.classList.remove('balance-text:measure');
         el.innerHTML = el.innerHTML.replace(
-          /<span data-owner="balance-text-placeholder-softhyphen"><\/span>/g,
-          "&shy;"
+          /<span data-owner='balance-text-placeholder-softhyphen'><\/span>/g,
+          '&shy;'
         );
-        el.style.cssText = el.dataset.inlineCss;
-        delete el.dataset.inlineCss;
+        el.style.cssText = el.getAttribute('data-inline-css');
+        el.removeAttribute('data-inline-css');
       });
 
       let postEls = [].slice.call(
-        document.getElementsByClassName("balance-text:hold")
+        document.getElementsByClassName('balance-text:hold')
       );
-      postEls.forEach((el) => el.classList.remove("balance-text:hold"));
+      postEls.forEach((el) => el.classList.remove('balance-text:hold'));
     }
   }
 
@@ -104,7 +104,7 @@ export default class MoMABalanceText {
 
   toggleBalanceTextClass(input) {
     if (this.shouldBalanceText(input)) return this.className;
-    else return "";
+    else return '';
   }
 
   shouldBalanceText(input) {
@@ -112,8 +112,8 @@ export default class MoMABalanceText {
     let nobrRegex = /<nobr>.*<\/nobr>/;
     let delimiterRegex = /(.*(\s|-|–|—|&ndash;|&mdash;).*){2,}/;
 
-    let inputTrimmed = input.replace(trimRegex, "");
-    let inputNoBr = inputTrimmed.replace(nobrRegex, "!!nobr!!");
+    let inputTrimmed = input.replace(trimRegex, '');
+    let inputNoBr = inputTrimmed.replace(nobrRegex, '!!nobr!!');
     return inputNoBr.match(delimiterRegex) !== null;
   }
 }
