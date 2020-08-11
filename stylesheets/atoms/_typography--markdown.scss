@@ -38,7 +38,7 @@
 
       background-image:    linear-gradient(var(--color), var(--color)); // Solid color.
       background-repeat:   no-repeat;
-      background-size:     calc((var(--typography--bullet) / 2 / 1000) * var(--typography--size) * var(--rem-conversion)) 100%; // Half a bullet wide.
+      background-size:     calc((var(--typography--bullet) / 2) * var(--typography--size) * var(--rem-conversion)) 100%; // Half a bullet wide.
     }
   }
 

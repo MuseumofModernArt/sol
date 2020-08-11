@@ -5,8 +5,7 @@
   $page-spacing--nonmobile:            2 * $page-spacing;
   $page-spacing--nonmobile--landscape: 2 * $page-spacing--landscape;
 
-  --rem-conversion:      0.1rem;  // Rem conversion. No Math!
-  --tracking-conversion: 0.001em; // Convert from Adobe tracking points (thousandths-of-an-em).
+  --rem-conversion: 0.1rem;  // Rem conversion. No Math!
 
   --page-spacing:          #{$page-spacing};
   --page-spacing--fixed:   #{$page-spacing};

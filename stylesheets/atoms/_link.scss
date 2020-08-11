@@ -55,6 +55,10 @@
   z-index:  1; // Positions outline in front of neighboring elements.
 }
 
+%__outline--disable {
+  outline: none;
+}
+
 %__radius {
   border-radius: var(--border-radius, var(--focus-radius)); // Use one from the element, if present.
 }
@@ -63,12 +67,20 @@
   box-shadow: 0 0 0 var(--focus-thickness) var(--color--focus);
 }
 
+%__focus--shadow--disable {
+  box-shadow: none;
+}
+
 %__active--background { // TODO Same here.
   background-color: rgba(var(--color--focus--rgb), var(--color--active--alpha));
 }
 
 %__active--background--touch {
   background-color: rgba(var(--color--focus--rgb), var(--color--tap-highlight--alpha));
+}
+
+%__active--background--disable {
+  background-color: transparent;
 }
 
 
@@ -98,6 +110,24 @@
   // Use standard active background if `ontouchstart` is specified.
   .touchevents &[ontouchstart]:active {
     @extend %__active--background--touch;
+  }
+}
+
+%__link-focus-within {
+  &:focus-within {
+    @extend %__outline;
+    @extend %__radius;
+  }
+
+  .show-focus &:focus-within {
+    @extend %__focus--shadow;
+  }
+
+  input {
+    &:focus {
+      @extend %__outline--disable;
+      @extend %__focus--shadow--disable;
+    }
   }
 }
 
@@ -149,6 +179,7 @@
   @include atom(focus) {
     @extend %__cursor-pointer;
     @extend %__link-focus;
+    @extend %__link-focus-within;
 
     box-sizing: content-box; // Reset margin/padding outside of any specified height/width.
     display:    inline-flex;
@@ -176,15 +207,15 @@
 
       // Nothing on the element itself.
       &:focus {
-        outline: none;
+        @extend %__outline--disable;
       }
 
       .show-focus &:focus {
-        box-shadow: none;
+        @extend %__focus--shadow--disable;
       }
 
       .no-touchevents &:active {
-        background-color: transparent;
+        @extend %__active--background--disable;
       }
 
       // Targeting for “link/focus” descendents, then styled as above.
