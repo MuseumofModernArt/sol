@@ -1,5 +1,5 @@
 import BalanceText from 'balance-text';
-import { GetElementsList } from './../util/util';
+import { GetElementsList, WindowHasSize, IsMobileOrTablet } from './../util/util';
 
 const BalanceTextClass = 'balance-text';
 
@@ -8,9 +8,38 @@ export default class MoMABalanceText {
     if (className) this.className = className;
     else this.className = BalanceTextClass;
 
+    this.resizeTimer = null;
+    this.rotateTimer = null;
+
     this.styleSheetCreated =
       document.querySelectorAll('style[data-owner="balance-text"]').length > 0;
     if (!this.styleSheetCreated) this.createStyleSheet();
+
+    return this;
+  }
+
+  initInteraction() {
+    window.addEventListener('load', () => {
+      if (WindowHasSize()) {
+        this.balance();
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      // On resize events for desktop browsers only.
+      if (!IsMobileOrTablet() && WindowHasSize()) {
+        clearTimeout(this.resizeTimer);
+        this.resizeTimer = this.balanceWithDelay(100);
+      }
+    });
+
+    window.addEventListener('orientationchange', () => {
+      if (WindowHasSize()) {
+        // On rotation for mobile browsers.
+        clearTimeout(this.rotateTimer);
+        this.rotateTimer = this.balanceWithDelay(100);
+      }
+    });
   }
 
   createStyleSheet(callback) {
