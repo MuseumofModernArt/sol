@@ -14,8 +14,6 @@ export default class MoMABalanceText {
     this.styleSheetCreated =
       document.querySelectorAll('style[data-owner="balance-text"]').length > 0;
     if (!this.styleSheetCreated) this.createStyleSheet();
-
-    return this;
   }
 
   initInteraction() {

@@ -10,7 +10,8 @@ class MoMAStyle {
     this.viewporter = new Viewporter();
     this.focus = new Focus();
     this.accentColor = new AccentColor();
-    this.balanceText = new MoMABalanceText().initInteraction();
+    this.balanceText = new MoMABalanceText()
+    this.balanceText.initInteraction();
   }
 }
 
