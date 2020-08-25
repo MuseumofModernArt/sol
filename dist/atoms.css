@@ -71264,11 +71264,23 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   user-select: none;
 }
 
-.link\/enable\:children img[oncontextmenu], .link\/enable\:children a, .link\/enable\:children span, .link\/enable\:children p, img.link\/enable, .link\/enable {
+.link\/enable\:children img[oncontextmenu], .link\/enable\:children a,
+.link\/enable\:children button,
+.link\/enable\:children input,
+.link\/enable\:children p,
+.link\/enable\:children select,
+.link\/enable\:children span,
+.link\/enable\:children textarea, img.link\/enable, .link\/enable {
   pointer-events: auto;
 }
 
-.link\/enable\:children a, .link\/enable\:children span, .link\/enable\:children p, .link\/enable {
+.link\/enable\:children a,
+.link\/enable\:children button,
+.link\/enable\:children input,
+.link\/enable\:children p,
+.link\/enable\:children select,
+.link\/enable\:children span,
+.link\/enable\:children textarea, .link\/enable {
   -moz-user-drag: auto;
   -webkit-user-drag: auto;
   user-drag: auto;
@@ -71295,7 +71307,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   z-index: 1;
 }
 
-.link\/focus\:children:focus, .link\/focus input:focus {
+.link\/focus\:children:focus, .link\/focus *:focus {
   outline: none;
 }
 
@@ -71307,7 +71319,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   box-shadow: 0 0 0 var(--focus-thickness) var(--color--focus);
 }
 
-.show-focus .link\/focus\:children:focus, .link\/focus input:focus {
+.show-focus .link\/focus\:children:focus, .link\/focus *:focus {
   box-shadow: none;
 }
 
