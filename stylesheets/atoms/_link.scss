@@ -123,7 +123,8 @@
     @extend %__focus--shadow;
   }
 
-  input {
+  // Off on all children.
+  * {
     &:focus {
       @extend %__outline--disable;
       @extend %__focus--shadow--disable;
@@ -159,7 +160,13 @@
 
     @include variant(children) {
       // Only elements we’d expect clicks on.
-      a, span, p {
+      a,
+      button,
+      input,
+      p,
+      select,
+      span,
+      textarea {
         @extend %__enable--click;
         @extend %__enable--drag-select;
       }
