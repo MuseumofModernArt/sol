@@ -74,6 +74,19 @@ html, html * {
   box-sizing: border-box;
 }
 
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: "MoMA Sans", Helvetica, sans-serif;
+  font-kerning: normal;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+}
+
+input::placeholder, button, form, input, :lang(ja), :lang(ko), :lang(zh-Hant), :lang(zh-Hans), body {
+  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
+}
+
 :root,
 :lang(en) {
   --language-font-face: "MoMA Sans";
@@ -93,19 +106,6 @@ html, html * {
 
 :lang(ja) {
   --language-font-face: "Noto Sans JP";
-}
-
-body {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-family: "MoMA Sans", Helvetica, sans-serif;
-  font-kerning: normal;
-  font-weight: 400;
-  text-rendering: optimizeLegibility;
-}
-
-input::placeholder, button, form, input, :lang(zh-Hans), :lang(zh-Hant), :lang(ko), :lang(ja), body {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
 }
 
 em, i {
