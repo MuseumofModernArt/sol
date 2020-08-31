@@ -50,7 +50,7 @@ form:invalid, input:invalid, button:invalid {
 input::-ms-clear {
   display: none;
 }
-input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus {
+input:-webkit-autofill, input:-webkit-autofill:active, input:-webkit-autofill:focus, input:-webkit-autofill:hover {
   transition-duration: 5000s;
   transition-property: background-color;
 }
@@ -64,15 +64,26 @@ button > * {
 }
 
 html {
-  -webkit-text-size-adjust: 100%;
   font-size: 62.5%;
+}
+html, html * {
+  -webkit-text-size-adjust: none;
 }
 
 * {
   box-sizing: border-box;
 }
 
-input::placeholder, button, form, input, body, :lang(ja), :lang(ko), :lang(zh-Hant), :lang(zh-Hans) {
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: "MoMA Sans", Helvetica, sans-serif;
+  font-kerning: normal;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+}
+
+input::placeholder, button, form, input, :lang(ja), :lang(ko), :lang(zh-Hant), :lang(zh-Hans), body {
   font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
 }
 
@@ -95,14 +106,6 @@ input::placeholder, button, form, input, body, :lang(ja), :lang(ko), :lang(zh-Ha
 
 :lang(ja) {
   --language-font-face: "Noto Sans JP";
-}
-
-body {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-kerning: normal;
-  font-weight: 400;
-  text-rendering: optimizeLegibility;
 }
 
 em, i {
