@@ -4,15 +4,18 @@ $default-font-size--browser:   16px;
 
 
 // Our base HTML `font-size` is set to 62.5%, so that `1rem` = `10px`. Easy maths.
-@mixin base {
-  -webkit-text-size-adjust: 100%;
+html {
+  @extend %webkit-type-size-adjust; // iOS Safari inflates on device rotation.
+
   font-size: percentage($default-font-size--preferred / $default-font-size--browser);
+
+  * {
+    @extend %webkit-type-size-adjust; // iOS Chrome follows system-wide “Text Size”.
+  }
 }
 
-
-
-html {
-  @include base;
+%webkit-type-size-adjust {
+  -webkit-text-size-adjust: none;
 }
 
 * {
