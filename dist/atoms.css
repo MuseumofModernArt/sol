@@ -72,10 +72,6 @@ html {
   box-sizing: border-box;
 }
 
-input::placeholder, button, form, input, body, :lang(ja), :lang(ko), :lang(zh-Hant), :lang(zh-Hans) {
-  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
-}
-
 :root,
 :lang(en) {
   --language-font-face: "MoMA Sans";
@@ -100,9 +96,14 @@ input::placeholder, button, form, input, body, :lang(ja), :lang(ko), :lang(zh-Ha
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  font-family: "MoMA Sans", Helvetica, sans-serif;
   font-kerning: normal;
   font-weight: 400;
   text-rendering: optimizeLegibility;
+}
+
+input::placeholder, button, form, input, :lang(zh-Hans), :lang(zh-Hant), :lang(ko), :lang(ja), body {
+  font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
 }
 
 em, i {
