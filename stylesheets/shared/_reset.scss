@@ -62,8 +62,9 @@ input {
 
   // Chrome autofill background fix.
   &:-webkit-autofill,
-  &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus, {
+  &:-webkit-autofill:active,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:hover {
     transition-duration: 5000s;
     transition-property: background-color;
   }
