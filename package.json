@@ -1,19 +1,36 @@
 {
   "name": "moma-style",
-  "version": "1.0.11",
-  "description": "Atomic styles for MoMA digital properties",
-  "main": "dist/atoms.min.css",
-  "style": "dist/atoms.min.css",
-  "files": ["dist"],
+  "version": "2.0.0",
+  "description": "Atomic styles and javascript for MoMA digital properties",
+  "main": "dist/moma-style.js",
+  "style": "dist/atoms.css",
+  "files": [
+    "dist"
+  ],
   "repository": "https://github.com/MuseumofModernArt/moma-style",
   "author": "MoMA Digital Media",
   "license": "SEE LICENSE IN README.MD",
   "private": true,
   "scripts": {
     "install-sass": "SASS=sass/sass/sass; if brew ls --versions $SASS; then brew upgrade $SASS; else brew install $SASS; fi",
-    "build-dev": "sass stylesheets/atoms.scss:dist/atoms.css",
-    "build-prod": "sass stylesheets/atoms.scss:dist/atoms.min.css --style=compressed",
-    "build": "yarn run build-dev && yarn run build-prod",
-    "watch": "sass --watch --poll stylesheets/atoms.scss:dist/atoms.css"
+    "test": "jest",
+    "build-sass-dev": "sass src/stylesheets/atoms.scss:dist/atoms.css",
+    "build-sass-prod": "sass src/stylesheets/atoms.scss:dist/atoms.min.css --style=compressed",
+    "build-webpack": "webpack -p --config webpack.config.js --mode production",
+    "build": "yarn run build-sass-dev && yarn run build-sass-prod && yarn run build-webpack",
+    "watch-sass": "sass --watch --poll src/stylesheets/atoms.scss:dist/atoms.css",
+    "watch-webpack": "webpack --progress --watch --config webpack.config.js --mode development",
+    "watch": "yarn watch-sass & yarn watch-webpack"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "babel-loader": "^8.1.0",
+    "jest": "^26.0.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "balance-text": "^3.3.0"
   }
 }
