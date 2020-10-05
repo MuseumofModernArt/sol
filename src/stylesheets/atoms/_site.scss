@@ -1,28 +1,5 @@
 @include atom-block(hero) {
   @include atom(image) {
-    // Our embeds return with these old classes, so cap them as-is for now.
-    .ratio-container__square,
-    .ratio-container__1-1,
-    .ratio-container__4-3,
-    .ratio-container__16-9 {
-      max-height: var(--hero--height--image);
-      min-height: var(--hero--height--image--floor);
-    }
-
-    // This solves some bad pixel rounding, made apparent by the adjacent containers.
-    .ratio-container__inner,
-    .ratio-container__inner > iframe {
-      $extension: 0.1rem;
-
-      height:    calc(100% + #{$extension * 2});
-      left:     -$extension;
-      overflow:  hidden;
-      position:  absolute;
-      top:      -$extension;
-      width:     calc(100% + #{$extension * 2});
-    }
-
-
     @include variant(fallback) {
       img {
         --picture--max-height: var(--hero--height--image--ceiling);
