@@ -78731,10 +78731,6 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
   padding-top: calc(var(--typography--height--offset) + var(--layout--typography--line-height) * 0.5);
 }
 
-.\!hero\/image {
-  height: var(--hero--height--image);
-  min-height: var(--hero--height--image--floor);
-}
 .\!hero\/image .ratio-container__square,
 .\!hero\/image .ratio-container__1-1,
 .\!hero\/image .ratio-container__4-3,

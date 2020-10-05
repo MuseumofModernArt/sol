@@ -1,8 +1,5 @@
 @include atom-block(hero) {
   @include atom(image) {
-    height:     var(--hero--height--image);
-    min-height: var(--hero--height--image--floor);
-
     // Our embeds return with these old classes, so cap them as-is for now.
     .ratio-container__square,
     .ratio-container__1-1,
