@@ -1,13 +1,4 @@
 @include atom-block(hero) {
-  @include atom(info) {
-    min-height: var(--hero--height--info);
-
-     // This has to be separate/nested since the min-height above is viewport-based on nonmobile.
-    @include variant(floor) {
-      min-height: var(--hero--height--info--floor);
-    }
-  }
-
   @include atom(image) {
     height:     var(--hero--height--image);
     min-height: var(--hero--height--image--floor);
