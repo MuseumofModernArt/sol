@@ -78731,34 +78731,6 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
   padding-top: calc(var(--typography--height--offset) + var(--layout--typography--line-height) * 0.5);
 }
 
-.\!hero\/var {
-  --hero--height--image--ceiling: var(--hero--height--image);
-  --hero--height--image--floor: 18rem;
-  --hero--height--image: calc(var(--page-width--visible) * 3/4);
-  --hero--height--info--floor: 29.2rem;
-  --hero--height--info: var(--hero--height--info--floor);
-}
-@media (orientation: landscape) {
-  .\!hero\/var {
-    --hero--height--image: calc(var(--visible-height--initial, 100vh) - var(--page-spacing) * 2);
-    --hero--height--info--floor: 16.8rem;
-  }
-}
-@media (min-width: 768px) {
-  .\!hero\/var {
-    --hero--height--image--floor: 43.2rem;
-    --hero--height--info--floor: 34rem;
-    --hero--height--info: calc(var(--visible-height--initial, 100vh) - var(--page-spacing) * 10);
-  }
-}
-@media (min-width: 768px) and (min-height: 900px) {
-  .\!hero\/var {
-    --hero--height--image--ceiling: var(--hero--height--image);
-    --hero--height--image: 66.6rem;
-    --hero--height--info: 44rem;
-  }
-}
-
 .\!hero\/info {
   min-height: var(--hero--height--info);
 }
