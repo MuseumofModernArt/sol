@@ -78731,15 +78731,4 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
   padding-top: calc(var(--typography--height--offset) + var(--layout--typography--line-height) * 0.5);
 }
 
-.\!hero\/image\:fallback img {
-  --picture--max-height: var(--hero--height--image--ceiling);
-}
-.\!hero\/image\:fallback .ratio-container__square,
-.\!hero\/image\:fallback .ratio-container__1-1,
-.\!hero\/image\:fallback .ratio-container__4-3,
-.\!hero\/image\:fallback .ratio-container__16-9 {
-  max-height: var(--hero--height--image--ceiling);
-  min-height: var(--hero--height--image--floor);
-}
-
 /*# sourceMappingURL=atoms.css.map */
