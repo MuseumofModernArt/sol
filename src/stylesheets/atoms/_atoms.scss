@@ -154,13 +154,3 @@ $block-prefix:         \!;
     $atom-breakpoint: '' !global; // Clears after we run so that the atom mixin can use this when not in a breakpoint.
   }
 }
-
-
-
-@mixin atom-block($block) {
-  .#{$block-prefix}#{$block} {
-    $atom-block: & !global;
-
-    @content;
-  }
-}
