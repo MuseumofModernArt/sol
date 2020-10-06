@@ -351,13 +351,13 @@
     background-repeat:   no-repeat; // Prevent top/bottom from looping back over.
     background-size:     calc(100% + var(--typography--underline--margin) + var(--typography--margin--right)) 100%; // Larger offsets would need a negative margin/padding on the bottom, but this covers us for now.
     text-shadow: // Clear the descenders, if we know the background color.
-      var(--background-color) var(--typography--underline--clearing) 0, // “East”
-      var(--background-color) var(--typography--underline--clearing) calc(var(--typography--underline--clearing) / 3), // “Southeast”
-      var(--background-color) 0 calc(var(--typography--underline--clearing) / 3), // “South”
-      var(--background-color) calc(-1 * var(--typography--underline--clearing)) calc(var(--typography--underline--clearing) / 3), // “Southwest”
-      var(--background-color) calc(-1 * var(--typography--underline--clearing)) 0, // “West”
-      var(--background-color) calc(-1 * var(--typography--underline--clearing)) calc(-1 * var(--typography--underline--clearing) / 3), // “Northwest”
-      var(--background-color) 0 calc(-1 * var(--typography--underline--clearing) / 3) // “North”
+      var(--color--background) var(--typography--underline--clearing) 0, // “East”
+      var(--color--background) var(--typography--underline--clearing) calc(var(--typography--underline--clearing) / 3), // “Southeast”
+      var(--color--background) 0 calc(var(--typography--underline--clearing) / 3), // “South”
+      var(--color--background) calc(-1 * var(--typography--underline--clearing)) calc(var(--typography--underline--clearing) / 3), // “Southwest”
+      var(--color--background) calc(-1 * var(--typography--underline--clearing)) 0, // “West”
+      var(--color--background) calc(-1 * var(--typography--underline--clearing)) calc(-1 * var(--typography--underline--clearing) / 3), // “Northwest”
+      var(--color--background) 0 calc(-1 * var(--typography--underline--clearing) / 3) // “North”
       ;
 
     @at-root {
@@ -425,10 +425,10 @@
     --typography--shift:         0.06; // Ballparking Courier to MoMA Sans baseline.
 
     // Duplicated these in from color atoms, so typography can be used independently.
-    --background-color--alpha:   0.07;
-    --background-color:          rgba(var(--color--rgb), var(--background-color--alpha, 1));
+    --color--background--alpha:   0.07;
+    --color--background:          rgba(var(--color--rgb), var(--color--background--alpha, 1));
 
-    background-color: var(--background-color);
+    background-color: var(--color--background);
     font-family:      Courier, monospace;
     letter-spacing:   normal;
     padding-left:     var(--typography--code--padding);
@@ -442,7 +442,7 @@
 
       &:before,
       &:after {
-        background-color: var(--background-color); // Extend the fill.
+        background-color: var(--color--background); // Extend the fill.
         margin-left:      calc(-1 * var(--typography--code--padding));
         width:            calc(100% + var(--typography--code--padding) * 2);
       }

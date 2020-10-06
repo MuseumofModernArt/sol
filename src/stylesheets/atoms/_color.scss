@@ -120,8 +120,8 @@ $colors: (
 }
 
 %__base--background {
-  --background-color--rgb: var(#{__color--css-var--rgb(white)});
-  --background-color:      rgba(var(--background-color--rgb), var(--background-color--alpha, 1));
+  --color--background--rgb: var(#{__color--css-var--rgb(white)});
+  --color--background:      rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
 }
 
 
@@ -152,8 +152,8 @@ $colors: (
   }
 
   %__high-contrast--background {
-    --background-color:      var(#{__color--css-var(white)});
-    --background-color--rgb: var(#{__color--css-var--rgb(white)});
+    --color--background:      var(#{__color--css-var(white)});
+    --color--background--rgb: var(#{__color--css-var--rgb(white)});
   }
 
   %__high-contrast--reverse {
@@ -162,8 +162,8 @@ $colors: (
   }
 
   %__high-contrast--reverse--background {
-    --background-color:      var(#{__color--css-var(black)});
-    --background-color--rgb: var(#{__color--css-var--rgb(black)});
+    --color--background:      var(#{__color--css-var(black)});
+    --color--background--rgb: var(#{__color--css-var--rgb(black)});
   }
 
   %__high-contrast--accent {
@@ -172,8 +172,8 @@ $colors: (
   }
 
   %__high-contrast--accent--background {
-    --background-color:      var(#{__color--css-var(red)});
-    --background-color--rgb: var(#{__color--css-var--rgb(red)});
+    --color--background:      var(#{__color--css-var(red)});
+    --color--background--rgb: var(#{__color--css-var--rgb(red)});
   }
 }
 
@@ -195,7 +195,7 @@ $colors: (
   }
 
   %__alpha--background--#{$alpha} {
-    --background-color--alpha: #{$alpha / 100};
+    --color--background--alpha: #{$alpha / 100};
   }
 }
 
@@ -249,8 +249,8 @@ $colors: (
                 @extend %__base--reverse;
               }
 
-              --background-color--rgb: var(#{$color-name--rgb});
-              --background-color:      rgba(var(--background-color--rgb), var(--background-color--alpha, 1));
+              --color--background--rgb: var(#{$color-name--rgb});
+              --color--background:      rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
             }
           }
         }
@@ -301,8 +301,8 @@ $colors: (
                     @extend %__base--reverse;
                   }
 
-                  --background-color--rgb: var(#{$color-name--rgb});
-                  --background-color:      rgba(var(--background-color--rgb), var(--background-color--alpha, 1));
+                  --color--background--rgb: var(#{$color-name--rgb});
+                  --color--background:      rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
                 }
               }
             }
@@ -402,7 +402,7 @@ $colors: (
           @extend %__high-contrast--background;
           @extend %__high-contrast;
 
-          --background-color: rgba(var(--background-color--rgb), var(--background-color--alpha, 1));
+          --color--background: rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
         }
       }
 
@@ -412,15 +412,15 @@ $colors: (
         @extend %__high-contrast--background;
         @extend %__high-contrast;
 
-        --background-color:      var(--color--promo--background,      var(#{__color--css-var(gray, eee)}));
-        --background-color--rgb: var(--color--promo--background--rgb, var(#{__color--css-var--rgb(gray, eee)}));
+        --color--background:      var(--color--promo--background,      var(#{__color--css-var(gray, eee)}));
+        --color--background--rgb: var(--color--promo--background--rgb, var(#{__color--css-var--rgb(gray, eee)}));
 
         @include variant(secondary) {
           @extend %__high-contrast--background;
           @extend %__high-contrast;
 
-          --background-color:      var(--color--promo--background--secondary,      transparent);
-          --background-color--rgb: var(--color--promo--background--secondary--rgb, initial);
+          --color--background:      var(--color--promo--background--secondary,      transparent);
+          --color--background--rgb: var(--color--promo--background--secondary--rgb, initial);
         }
       }
 
@@ -449,22 +449,22 @@ $colors: (
       --color--parent:                 var(--color);
       --color--rgb--parent:            var(--color--rgb);
 
-      --background-color--parent:      var(--background-color);
-      --background-color--rgb--parent: var(--background-color--rgb);
+      --color--background--parent:      var(--color--background);
+      --color--background--rgb--parent: var(--color--background--rgb);
 
       > * {
-        --color:                 var(--background-color--parent);
-        --color--rgb:            var(--background-color--rgb--parent);
+        --color:                 var(--color--background--parent);
+        --color--rgb:            var(--color--background--rgb--parent);
 
-        --background-color:      var(--color--parent);
-        --background-color--rgb: var(--color--rgb--parent);
+        --color--background:      var(--color--parent);
+        --color--background--rgb: var(--color--rgb--parent);
       }
 
       @include variant(background) {
-        --background-color: rgba(var(--color--rgb), var(--background-color--alpha, 1));
+        --color--background: rgba(var(--color--rgb), var(--color--background--alpha, 1));
 
         > * {
-          --background-color: rgba(var(--background-color--rgb), var(--background-color--alpha, 1));
+          --color--background: rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
         }
       }
     }
@@ -486,7 +486,7 @@ $colors: (
   }
 
   @include atom(background) {
-    background-color: var(--background-color);
+    background-color: var(--color--background);
   }
 
   @include atom(backdrop) {
