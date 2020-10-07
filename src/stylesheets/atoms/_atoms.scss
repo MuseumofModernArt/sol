@@ -73,7 +73,7 @@ $atom-delimiter:       \/;
 $variant-delimiter:    \:;
 $variant-decimal:      \.;
 $breakpoint-prefix:    \@;
-$breakpoint-delimiter: #{$variant-delimiter}#{$variant-delimiter};
+$breakpoint-delimiter: #{$atom-delimiter};
 
 
 
@@ -101,48 +101,41 @@ $breakpoint-delimiter: #{$variant-delimiter}#{$variant-delimiter};
 
 
 
-@mixin atom-breakpoints($limited: false) {
+@mixin atom-breakpoints {
   @at-root {
     $atom-breakpoint: null !global; // Pass back to the call site, starting empty.
-    $breakpoint-list: $breakpoints;
-
-    @if $limited {
-      $breakpoint-list: $breakpoints--limited;
-    }
 
     @content; // Mobile first.
 
-    @each $direction, $breakpoint in $breakpoint-list {
+    @each $direction, $breakpoint in $breakpoints {
       @each $name, $break in $breakpoint {
         @if $direction == width {
           @include breakpoint($break) {
-            $atom-breakpoint: #{$breakpoint-prefix}#{str-replace(str-replace($name, '.', #{$variant-decimal}), ':', #{$variant-delimiter})}#{$breakpoint-delimiter} !global; // Pass back.
+            $atom-breakpoint: #{$breakpoint-prefix}#{$break}#{$breakpoint-delimiter} !global; // Pass back.
 
             @content;
           }
         }
         @else {
-          @if not $limited {
-            // Render landcapes after widths, for specificity.
-            @include breakpoint--landscape {
-              $atom-breakpoint: #{$breakpoint-prefix}landscape#{$breakpoint-delimiter} !global; // Pass back.
+          // Render landcape queries after widths, for specificity.
+          @include breakpoint(landscape) {
+            $atom-breakpoint: #{$breakpoint-prefix}landscape#{$breakpoint-delimiter} !global; // Pass back.
+
+            @content;
+          }
+
+          @include breakpoint(768) {
+            @include breakpoint(landscape) {
+              $atom-breakpoint: #{$breakpoint-prefix}768#{$breakpoint-delimiter}landscape#{$breakpoint-delimiter} !global; // Pass back.
 
               @content;
             }
+          }
+          // Then our lone height.
+          @include breakpoint(tall) {
+            $atom-breakpoint: #{$breakpoint-prefix}tall#{$breakpoint-delimiter} !global; // Pass back.
 
-            @include breakpoint($breakpoint__nonmobile) {
-              @include breakpoint--landscape {
-                $atom-breakpoint: #{$breakpoint-prefix}nonmobile#{$variant-delimiter}landscape#{$breakpoint-delimiter} !global; // Pass back.
-
-                @content;
-              }
-            }
-            // Then our lone height.
-            @include breakpoint--height($break) {
-              $atom-breakpoint: #{$breakpoint-prefix}#{$name}#{$breakpoint-delimiter} !global; // Pass back.
-
-              @content;
-            }
+            @content;
           }
         }
       }

@@ -1,9 +1,9 @@
 // Pulled in from “legacy” layout doc.
 :root {
-  $page-spacing:                       2.4rem;
-  $page-spacing--landscape:            1.6rem;
-  $page-spacing--nonmobile:            2 * $page-spacing;
-  $page-spacing--nonmobile--landscape: 2 * $page-spacing--landscape;
+  $page-spacing:                     2.4rem;
+  $page-spacing--landscape:          1.6rem;
+  $page-spacing--desktop:            2 * $page-spacing;
+  $page-spacing--desktop--landscape: 2 * $page-spacing--landscape;
 
   --rem-conversion: 0.1rem;  // Rem conversion. No Math!
 
@@ -12,7 +12,7 @@
 
   --page-width--extension: 0rem;
   --page-width--layout:    calc(var(--page-width--visible) - var(--page-spacing--fixed) * 2);
-  --page-width--maximum:   #{$breakpoint__nonmobile--3};
+  --page-width--maximum:   128rem;
   --page-width--visible:   calc(100vw - var(--scrollbar-width, 0rem)); // vw does not account for scrollbar.
 
   --rights-maximum:        200rem;
@@ -20,29 +20,29 @@
   --uneven-column-width--side: calc((var(--page-width--layout) - var(--page-spacing--fixed) * 2) / 3);                          // 1/3 without gutters.
   --uneven-column-width--main: calc(var(--page-width--layout) - var(--uneven-column-width--side) - var(--page-spacing--fixed)); // Less another gutter.
 
-  @include breakpoint--landscape {
+  @include breakpoint(landscape) {
     --page-spacing: #{$page-spacing--landscape};
   }
 
-  @include breakpoint($breakpoint__nonmobile) {
-    --page-spacing:        #{$page-spacing--nonmobile};
-    --page-spacing--fixed: #{$page-spacing--nonmobile};
+  @include breakpoint(768) {
+    --page-spacing:        #{$page-spacing--desktop};
+    --page-spacing--fixed: #{$page-spacing--desktop};
 
-    @include breakpoint--landscape {
-      --page-spacing: #{$page-spacing--nonmobile--landscape};
+    @include breakpoint(landscape) {
+      --page-spacing: #{$page-spacing--desktop--landscape};
 
-      @include breakpoint--height($breakpoint__tall) {
-        --page-spacing: #{$page-spacing--nonmobile};
+      @include breakpoint(tall) {
+        --page-spacing: #{$page-spacing--desktop};
       }
     }
   }
 
-  @include breakpoint($breakpoint__nonmobile--3) {
+  @include breakpoint(1280) {
     --page-width--layout:    calc(var(--page-width--maximum) - var(--page-spacing--fixed) * 2);
     --page-width--extension: calc((var(--page-width--visible) - var(--page-width--maximum)) / 2);
   }
 
-  @include breakpoint($breakpoint__max) {
+  @include breakpoint(2000) {
     --page-width--extension: calc((var(--rights-maximum) - var(--page-width--maximum)) / 2);
   }
 }

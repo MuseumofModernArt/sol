@@ -45,7 +45,7 @@
     }
   }
   @if index($browsers, 'chrome--mobile') {
-    @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (max-width: px-convert($breakpoint__nonmobile - 0.1rem)) {
+    @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (max-width: 767px) {
       @content;
     }
   }
@@ -56,7 +56,7 @@
 // Mobile Safari does weird things with `bottom` in landscape.
 @mixin mobile-safari-bottom {
   @include browser-specific(safari--mobile) {
-    @include breakpoint--landscape {
+    @include breakpoint(landscape) {
       transition-duration: 100ms;
       transition-property: all;
 
@@ -69,7 +69,7 @@
   @include mobile-safari-bottom {
     bottom: calc(100vh - var(--visible-height));
 
-    @include breakpoint($breakpoint__nonmobile) {
+    @include breakpoint(768) {
       bottom: 0;
     }
   }
@@ -77,11 +77,11 @@
 
 @mixin mobile-safari-bottom--background {
   @include mobile-safari-bottom {
-    margin-bottom: calc(-1 * (100vh - var(--vh-offset)));
+    margin-bottom:  calc(-1 * (100vh - var(--vh-offset)));
     padding-bottom: calc(100vh - var(--vh-offset));
 
-    @include breakpoint($breakpoint__nonmobile) {
-      margin-bottom: 0;
+    @include breakpoint(768) {
+      margin-bottom:  0;
       padding-bottom: 0;
     }
   }

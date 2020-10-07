@@ -2,14 +2,14 @@
   $radius:                 0.4rem;
   $thickness:              0.2rem;
   $enlargement:            0.4rem;
-  $enlargement--nonmobile: 2 * $enlargement;
+  $enlargement--desktop: 2 * $enlargement;
 
   --focus-radius:     #{$radius};
   --focus-thickness:  #{$thickness};
   --link-enlargement: #{$enlargement};
 
-  @include breakpoint($breakpoint__nonmobile) {
-    --link-enlargement: #{$enlargement--nonmobile};
+  @include breakpoint(768) {
+    --link-enlargement: #{$enlargement--desktop};
   }
 }
 
