@@ -1,7 +1,6 @@
 @function __placeholder($selector) {
   // Our un-escaped delimiters and CSS syntax.
   $reserved:
-    str-replace(#{$block-prefix}, '\\'),
     str-replace(#{$breakpoint-prefix}, '\\'),
     str-replace(#{$breakpoint-delimiter}, '\\'),
     str-replace(#{$variant-delimiter}, '\\'),
@@ -21,7 +20,6 @@
 @function __class($selector) {
   // This one makes a compiled class by escaping.
   $reserved:
-    str-replace(#{$block-prefix}, '\\'),
     str-replace(#{$breakpoint-prefix}, '\\'), // But not breakpoint-delimiter, since it is just two variants right now.
     str-replace(#{$variant-delimiter}, '\\'),
     str-replace(#{$atom-delimiter}, '\\'),
@@ -76,7 +74,6 @@ $variant-delimiter:    \:;
 $variant-decimal:      \.;
 $breakpoint-prefix:    \@;
 $breakpoint-delimiter: #{$variant-delimiter}#{$variant-delimiter};
-$block-prefix:         \!;
 
 
 
