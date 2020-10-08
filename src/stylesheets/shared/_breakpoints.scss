@@ -21,13 +21,17 @@ $breakpoints: (
 
 
 
-$breakpoint: null !default; // Empty, used for current one.
+$breakpoint:            null !default; // Empty for base/mobile, to start.
+$breakpoint--desktop:   null !default;
+$breakpoint--landscape: null !default;
 
 @mixin breakpoint($break) {
   $breakpoint: $break !global; // Pass back, for determining if you are in a media directive.
 
   @if $break == "landscape" {
     @media (orientation: landscape) {
+      $breakpoint--landscape: true !global;
+
       @content;
     }
   }
@@ -37,11 +41,17 @@ $breakpoint: null !default; // Empty, used for current one.
 
       @if map-has-key($breakpoint-list, #{$break}) {
         @media (min-#{$direction}: #{map-get($breakpoint-list, #{$break})}px) {
+          @if $direction == width and map-get($breakpoint-list, #{$break}) >= 768 {
+            $breakpoint--desktop: true !global;
+          }
+
           @content;
         }
       }
     }
   }
 
-  $breakpoint: null !global; // Reset.
+  $breakpoint:            null !global;  // Resets.
+  $breakpoint--desktop:   null !global;
+  $breakpoint--landscape: null !global;
 }

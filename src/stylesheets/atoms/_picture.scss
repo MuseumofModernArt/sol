@@ -46,29 +46,29 @@
         $height-fallback--append: (); // Internal lists.
         $width-fallback--append: ();
 
-        @if str-index(#{$atom-breakpoint}, "tall") { // Will only match on the last run-through.
+        @if $breakpoint == tall { // Will only match on the last run-through.
           $height-fallback--append: join($height-fallback--desktop, __css-var(#{$atom-breakpoint}--picture--max-height));
           $width-fallback--append:  join($width-fallback--desktop, __css-var(#{$atom-breakpoint}--picture--max-width));
         }
-        @else if str-index(#{$atom-breakpoint}, "768") and str-index(#{$atom-breakpoint}, "landscape") { // Desktop and landscape.
+        @else if $breakpoint--desktop and $breakpoint--landscape {
           $height-fallback--desktop: append($height-fallback--desktop, __css-var(#{$atom-breakpoint}--picture--max-height), $separator: comma);
           $width-fallback--desktop:  append($width-fallback--desktop, __css-var(#{$atom-breakpoint}--picture--max-width), $separator: comma);
 
           $height-fallback--append: $height-fallback--desktop;
           $width-fallback--append: $width-fallback--desktop;
         }
-        @else if str-index(#{$atom-breakpoint}, "landscape") { // Just landscape.
+        @else if $breakpoint--landscape {
           $height-fallback: append($height-fallback, __css-var(#{$atom-breakpoint}--picture--max-height), $separator: comma);
           $width-fallback:  append($width-fallback, __css-var(#{$atom-breakpoint}--picture--max-width), $separator: comma);
         }
-        @else if (type-of($breakpoint) == number and $breakpoint >= 768) or length($height-fallback--desktop) > 0 { // In first desktop, or subsequent.
+        @else if $breakpoint--desktop {
           $height-fallback--desktop: append($height-fallback--desktop, __css-var(#{$atom-breakpoint}--picture--max-height), $separator: comma);
           $width-fallback--desktop:  append($width-fallback--desktop, __css-var(#{$atom-breakpoint}--picture--max-width), $separator: comma);
 
           $height-fallback--append: $height-fallback--desktop;
           $width-fallback--append: $width-fallback--desktop;
         }
-        @else { // Otherwise we must be in mobile.
+        @else { // Must be base/mobile.
           $height-fallback: append($height-fallback, __css-var(#{$atom-breakpoint}--picture--max-height), $separator: comma);
           $width-fallback:  append($width-fallback, __css-var(#{$atom-breakpoint}--picture--max-width), $separator: comma);
         }

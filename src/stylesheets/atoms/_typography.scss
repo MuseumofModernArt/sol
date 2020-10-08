@@ -26,22 +26,23 @@
 
   // Only for smaller size variables. (All these shenanigans are just for more-efficient compiled CSS.)
   @if $variable == "--typography--size" and $value >= 16 and $value <= 24 {
-    @if type-of($variant) == "string" { // Named sizes have their own/internal breakpoints.
-      @if $breakpoint == null { // Match to mobile.
+
+    @if type-of($variant) == string { // Named sizes have their own/internal breakpoints.
+      @if not $breakpoint { // Match to mobile.
         @extend %__typography--icon-aliasing;
         @extend %__typography--icon-aliasing--high;
       }
-      @else { // Match to nonmobile.
-        @extend %__#{$breakpoint-prefix}nonmobile#{$breakpoint-delimiter}typography--icon-aliasing;
+      @else { // Match to desktop.
+        @extend %__#{$breakpoint-prefix}768#{$breakpoint-delimiter}typography--icon-aliasing;
       }
     }
     @else {
-      @if $breakpoint == null { // First call, outside media query.
+      @if not $breakpoint { // First call, outside media query.
         @include atom-breakpoints {
           .#{$atom-breakpoint}#{strip-selector(&)} {
             @extend %__#{$atom-breakpoint}typography--icon-aliasing; // Match to media-query-specific extends, below.
 
-            @if str-index(#{$atom-breakpoint}, "nonmobile") == null {
+            @if not $breakpoint--desktop {
               @extend %__#{$atom-breakpoint}typography--icon-aliasing--high; // Even higher densities for mobile.
             }
           }

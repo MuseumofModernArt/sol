@@ -76308,18 +76308,6 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
     --typography--icon--translate-y: -0.25px;
   }
 }
-@media only screen and (min-width: 2000px) and (-webkit-min-device-pixel-ratio: 3) {
-  .\@max\:\:typography\/var\/size\:24, .\@max\:\:typography\/var\/size\:22, .\@max\:\:typography\/var\/size\:20, .\@max\:\:typography\/var\/size\:18, .\@max\:\:typography\/var\/size\:16 {
-    --typography--icon--translate-x: -0.1666667px;
-    --typography--icon--translate-y: -0.1666667px;
-  }
-}
-@media only screen and (min-width: 2000px) and (-webkit-min-device-pixel-ratio: 4) {
-  .\@max\:\:typography\/var\/size\:24, .\@max\:\:typography\/var\/size\:22, .\@max\:\:typography\/var\/size\:20, .\@max\:\:typography\/var\/size\:18, .\@max\:\:typography\/var\/size\:16 {
-    --typography--icon--translate-x: -0.125px;
-    --typography--icon--translate-y: -0.125px;
-  }
-}
 @media (orientation: landscape) {
   .\@landscape\/typography\/var\/size\:24, .\@landscape\/typography\/var\/size\:22, .\@landscape\/typography\/var\/size\:20, .\@landscape\/typography\/var\/size\:18, .\@landscape\/typography\/var\/size\:16 {
     --typography--icon--translate-x: -0.5px;
@@ -76410,13 +76398,13 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
   }
 }
 @media only screen and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 3) {
-  .\@landscape\:\:typography\/var\/size\:24, .\@landscape\:\:typography\/var\/size\:22, .\@landscape\:\:typography\/var\/size\:20, .\@landscape\:\:typography\/var\/size\:18, .\@landscape\:\:typography\/var\/size\:16 {
+  .\@landscape\/typography\/var\/size\:24, .\@landscape\/typography\/var\/size\:22, .\@landscape\/typography\/var\/size\:20, .\@landscape\/typography\/var\/size\:18, .\@landscape\/typography\/var\/size\:16 {
     --typography--icon--translate-x: -0.1666667px;
     --typography--icon--translate-y: -0.1666667px;
   }
 }
 @media only screen and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 4) {
-  .\@landscape\:\:typography\/var\/size\:24, .\@landscape\:\:typography\/var\/size\:22, .\@landscape\:\:typography\/var\/size\:20, .\@landscape\:\:typography\/var\/size\:18, .\@landscape\:\:typography\/var\/size\:16 {
+  .\@landscape\/typography\/var\/size\:24, .\@landscape\/typography\/var\/size\:22, .\@landscape\/typography\/var\/size\:20, .\@landscape\/typography\/var\/size\:18, .\@landscape\/typography\/var\/size\:16 {
     --typography--icon--translate-x: -0.125px;
     --typography--icon--translate-y: -0.125px;
   }
@@ -76600,13 +76588,13 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
   }
 }
 @media only screen and (min-height: 900px) and (-webkit-min-device-pixel-ratio: 3) {
-  .\@tall\:\:typography\/var\/size\:24, .\@tall\:\:typography\/var\/size\:22, .\@tall\:\:typography\/var\/size\:20, .\@tall\:\:typography\/var\/size\:18, .\@tall\:\:typography\/var\/size\:16 {
+  .\@tall\/typography\/var\/size\:24, .\@tall\/typography\/var\/size\:22, .\@tall\/typography\/var\/size\:20, .\@tall\/typography\/var\/size\:18, .\@tall\/typography\/var\/size\:16 {
     --typography--icon--translate-x: -0.1666667px;
     --typography--icon--translate-y: -0.1666667px;
   }
 }
 @media only screen and (min-height: 900px) and (-webkit-min-device-pixel-ratio: 4) {
-  .\@tall\:\:typography\/var\/size\:24, .\@tall\:\:typography\/var\/size\:22, .\@tall\:\:typography\/var\/size\:20, .\@tall\:\:typography\/var\/size\:18, .\@tall\:\:typography\/var\/size\:16 {
+  .\@tall\/typography\/var\/size\:24, .\@tall\/typography\/var\/size\:22, .\@tall\/typography\/var\/size\:20, .\@tall\/typography\/var\/size\:18, .\@tall\/typography\/var\/size\:16 {
     --typography--icon--translate-x: -0.125px;
     --typography--icon--translate-y: -0.125px;
   }
