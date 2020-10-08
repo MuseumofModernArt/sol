@@ -27,7 +27,7 @@
         --typography--scale--down:    initial;
         --typography--scale--up:      #{abs($medium/$small)}; // Abs is for SCSS to render as a decimal.
 
-        @include breakpoint(768) {
+        @include breakpoint($desktop) {
           @include type-variable(--typography--size, $small--desktop);
 
           --typography--scale--up:    #{abs($medium--desktop/$small--desktop)};
@@ -41,7 +41,7 @@
         --typography--scale--down:    #{abs($small/$medium)};
         --typography--scale--up:      #{abs($large/$medium)};
 
-        @include breakpoint(768) {
+        @include breakpoint($desktop) {
           @include type-variable(--typography--size, $medium--desktop);
 
           --typography--scale--down:  #{abs($small--desktop/$medium--desktop)};
@@ -56,7 +56,7 @@
         --typography--scale--down:    #{abs($medium/$large)};
         --typography--scale--up:      #{abs($extra-large/$large)};
 
-        @include breakpoint(768) {
+        @include breakpoint($desktop) {
           @include type-variable(--typography--size, $large--desktop);
 
           --typography--scale--down--2: #{abs($small--desktop/$large--desktop)};
@@ -72,7 +72,7 @@
         --typography--scale--down:    #{abs($large/$extra-large)};
         --typography--scale--up:      #{abs($extra-extra-large/$extra-large)};
 
-        @include breakpoint(768) {
+        @include breakpoint($desktop) {
           @include type-variable(--typography--size, $extra-large--desktop);
 
           --typography--scale--down--2: #{abs($medium--desktop/$extra-large--desktop)};
@@ -88,7 +88,7 @@
         --typography--scale--down:    #{abs($extra-large/$extra-extra-large)};
         --typography--scale--up:      #{abs($hero/$extra-extra-large)};
 
-        @include breakpoint(768) {
+        @include breakpoint($desktop) {
           @include type-variable(--typography--size, $extra-extra-large--desktop);
 
           --typography--scale--down--2: #{abs($large--desktop/$extra-extra-large--desktop)};
@@ -100,7 +100,7 @@
       @include variant(hero) {
         @include type-variable(--typography--size, $hero);
 
-        @include breakpoint(768) {
+        @include breakpoint($desktop) {
           @include type-variable(--typography--size, $hero--desktop);
         }
       }
@@ -108,7 +108,7 @@
       @include variant(hero--secondary) {
         @include type-variable(--typography--size, $hero--secondary);
 
-        @include breakpoint(768) {
+        @include breakpoint($desktop) {
           @include type-variable(--typography--size, $hero--secondary--desktop);
         }
       }
@@ -120,7 +120,7 @@
           @include type-variable(--typography--size, $hero--short);
         }
 
-        @include breakpoint(768) {
+        @include breakpoint($desktop) {
           @include type-variable(--typography--size, $hero--short--desktop);
         }
       }

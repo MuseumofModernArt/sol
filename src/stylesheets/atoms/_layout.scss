@@ -24,7 +24,7 @@
     --page-spacing: #{$page-spacing--landscape};
   }
 
-  @include breakpoint(768) {
+  @include breakpoint($desktop) {
     --page-spacing:        #{$page-spacing--desktop};
     --page-spacing--fixed: #{$page-spacing--desktop};
 

@@ -8,7 +8,7 @@
   --focus-thickness:  #{$thickness};
   --link-enlargement: #{$enlargement};
 
-  @include breakpoint(768) {
+  @include breakpoint($desktop) {
     --link-enlargement: #{$enlargement--desktop};
   }
 }

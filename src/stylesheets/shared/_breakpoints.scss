@@ -19,6 +19,9 @@ $breakpoints: (
   )
 );
 
+$desktop:        nth(map-keys(map-get($breakpoints, width)), 9); // Where we ratchet up type/layout sizes, née “nonmobile”.
+$desktop--width: map-get(map-get($breakpoints, width), $desktop);
+
 
 
 $breakpoint--current:   null !default; // Empty for base/mobile, to start.
@@ -41,7 +44,7 @@ $breakpoint--landscape: null !default;
 
       @if map-has-key($breakpoint-list, #{$break}) {
         @media (min-#{$direction}: #{map-get($breakpoint-list, #{$break})}px) {
-          @if $direction == width and map-get($breakpoint-list, #{$break}) >= 768 {
+          @if $direction == width and map-get($breakpoint-list, #{$break}) >= $desktop--width {
             $breakpoint--desktop: true !global;
           }
 

@@ -99,7 +99,7 @@
   --typography--scale--major: #{abs(4/3)}; // Slightly larger.
   --typography--scale--prime: 2;           // Largest.
 
-  @include breakpoint(768) {
+  @include breakpoint($desktop) {
     --typography--scale--prime: #{abs(8/3)}; // This is the “correct” scale, on desktop.
   }
 }
@@ -116,7 +116,7 @@
   --typography--ascenders:  0.330; // Highest ascender from the top of a capital “M”: Ẵ (“latin capital letter A with breve and tilde”).
   --typography--descenders: 0.200; // Max distance below baseline before the next line’s common ascenders are visible, clears a “j”. TODO: This shows ascenders at size:medium.
 
-  @include breakpoint(768) {
+  @include breakpoint($desktop) {
     --typography--scale--major: 2;
     --typography--scale--prime: 3;
   }

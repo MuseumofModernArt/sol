@@ -123,14 +123,14 @@ $breakpoint-delimiter: #{$atom-delimiter};
 
             @content;
 
-            @include breakpoint(768) {
+            @include breakpoint($desktop) {
               $atom-breakpoint: #{$atom-breakpoint}#{$breakpoint--current}#{$breakpoint-delimiter} !global; // Nested/appended.
 
               @content;
             }
           }
           // Then our lone height.
-          @include breakpoint(768) { // Only meaningful on desktop.
+          @include breakpoint($desktop) { // Only meaningful on desktop.
             @include breakpoint(tall) {
               $atom-breakpoint: #{$breakpoint-prefix}#{$breakpoint--current}#{$breakpoint-delimiter} !global;
 
