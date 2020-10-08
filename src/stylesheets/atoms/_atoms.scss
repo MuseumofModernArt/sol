@@ -111,7 +111,7 @@ $breakpoint-delimiter: #{$atom-delimiter};
       @each $name, $break in $breakpoint {
         @if $direction == width {
           @include breakpoint($break) {
-            $atom-breakpoint: #{$breakpoint-prefix}#{$break}#{$breakpoint-delimiter} !global; // Pass back.
+            $atom-breakpoint: #{$breakpoint-prefix}#{$name}#{$breakpoint-delimiter} !global; // Pass back.
 
             @content;
           }
@@ -119,12 +119,12 @@ $breakpoint-delimiter: #{$atom-delimiter};
         @else {
           // Render landscape queries after widths, for specificity.
           @include breakpoint(landscape) {
-            $atom-breakpoint: #{$breakpoint-prefix}landscape#{$breakpoint-delimiter} !global; // Pass back.
+            $atom-breakpoint: #{$breakpoint-prefix}landscape#{$breakpoint-delimiter} !global;
 
             @content;
 
             @include breakpoint(768) {
-              $atom-breakpoint: #{$atom-breakpoint}768#{$breakpoint-delimiter} !global; // Pass back.
+              $atom-breakpoint: #{$atom-breakpoint}768#{$breakpoint-delimiter} !global; // Nested/appended.
 
               @content;
             }
@@ -132,7 +132,7 @@ $breakpoint-delimiter: #{$atom-delimiter};
           // Then our lone height.
           @include breakpoint(tall) {
             @include breakpoint(768) { // Only meaningful on desktop.
-              $atom-breakpoint: #{$breakpoint-prefix}tall#{$breakpoint-delimiter} !global; // Pass back.
+              $atom-breakpoint: #{$breakpoint-prefix}tall#{$breakpoint-delimiter} !global;
 
               @content;
             }

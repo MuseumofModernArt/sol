@@ -45,7 +45,7 @@
     }
   }
   @if index($browsers, 'chrome--mobile') {
-    @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (max-width: 767px) {
+    @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (max-width: #{768 - 1}px) {
       @content;
     }
   }

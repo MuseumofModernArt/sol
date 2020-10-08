@@ -46,7 +46,7 @@
         $height-fallback--append: (); // Internal lists.
         $width-fallback--append: ();
 
-        @if $breakpoint == tall { // Will only match on the last run-through.
+        @if $breakpoint--current == tall { // Will only match on the last run-through.
           $height-fallback--append: join($height-fallback--desktop, __css-var(#{$atom-breakpoint}--picture--max-height));
           $width-fallback--append:  join($width-fallback--desktop, __css-var(#{$atom-breakpoint}--picture--max-width));
         }
@@ -76,7 +76,7 @@
         max-height: #{__fallback-list(join($height-fallback, $height-fallback--append))};
         max-width:  #{__fallback-list(join($width-fallback, $width-fallback--append))};
 
-        @if not $breakpoint { // Only mobile/base, shared across.
+        @if not $breakpoint--current { // Only mobile/base, shared across.
           position: static;
         }
       }
