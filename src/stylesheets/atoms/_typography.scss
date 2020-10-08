@@ -571,12 +571,14 @@
 
 
 // // Example type size atoms.
-// .typography\/var\/size {
-//   @include variant(small) {
-//     @include type-variable(--typography--size, 18);
-//   }
-//   @include variant(medium) {
-//     @include type-variable(--typography--size, 24);
+// .typography {
+//   @include atom(size) {
+//     @include variant(small) {
+//       @include type-variable(--typography--size, 18);
+//     }
+//     @include variant(medium) {
+//       @include type-variable(--typography--size, 24);
+//     }
 //   }
 // }
 
@@ -585,11 +587,11 @@
 // Example DOM, in “line-break” style. Atom classes are alphabetized. 'balance-text' is the only non-type atom we’d see on a paragraph element.
 // <p
 //   class="
+//     $typography/baseline:body
+//     $typography/size:small
+//     $typography/weight:regular
 //     balance-text
 //     typography
-//     typography/var/baseline:body
-//     typography/var/size:small
-//     typography/var/weight:regular
 //     "
 //   >
 //   Lorem ipsum color sit amet.
