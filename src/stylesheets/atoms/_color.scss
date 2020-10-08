@@ -334,7 +334,7 @@ $colors: (
 
 
     // For resetting to the base/root ones.
-    @include atom(base-colors) {
+    @include atom(base) {
       @extend %__base;
       @extend %__base--background;
       @extend %__focus;
@@ -343,7 +343,7 @@ $colors: (
 
 
 
-    @include atom(promo-color) {
+    @include atom(promo) {
       @extend %__high-contrast;
 
       --color:      var(--color--promo,      var(#{__color--css-var(black)}));
@@ -408,7 +408,7 @@ $colors: (
 
 
 
-      @include variant(promo-color) {
+      @include variant(promo) {
         @extend %__high-contrast--background;
         @extend %__high-contrast;
 
