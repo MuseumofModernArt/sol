@@ -74954,25 +74954,25 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
   margin-right: calc(-1 * var(--typography--code--padding));
 }
 
-.\$typography\/size\:24, .\$typography\/size\:22, .\$typography\/size\:20, .\$typography\/size\:18, .\$typography\/size\:16, .\$typography\/size\:hero--secondary, .\$typography\/size\:extra-large, .\$typography\/size\:large, .\$typography\/size\:medium, .typography\/markdown\:headers, .typography\/markdown {
+.\$typography\/size\:24, .\$typography\/size\:22, .\$typography\/size\:20, .\$typography\/size\:18, .\$typography\/size\:16, .\$typography\/size\:hero\:secondary, .\$typography\/size\:extra-large, .\$typography\/size\:large, .\$typography\/size\:medium, .typography\/markdown\:headers, .typography\/markdown {
   --typography--icon--translate-x: -0.5px;
   --typography--icon--translate-y: -0.5px;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
-  .\$typography\/size\:24, .\$typography\/size\:22, .\$typography\/size\:20, .\$typography\/size\:18, .\$typography\/size\:16, .\$typography\/size\:hero--secondary, .\$typography\/size\:extra-large, .\$typography\/size\:large, .\$typography\/size\:medium, .typography\/markdown\:headers, .typography\/markdown {
+  .\$typography\/size\:24, .\$typography\/size\:22, .\$typography\/size\:20, .\$typography\/size\:18, .\$typography\/size\:16, .\$typography\/size\:hero\:secondary, .\$typography\/size\:extra-large, .\$typography\/size\:large, .\$typography\/size\:medium, .typography\/markdown\:headers, .typography\/markdown {
     --typography--icon--translate-x: -0.25px;
     --typography--icon--translate-y: -0.25px;
   }
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 3) {
-  .\$typography\/size\:24, .\$typography\/size\:22, .\$typography\/size\:20, .\$typography\/size\:18, .\$typography\/size\:16, .\$typography\/size\:hero--secondary, .\$typography\/size\:extra-large, .\$typography\/size\:large, .\$typography\/size\:medium, .typography\/markdown\:headers, .typography\/markdown {
+  .\$typography\/size\:24, .\$typography\/size\:22, .\$typography\/size\:20, .\$typography\/size\:18, .\$typography\/size\:16, .\$typography\/size\:hero\:secondary, .\$typography\/size\:extra-large, .\$typography\/size\:large, .\$typography\/size\:medium, .typography\/markdown\:headers, .typography\/markdown {
     --typography--icon--translate-x: -0.1666667px;
     --typography--icon--translate-y: -0.1666667px;
   }
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 4) {
-  .\$typography\/size\:24, .\$typography\/size\:22, .\$typography\/size\:20, .\$typography\/size\:18, .\$typography\/size\:16, .\$typography\/size\:hero--secondary, .\$typography\/size\:extra-large, .\$typography\/size\:large, .\$typography\/size\:medium, .typography\/markdown\:headers, .typography\/markdown {
+  .\$typography\/size\:24, .\$typography\/size\:22, .\$typography\/size\:20, .\$typography\/size\:18, .\$typography\/size\:16, .\$typography\/size\:hero\:secondary, .\$typography\/size\:extra-large, .\$typography\/size\:large, .\$typography\/size\:medium, .typography\/markdown\:headers, .typography\/markdown {
     --typography--icon--translate-x: -0.125px;
     --typography--icon--translate-y: -0.125px;
   }
@@ -76703,41 +76703,40 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
     --typography--size--previous: 80;
   }
 }
-
-.\$typography\/size\:hero--secondary {
+.\$typography\/size\:hero\:secondary {
   --typography--size: 18;
 }
-.\$typography\/size\:hero--secondary + * {
+.\$typography\/size\:hero\:secondary + * {
   --typography--size--previous: 18;
 }
 @media (min-width: 768px) {
-  .\$typography\/size\:hero--secondary {
+  .\$typography\/size\:hero\:secondary {
     --typography--size: 40;
   }
-  .\$typography\/size\:hero--secondary + * {
+  .\$typography\/size\:hero\:secondary + * {
     --typography--size--previous: 40;
   }
 }
 
-.\$typography\/size\:hero--short {
+.\$typography\/size\:hero\:short {
   --typography--size: 36;
 }
-.\$typography\/size\:hero--short + * {
+.\$typography\/size\:hero\:short + * {
   --typography--size--previous: 36;
 }
 @media (min-width: 375px) {
-  .\$typography\/size\:hero--short {
+  .\$typography\/size\:hero\:short {
     --typography--size: 48;
   }
-  .\$typography\/size\:hero--short + * {
+  .\$typography\/size\:hero\:short + * {
     --typography--size--previous: 48;
   }
 }
 @media (min-width: 768px) {
-  .\$typography\/size\:hero--short {
+  .\$typography\/size\:hero\:short {
     --typography--size: 120;
   }
-  .\$typography\/size\:hero--short + * {
+  .\$typography\/size\:hero\:short + * {
     --typography--size--previous: 120;
   }
 }

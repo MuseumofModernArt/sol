@@ -103,25 +103,25 @@
         @include breakpoint($desktop) {
           @include type-variable(--typography--size, $hero--desktop);
         }
-      }
 
-      @include variant(hero--secondary) {
-        @include type-variable(--typography--size, $hero--secondary);
+        @include variant(secondary) {
+          @include type-variable(--typography--size, $hero--secondary);
 
-        @include breakpoint($desktop) {
-          @include type-variable(--typography--size, $hero--secondary--desktop);
-        }
-      }
-
-      @include variant(hero--short) {
-        @include type-variable(--typography--size, $hero); // No change at mobile 1, too narrow.
-
-        @include breakpoint(375) {
-          @include type-variable(--typography--size, $hero--short);
+          @include breakpoint($desktop) {
+            @include type-variable(--typography--size, $hero--secondary--desktop);
+          }
         }
 
-        @include breakpoint($desktop) {
-          @include type-variable(--typography--size, $hero--short--desktop);
+        @include variant(short) {
+          @include type-variable(--typography--size, $hero); // No change at mobile 1, too narrow.
+
+          @include breakpoint(375) {
+            @include type-variable(--typography--size, $hero--short);
+          }
+
+          @include breakpoint($desktop) {
+            @include type-variable(--typography--size, $hero--short--desktop);
+          }
         }
       }
     }
