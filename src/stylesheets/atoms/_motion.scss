@@ -10,17 +10,15 @@
 .motion{
   @include atom-var {
     @include atom(animation, transition) {
-      $group: $atom;
-
-      @include atom(duration, delay) {
+      @include variant(duration, delay) {
         @include variant-timings {
-          --#{$group}--#{$atom}: #{$variant-timing};
+          --#{$atom}--#{$variant}: #{$variant-timing};
         }
       }
 
-      @include atom(curve) {
+      @include variant(curve) {
         @include variant-easings {
-          --#{$group}--#{$atom}: #{$variant-easing};
+          --#{$atom}--#{$variant}: #{$variant-easing};
         }
       }
     }
@@ -32,11 +30,12 @@
     }
 
     @include atom(transition) {
-      @include atom(backdrop-filter, backdrop-filter, bottom, left, max-height, max-width, opacity, right, top, transform, visibility) {
-        $attribute: $atom;
+      @include variant(backdrop-filter, backdrop-filter, bottom, left, max-height, max-width, opacity, right, top, transform, visibility) {
+        $attribute: $variant;
 
         @include variant(duration, delay) {
           $property: $variant;
+
           @include variant-timings {
             --transition--#{$attribute}--#{$property}: #{$variant-timing};
           }

@@ -232,7 +232,7 @@ $colors: (
         }
         // Map to the background color variable.
         @include atom(background) {
-          @include atom($item) {
+          @include variant($item) {
             @include __variant-alphas($background: true) {
               @if $item == red {
                 @extend %__high-contrast--accent--background;
@@ -283,7 +283,7 @@ $colors: (
             }
           }
           @include atom(background) {
-            @include atom($item) {
+            @include variant($item) {
               @include variant($grouped-item) {
                 @include __variant-alphas($background: true) {
                   @if $item == brand {
@@ -397,7 +397,7 @@ $colors: (
 
     // Background versions.
     @include atom(background) {
-      @include atom(alpha) {
+      @include variant(alpha) {
         @include __variant-alphas($background: true) {
           @extend %__high-contrast--background;
           @extend %__high-contrast;
@@ -408,7 +408,7 @@ $colors: (
 
 
 
-      @include atom(promo-color) {
+      @include variant(promo-color) {
         @extend %__high-contrast--background;
         @extend %__high-contrast;
 
@@ -426,7 +426,7 @@ $colors: (
 
 
 
-      @include atom(high-contrast) {
+      @include variant(high-contrast) {
         @extend %__high-contrast--background;
         @extend %__high-contrast;
 
