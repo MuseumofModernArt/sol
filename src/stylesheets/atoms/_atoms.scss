@@ -117,25 +117,25 @@ $breakpoint-delimiter: #{$atom-delimiter};
           }
         }
         @else {
-          // Render landcape queries after widths, for specificity.
+          // Render landscape queries after widths, for specificity.
           @include breakpoint(landscape) {
             $atom-breakpoint: #{$breakpoint-prefix}landscape#{$breakpoint-delimiter} !global; // Pass back.
 
             @content;
-          }
 
-          @include breakpoint(768) {
-            @include breakpoint(landscape) {
-              $atom-breakpoint: #{$breakpoint-prefix}768#{$breakpoint-delimiter}landscape#{$breakpoint-delimiter} !global; // Pass back.
+            @include breakpoint(768) {
+              $atom-breakpoint: #{$atom-breakpoint}768#{$breakpoint-delimiter} !global; // Pass back.
 
               @content;
             }
           }
           // Then our lone height.
           @include breakpoint(tall) {
-            $atom-breakpoint: #{$breakpoint-prefix}tall#{$breakpoint-delimiter} !global; // Pass back.
+            @include breakpoint(768) { // Only meaningful on desktop.
+              $atom-breakpoint: #{$breakpoint-prefix}tall#{$breakpoint-delimiter} !global; // Pass back.
 
-            @content;
+              @content;
+            }
           }
         }
       }

@@ -1,9 +1,9 @@
 // Pulled in from “legacy” layout doc.
 :root {
   $page-spacing:                     2.4rem;
-  $page-spacing--landscape:          1.6rem;
   $page-spacing--desktop:            2 * $page-spacing;
-  $page-spacing--desktop--landscape: 2 * $page-spacing--landscape;
+  $page-spacing--landscape:          1.6rem;
+  $page-spacing--landscape--desktop: 2 * $page-spacing--landscape;
 
   --rem-conversion: 0.1rem;  // Rem conversion. No Math!
 
@@ -29,7 +29,7 @@
     --page-spacing--fixed: #{$page-spacing--desktop};
 
     @include breakpoint(landscape) {
-      --page-spacing: #{$page-spacing--desktop--landscape};
+      --page-spacing: #{$page-spacing--landscape--desktop};
 
       @include breakpoint(tall) {
         --page-spacing: #{$page-spacing--desktop};
