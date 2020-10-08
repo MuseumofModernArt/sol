@@ -67087,7 +67087,7 @@ a {
     width: 100%;
   }
 }
-@media (min-height: 900px) and (min-width: 768px) {
+@media (min-width: 768px) and (min-height: 900px) {
   .\@tall\/layout\/var\/page\:clear, .\@tall\/layout\/var\/page\:flexible > *, .\@tall\/layout\/var\/page\:fixed > * {
     --page-spacing--override: initial;
   }
@@ -71479,7 +71479,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
     max-width: var(--landscape--768--picture--max-width, var(--2000--picture--max-width, var(--1440--picture--max-width, var(--1280--picture--max-width, var(--1024--picture--max-width, var(--768--picture--max-width, var(--landscape--picture--max-width, var(--724--picture--max-width, var(--667--picture--max-width, var(--600--picture--max-width, var(--568--picture--max-width, var(--480--picture--max-width, var(--412--picture--max-width, var(--375--picture--max-width, var(--360--picture--max-width, var(--picture--max-width, 100%))))))))))))))));
   }
 }
-@media (min-height: 900px) and (min-width: 768px) {
+@media (min-width: 768px) and (min-height: 900px) {
   .picture\/image {
     max-height: var(--tall--picture--max-height, var(--landscape--768--picture--max-height, var(--2000--picture--max-height, var(--1440--picture--max-height, var(--1280--picture--max-height, var(--1024--picture--max-height, var(--768--picture--max-height, var(--landscape--picture--max-height, var(--724--picture--max-height, var(--667--picture--max-height, var(--600--picture--max-height, var(--568--picture--max-height, var(--480--picture--max-height, var(--412--picture--max-height, var(--375--picture--max-height, var(--360--picture--max-height, var(--picture--max-height, 100%)))))))))))))))));
     max-width: var(--tall--picture--max-width, var(--landscape--768--picture--max-width, var(--2000--picture--max-width, var(--1440--picture--max-width, var(--1280--picture--max-width, var(--1024--picture--max-width, var(--768--picture--max-width, var(--landscape--picture--max-width, var(--724--picture--max-width, var(--667--picture--max-width, var(--600--picture--max-width, var(--568--picture--max-width, var(--480--picture--max-width, var(--412--picture--max-width, var(--375--picture--max-width, var(--360--picture--max-width, var(--picture--max-width, 100%)))))))))))))))));
@@ -76498,7 +76498,7 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
     --typography--icon--translate-y: -0.25px;
   }
 }
-@media (min-height: 900px) and (min-width: 768px) {
+@media (min-width: 768px) and (min-height: 900px) {
   .\@tall\/typography\/var\/size\:24, .\@tall\/typography\/var\/size\:22, .\@tall\/typography\/var\/size\:20, .\@tall\/typography\/var\/size\:18, .\@tall\/typography\/var\/size\:16 {
     --typography--icon--translate-x: -0.5px;
     --typography--icon--translate-y: -0.5px;
@@ -76581,7 +76581,7 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
     --typography--shift: calc(var(--typography--shoulder--bottom) * (var(--typography--scale) - 1) - var(--typography--leading--remainder));
   }
 }
-@media only screen and (min-height: 900px) and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+@media only screen and (min-width: 768px) and (min-height: 900px) and (-webkit-min-device-pixel-ratio: 2) {
   .\@tall\/typography\/var\/size\:24, .\@tall\/typography\/var\/size\:22, .\@tall\/typography\/var\/size\:20, .\@tall\/typography\/var\/size\:18, .\@tall\/typography\/var\/size\:16 {
     --typography--icon--translate-x: -0.25px;
     --typography--icon--translate-y: -0.25px;
@@ -78485,7 +78485,7 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
     --typography--size--previous: 120;
   }
 }
-@media (min-height: 900px) and (min-width: 768px) {
+@media (min-width: 768px) and (min-height: 900px) {
   .\@tall\/typography\/var\/size {
     --typography--size--override: var(--tall--typography--size);
   }
