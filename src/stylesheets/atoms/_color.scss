@@ -202,7 +202,7 @@ $colors: (
 
 
 .color {
-  @include atom(var) {
+  @include atom-var {
     $color-variables: ();
 
     @each $item, $value in $colors {

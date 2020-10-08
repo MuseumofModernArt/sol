@@ -1,5 +1,5 @@
 @function __css-var($selector) {
-  $delimiters: #{$breakpoint-delimiter}, #{$variant-delimiter}, #{$atom-delimiter};
+  $delimiters: #{$breakpoint-delimiter}, #{$variant-delimiter}, #{$atom-delimiter}, #{$atom-var-prefix};
 
   $selector: strip-selector($selector);                                 // Toss class selector (period).
   $selector: str-replace($selector, #{$breakpoint-prefix}, "");         // Nix breakpoint prefix.

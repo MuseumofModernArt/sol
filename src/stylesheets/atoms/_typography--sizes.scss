@@ -1,6 +1,6 @@
 // Atoms for existing sizes.
 .typography {
-  @include atom(var) {
+  @include atom-var {
     @include atom(size) {
       $small:                      14; // Pulled in from “legacy” type doc.
       $small--desktop:             16;
@@ -129,7 +129,7 @@
 
   // Discrete sizes available at our breakpoints.
   @include atom-breakpoints {
-    @include atom(var) {
+    @include atom-var {
       @include atom(size) {
         // Allow for per-breakpoint inline overrides.
         --typography--size--override: var(#{__css-var(#{$atom-breakpoint}--typography--size)});

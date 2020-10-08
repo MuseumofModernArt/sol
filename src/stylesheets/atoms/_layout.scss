@@ -142,7 +142,7 @@
 
 
 
-    @include atom(var) {
+    @include atom-var {
       @include atom(page) { // Overrides.
         @include variant(fixed) {
           --page-spacing--override: var(--page-spacing--fixed);

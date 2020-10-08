@@ -1,7 +1,7 @@
 %__markdown-typography {
-  @extend #{__placeholder("typography/var/baseline:body")};
-  @extend #{__placeholder("typography/var/size:medium")};
-  @extend #{__placeholder("typography/var/weight:regular")};
+  @extend #{__placeholder("$typography/baseline:body")};
+  @extend #{__placeholder("$typography/size:medium")};
+  @extend #{__placeholder("$typography/weight:regular")};
 
 
 
@@ -12,8 +12,8 @@
   }
 
   strong {
+    @extend #{__placeholder("$typography/weight:bold")};
     @extend #{__placeholder("typography/face")}; //Re-declared for the weight to work.
-    @extend #{__placeholder("typography/var/weight:bold")};
   }
 
   p:not([class]) {
@@ -25,8 +25,8 @@
   }
 
   blockquote:not([class]) {
-    @extend #{__placeholder("color/var/alpha:47%")};
-    @extend #{__placeholder("typography/var/scale:minor")};
+    @extend #{__placeholder("$color/alpha:47%")};
+    @extend #{__placeholder("$typography/scale:minor")};
 
     &:not(:first-child) {
       @extend #{__placeholder("layout/margin:top:baseline")};
@@ -183,7 +183,7 @@
     @extend #{__placeholder("layout/block")};
 
     // Sponsor logos reflect the type scale.
-    &[class*="layout/var/baseline:exact"] {
+    &[class*="$layout/baseline:exact"] {
       --typography--height--offset: calc(var(--layout--typography--line-height) - var(--layout--typography--leading-shoulder)); // Puts it back on the baseline.
 
       padding-top:      var(--typography--height--offset);
@@ -207,9 +207,9 @@
 
 %__markdown-typography--headers {
   > h2 {
+    @extend #{__placeholder("$typography/scale:prime")};
+    @extend #{__placeholder("$typography/weight:bold")};
     @extend #{__placeholder("typography")};
-    @extend #{__placeholder("typography/var/scale:prime")};
-    @extend #{__placeholder("typography/var/weight:bold")};
 
     &:not(:first-child) {
       @extend #{__placeholder("layout/margin:top:baseline:3")};
@@ -217,9 +217,9 @@
   }
 
   > h3 {
+    @extend #{__placeholder("$typography/scale:major")};
+    @extend #{__placeholder("$typography/weight:bold")};
     @extend #{__placeholder("typography")};
-    @extend #{__placeholder("typography/var/scale:major")};
-    @extend #{__placeholder("typography/var/weight:bold")};
 
     &:not(:first-child) {
       @extend #{__placeholder("layout/margin:top:baseline:2")};
@@ -227,8 +227,8 @@
   }
 
   > h4 {
+    @extend #{__placeholder("$typography/weight:bold")};
     @extend #{__placeholder("typography")};
-    @extend #{__placeholder("typography/var/weight:bold")};
 
     &:not(:first-child) {
       @extend #{__placeholder("layout/margin:top:baseline")};

@@ -5,6 +5,7 @@
     str-replace(#{$breakpoint-delimiter}, '\\'),
     str-replace(#{$variant-delimiter}, '\\'),
     str-replace(#{$atom-delimiter}, '\\'),
+    str-replace(#{$atom-var-prefix}, '\\'),
     '.',
     '(',
     ')',
@@ -20,9 +21,11 @@
 @function __class($selector) {
   // This one makes a compiled class by escaping.
   $reserved:
-    str-replace(#{$breakpoint-prefix}, '\\'), // But not breakpoint-delimiter, since it is just two variants right now.
+    str-replace(#{$breakpoint-prefix}, '\\'),
+    str-replace(#{$breakpoint-delimiter}, '\\'),
     str-replace(#{$variant-delimiter}, '\\'),
     str-replace(#{$atom-delimiter}, '\\'),
+    str-replace(#{$atom-var-prefix}, '\\'),
     '.',
     '(',
     ')',
@@ -70,6 +73,7 @@
 
 
 $atom-delimiter:       \/;
+$atom-var-prefix:      \$;
 $variant-delimiter:    \:;
 $variant-decimal:      \.;
 $breakpoint-prefix:    \@;
@@ -81,20 +85,30 @@ $breakpoint-delimiter: #{$atom-delimiter};
   @each $atom in $atoms {
     $atom-parent:   first-selector(&) !global;
     $atom:          #{'' + $atom}     !global; // This concatenation is to clear SCSS compile warnings over certain names (like colors).
-    $atom-selector: $atom-parent;              // To start.
+
+    $atom-selector: ".#{$atom-breakpoint}#{strip-selector($atom-parent)}#{$atom-delimiter}#{$atom}";
 
     // Only insert the breakpoint once.
     @if str-index(#{$atom-parent}, $breakpoint-prefix) {
       $atom-selector: "#{$atom-parent}#{$atom-delimiter}#{$atom}";
-    }
-    @else {
-      $atom-selector: ".#{$atom-breakpoint}#{strip-selector($atom-parent)}#{$atom-delimiter}#{$atom}";
     }
 
     @at-root {
       #{__selector-list($atom-selector)} {
         @content;
       }
+    }
+  }
+}
+
+
+
+@mixin atom-var {
+  $atom-selector: ".#{$atom-var-prefix}#{strip-selector(&)}";
+
+  @at-root {
+    #{$atom-selector} {
+      @content;
     }
   }
 }

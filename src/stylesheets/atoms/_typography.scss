@@ -301,7 +301,7 @@
 
 
 
-  @include atom(var) {
+  @include atom-var {
     // Weights.
     @include atom(weight) {
       @include variant(regular, bold) { // If you need to redeclare the root/defaults.
@@ -533,7 +533,7 @@
 
 
     // Per-breakpoint variables.
-    @include atom(var) {
+    @include atom-var {
       // Scales.
       @include atom(scale) {
         @include variant(minor, down, clear, up, major, prime) {

@@ -8,7 +8,7 @@
 
 
 .motion{
-  @include atom(var) {
+  @include atom-var {
     @include atom(animation, transition) {
       $group: $atom;
 
