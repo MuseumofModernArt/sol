@@ -8,6 +8,7 @@ fi
 git checkout master
 git checkout --detach
 yarn build
+git add -f dist/*
 git commit -m $1
 git tag v$1
 git push --tags
