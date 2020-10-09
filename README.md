@@ -15,7 +15,7 @@ In `moma-go`, run `yarn link moma-style`. This creates a [symlink](https://class
 
 # Releases
 
-To create a release, merge all PRs that will be part of it into `master.
+To create a release, merge all PRs that will be part of it into `master`.
 
 Then with `master` checked out, run `yarn release 1.0.0`, replacing 1.0.0 with the release version number.
 
