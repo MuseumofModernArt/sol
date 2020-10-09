@@ -22,7 +22,8 @@
     "build-dev": "yarn run build-sass-dev && yarn run build-webpack-dev",
     "watch-sass": "sass --watch --poll src/stylesheets/atoms.scss:dist/atoms.css",
     "watch-webpack": "webpack --progress --watch --config webpack.config.js --mode development",
-    "watch": "yarn watch-sass & yarn watch-webpack"
+    "watch": "yarn watch-sass & yarn watch-webpack",
+    "release": "./bin/release.sh"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
