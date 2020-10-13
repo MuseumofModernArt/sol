@@ -12,6 +12,8 @@ git checkout master
 git checkout --detach
 yarn build
 git add -f dist/*
+yarn version --no-git-tag-version --no-commit-hooks --new-version $1
+git add package.json
 git commit -m $1
 git tag v$1
 git push --tags
