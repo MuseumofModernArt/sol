@@ -255,7 +255,7 @@
             $variant-modifier: #{$variant}- !global; // With the hyphen.
           }
 
-          #{$variant-modifier}gap: var(#{__css-var(first-selector(&))}); // Allow for inlining.
+          #{$variant-modifier}gap: var(#{__css-var(&)}); // Allow for inlining.
 
           @include variant(page) {
             @include variant-count($spacing-count--upper, $halves: true) {
@@ -376,7 +376,7 @@
 
 
     @include atom(transform) {
-      transform: var(#{__css-var(first-selector(&))}); // Allow for inlining.
+      transform: var(#{__css-var(&)}); // Allow for inlining.
     }
 
 
@@ -530,7 +530,7 @@
             $variant-modifier: -#{$variant} !global; // With the hyphen.
           }
 
-          #{$atom}#{$variant-modifier}: var(#{__css-var(first-selector(&))}); // Allow for inlining.
+          #{$atom}#{$variant-modifier}: var(#{__css-var(&)}); // Allow for inlining.
 
           @include variant(page) {
             @include variant-count($spacing-count--lower, $spacing-count--upper, $halves: true) {

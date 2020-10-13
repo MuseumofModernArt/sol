@@ -83,14 +83,14 @@ $breakpoint-delimiter: #{$atom-delimiter};
 
 @mixin atom($atoms...) {
   @each $atom in $atoms {
-    $atom-parent:   first-selector(&) !global;
+    $atom-parent:   strip-selector(first-selector(&)) !global;
     $atom:          #{'' + $atom}     !global; // This concatenation is to clear SCSS compile warnings over certain names (like colors).
 
-    $atom-selector: ".#{$atom-breakpoint}#{strip-selector($atom-parent)}#{$atom-delimiter}#{$atom}";
+    $atom-selector: ".#{$atom-breakpoint}#{$atom-parent}#{$atom-delimiter}#{$atom}";
 
     // Only insert the breakpoint once.
     @if str-index(#{$atom-parent}, $breakpoint-prefix) {
-      $atom-selector: "#{$atom-parent}#{$atom-delimiter}#{$atom}";
+      $atom-selector: ".#{$atom-parent}#{$atom-delimiter}#{$atom}";
     }
 
     @at-root {

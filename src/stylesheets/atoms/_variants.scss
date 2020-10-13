@@ -1,6 +1,7 @@
 @function __css-var($selector) {
   $delimiters: #{$breakpoint-delimiter}, #{$variant-delimiter}, #{$atom-delimiter}, #{$atom-var-prefix};
 
+  $selector: first-selector($selector);                                 // Safe it for placeholder pairs.
   $selector: strip-selector($selector);                                 // Toss class selector (period).
   $selector: str-replace($selector, #{$breakpoint-prefix}, "");         // Nix breakpoint prefix.
   $selector: str-replace-multiple($selector, #{$variant-decimal}, "-"); // With decimal breaks/values, use a single hyphen.
@@ -191,7 +192,6 @@
 
 
 @mixin variant-percentages($percentages...) {
-  $selector:         &;
   $selector-stem:    first-selector(&);
   $variant-original: $variant; // Store the original variant.
 

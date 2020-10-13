@@ -1,3 +1,4 @@
+// TODO Move this to inline/template use.
 @keyframes fade-in-out {
   0%   { opacity: 0; }
   13%  { opacity: 1; }
@@ -11,56 +12,42 @@
   @include atom-var {
     @include atom(animation, transition) {
       @include variant(duration, delay) {
-        @include variant-timings {
-          --#{$atom}--#{$variant}: #{$variant-timing};
-        }
+        @include variant-timings;
       }
 
       @include variant(curve) {
-        @include variant-easings {
-          --#{$atom}--#{$variant}: #{$variant-easing};
-        }
+        @include variant-easings;
       }
     }
 
     @include atom(animation) {
       @include variant(fade-in-out) {
-        --animation--name: #{$variant};
+        #{__css-var($variant-parent)}: #{$variant};
       }
     }
 
     @include atom(transition) {
-      @include variant(backdrop-filter, backdrop-filter, bottom, left, max-height, max-width, opacity, right, top, transform, visibility) {
-        $attribute: $variant;
-
+      @include variant(backdrop-filter, bottom, left, max-height, max-width, opacity, right, top, transform, visibility) {
         @include variant(duration, delay) {
-          $property: $variant;
-
-          @include variant-timings {
-            --transition--#{$attribute}--#{$property}: #{$variant-timing};
-          }
+          @include variant-timings;
         }
 
         @include variant(curve) {
-          $property: $variant;
-
-          @include variant-easings {
-            --transition--#{$attribute}--#{$property}: #{$variant-easing};
-          }
+          @include variant-easings;
         }
       }
     }
   }
 
   @include atom(animation) {
-    animation-name:             var(--animation--name);
-    animation-delay:            var(--animation--delay, 0ms);
-    animation-duration:         var(--animation--duration, 0ms);
-    animation-timing-function:  var(--animation--curve, linear);
+    animation-name:             var(#{__css-var(&)});
+    animation-delay:            var(#{__css-var(&)}--delay, 0ms);
+    animation-duration:         var(#{__css-var(&)}--duration, 0ms);
+    animation-timing-function:  var(#{__css-var(&)}--curve, linear);
 
 
     @include variant(paused, running) {
-      animation-play-state:     #{$variant};
+      animation-play-state: #{$variant};
     }
   }
 
@@ -77,41 +64,41 @@
                                 transform,
                                 visibility
                                 ;
-    transition-delay:           var(--transition--backdrop-filter--delay, var(--transition--delay, 0ms)),
-                                var(--transition--backdrop-filter--delay, var(--transition--delay, 0ms)),
-                                var(--transition--bottom--delay,          var(--transition--delay, 0ms)),
-                                var(--transition--left--delay,            var(--transition--delay, 0ms)),
-                                var(--transition--max-height--delay,      var(--transition--delay, 0ms)),
-                                var(--transition--max-width--delay,       var(--transition--delay, 0ms)),
-                                var(--transition--opacity--delay,         var(--transition--delay, 0ms)),
-                                var(--transition--right--delay,           var(--transition--delay, 0ms)),
-                                var(--transition--top--delay,             var(--transition--delay, 0ms)),
-                                var(--transition--transform--delay,       var(--transition--delay, 0ms)),
-                                var(--transition--visibility--delay,      var(--transition--delay, 0ms))
+    transition-delay:           var(#{__css-var(&)}--backdrop-filter--delay, var(#{__css-var(&)}--delay, 0ms)),
+                                var(#{__css-var(&)}--backdrop-filter--delay, var(#{__css-var(&)}--delay, 0ms)),
+                                var(#{__css-var(&)}--bottom--delay,          var(#{__css-var(&)}--delay, 0ms)),
+                                var(#{__css-var(&)}--left--delay,            var(#{__css-var(&)}--delay, 0ms)),
+                                var(#{__css-var(&)}--max-height--delay,      var(#{__css-var(&)}--delay, 0ms)),
+                                var(#{__css-var(&)}--max-width--delay,       var(#{__css-var(&)}--delay, 0ms)),
+                                var(#{__css-var(&)}--opacity--delay,         var(#{__css-var(&)}--delay, 0ms)),
+                                var(#{__css-var(&)}--right--delay,           var(#{__css-var(&)}--delay, 0ms)),
+                                var(#{__css-var(&)}--top--delay,             var(#{__css-var(&)}--delay, 0ms)),
+                                var(#{__css-var(&)}--transform--delay,       var(#{__css-var(&)}--delay, 0ms)),
+                                var(#{__css-var(&)}--visibility--delay,      var(#{__css-var(&)}--delay, 0ms))
                                 ;
-    transition-duration:        var(--transition--backdrop-filter--duration, var(--transition--duration, 0ms)),
-                                var(--transition--backdrop-filter--duration, var(--transition--duration, 0ms)),
-                                var(--transition--bottom--duration,          var(--transition--duration, 0ms)),
-                                var(--transition--left--duration,            var(--transition--duration, 0ms)),
-                                var(--transition--max-height--duration,      var(--transition--duration, 0ms)),
-                                var(--transition--max-width--duration,       var(--transition--duration, 0ms)),
-                                var(--transition--opacity--duration,         var(--transition--duration, 0ms)),
-                                var(--transition--right--duration,           var(--transition--duration, 0ms)),
-                                var(--transition--top--duration,             var(--transition--duration, 0ms)),
-                                var(--transition--transform--duration,       var(--transition--duration, 0ms)),
-                                var(--transition--visibility--duration,      var(--transition--duration, 0ms))
+    transition-duration:        var(#{__css-var(&)}--backdrop-filter--duration, var(#{__css-var(&)}--duration, 0ms)),
+                                var(#{__css-var(&)}--backdrop-filter--duration, var(#{__css-var(&)}--duration, 0ms)),
+                                var(#{__css-var(&)}--bottom--duration,          var(#{__css-var(&)}--duration, 0ms)),
+                                var(#{__css-var(&)}--left--duration,            var(#{__css-var(&)}--duration, 0ms)),
+                                var(#{__css-var(&)}--max-height--duration,      var(#{__css-var(&)}--duration, 0ms)),
+                                var(#{__css-var(&)}--max-width--duration,       var(#{__css-var(&)}--duration, 0ms)),
+                                var(#{__css-var(&)}--opacity--duration,         var(#{__css-var(&)}--duration, 0ms)),
+                                var(#{__css-var(&)}--right--duration,           var(#{__css-var(&)}--duration, 0ms)),
+                                var(#{__css-var(&)}--top--duration,             var(#{__css-var(&)}--duration, 0ms)),
+                                var(#{__css-var(&)}--transform--duration,       var(#{__css-var(&)}--duration, 0ms)),
+                                var(#{__css-var(&)}--visibility--duration,      var(#{__css-var(&)}--duration, 0ms))
                                 ;
-    transition-timing-function: var(--transition--backdrop-filter--curve, var(--transition--curve, linear)),
-                                var(--transition--backdrop-filter--curve, var(--transition--curve, linear)),
-                                var(--transition--bottom--curve,          var(--transition--curve, linear)),
-                                var(--transition--left--curve,            var(--transition--curve, linear)),
-                                var(--transition--max-height--curve,      var(--transition--curve, linear)),
-                                var(--transition--max-width--curve,       var(--transition--curve, linear)),
-                                var(--transition--opacity--curve,         var(--transition--curve, linear)),
-                                var(--transition--right--curve,           var(--transition--curve, linear)),
-                                var(--transition--top--curve,             var(--transition--curve, linear)),
-                                var(--transition--transform--curve,       var(--transition--curve, linear)),
-                                var(--transition--visibility--curve,      var(--transition--curve, linear))
+    transition-timing-function: var(#{__css-var(&)}--backdrop-filter--curve, var(#{__css-var(&)}--curve, linear)),
+                                var(#{__css-var(&)}--backdrop-filter--curve, var(#{__css-var(&)}--curve, linear)),
+                                var(#{__css-var(&)}--bottom--curve,          var(#{__css-var(&)}--curve, linear)),
+                                var(#{__css-var(&)}--left--curve,            var(#{__css-var(&)}--curve, linear)),
+                                var(#{__css-var(&)}--max-height--curve,      var(#{__css-var(&)}--curve, linear)),
+                                var(#{__css-var(&)}--max-width--curve,       var(#{__css-var(&)}--curve, linear)),
+                                var(#{__css-var(&)}--opacity--curve,         var(#{__css-var(&)}--curve, linear)),
+                                var(#{__css-var(&)}--right--curve,           var(#{__css-var(&)}--curve, linear)),
+                                var(#{__css-var(&)}--top--curve,             var(#{__css-var(&)}--curve, linear)),
+                                var(#{__css-var(&)}--transform--curve,       var(#{__css-var(&)}--curve, linear)),
+                                var(#{__css-var(&)}--visibility--curve,      var(#{__css-var(&)}--curve, linear))
                                 ;
   }
 }
