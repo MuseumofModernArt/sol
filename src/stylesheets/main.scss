@@ -1,12 +1,12 @@
-@import 'shared/reset';
-@import 'shared/base';
-@import 'shared/fonts';
-@import 'shared/breakpoints';
-@import 'shared/browsers';
+@import 'base/reset';
+@import 'base/base';
+@import 'base/fonts';
+@import 'base/breakpoints';
+@import 'base/browsers';
 
 // Mixins.
-@import 'atoms/atoms';
-@import 'atoms/variants';
+@import 'shared/atoms';
+@import 'shared/variants';
 
 // Basic vocabulary.
 @import 'atoms/layout';

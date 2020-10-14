@@ -8,14 +8,14 @@ $font-weight--bold:        900;
 
 
 body {
-  @extend %font-family;
-
   -moz-osx-font-smoothing:  grayscale;
   -webkit-font-smoothing:   antialiased;
   font-family:              'MoMA Sans', Helvetica, sans-serif; // Fallback for browsers that don’t understand the CSS var, below.
   font-kerning:             normal;
   font-weight:              $font-weight--regular;
   text-rendering:           optimizeLegibility;
+  
+  @extend %font-family;
 }
 
 
