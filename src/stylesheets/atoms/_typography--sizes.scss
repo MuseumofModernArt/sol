@@ -1,11 +1,11 @@
 // Variable cascade control.
-@mixin type-size($value) {
+@mixin type-size($value, $numeric: null) {
   --typography--size: #{$value};
 
   // Only for smaller size variables. (All these shenanigans are just for more-efficient compiled CSS.)
   @if $value >= 16 and $value <= 24 {
 
-    @if type-of($variant) == string { // Named sizes have their own/internal breakpoints.
+    @if not $numeric { // Named sizes have their own/internal breakpoints.
       @if not $breakpoint--current { // Match to mobile.
         @extend %typography--svg--aliasing;
         @extend %typography--svg--aliasing--high;
@@ -39,7 +39,7 @@
 .typography {
   @include atom-var {
     @include atom(size) {
-      // TODO This should be a map with mobile/desktop sizes.
+      // TODO This should be a map with mobile/desktop sizes, so it can be looped through.
 
       $small:                      14; // Pulled in from “legacy” type doc.
       $small--desktop:             16;
@@ -198,10 +198,12 @@
         // Allow for per-breakpoint inline overrides.
         --typography--size--override: var(#{css-var(#{$atom-breakpoint}--typography--size)});
 
-        // $sizes: 12, 14, 16, 18, 20, 22, 24, 30, 32, 36, 40, 48, 60, 80, 120;
+        $sizes: 12, 14, 16, 18, 20, 22, 24, 30, 32, 36, 40, 48, 60, 80, 120;
 
-        @include variant(12, 14, 16, 18, 20, 22, 24, 30, 32, 36, 40, 48, 60, 80, 120) {
-          @include type-size($variant);
+        @each $size in $sizes {
+          @include variant(#{$size}pt) {
+            @include type-size($size, $numeric: true);
+          }
         }
       }
     }
