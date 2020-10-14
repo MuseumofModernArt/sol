@@ -262,7 +262,7 @@
       margin-right:       calc(-1 * var(--link-enlargement) / 2);
 
       .show-focus &:focus {
-        @extend #{__placeholder("typography/underline:disable")}; // Disables our “underlines” when keyboard-focused.
+        @extend #{placeholder("typography/underline:disable")}; // Disables our “underlines” when keyboard-focused.
       }
     }
   }

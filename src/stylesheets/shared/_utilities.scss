@@ -109,3 +109,109 @@
     @content;
   }
 }
+
+
+
+@function class($selector) {
+  // This one makes a compiled class by escaping. (Used to extend base elements, like typography, in Acme.)
+  $reserved:
+    str-replace(#{$breakpoint-prefix}, '\\'),
+    str-replace(#{$breakpoint-delimiter}, '\\'),
+    str-replace(#{$variant-delimiter}, '\\'),
+    str-replace(#{$atom-delimiter}, '\\'),
+    str-replace(#{$atom-var-prefix}, '\\'),
+    '.',
+    '(',
+    ')',
+    '%'
+  ;
+
+  @return ".#{str-replace-multiple(#{$selector}, $reserved, '\\', true)}";
+}
+
+@function placeholder($selector) {
+  // Our un-escaped delimiters and CSS syntax.
+  $reserved:
+    str-replace(#{$breakpoint-prefix}, '\\'),
+    str-replace(#{$breakpoint-delimiter}, '\\'),
+    str-replace(#{$variant-delimiter}, '\\'),
+    str-replace(#{$atom-delimiter}, '\\'),
+    str-replace(#{$atom-var-prefix}, '\\'),
+    '.',
+    '(',
+    ')',
+    '%'
+  ;
+
+  // Toss the first "." and un-escape the rest.
+  $selector: str-replace(strip-selector(#{$selector}), '\\');
+
+  @return "%#{str-replace-multiple(#{$selector}, $reserved, '--')}";
+}
+
+@function class-placeholder-list($selectors) {
+  $classes:      ();
+  $placeholders: ();
+  $selectors:    split-chained-selector(#{$selectors});
+
+  // Split out classes.
+  @each $selector in $selectors {
+    @if str-index(#{$selector}, ".") == 1 {
+      $classes: append($classes, $selector, $separator: comma);
+    }
+    @else if str-index(#{$selector}, "%") == 1 {
+      $placeholders: append($placeholders, $selector, $separator: comma);
+    }
+  }
+
+  @if length($classes) > 0 {
+    // Make classes into placeholders.
+    @each $class in $classes {
+      $placeholder: placeholder(first-selector($class));
+
+      // If there aren’t any placeholders, or there isn’t already this one.
+      @if length($placeholders) == 0 or str-index(#{$placeholders}, $placeholder) == null {
+        $placeholders: append($placeholders, $placeholder, $separator: comma);
+      }
+    }
+
+    // Add them back to the selectors.
+    $selectors: append($selectors, $placeholders, $separator: comma);
+  }
+
+  @return #{$selectors};
+}
+
+
+
+@function css-var($selector) {
+  $delimiters: #{$breakpoint-delimiter}, #{$variant-delimiter}, #{$atom-delimiter}, #{$atom-var-prefix};
+
+  $selector: first-selector($selector);                                 // Safe it for placeholder pairs.
+  $selector: strip-selector($selector);                                 // Toss class selector (period).
+  $selector: str-replace($selector, #{$breakpoint-prefix}, "");         // Nix breakpoint prefix.
+  $selector: str-replace-multiple($selector, #{$variant-decimal}, "-"); // With decimal breaks/values, use a single hyphen.
+  $selector: str-replace-multiple($selector, $delimiters, "--");        // Double hyphens for rest.
+  $selector: str-replace-multiple($selector, "----", "--");             // But not four, that’d be crazy.
+
+  @if str-index(#{$selector}, "--") == 1 {
+    @return #{$selector};
+  }
+  @else {
+    @return --#{$selector};
+  }
+}
+
+@function __fallback-list($list, $append: null) {
+  $fallback: nth($list, 1);
+
+  @each $item in $list {
+    $index: index($list, $item);
+
+    @if $index > 1 {
+      $fallback: var(#{css-var($item)}, #{$fallback});
+    }
+  }
+
+  @return $fallback;
+}

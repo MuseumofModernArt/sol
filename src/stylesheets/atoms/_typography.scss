@@ -213,8 +213,8 @@
   }
 
   @at-root {
-    #{__selector-list(&)} { // So these basic calculations can be extended.
-      @extend #{__placeholder("typography/face")};
+    #{class-placeholder-list(&)} { // So these basic calculations can be extended.
+      @extend #{placeholder("typography/face")};
 
       --typography--size--rendered:     var(--typography--size--override, var(--typography--size)) * var(--rem-conversion); // Render the actual value.
 
@@ -265,8 +265,8 @@
 
   // Classless links inside typography elements (usually from rendered markdown). On by default.
   a {
-    @extend #{__placeholder("link/focus:inline")};
-    @extend #{__placeholder("typography/underline")};
+    @extend #{placeholder("link/focus:inline")};
+    @extend #{placeholder("typography/underline")};
   }
 
   // Targeting for sequential type elements.
@@ -508,9 +508,9 @@
     // Truncation.
     @include atom(truncate) {
       @include variant-count(1, 6) {
-        @extend #{__placeholder("#{$atom-breakpoint}layout/height:max:baseline:clear")};
+        @extend #{placeholder("#{$atom-breakpoint}layout/height:max:baseline:clear")};
 
-        #{__css-var(#{$atom-breakpoint}--layout--height--max--baseline)}: #{$variant-count}; // Constrain the height.
+        #{css-var(#{$atom-breakpoint}--layout--height--max--baseline)}: #{$variant-count}; // Constrain the height.
 
         --typography--shoulder-extension--bottom:  calc(var(--typography--descenders) * 1em);
         --typography--shoulder-extension--top:     calc(var(--typography--ascenders) *  1em);

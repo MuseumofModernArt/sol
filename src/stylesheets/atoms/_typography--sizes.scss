@@ -132,7 +132,7 @@
     @include atom-var {
       @include atom(size) {
         // Allow for per-breakpoint inline overrides.
-        --typography--size--override: var(#{__css-var(#{$atom-breakpoint}--typography--size)});
+        --typography--size--override: var(#{css-var(#{$atom-breakpoint}--typography--size)});
 
         @include variant(12, 14, 16, 18, 20, 22, 24, 30, 32, 36, 40, 48, 60, 80, 120) {
           @include type-variable(--typography--size, $variant);
