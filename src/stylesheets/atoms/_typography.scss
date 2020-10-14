@@ -271,7 +271,7 @@
 
   // Targeting for sequential type elements.
   & + & {
-    @extend %__typography--baseline;
+    @extend %typography--baseline;
 
     margin-top: var(--layout--typography--leading-shoulder); // Equivalent to .layout/margin:top:baseline:0.
   }

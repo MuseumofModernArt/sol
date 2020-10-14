@@ -1,4 +1,3 @@
-// Pulled in from “legacy” layout doc.
 :root {
   $page-spacing:                     2.4rem;
   $page-spacing--desktop:            2 * $page-spacing;
@@ -49,12 +48,12 @@
 
 
 
-%__margins-auto {
+%layout--margins-auto {
   margin-left:  auto;
   margin-right: auto;
 }
 
-%__page-width {
+%layout--page-width {
   max-width: var(--page-width--maximum);
   width:     var(--page-width--visible);
 }
@@ -75,8 +74,8 @@
 
 
   @include atom(wrapper) {
-    @extend %__margins-auto;
-    @extend %__page-width;
+    @extend %layout--margins-auto;
+    @extend %layout--page-width;
 
     padding-left:  var(--page-spacing--fixed);
     padding-right: var(--page-spacing--fixed);
@@ -88,12 +87,12 @@
     }
 
     @include variant(bleed) {
-      @extend %__margins-auto;
-      @extend %__page-width;
+      @extend %layout--margins-auto;
+      @extend %layout--page-width;
     }
 
     @include variant(rights-maximum) {
-      @extend %__margins-auto;
+      @extend %layout--margins-auto;
 
       max-width: var(--rights-maximum);
       width:     100%;
@@ -103,28 +102,28 @@
 
 
   @include atom-breakpoints {
-    %__#{$atom-breakpoint}page-spacing--reset {
+    %#{$atom-breakpoint}page-spacing--reset {
       --page-spacing--override: initial;
     }
 
-    %__#{$atom-breakpoint}typography--previous {
+    %#{$atom-breakpoint}typography--previous {
       --layout--typography--size:    var(--typography--size--previous);
       --layout--typography--leading: var(--typography--leading--previous);
     }
 
-    %__#{$atom-breakpoint}typography--reset {
+    %#{$atom-breakpoint}typography--reset {
       --layout--typography--size:    initial;
       --layout--typography--leading: initial;
     }
 
     // Size for layout.
-    %__#{$atom-breakpoint}typography--size {
+    %#{$atom-breakpoint}typography--size {
       --layout--typography--font-size: var(--layout--typography--size, var(--typography--size)) * var(--rem-conversion); // Separate internal calculations for spacing.
     }
 
     // Maths for sequential baselines.
-    %__#{$atom-breakpoint}typography--baseline {
-      @extend %__#{$atom-breakpoint}typography--size;
+    %#{$atom-breakpoint}typography--baseline {
+      @extend %#{$atom-breakpoint}typography--size;
 
       --layout--typography--line-height:      var(--layout--typography--leading, var(--typography--leading)) * var(--layout--typography--font-size); // Same.
       --layout--typography--leading--between: var(--layout--typography--font-size) * (var(--layout--typography--leading, var(--typography--leading)) - 1); // Same.
@@ -134,8 +133,8 @@
     }
 
     // Cap-heights.
-    %__#{$atom-breakpoint}typography--cap {
-      @extend %__#{$atom-breakpoint}typography--size;
+    %#{$atom-breakpoint}typography--cap {
+      @extend %#{$atom-breakpoint}typography--size;
 
       --layout--typography--cap-height: calc(var(--typography--cap-height) * var(--layout--typography--font-size)); // Calc a cap-height.
     }
@@ -148,7 +147,7 @@
           --page-spacing--override: var(--page-spacing--fixed);
 
           > * { // Reset for descendants.
-            @extend %__#{$atom-breakpoint}page-spacing--reset;
+            @extend %#{$atom-breakpoint}page-spacing--reset;
           }
         }
 
@@ -156,26 +155,26 @@
           --page-spacing--override: var(--page-spacing);
 
           > * { // Reset for descendants.
-            @extend %__#{$atom-breakpoint}page-spacing--reset;
+            @extend %#{$atom-breakpoint}page-spacing--reset;
           }
         }
 
         @include variant(clear) {
-          @extend %__#{$atom-breakpoint}page-spacing--reset;
+          @extend %#{$atom-breakpoint}page-spacing--reset;
         }
       }
 
       @include atom(baseline, cap) {
         @include variant(previous) {
-          @extend %__#{$atom-breakpoint}typography--previous;
+          @extend %#{$atom-breakpoint}typography--previous;
 
           > * { // Reset for descendants.
-            @extend %__#{$atom-breakpoint}typography--reset;
+            @extend %#{$atom-breakpoint}typography--reset;
           }
         }
 
         @include variant(current) {
-          @extend %__#{$atom-breakpoint}typography--reset;
+          @extend %#{$atom-breakpoint}typography--reset;
         }
 
         @if $atom == "baseline" {
@@ -274,7 +273,7 @@
 
           @include variant(baseline) {
             @include variant-count(0, $spacing-count--upper) {
-              @extend %__#{$atom-breakpoint}typography--baseline;
+              @extend %#{$atom-breakpoint}typography--baseline;
 
               // Add the leading/shoulder.
               #{$variant-modifier}gap: calc((var(--layout--typography--line-height) * #{$variant-count}) + var(--layout--typography--leading-shoulder--override, var(--layout--typography--leading-shoulder)));
@@ -283,7 +282,7 @@
 
           @include variant(cap) {
             @include variant-count($spacing-count--upper, $halves: true) {
-              @extend %__#{$atom-breakpoint}typography--cap;
+              @extend %#{$atom-breakpoint}typography--cap;
 
               #{$variant-modifier}gap: calc(var(--layout--typography--cap-height) * #{$variant-count});
             }
@@ -493,7 +492,7 @@
             }
 
             @include variant-count(0, $spacing-count--upper, $halves: $halves) {
-              @extend %__#{$atom-breakpoint}typography--baseline;
+              @extend %#{$atom-breakpoint}typography--baseline;
 
               // Subtract a shoulder.
               #{$variant-modifier}#{$atom}: calc((var(--layout--typography--line-height) * #{$variant-count}) - var(--layout--typography--leading-shoulder--override, var(--layout--typography--leading-shoulder)));
@@ -502,7 +501,7 @@
 
           @include variant(cap) {
             @include variant-count($spacing-count--upper, $halves: true) {
-              @extend %__#{$atom-breakpoint}typography--cap;
+              @extend %#{$atom-breakpoint}typography--cap;
 
               #{$variant-modifier}#{$atom}: calc(var(--layout--typography--cap-height) * #{$variant-count});
             }
@@ -555,7 +554,7 @@
             }
 
             @include variant-count($spacing-count--lower, $spacing-count--upper, $sign: true) {
-              @extend %__#{$atom-breakpoint}typography--baseline;
+              @extend %#{$atom-breakpoint}typography--baseline;
 
               // Add the leading/shoulder.
               #{$atom}#{$variant-modifier}: calc((var(--layout--typography--line-height) * #{$variant-count}) + (var(--layout--typography--leading-shoulder--override, var(--layout--typography--leading-shoulder)) * #{$variant-sign}));
@@ -564,7 +563,7 @@
 
           @include variant(cap) {
             @include variant-count($spacing-count--lower, $spacing-count--upper, $halves: true) { // TODO: tidy up the halves later
-              @extend %__#{$atom-breakpoint}typography--cap;
+              @extend %#{$atom-breakpoint}typography--cap;
 
               #{$atom}#{$variant-modifier}: calc(var(--layout--typography--cap-height) * #{$variant-count});
             }
