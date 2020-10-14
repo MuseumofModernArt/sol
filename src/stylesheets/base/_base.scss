@@ -1,29 +1,3 @@
-$default-font-size--preferred: 10px;
-$default-font-size--browser:   16px;
-
-
-
-// Our base HTML `font-size` is set to 62.5%, so that `1rem` = `10px`. Easy maths.
-html {
-  @extend %webkit-type-size-adjust; // iOS Safari inflates on device rotation.
-
-  font-size: percentage($default-font-size--preferred / $default-font-size--browser);
-
-  * {
-    @extend %webkit-type-size-adjust; // iOS Chrome follows system-wide “Text Size”.
-  }
-}
-
-%webkit-type-size-adjust {
-  -webkit-text-size-adjust: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-
-
 @function str-replace($string, $search, $replace: '') {
   $index: str-index($string, $search);
 
