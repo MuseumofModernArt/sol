@@ -1,5 +1,3 @@
-$alphas: 0, 3, 7, 10, 13, 20, 27, 33, 40, 47, 50, 80, 93, 96, 100; // The ones we’ve used in the past, for now.
-
 $colors: (
   black: (hex: #000000, dark-background: true),
   white: (hex: #ffffff),
@@ -35,35 +33,6 @@ $colors: (
     12: (hex: #753bbd),
   ),
 );
-
-
-
-// TODO incorporate the alpha extends into this mixin, without repeating?
-@mixin __variant-alphas($background: null) {
-  $selector-stem:      first-selector(&);
-  $selector-remainder: remove-first-selector(&);
-  $selectors:          &;
-
-  @each $alpha in $alphas {
-    @include variant(#{$alpha}\%) {
-      @if $background {
-        @extend %color--alpha--background--#{$alpha};
-      }
-      @else {
-        @extend %color--alpha--#{$alpha};
-      }
-
-      $selector:  #{$selector-stem}#{$variant-delimiter}#{$alpha}\%#{$selector-remainder};
-      $selectors: append($selectors, $selector, $separator: comma);
-    }
-  }
-
-  @at-root {
-    #{class-placeholder-list($selectors)} {
-      @content;
-    }
-  }
-}
 
 
 
@@ -173,19 +142,6 @@ $colors: (
 
 
 
-// Alpha extends.
-@each $alpha in $alphas {
-  %color--alpha--#{$alpha} {
-    --color--alpha: #{$alpha / 100};
-  }
-
-  %color--alpha--background--#{$alpha} {
-    --color--background--alpha: #{$alpha / 100};
-  }
-}
-
-
-
 .color {
   @include atom-var {
     $color-variables: ();
@@ -203,7 +159,7 @@ $colors: (
 
         // Map to the color variable.
         @include atom($item) {
-          @include __variant-alphas {
+          @include variant-alphas {
             @if $item == red {
               @extend %color--high-contrast--accent;
             }
@@ -218,7 +174,7 @@ $colors: (
         // Map to the background color variable.
         @include atom(background) {
           @include variant($item) {
-            @include __variant-alphas($background: true) {
+            @include variant-alphas($background: true) {
               @if $item == red {
                 @extend %color--high-contrast--accent--background;
                 @extend %color--high-contrast--reverse;
@@ -254,7 +210,7 @@ $colors: (
 
           @include atom($item) {
             @include variant($grouped-item) {
-              @include __variant-alphas {
+              @include variant-alphas {
                 @if $item == brand {
                   @extend %color--high-contrast--accent;
                 }
@@ -270,7 +226,7 @@ $colors: (
           @include atom(background) {
             @include variant($item) {
               @include variant($grouped-item) {
-                @include __variant-alphas($background: true) {
+                @include variant-alphas($background: true) {
                   @if $item == brand {
                     @extend %color--high-contrast--accent--background;
                     @extend %color--high-contrast--reverse;
@@ -309,7 +265,7 @@ $colors: (
 
     // Separate alpha atoms.
     @include atom(alpha) {
-      @include __variant-alphas {
+      @include variant-alphas {
         @extend %color--high-contrast;
 
         --color: rgba(var(--color--rgb), var(--color--alpha, 1));
@@ -383,7 +339,7 @@ $colors: (
     // Background versions.
     @include atom(background) {
       @include variant(alpha) {
-        @include __variant-alphas($background: true) {
+        @include variant-alphas($background: true) {
           @extend %color--high-contrast--background;
           @extend %color--high-contrast;
 

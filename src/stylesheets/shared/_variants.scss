@@ -290,3 +290,52 @@
 
   $variant: $variant-original !global; // Restore original variant.
 }
+
+
+
+$variant-alpha--initial: true !default;
+
+@mixin variant-alphas($background: null) {
+  $selector-stem:      first-selector(&);
+  $selector-remainder: remove-first-selector(&);
+  $selectors:          &;
+
+  $alphas: 0, 3, 7, 10, 13, 20, 27, 33, 40, 47, 50, 80, 93, 96, 100; // The ones we’ve used in the past, for now.
+
+  @if $variant-alpha--initial {
+    @at-root {
+      // Alpha extends.
+      @each $alpha in $alphas {
+        %color--alpha--#{$alpha} {
+          --color--alpha: #{$alpha / 100};
+        }
+
+        %color--alpha--background--#{$alpha} {
+          --color--background--alpha: #{$alpha / 100};
+        }
+      }
+    }
+
+    $variant-alpha--initial: false !global;
+  }
+
+  @each $alpha in $alphas {
+    @include variant(#{$alpha}\%) {
+      @if $background {
+        @extend %color--alpha--background--#{$alpha};
+      }
+      @else {
+        @extend %color--alpha--#{$alpha};
+      }
+
+      $selector:  #{$selector-stem}#{$variant-delimiter}#{$alpha}\%#{$selector-remainder};
+      $selectors: append($selectors, $selector, $separator: comma);
+    }
+  }
+
+  @at-root {
+    #{class-placeholder-list($selectors)} {
+      @content;
+    }
+  }
+}
