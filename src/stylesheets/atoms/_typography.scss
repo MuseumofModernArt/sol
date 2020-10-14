@@ -20,44 +20,6 @@
 
 
 
-// Variable cascade control.
-@mixin type-variable($variable, $value) {
-  #{$variable}: $value;
-
-  // Only for smaller size variables. (All these shenanigans are just for more-efficient compiled CSS.)
-  @if $variable == "--typography--size" and $value >= 16 and $value <= 24 {
-
-    @if type-of($variant) == string { // Named sizes have their own/internal breakpoints.
-      @if not $breakpoint--current { // Match to mobile.
-        @extend %typography--svg--aliasing;
-        @extend %typography--svg--aliasing--high;
-      }
-      @else { // Match to desktop.
-        @extend %#{$breakpoint-prefix}768#{$breakpoint-delimiter}typography--svg--aliasing;
-      }
-    }
-    @else {
-      @if not $breakpoint--current { // First call, outside media query.
-        @include atom-breakpoints {
-          .#{$atom-breakpoint}#{strip-selector(&)} {
-            @extend %#{$atom-breakpoint}typography--svg--aliasing; // Match to media-query-specific extends, below.
-
-            @if not $breakpoint--desktop {
-              @extend %#{$atom-breakpoint}typography--svg--aliasing--high; // Even higher densities for mobile.
-            }
-          }
-        }
-      }
-    }
-  }
-
-  + * { // Makes value available to succeeding elements.
-    #{$variable}--previous: $value;
-  }
-}
-
-
-
 // Weights.
 %typography--regular {
   --typography--bullet:             0.280; // See below.
@@ -91,13 +53,17 @@
 
 // Baselines.
 %typography--body {
-  @include type-variable(--typography--leading, 4/3);
+  --typography--leading: #{abs(4/3)}; // The abs is for SCSS to render as a decimal.
 
   --typography--descenders: 0.231; // Lowest descender from the baseline: Ģ (“latin capital letter G with cedilla”).
 
-  --typography--scale--minor: #{abs(8/9)}; // Smaller text on same baseline. (The abs is for SCSS to render as a decimal.)
+  --typography--scale--minor: #{abs(8/9)}; // Smaller text on same baseline.
   --typography--scale--major: #{abs(4/3)}; // Slightly larger.
   --typography--scale--prime: 2;           // Largest.
+
+  + * { // Makes value available to succeeding elements.
+    --typography--leading--previous: #{abs(4/3)};
+  }
 
   @include breakpoint($desktop) {
     --typography--scale--prime: #{abs(8/3)}; // This is the “correct” scale, on desktop.
@@ -480,31 +446,6 @@
 
 
   @include atom-breakpoints {
-    // Icon aliasing tweaks.
-    %#{$atom-breakpoint}typography--svg--aliasing {
-      --typography--icon--translate-x: -0.5px;
-      --typography--icon--translate-y: -0.5px;
-
-      @include retina(2) {
-        --typography--icon--translate-x: -0.25px;
-        --typography--icon--translate-y: -0.25px;
-      }
-    }
-
-    %#{$atom-breakpoint}typography--svg--aliasing--high {
-      @include retina(3) {
-        --typography--icon--translate-x: -0.1666667px;
-        --typography--icon--translate-y: -0.1666667px;
-      }
-
-      @include retina(4) {
-        --typography--icon--translate-x: -0.125px;
-        --typography--icon--translate-y: -0.125px;
-      }
-    }
-
-
-
     // Truncation.
     @include atom(truncate) {
       @include variant-count(1, 6) {
@@ -540,7 +481,7 @@
           --typography--scale: var(--typography--scale--#{$variant});
 
           @if $variant == "major" or $variant == "prime" {
-            @extend %#{$atom-breakpoint}scaled-solid;
+            @extend %#{$atom-breakpoint}typography--scaled-solid;
           }
 
           @if $variant == "down" or $variant == "up" {
@@ -557,7 +498,7 @@
         }
 
         @at-root { // Here for ordering/efficiency.
-          %#{$atom-breakpoint}scaled-solid {
+          %#{$atom-breakpoint}typography--scaled-solid {
             --typography--line-height: var(--typography--font-size); // Set solid, at the larger size.
 
             --typography--shift: calc(var(--typography--shoulder--bottom) * (var(--typography--scale) - 1) - var(--typography--leading--remainder)); // Shift to original baseline.

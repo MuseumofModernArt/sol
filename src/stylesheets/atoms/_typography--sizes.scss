@@ -1,7 +1,46 @@
-// Atoms for existing sizes.
+// Variable cascade control.
+@mixin type-variable($variable, $value) {
+  #{$variable}: $value;
+
+  // Only for smaller size variables. (All these shenanigans are just for more-efficient compiled CSS.)
+  @if $variable == "--typography--size" and $value >= 16 and $value <= 24 {
+
+    @if type-of($variant) == string { // Named sizes have their own/internal breakpoints.
+      @if not $breakpoint--current { // Match to mobile.
+        @extend %typography--svg--aliasing;
+        @extend %typography--svg--aliasing--high;
+      }
+      @else { // Match to desktop.
+        @extend %#{$breakpoint-prefix}768#{$breakpoint-delimiter}typography--svg--aliasing;
+      }
+    }
+    @else {
+      @if not $breakpoint--current { // First call, outside media query.
+        @include atom-breakpoints {
+          .#{$atom-breakpoint}#{strip-selector(&)} {
+            @extend %#{$atom-breakpoint}typography--svg--aliasing; // Match to media-query-specific extends, below.
+
+            @if not $breakpoint--desktop {
+              @extend %#{$atom-breakpoint}typography--svg--aliasing--high; // Even higher densities for mobile.
+            }
+          }
+        }
+      }
+    }
+  }
+
+  + * { // Makes value available to succeeding elements.
+    #{$variable}--previous: $value;
+  }
+}
+
+
+
 .typography {
   @include atom-var {
     @include atom(size) {
+      // TODO This should be a map with mobile/desktop sizes.
+
       $small:                      14; // Pulled in from “legacy” type doc.
       $small--desktop:             16;
       $medium:                     16;
@@ -129,10 +168,37 @@
 
   // Discrete sizes available at our breakpoints.
   @include atom-breakpoints {
+    // Icon aliasing tweaks.
+    %#{$atom-breakpoint}typography--svg--aliasing {
+      --typography--icon--translate-x: -0.5px;
+      --typography--icon--translate-y: -0.5px;
+
+      @include retina(2) {
+        --typography--icon--translate-x: -0.25px;
+        --typography--icon--translate-y: -0.25px;
+      }
+    }
+
+    %#{$atom-breakpoint}typography--svg--aliasing--high {
+      @include retina(3) {
+        --typography--icon--translate-x: -0.1666667px;
+        --typography--icon--translate-y: -0.1666667px;
+      }
+
+      @include retina(4) {
+        --typography--icon--translate-x: -0.125px;
+        --typography--icon--translate-y: -0.125px;
+      }
+    }
+
+
+
     @include atom-var {
       @include atom(size) {
         // Allow for per-breakpoint inline overrides.
         --typography--size--override: var(#{css-var(#{$atom-breakpoint}--typography--size)});
+
+        // $sizes: 12, 14, 16, 18, 20, 22, 24, 30, 32, 36, 40, 48, 60, 80, 120;
 
         @include variant(12, 14, 16, 18, 20, 22, 24, 30, 32, 36, 40, 48, 60, 80, 120) {
           @include type-variable(--typography--size, $variant);
