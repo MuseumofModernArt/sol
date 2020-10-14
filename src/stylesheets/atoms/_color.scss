@@ -386,11 +386,11 @@ $colors: (
       --color:      var(--accent-color--on-light);
       --color--rgb: var(--accent-color--on-light--rgb);
 
-      // TODO Unravel this?
-      @include has-dark-background {
-        --color:      var(--accent-color--on-dark);
-        --color--rgb: var(--accent-color--on-dark--rgb);
-      }
+      // TODO Unravel this as part of updating the colors.
+      // @include has-dark-background {
+      //   --color:      var(--accent-color--on-dark);
+      //   --color--rgb: var(--accent-color--on-dark--rgb);
+      // }
     }
 
 

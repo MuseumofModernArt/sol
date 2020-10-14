@@ -40,33 +40,12 @@
     @return $string-list;
 }
 
-@function strip-unit($number) {
-  @if type-of($number) == 'number' and not unitless($number) {
-    @return $number / ($number * 0 + 1);
-  }
 
-  @return $number;
-}
-
-@function px-convert($number) {
-  @return $default-font-size--preferred * strip-unit($number);
-}
 
 @function split-chained-selector($selector) {
   $delimiter: ', ';
 
   @return str-split(#{$selector}, $delimiter);
-}
-
-@function is-compound-selector($selector) {
-  $selector: nth(split-chained-selector($selector), 1);
-
-  @if $selector and length(simple-selectors(#{$selector})) > 1 {
-    @return true;
-  }
-  @else {
-    @return false;
-  }
 }
 
 @function first-selector($selector) {
@@ -83,7 +62,7 @@
 @function remove-first-selector($selector) {
   $selector: nth(split-chained-selector($selector), 1);
 
-  @if is-compound-selector($selector) { // Check for compound selectors.
+  @if $selector and length(simple-selectors(#{$selector})) > 1 { // Check for compound selectors.
     @return str-replace(#{$selector}, first-selector(#{$selector}), ''); // Remove the first one.
   }
   @else {
@@ -98,6 +77,8 @@
 
   @return $selector;
 }
+
+
 
 @function reverse($list) {
    $reversed-list: ();
@@ -116,40 +97,6 @@
 
 
 
-// Inserts a selector (generally for a class) above the parent. Hat tip: https://stackoverflow.com/a/30687813
-@mixin prepend-parent($prepend-selector) {
-  $new-parent-selector-list: ();
-
-  @each $parent-selector in & {
-    $target-selector: nth($parent-selector, -1);
-    $replacement-index: -1;
-    $loop-index: 0;
-    $loop-continue: true;
-
-    // Checking for combinators (>, +, ~) to include them with the target selector.
-    // This is basically for `main-content`, which uses inheritance for markdown formatting.
-    @each $selector in $parent-selector {
-      $loop-index: $loop-index + 1;
-
-      @if $loop-continue and (($selector == '>') or ($selector == '+') or ($selector == '~')) {
-        $loop-continue: false;
-        $replacement-index: $loop-index - 1;
-        $target-selector: nth($parent-selector, ($replacement-index));
-      }
-    }
-
-    $prepended-target-selector: join($prepend-selector, $target-selector);
-    $new-parent-selector: set-nth($parent-selector, $replacement-index, $prepended-target-selector);
-    $new-parent-selector-list: append($new-parent-selector-list, $new-parent-selector, comma);
-  }
-
-  @at-root #{$new-parent-selector-list} {
-    @content;
-  }
-}
-
-
-
 @mixin increase-specificity($level: 1) {
   $increase: "";
 
@@ -161,48 +108,4 @@
   &#{$increase} {
     @content;
   }
-}
-
-
-
-@mixin has-sibling-count($count...) {
-  @each $number in $count {
-    &:first-of-type:nth-last-of-type(#{$number}),
-    &:first-of-type:nth-last-of-type(#{$number}) ~ & {
-      @content;
-    }
-  }
-}
-
-@mixin has-sibling-count--width($count, $width, $variable: null) {
-  @include has-sibling-count($count) {
-    width: $width;
-
-    @if $variable {
-      #{$variable}: $width;
-    }
-  }
-}
-
-@mixin has-ancestor-count($count, $selector) {
-  @each $number in $count {
-    #{$selector}:first-of-type:nth-last-of-type(#{$number}) &,
-    #{$selector}:first-of-type:nth-last-of-type(#{$number}) ~ #{$selector} & {
-      @content;
-    }
-  }
-}
-
-
-
-@mixin has-dark-background {
-  // This inserts our selector right above the element so we can use this in “legacy-scoped” greenfield, which messes up the “&” parent-selector.
-  @include prepend-parent('.has-dark-background') {
-    @content;
-  }
-
-  // // This should be sufficient when we don’t have to deal with R4 scoping.
-  // .has-dark-background & {
-  //   @content;
-  // }
 }
