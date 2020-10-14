@@ -90,7 +90,7 @@
 
 
 
-%typography--nowrap, .nowrap, moma-nowrap, nobr { // Legacy class/element coverage.
+nobr, %typography--nowrap {
   white-space: nowrap;
 }
 
@@ -307,7 +307,7 @@
 
 
   // Wrapping.
-  @include atom(no-wrap) {
+  @include atom(nowrap) {
     @extend %typography--nowrap;
   }
 
