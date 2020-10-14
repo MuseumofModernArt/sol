@@ -1,9 +1,7 @@
-%__markdown-typography {
+%typography--markdown--base {
   @extend #{placeholder("$typography/baseline:body")};
   @extend #{placeholder("$typography/size:medium")};
   @extend #{placeholder("$typography/weight:regular")};
-
-
 
   // Basics.
   a:not([class]) { // Any unclassed links.
@@ -36,9 +34,9 @@
     blockquote:not([class]) {
       @extend #{placeholder("layout/padding:left:baseline")};
 
-      background-image:    linear-gradient(var(--color), var(--color)); // Solid color.
-      background-repeat:   no-repeat;
-      background-size:     calc((var(--typography--bullet) / 2) * var(--typography--size) * var(--rem-conversion)) 100%; // Half a bullet wide.
+      background-image:  linear-gradient(var(--color), var(--color)); // Solid color.
+      background-repeat: no-repeat;
+      background-size:   calc((var(--typography--bullet) / 2) * var(--typography--size) * var(--rem-conversion)) 100%; // Half a bullet wide.
     }
   }
 
@@ -205,7 +203,7 @@
 
 
 
-%__markdown-typography--headers {
+%typography--markdown--headers {
   > h2 {
     @extend #{placeholder("$typography/scale:prime")};
     @extend #{placeholder("$typography/weight:bold")};
@@ -239,7 +237,7 @@
 
 
 // Fix spacing after disabled elements.
-%__markdown-disable--reset {
+%typography--markdown--disable--reset {
   &:first-child {
     + * {
       @extend #{placeholder("layout/margin:top:clear")};
@@ -250,7 +248,7 @@
 
 
 // To prevent Buffy from using elements outside of our set.
-%__markdown-disable {
+%typography--markdown--disable {
   h1,
   h5,
   h6,
@@ -258,17 +256,17 @@
   table,
   script {
     @extend #{placeholder("layout/none")};
-    @extend %__markdown-disable--reset;
+    @extend %typography--markdown--disable--reset;
   }
 }
 
 // No hierarchy in basic blocks.
-%__markdown-disable--headers {
+%typography--markdown--disable--headers {
   h2,
   h3,
   h4 {
     @extend #{placeholder("layout/none")};
-    @extend %__markdown-disable--reset;
+    @extend %typography--markdown--disable--reset;
   }
 }
 
@@ -277,14 +275,14 @@
 .typography {
   // Processed markdown blocks which give us classless children.
   @include atom(markdown) {
-    @extend %__markdown-disable--headers;
-    @extend %__markdown-disable;
-    @extend %__markdown-typography;
+    @extend %typography--markdown--disable--headers;
+    @extend %typography--markdown--disable;
+    @extend %typography--markdown--base;
 
     @include variant(headers) {
-      @extend %__markdown-disable;
-      @extend %__markdown-typography--headers;
-      @extend %__markdown-typography;
+      @extend %typography--markdown--disable;
+      @extend %typography--markdown--headers;
+      @extend %typography--markdown--base;
     }
   }
 }
