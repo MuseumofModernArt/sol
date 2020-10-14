@@ -1,10 +1,9 @@
 @import 'base/reset';
-@import 'base/base';
 @import 'base/fonts';
-@import 'base/breakpoints';
-@import 'base/browsers';
 
-// Mixins.
+@import 'shared/breakpoints';
+@import 'shared/browsers';
+@import 'shared/utilities';
 @import 'shared/atoms';
 @import 'shared/variants';
 
