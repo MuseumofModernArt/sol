@@ -1,18 +1,3 @@
-@function __color--css-var($color-level-1, $color-level-2: null) {
-  @if $color-level-2 {
-    @return --color--#{$color-level-1}--#{$color-level-2};
-  }
-  @else {
-    @return --color--#{$color-level-1};
-  }
-}
-
-@function __color--css-var--rgb($color-level-1, $color-level-2: null) {
-  @return #{__color--css-var($color-level-1, $color-level-2)}--rgb;
-}
-
-
-
 $alphas: 0, 3, 7, 10, 13, 20, 27, 33, 40, 47, 50, 80, 93, 96, 100; // The ones we’ve used in the past, for now.
 
 $colors: (
@@ -87,56 +72,56 @@ $colors: (
   @extend %color--base--background;
   @extend %color--focus;
 
-  --color--ps1:                        var(#{__color--css-var(white)});
+  --color--ps1:                        var(--color--white);
   --color--ps1--secondary:             var(--accent-color--on-dark);
-  --color--ps1--background:            var(#{__color--css-var(black)});
-  --color--ps1--background--secondary: var(#{__color--css-var(gray, 222)});
+  --color--ps1--background:            var(--color--black);
+  --color--ps1--background--secondary: var(--color--gray--222);
 
-  --color--ps1--rgb:                        var(#{__color--css-var--rgb(white)});
+  --color--ps1--rgb:                        var(--color--white--rgb);
   --color--ps1--secondary--rgb:             var(--accent-color--on-dark--rgb);
-  --color--ps1--background--rgb:            var(#{__color--css-var--rgb(black)});
-  --color--ps1--background--secondary--rgb: var(#{__color--css-var--rgb(gray, 222)});
+  --color--ps1--background--rgb:            var(--color--black--rgb);
+  --color--ps1--background--secondary--rgb: var(--color--gray--222--rgb);
 
-  --color--collection:             var(#{__color--css-var(black)});
-  --color--collection--secondary:  var(#{__color--css-var(brand, 10)});
-  --color--collection--background: var(#{__color--css-var(brand, 6)});
+  --color--collection:             var(--color--black);
+  --color--collection--secondary:  var(--color--brand--10);
+  --color--collection--background: var(--color--brand--6);
 
-  --color--collection--rgb:             var(#{__color--css-var--rgb(black)});
-  --color--collection--secondary--rgb:  var(#{__color--css-var--rgb(brand, 10)});
-  --color--collection--background--rgb: var(#{__color--css-var--rgb(brand, 6)});
+  --color--collection--rgb:             var(--color--black--rgb);
+  --color--collection--secondary--rgb:  var(--color--brand--10--rgb);
+  --color--collection--background--rgb: var(--color--brand--6--rgb);
 }
 
 
 
 // Base colors, pulled out for extending.
 %color--base {
-  --color--rgb: var(#{__color--css-var--rgb(black)});
+  --color--rgb: var(--color--black--rgb);
   --color:      rgba(var(--color--rgb), var(--color--alpha, 1));
 }
 
 %color--base--reverse {
-  --color--rgb: var(#{__color--css-var--rgb(white)});
+  --color--rgb: var(--color--white--rgb);
   --color:      rgba(var(--color--rgb), var(--color--alpha, 1));
 }
 
 %color--base--background {
-  --color--background--rgb: var(#{__color--css-var--rgb(white)});
+  --color--background--rgb: var(--color--white--rgb);
   --color--background:      rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
 }
 
 
 
 %color--focus {
-  --color--focus:          var(#{__color--css-var(black)});
-  --color--focus--rgb:     var(#{__color--css-var--rgb(black)});
+  --color--focus:          var(--color--black);
+  --color--focus--rgb:     var(--color--black--rgb);
 
   --color--active--alpha:        0.04;
   --color--tap-highlight--alpha: 0.07;
 }
 
 %color--focus--reverse {
-  --color--focus--rgb: var(#{__color--css-var--rgb(white)});
-  --color--focus:      var(#{__color--css-var(white)});
+  --color--focus--rgb: var(--color--white--rgb);
+  --color--focus:      var(--color--white);
 
   --color--active--alpha:        0.10; // These are brighter (more opaque) on darker backgrounds.
   --color--tap-highlight--alpha: 0.13;
@@ -147,33 +132,33 @@ $colors: (
 // Reset/flatten colors on all elements for high-contrast.
 [data-high-contrast] {
   %color--high-contrast {
-    --color:      var(#{__color--css-var(black)});
-    --color--rgb: var(#{__color--css-var--rgb(black)});
+    --color:      var(--color--black);
+    --color--rgb: var(--color--black--rgb);
   }
 
   %color--high-contrast--background {
-    --color--background:      var(#{__color--css-var(white)});
-    --color--background--rgb: var(#{__color--css-var--rgb(white)});
+    --color--background:      var(--color--white);
+    --color--background--rgb: var(--color--white--rgb);
   }
 
   %color--high-contrast--reverse {
-    --color:      var(#{__color--css-var(white)});
-    --color--rgb: var(#{__color--css-var--rgb(white)});
+    --color:      var(--color--white);
+    --color--rgb: var(--color--white--rgb);
   }
 
   %color--high-contrast--reverse--background {
-    --color--background:      var(#{__color--css-var(black)});
-    --color--background--rgb: var(#{__color--css-var--rgb(black)});
+    --color--background:      var(--color--black);
+    --color--background--rgb: var(--color--black--rgb);
   }
 
   %color--high-contrast--accent {
-    --color:      var(#{__color--css-var(red)});
-    --color--rgb: var(#{__color--css-var--rgb(red)});
+    --color:      var(--color--red);
+    --color--rgb: var(--color--red--rgb);
   }
 
   %color--high-contrast--accent--background {
-    --color--background:      var(#{__color--css-var(red)});
-    --color--background--rgb: var(#{__color--css-var--rgb(red)});
+    --color--background:      var(--color--red);
+    --color--background--rgb: var(--color--red--rgb);
   }
 }
 
@@ -181,9 +166,9 @@ $colors: (
 
 // For SVGs, this splits the alpha out to use as opacity on the whole icon—avoiding stroke transparency overlaps.
 %color--svg--alpha {
-  fill:    rgba(var(--color--rgb, #{__color--css-var--rgb(black)}), 1);
+  fill:    rgba(var(--color--rgb, --color--black--rgb), 1);
   opacity: var(--color--alpha, 1);
-  stroke:  rgba(var(--color--rgb, #{__color--css-var--rgb(black)}), 1);
+  stroke:  rgba(var(--color--rgb, --color--black--rgb), 1);
 }
 
 
@@ -208,8 +193,8 @@ $colors: (
     @each $item, $value in $colors {
       // First-level “named” colors.
       @if map-has-key($value, hex) {
-        $color-name--rgb:  __color--css-var--rgb($item);
-        $color-name:       __color--css-var($item);
+        $color-name--rgb:  --color--#{$item}--rgb;
+        $color-name:       --color--#{$item};
         $color-value--rgb: hex-to-rgb(map-get($value, hex));
         $color-value:      #{rgba}(#{$color-value--rgb}, 1); // The encapsulation on “rgba” is to prevent SCSS from using its function.
 
@@ -259,8 +244,8 @@ $colors: (
       // Second-level groups.
       @else {
         @each $grouped-item, $grouped-values in $value {
-          $color-name--rgb:  __color--css-var--rgb($item, $grouped-item);
-          $color-name:       __color--css-var($item, $grouped-item);
+          $color-name--rgb:  --color--#{$item}--#{$grouped-item}--rgb;
+          $color-name:       --color--#{$item}--#{$grouped-item};
           $color-value--rgb: hex-to-rgb(map-get($grouped-values, hex));
           $color-value:      #{rgba}(#{$color-value--rgb}, 1);
 
@@ -346,8 +331,8 @@ $colors: (
     @include atom(promo) {
       @extend %color--high-contrast;
 
-      --color:      var(--color--promo,      var(#{__color--css-var(black)}));
-      --color--rgb: var(--color--promo--rgb, var(#{__color--css-var--rgb(black)}));
+      --color:      var(--color--promo,      var(--color--black));
+      --color--rgb: var(--color--promo--rgb, var(--color--black--rgb));
 
       @include variant(secondary) {
         @extend %color--high-contrast--accent;
@@ -412,8 +397,8 @@ $colors: (
         @extend %color--high-contrast--background;
         @extend %color--high-contrast;
 
-        --color--background:      var(--color--promo--background,      var(#{__color--css-var(gray, eee)}));
-        --color--background--rgb: var(--color--promo--background--rgb, var(#{__color--css-var--rgb(gray, eee)}));
+        --color--background:      var(--color--promo--background,      var(--color--gray--eee));
+        --color--background--rgb: var(--color--promo--background--rgb, var(--color--gray--eee--rgb));
 
         @include variant(secondary) {
           @extend %color--high-contrast--background;
