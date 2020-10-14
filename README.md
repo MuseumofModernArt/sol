@@ -24,7 +24,7 @@ Once the artifact files have been generated and the release has been tagged, go 
 More on semantic versioning [here](https://classic.yarnpkg.com/en/docs/dependency-versions#toc-semantic-versioning).
 
 # Usage
-You should just get `dist/atoms.css` or `dist/atoms.min.css`. Fonts are also provided in the `dist` folder.
+You should just get `dist/moma-style.css` or `dist/moma-style.min.css`. Fonts are also provided in the `dist` folder.
 
 To add to your package manager, such as yarn, do `yarn add github:MuseumofModernArt/moma-style`. If you would like to lock to a specific version, append `#v1.0.0` to the end. More on all this [here](http://thecodebarbarian.com/github-is-my-favorite-private-npm-registry.html).
 

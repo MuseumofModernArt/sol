@@ -1,14 +1,4 @@
-// TODO Move this to inline/template use.
-@keyframes fade-in-out {
-  0%   { opacity: 0; }
-  13%  { opacity: 1; }
-  87%  { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-
-
-.motion{
+.motion {
   @include atom-var {
     @include atom(animation, transition) {
       @include variant(duration, delay) {
@@ -19,13 +9,7 @@
         @include variant-easings;
       }
     }
-
-    @include atom(animation) {
-      @include variant(fade-in-out) {
-        #{css-var($variant-parent)}: #{$variant};
-      }
-    }
-
+    
     @include atom(transition) {
       @include variant(backdrop-filter, bottom, left, max-height, max-width, opacity, right, top, transform, visibility) {
         @include variant(duration, delay) {
@@ -40,11 +24,10 @@
   }
 
   @include atom(animation) {
-    animation-name:             var(#{css-var(&)});
-    animation-delay:            var(#{css-var(&)}--delay, 0ms);
-    animation-duration:         var(#{css-var(&)}--duration, 0ms);
-    animation-timing-function:  var(#{css-var(&)}--curve, linear);
-
+    animation-name:            var(#{__css-var(&)});
+    animation-delay:           var(#{__css-var(&)}--delay, 0ms);
+    animation-duration:        var(#{__css-var(&)}--duration, 0ms);
+    animation-timing-function: var(#{__css-var(&)}--curve, linear);
 
     @include variant(paused, running) {
       animation-play-state: #{$variant};
