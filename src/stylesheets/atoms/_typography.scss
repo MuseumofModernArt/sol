@@ -131,7 +131,7 @@
 
 
 %__icon {
-  @extend %color__svg--alpha;
+  @extend %color--svg--alpha;
 
   --typography--icon--size:         var(--typography--font-size, calc(var(--typography--size--override, var(--typography--size)) * var(--rem-conversion))); // Render the actual value.
   --typography--icon--stroke-width: calc(var(--typography--icon--stroke) * var(--typography--icon--size)); // Same.
