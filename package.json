@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Atomic styles and javascript for MoMA digital properties",
   "main": "dist/moma-style.js",
-  "style": "dist/atoms.css",
+  "style": "dist/moma-style.css",
   "files": [
     "dist"
   ],
@@ -14,13 +14,13 @@
   "scripts": {
     "install-sass": "SASS=sass/sass/sass; if brew ls --versions $SASS; then brew upgrade $SASS; else brew install $SASS; fi",
     "test": "jest",
-    "build-sass-dev": "sass src/stylesheets/atoms.scss:dist/atoms.css",
-    "build-sass-prod": "sass src/stylesheets/atoms.scss:dist/atoms.min.css --style=compressed",
+    "build-sass-dev": "sass src/stylesheets/main.scss:dist/moma-style.css",
+    "build-sass-prod": "sass src/stylesheets/main.scss:dist/moma-style.min.css --style=compressed",
     "build-webpack-prod": "webpack -p --config webpack.config.js --mode production",
     "build-webpack-dev": "webpack -p --config webpack.config.js --mode development",
     "build": "yarn run build-sass-dev && yarn run build-sass-prod && yarn run build-webpack-prod",
     "build-dev": "yarn run build-sass-dev && yarn run build-webpack-dev",
-    "watch-sass": "sass --watch --poll src/stylesheets/atoms.scss:dist/atoms.css",
+    "watch-sass": "sass --watch --poll src/stylesheets/main.scss:dist/moma-style.css",
     "watch-webpack": "webpack --progress --watch --config webpack.config.js --mode development",
     "watch": "yarn watch-sass & yarn watch-webpack",
     "release": "./bin/release.sh"
