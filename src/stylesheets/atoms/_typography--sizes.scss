@@ -164,33 +164,30 @@
     }
   }
 
-  // Discrete sizes available at our breakpoints.
   @include atom-breakpoints {
-    // Icon aliasing tweaks.
+    // Icon aliasing tweaks, so centered SVG strokes draw within whole pixels (not between).
     %#{$atom-breakpoint}typography--svg--aliasing {
-      --typography--icon--translate-x: -0.5px;
-      --typography--icon--translate-y: -0.5px;
+      --typography--icon--translate:    -0.5px; // Half a point @1x.
+      --typography--icon--translate--x: var(--typography--icon--translate);
+      --typography--icon--translate--y: var(--typography--icon--translate);
 
       @include retina(2) {
-        --typography--icon--translate-x: -0.25px;
-        --typography--icon--translate-y: -0.25px;
+        --typography--icon--translate: -0.25px; // Half a point @2x.
       }
     }
 
     %#{$atom-breakpoint}typography--svg--aliasing--high {
       @include retina(3) {
-        --typography--icon--translate-x: -0.1666667px;
-        --typography--icon--translate-y: -0.1666667px;
+        --typography--icon--translate: -0.1666667px; // Half a point @3x.
       }
 
       @include retina(4) {
-        --typography--icon--translate-x: -0.125px;
-        --typography--icon--translate-y: -0.125px;
+        --typography--icon--translate: -0.125px; // Half a point @4x.
       }
     }
 
 
-
+    // Discrete sizes available at our breakpoints.
     @include atom-var {
       @include atom(size) {
         // Allow for per-breakpoint inline overrides.

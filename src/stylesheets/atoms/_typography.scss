@@ -104,7 +104,7 @@ nobr, %typography--nowrap {
 
   height:       var(--typography--icon--size);
   stroke-width: var(--typography--icon--stroke-width);
-  transform:    translate(var(--typography--icon--translate-x, 0), var(--typography--icon--translate-y, 0)) rotate(var(--typography--icon--rotate, 0)); // X/Y shift for aliasing tweaks.
+  transform:    translate(var(--typography--icon--translate--x, 0), var(--typography--icon--translate--y, 0)) rotate(var(--typography--icon--rotate, 0)); // X/Y shift for aliasing tweaks.
   width:        var(--typography--icon--size);
 }
 
