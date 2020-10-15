@@ -1,0 +1,45 @@
+@mixin browser-prefix($property, $value, $prefixes...) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+
+  #{$property}: $value;
+}
+
+
+
+@mixin browser-specific($browsers...) {
+  @if index($browsers, 'firefox') {
+    @-moz-document url-prefix() {
+      @content;
+    }
+  }
+  @if index($browsers, 'safari') {
+    @supports (-webkit-hyphens:none) {
+      @content;
+    }
+  }
+  @if index($browsers, 'safari--mobile') {
+    @supports (-webkit-hyphens:none) and (-webkit-overflow-scrolling: touch) { // Target iOS subset.
+      @content;
+    }
+  }
+  @if index($browsers, 'chrome') {
+    @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+      @content;
+    }
+  }
+  @if index($browsers, 'chrome--mobile') {
+    @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (max-width: #{$desktop--width - 1}px) {
+      @content;
+    }
+  }
+}
+
+
+
+@mixin retina($density: 2) {
+  @media only screen and (-webkit-min-device-pixel-ratio: $density) {
+    @content;
+  }
+}

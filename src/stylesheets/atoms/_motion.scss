@@ -1,0 +1,87 @@
+.motion {
+  @include atom-var {
+    @include atom(animation, transition) {
+      @include variant(duration, delay) {
+        @include variant-timings;
+      }
+
+      @include variant(curve) {
+        @include variant-easings;
+      }
+    }
+    
+    @include atom(transition) {
+      @include variant(backdrop-filter, bottom, left, max-height, max-width, opacity, right, top, transform, visibility) {
+        @include variant(duration, delay) {
+          @include variant-timings;
+        }
+
+        @include variant(curve) {
+          @include variant-easings;
+        }
+      }
+    }
+  }
+
+  @include atom(animation) {
+    animation-name:            var(#{__css-var(&)});
+    animation-delay:           var(#{__css-var(&)}--delay, 0ms);
+    animation-duration:        var(#{__css-var(&)}--duration, 0ms);
+    animation-timing-function: var(#{__css-var(&)}--curve, linear);
+
+    @include variant(paused, running) {
+      animation-play-state: #{$variant};
+    }
+  }
+
+  @include atom(transition) {
+    transition-property:        -webkit-backdrop-filter,
+                                backdrop-filter,
+                                bottom,
+                                left,
+                                max-height,
+                                max-width,
+                                opacity,
+                                right,
+                                top,
+                                transform,
+                                visibility
+                                ;
+    transition-delay:           var(#{css-var(&)}--backdrop-filter--delay, var(#{css-var(&)}--delay, 0ms)),
+                                var(#{css-var(&)}--backdrop-filter--delay, var(#{css-var(&)}--delay, 0ms)),
+                                var(#{css-var(&)}--bottom--delay,          var(#{css-var(&)}--delay, 0ms)),
+                                var(#{css-var(&)}--left--delay,            var(#{css-var(&)}--delay, 0ms)),
+                                var(#{css-var(&)}--max-height--delay,      var(#{css-var(&)}--delay, 0ms)),
+                                var(#{css-var(&)}--max-width--delay,       var(#{css-var(&)}--delay, 0ms)),
+                                var(#{css-var(&)}--opacity--delay,         var(#{css-var(&)}--delay, 0ms)),
+                                var(#{css-var(&)}--right--delay,           var(#{css-var(&)}--delay, 0ms)),
+                                var(#{css-var(&)}--top--delay,             var(#{css-var(&)}--delay, 0ms)),
+                                var(#{css-var(&)}--transform--delay,       var(#{css-var(&)}--delay, 0ms)),
+                                var(#{css-var(&)}--visibility--delay,      var(#{css-var(&)}--delay, 0ms))
+                                ;
+    transition-duration:        var(#{css-var(&)}--backdrop-filter--duration, var(#{css-var(&)}--duration, 0ms)),
+                                var(#{css-var(&)}--backdrop-filter--duration, var(#{css-var(&)}--duration, 0ms)),
+                                var(#{css-var(&)}--bottom--duration,          var(#{css-var(&)}--duration, 0ms)),
+                                var(#{css-var(&)}--left--duration,            var(#{css-var(&)}--duration, 0ms)),
+                                var(#{css-var(&)}--max-height--duration,      var(#{css-var(&)}--duration, 0ms)),
+                                var(#{css-var(&)}--max-width--duration,       var(#{css-var(&)}--duration, 0ms)),
+                                var(#{css-var(&)}--opacity--duration,         var(#{css-var(&)}--duration, 0ms)),
+                                var(#{css-var(&)}--right--duration,           var(#{css-var(&)}--duration, 0ms)),
+                                var(#{css-var(&)}--top--duration,             var(#{css-var(&)}--duration, 0ms)),
+                                var(#{css-var(&)}--transform--duration,       var(#{css-var(&)}--duration, 0ms)),
+                                var(#{css-var(&)}--visibility--duration,      var(#{css-var(&)}--duration, 0ms))
+                                ;
+    transition-timing-function: var(#{css-var(&)}--backdrop-filter--curve, var(#{css-var(&)}--curve, linear)),
+                                var(#{css-var(&)}--backdrop-filter--curve, var(#{css-var(&)}--curve, linear)),
+                                var(#{css-var(&)}--bottom--curve,          var(#{css-var(&)}--curve, linear)),
+                                var(#{css-var(&)}--left--curve,            var(#{css-var(&)}--curve, linear)),
+                                var(#{css-var(&)}--max-height--curve,      var(#{css-var(&)}--curve, linear)),
+                                var(#{css-var(&)}--max-width--curve,       var(#{css-var(&)}--curve, linear)),
+                                var(#{css-var(&)}--opacity--curve,         var(#{css-var(&)}--curve, linear)),
+                                var(#{css-var(&)}--right--curve,           var(#{css-var(&)}--curve, linear)),
+                                var(#{css-var(&)}--top--curve,             var(#{css-var(&)}--curve, linear)),
+                                var(#{css-var(&)}--transform--curve,       var(#{css-var(&)}--curve, linear)),
+                                var(#{css-var(&)}--visibility--curve,      var(#{css-var(&)}--curve, linear))
+                                ;
+  }
+}
