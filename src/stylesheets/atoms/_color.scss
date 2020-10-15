@@ -264,6 +264,7 @@ $colors: (
 
 
     // Separate alpha atoms.
+    // TODO when to use alpha on black vs color gray variant?
     @include atom(alpha) {
       @include variant-alphas {
         @extend %color--high-contrast;

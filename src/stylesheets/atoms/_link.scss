@@ -198,7 +198,7 @@
       box-sizing: border-box; // Back inside.
     }
 
-    @include variant(contain) {
+    @include variant(contain) { // TODO when to use this?
       margin-bottom:  calc(-2 * var(--link-enlargement));
       margin-top:     calc(-2 * var(--link-enlargement));
       padding-bottom: calc(2 * var(--link-enlargement));
@@ -206,7 +206,7 @@
     }
 
     // This has to be sorta-repeated because of the selector construction.
-    @include variant(children) {
+    @include variant(children) { // TODO when to use this (example DOM structure)
       @extend %link--tap-highlight;
 
       // TODO: Desktop only highlights focus elements; need to replicate
@@ -248,7 +248,7 @@
       }
     }
 
-    @include variant(inline) {
+    @include variant(inline) { // TODO when to use this?
       @extend %link--cursor-pointer;
       @extend %link--focus-active;
 

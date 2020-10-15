@@ -58,6 +58,7 @@ $breakpoint-delimiter: #{$atom-delimiter};
         }
         @else {
           // Render landscape queries after widths, for specificity.
+          // TODO can you describe a use case for when we might care about landscape?
           @include breakpoint(landscape) {
             $atom-breakpoint: #{$breakpoint-prefix}#{$breakpoint--current}#{$breakpoint-delimiter} !global;
 
