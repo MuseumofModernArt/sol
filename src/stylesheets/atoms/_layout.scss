@@ -458,28 +458,35 @@
     @include atom(height, width) {
       @include increase-specificity(2) {
         @include variant(&, max, min) {
+          $atom-property:    css-var(&);
+          $atom-placeholder: placeholder(first-selector(&));
+
           @if $variant {
             $variant-modifier: #{$variant}- !global; // With the hyphen.
           }
 
+          #{$variant-modifier}#{$atom}: var(#{$atom-property});
+
           @if $atom == "width" {
             @include variant-percentages {
-              #{$variant-modifier}#{$atom}: #{$variant-percentage};
+              @extend #{$atom-placeholder};
             }
           }
           @else {
             @include variant-percentages(0, 50, 100) {
-              #{$variant-modifier}#{$atom}: #{$variant-percentage};
+              @extend #{$atom-placeholder};
             }
           }
 
           @include variant(page) {
             @include variant-count($spacing-count--upper, $halves: true) {
+              @extend #{$atom-placeholder};
+
               @if $atom == "width" {
-                #{$variant-modifier}#{$atom}: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
+                #{$atom-property}: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
               }
               @else if $atom == "height" {
-                #{$variant-modifier}#{$atom}: calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
+                #{$atom-property}: calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
               }
             }
           }
@@ -493,22 +500,26 @@
 
             @include variant-count(0, $spacing-count--upper, $halves: $halves) {
               @extend %#{$atom-breakpoint}typography--baseline;
+              @extend #{$atom-placeholder};
 
               // Subtract a shoulder.
-              #{$variant-modifier}#{$atom}: calc((var(--layout--typography--line-height) * #{$variant-count}) - var(--layout--typography--leading-shoulder--override, var(--layout--typography--leading-shoulder)));
+              #{$atom-property}: calc((var(--layout--typography--line-height) * #{$variant-count}) - var(--layout--typography--leading-shoulder--override, var(--layout--typography--leading-shoulder)));
             }
           }
 
           @include variant(cap) {
             @include variant-count($spacing-count--upper, $halves: true) {
               @extend %#{$atom-breakpoint}typography--cap;
+              @extend #{$atom-placeholder};
 
-              #{$variant-modifier}#{$atom}: calc(var(--layout--typography--cap-height) * #{$variant-count});
+              #{$atom-property}: calc(var(--layout--typography--cap-height) * #{$variant-count});
             }
           }
 
           @include variant(clear) { // Reset any of them.
-            #{$variant-modifier}#{$atom}: initial;
+            @extend #{$atom-placeholder};
+
+            #{$atom-property}: initial;
           }
         }
       }
