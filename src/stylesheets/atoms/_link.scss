@@ -15,32 +15,32 @@
 
 
 
-%__disable--click {
+%link--disable--click {
   pointer-events: none;
 }
 
-%__disable--drag-select {
+%link--disable--drag-select {
   @include browser-prefix(user-drag, none, moz, webkit);
   @include browser-prefix(user-select, none, moz, webkit);
 }
 
-%__enable--click {
+%link--enable--click {
   pointer-events: auto;
 }
 
-%__enable--drag-select {
+%link--enable--drag-select {
   @include browser-prefix(user-drag, auto, moz, webkit);
   @include browser-prefix(user-select, auto, moz, webkit);
 }
 
 
 
-%__cursor-pointer {
+%link--cursor-pointer {
   cursor:       pointer;
   touch-action: manipulation;
 }
 
-%__tap-highlight {
+%link--tap-highlight {
   -webkit-tap-highlight-color: rgba(var(--color--focus--rgb), var(--color--tap-highlight--alpha));
 
   // If we specify `ontouchstart` on links, set this to transparent so we can use the normal :active state.
@@ -49,85 +49,85 @@
   }
 }
 
-%__outline {
+%link--outline {
   outline:  none;
   position: relative;
   z-index:  1; // Positions outline in front of neighboring elements.
 }
 
-%__outline--disable {
+%link--outline--disable {
   outline: none;
 }
 
-%__radius {
+%link--radius {
   border-radius: var(--border-radius, var(--focus-radius)); // Use one from the element, if present.
 }
 
-%__focus--shadow { // TODO This name can be just %__focus when we @use.
+%link--focus--shadow {
   box-shadow: 0 0 0 var(--focus-thickness) var(--color--focus);
 }
 
-%__focus--shadow--disable {
+%link--focus--shadow--disable {
   box-shadow: none;
 }
 
-%__active--background { // TODO Same here.
+%link--active--background {
   background-color: rgba(var(--color--focus--rgb), var(--color--active--alpha));
 }
 
-%__active--background--touch {
+%link--active--background--touch {
   background-color: rgba(var(--color--focus--rgb), var(--color--tap-highlight--alpha));
 }
 
-%__active--background--disable {
+%link--active--background--disable {
   background-color: transparent;
 }
 
 
 
-%__link-focus {
-  @extend %__tap-highlight;
+%link--focus-active {
+  @extend %link--tap-highlight;
 
   &:focus {
-    @extend %__outline;
-    @extend %__radius;
+    @extend %link--outline;
+    @extend %link--radius;
   }
 
   // Focus.js 'show-focus' shenanigans to prevent Chrome from displaying focus states on mouse clicks. Only show it for keyboard tabbing.
   .show-focus &:focus {
-    @extend %__focus--shadow;
+    @extend %link--focus--shadow;
   }
 
   &:active {
-    @extend %__radius;
+    @extend %link--radius;
   }
 
   // Only on non-touch device (courtesy modernizr), otherwise they are sometimes sticky.
   .no-touchevents &:active {
-    @extend %__active--background;
+    @extend %link--active--background;
   }
 
   // Use standard active background if `ontouchstart` is specified.
   .touchevents &[ontouchstart]:active {
-    @extend %__active--background--touch;
+    @extend %link--active--background--touch;
   }
 }
 
-%__link-focus-within {
+%link--focus-within {
   &:focus-within {
-    @extend %__outline;
-    @extend %__radius;
+    @extend %link--outline;
+    @extend %link--radius;
   }
 
   .show-focus &:focus-within {
-    @extend %__focus--shadow;
+    @extend %link--focus--shadow;
   }
 
   // Off on all children.
   * {
     &:focus {
-      @extend %__outline--disable;
-      @extend %__focus--shadow--disable;
+      @extend %link--outline--disable;
+      @extend %link--focus--shadow--disable;
     }
   }
 }
@@ -136,25 +136,25 @@
 
 .link {
   @include atom(disable) {
-    @extend %__disable--click;
-    @extend %__disable--drag-select;
+    @extend %link--disable--click;
+    @extend %link--disable--drag-select;
 
     // Shorthand, sometimes makes more sense than applying many “link/disable” atoms directly.
     @include variant(children) {
       * {
-        @extend %__disable--click;
-        @extend %__disable--drag-select;
+        @extend %link--disable--click;
+        @extend %link--disable--drag-select;
       }
     }
   }
 
   @include atom(enable) {
-    @extend %__enable--click;
-    @extend %__enable--drag-select;
+    @extend %link--enable--click;
+    @extend %link--enable--drag-select;
 
     @at-root {
       img#{&}[oncontextmenu] { // Only allow clicks (no drag/select), on images that disable the right-click menu.
-        @extend %__enable--click;
+        @extend %link--enable--click;
       }
     }
 
@@ -167,12 +167,12 @@
       select,
       span,
       textarea {
-        @extend %__enable--click;
-        @extend %__enable--drag-select;
+        @extend %link--enable--click;
+        @extend %link--enable--drag-select;
       }
 
       img[oncontextmenu] { // Again, only on right-click-disabled images.
-        @extend %__enable--click;
+        @extend %link--enable--click;
       }
     }
   }
@@ -180,13 +180,13 @@
 
 
   @include atom(cursor) {
-    @extend %__cursor-pointer;
+    @extend %link--cursor-pointer;
   }
 
   @include atom(focus) {
-    @extend %__cursor-pointer;
-    @extend %__link-focus;
-    @extend %__link-focus-within;
+    @extend %link--cursor-pointer;
+    @extend %link--focus-active;
+    @extend %link--focus-within;
 
     box-sizing: content-box; // Reset margin/padding outside of any specified height/width.
     display:    inline-flex;
@@ -207,50 +207,50 @@
 
     // This has to be sorta-repeated because of the selector construction.
     @include variant(children) {
-      @extend %__tap-highlight;
+      @extend %link--tap-highlight;
 
       // TODO: Desktop only highlights focus elements; need to replicate
       // mobile behavior (highlights the whole link) on desktop.
 
       // Nothing on the element itself.
       &:focus {
-        @extend %__outline--disable;
+        @extend %link--outline--disable;
       }
 
       .show-focus &:focus {
-        @extend %__focus--shadow--disable;
+        @extend %link--focus--shadow--disable;
       }
 
       .no-touchevents &:active {
-        @extend %__active--background--disable;
+        @extend %link--active--background--disable;
       }
 
       // Targeting for “link/focus” descendents, then styled as above.
       &:focus #{$variant-parent} {
-        @extend %__radius;
-        @extend %__outline;
+        @extend %link--radius;
+        @extend %link--outline;
       }
 
       .show-focus &:focus #{$variant-parent} {
-        @extend %__focus--shadow;
+        @extend %link--focus--shadow;
       }
 
       &:active #{$variant-parent} {
-        @extend %__radius;
+        @extend %link--radius;
       }
 
       .no-touchevents &:active #{$variant-parent} {
-        @extend %__active--background;
+        @extend %link--active--background;
       }
 
       .touchevents &[ontouchstart]:active #{$variant-parent} {
-        @extend %__active--background--touch;
+        @extend %link--active--background--touch;
       }
     }
 
     @include variant(inline) {
-      @extend %__cursor-pointer;
-      @extend %__link-focus;
+      @extend %link--cursor-pointer;
+      @extend %link--focus-active;
 
       border-left-color:  transparent;
       border-left-style:  solid;
@@ -262,7 +262,7 @@
       margin-right:       calc(-1 * var(--link-enlargement) / 2);
 
       .show-focus &:focus {
-        @extend #{__placeholder("typography/underline:disable")}; // Disables our “underlines” when keyboard-focused.
+        @extend #{placeholder("typography/underline:disable")}; // Disables our “underlines” when keyboard-focused.
       }
     }
   }

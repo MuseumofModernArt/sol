@@ -1,44 +1,42 @@
-%__markdown-typography {
-  @extend #{__placeholder("$typography/baseline:body")};
-  @extend #{__placeholder("$typography/size:medium")};
-  @extend #{__placeholder("$typography/weight:regular")};
-
-
+%typography--markdown--base {
+  @extend #{placeholder("$typography/baseline:body")};
+  @extend #{placeholder("$typography/size:medium")};
+  @extend #{placeholder("$typography/weight:regular")};
 
   // Basics.
   a:not([class]) { // Any unclassed links.
-    @extend #{__placeholder("link/focus:inline")};
-    @extend #{__placeholder("typography/underline")};
+    @extend #{placeholder("link/focus:inline")};
+    @extend #{placeholder("typography/underline")};
   }
 
   strong {
-    @extend #{__placeholder("$typography/weight:bold")};
-    @extend #{__placeholder("typography/face")}; //Re-declared for the weight to work.
+    @extend #{placeholder("$typography/weight:bold")};
+    @extend #{placeholder("typography/face")}; //Re-declared for the weight to work.
   }
 
   p:not([class]) {
-    @extend #{__placeholder("typography")};
+    @extend #{placeholder("typography")};
 
     &:not(:first-child) {
-      @extend #{__placeholder("layout/margin:top:baseline")};
+      @extend #{placeholder("layout/margin:top:baseline")};
     }
   }
 
   blockquote:not([class]) {
-    @extend #{__placeholder("$color/alpha:47%")};
-    @extend #{__placeholder("$typography/scale:minor")};
+    @extend #{placeholder("$color/alpha:47%")};
+    @extend #{placeholder("$typography/scale:minor")};
 
     &:not(:first-child) {
-      @extend #{__placeholder("layout/margin:top:baseline")};
+      @extend #{placeholder("layout/margin:top:baseline")};
     }
 
     // “Change-bars” on nested quotes.
     blockquote:not([class]) {
-      @extend #{__placeholder("layout/padding:left:baseline")};
+      @extend #{placeholder("layout/padding:left:baseline")};
 
-      background-image:    linear-gradient(var(--color), var(--color)); // Solid color.
-      background-repeat:   no-repeat;
-      background-size:     calc((var(--typography--bullet) / 2) * var(--typography--size) * var(--rem-conversion)) 100%; // Half a bullet wide.
+      background-image:  linear-gradient(var(--color), var(--color)); // Solid color.
+      background-repeat: no-repeat;
+      background-size:   calc((var(--typography--bullet) / 2) * var(--typography--size) * var(--rem-conversion)) 100%; // Half a bullet wide.
     }
   }
 
@@ -48,15 +46,15 @@
   ol:not([class]),
   ul:not([class]) {
     &:not(:first-child) {
-      @extend #{__placeholder("layout/margin:top:baseline")};
+      @extend #{placeholder("layout/margin:top:baseline")};
     }
 
     > li {
-      @extend #{__placeholder("typography")};
-      @extend #{__placeholder("layout/padding:left:baseline")};
+      @extend #{placeholder("typography")};
+      @extend #{placeholder("layout/padding:left:baseline")};
 
       &:not(:first-child) {
-        @extend #{__placeholder("layout/margin:top:baseline:0")};
+        @extend #{placeholder("layout/margin:top:baseline:0")};
       }
 
       // With empty lines between list items, they are parsed as nested paragraphs.
@@ -103,7 +101,7 @@
     counter-reset: item;
 
     > li {
-      @extend #{__placeholder("layout/relative")};
+      @extend #{placeholder("layout/relative")};
 
       counter-increment: item;
 
@@ -116,9 +114,9 @@
       }
 
       &:before {
-        @extend #{__placeholder("layout/absolute")};
-        @extend #{__placeholder("layout/left:0%")};
-        @extend #{__placeholder("typography/tabular-numbers")};
+        @extend #{placeholder("layout/absolute")};
+        @extend #{placeholder("layout/left:0%")};
+        @extend #{placeholder("typography/tabular-numbers")};
 
         content:    counter(item)'.'; // The number and a period.
         margin-top: initial; // Moved above.
@@ -143,12 +141,12 @@
 
   // Code stuff.
   code {
-    @extend #{__placeholder("typography/code")};
+    @extend #{placeholder("typography/code")};
   }
 
   pre {
-    @extend #{__placeholder("typography")};
-    @extend #{__placeholder("layout/margin:top:baseline")};
+    @extend #{placeholder("typography")};
+    @extend #{placeholder("layout/margin:top:baseline")};
   }
 
 
@@ -174,13 +172,13 @@
   > svg,
   *:not(p) > svg {
     &:not(:first-child) {
-      @extend #{__placeholder("layout/margin:top:baseline")};
+      @extend #{placeholder("layout/margin:top:baseline")};
     }
   }
 
   // With our height atoms.
   svg[class*="layout/height:baseline"] {
-    @extend #{__placeholder("layout/block")};
+    @extend #{placeholder("layout/block")};
 
     // Sponsor logos reflect the type scale.
     &[class*="$layout/baseline:exact"] {
@@ -205,33 +203,33 @@
 
 
 
-%__markdown-typography--headers {
+%typography--markdown--headers {
   > h2 {
-    @extend #{__placeholder("$typography/scale:prime")};
-    @extend #{__placeholder("$typography/weight:bold")};
-    @extend #{__placeholder("typography")};
+    @extend #{placeholder("$typography/scale:prime")};
+    @extend #{placeholder("$typography/weight:bold")};
+    @extend #{placeholder("typography")};
 
     &:not(:first-child) {
-      @extend #{__placeholder("layout/margin:top:baseline:3")};
+      @extend #{placeholder("layout/margin:top:baseline:3")};
     }
   }
 
   > h3 {
-    @extend #{__placeholder("$typography/scale:major")};
-    @extend #{__placeholder("$typography/weight:bold")};
-    @extend #{__placeholder("typography")};
+    @extend #{placeholder("$typography/scale:major")};
+    @extend #{placeholder("$typography/weight:bold")};
+    @extend #{placeholder("typography")};
 
     &:not(:first-child) {
-      @extend #{__placeholder("layout/margin:top:baseline:2")};
+      @extend #{placeholder("layout/margin:top:baseline:2")};
     }
   }
 
   > h4 {
-    @extend #{__placeholder("$typography/weight:bold")};
-    @extend #{__placeholder("typography")};
+    @extend #{placeholder("$typography/weight:bold")};
+    @extend #{placeholder("typography")};
 
     &:not(:first-child) {
-      @extend #{__placeholder("layout/margin:top:baseline")};
+      @extend #{placeholder("layout/margin:top:baseline")};
     }
   }
 }
@@ -239,10 +237,10 @@
 
 
 // Fix spacing after disabled elements.
-%__markdown-disable--reset {
+%typography--markdown--disable--reset {
   &:first-child {
     + * {
-      @extend #{__placeholder("layout/margin:top:clear")};
+      @extend #{placeholder("layout/margin:top:clear")};
     }
   }
 }
@@ -250,25 +248,25 @@
 
 
 // To prevent Buffy from using elements outside of our set.
-%__markdown-disable {
+%typography--markdown--disable {
   h1,
   h5,
   h6,
   hr,
   table,
   script {
-    @extend #{__placeholder("layout/none")};
-    @extend %__markdown-disable--reset;
+    @extend #{placeholder("layout/none")};
+    @extend %typography--markdown--disable--reset;
   }
 }
 
 // No hierarchy in basic blocks.
-%__markdown-disable--headers {
+%typography--markdown--disable--headers {
   h2,
   h3,
   h4 {
-    @extend #{__placeholder("layout/none")};
-    @extend %__markdown-disable--reset;
+    @extend #{placeholder("layout/none")};
+    @extend %typography--markdown--disable--reset;
   }
 }
 
@@ -277,14 +275,14 @@
 .typography {
   // Processed markdown blocks which give us classless children.
   @include atom(markdown) {
-    @extend %__markdown-disable--headers;
-    @extend %__markdown-disable;
-    @extend %__markdown-typography;
+    @extend %typography--markdown--disable--headers;
+    @extend %typography--markdown--disable;
+    @extend %typography--markdown--base;
 
     @include variant(headers) {
-      @extend %__markdown-disable;
-      @extend %__markdown-typography--headers;
-      @extend %__markdown-typography;
+      @extend %typography--markdown--disable;
+      @extend %typography--markdown--headers;
+      @extend %typography--markdown--base;
     }
   }
 }

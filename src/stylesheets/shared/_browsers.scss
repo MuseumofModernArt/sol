@@ -9,21 +9,6 @@
 
 
 @mixin browser-specific($browsers...) {
-  @if index($browsers, 'ie--9') {
-    @media screen\0 {
-      @content;
-    }
-  }
-  @if index($browsers, 'ie--10-plus') {
-    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-      @content;
-    }
-  }
-  @if index($browsers, 'edge') {
-    @supports (-ms-ime-align: auto) {
-      @content;
-    }
-  }
   @if index($browsers, 'firefox') {
     @-moz-document url-prefix() {
       @content;
@@ -47,42 +32,6 @@
   @if index($browsers, 'chrome--mobile') {
     @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (max-width: #{$desktop--width - 1}px) {
       @content;
-    }
-  }
-}
-
-
-
-// Mobile Safari does weird things with `bottom` in landscape.
-@mixin mobile-safari-bottom {
-  @include browser-specific(safari--mobile) {
-    @include breakpoint(landscape) {
-      transition-duration: 100ms;
-      transition-property: all;
-
-      @content;
-    }
-  }
-}
-
-@mixin mobile-safari-bottom--position {
-  @include mobile-safari-bottom {
-    bottom: calc(100vh - var(--visible-height));
-
-    @include breakpoint($desktop) {
-      bottom: 0;
-    }
-  }
-}
-
-@mixin mobile-safari-bottom--background {
-  @include mobile-safari-bottom {
-    margin-bottom:  calc(-1 * (100vh - var(--vh-offset)));
-    padding-bottom: calc(100vh - var(--vh-offset));
-
-    @include breakpoint($desktop) {
-      margin-bottom:  0;
-      padding-bottom: 0;
     }
   }
 }

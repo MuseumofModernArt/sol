@@ -1,7 +1,44 @@
-// Atoms for existing sizes.
+@mixin type-size($value, $numeric: null) {
+  --typography--size: #{$value};
+
+  // Only for smaller size variables. (All these shenanigans are just for more-efficient compiled CSS.)
+  @if $value >= 16 and $value <= 24 {
+    @if not $numeric { // Named sizes have their own/internal breakpoints.
+      @if not $breakpoint--current { // Match to mobile.
+        @extend %typography--svg--aliasing;
+        @extend %typography--svg--aliasing--high;
+      }
+      @else { // Match to desktop.
+        @extend %#{$breakpoint-prefix}768#{$breakpoint-delimiter}typography--svg--aliasing; // No high, since there are no 3/4x desktop screens (yet).
+      }
+    }
+    @else {
+      @if not $breakpoint--current { // First call, outside media query.
+        @include atom-breakpoints {
+          .#{$atom-breakpoint}#{strip-selector(&)} {
+            @extend %#{$atom-breakpoint}typography--svg--aliasing; // Match to media-query-specific extends, below.
+
+            @if not $breakpoint--desktop {
+              @extend %#{$atom-breakpoint}typography--svg--aliasing--high; // Even higher densities for mobile.
+            }
+          }
+        }
+      }
+    }
+  }
+
+  + * { // Makes value available to succeeding elements.
+    --typography--size--previous: #{$value};
+  }
+}
+
+
+
 .typography {
   @include atom-var {
     @include atom(size) {
+      // TODO This should be a map with mobile/desktop sizes, so it can be looped through.
+
       $small:                      14; // Pulled in from “legacy” type doc.
       $small--desktop:             16;
       $medium:                     16;
@@ -21,28 +58,28 @@
       $hero--short--desktop:     $extra-extra-large--desktop * 2; // Double XXL.
 
       @include variant(small) {
-        @include type-variable(--typography--size, $small); // SCSS can’t dynamically generate/use variable names, thus the repetition.
+        @include type-size($small); // SCSS can’t dynamically generate/use variable names, thus the repetition.
 
         --typography--scale--down--2: initial;
         --typography--scale--down:    initial;
         --typography--scale--up:      #{abs($medium/$small)}; // Abs is for SCSS to render as a decimal.
 
         @include breakpoint($desktop) {
-          @include type-variable(--typography--size, $small--desktop);
+          @include type-size($small--desktop);
 
           --typography--scale--up:    #{abs($medium--desktop/$small--desktop)};
         }
       }
 
       @include variant(medium) {
-        @include type-variable(--typography--size, $medium);
+        @include type-size($medium);
 
         --typography--scale--down--2: var(--typography--scale--down);
         --typography--scale--down:    #{abs($small/$medium)};
         --typography--scale--up:      #{abs($large/$medium)};
 
         @include breakpoint($desktop) {
-          @include type-variable(--typography--size, $medium--desktop);
+          @include type-size($medium--desktop);
 
           --typography--scale--down:  #{abs($small--desktop/$medium--desktop)};
           --typography--scale--up:    #{abs($large--desktop/$medium--desktop)};
@@ -50,14 +87,14 @@
       }
 
       @include variant(large) {
-        @include type-variable(--typography--size, $large);
+        @include type-size($large);
 
         --typography--scale--down--2: #{abs($small/$large)};
         --typography--scale--down:    #{abs($medium/$large)};
         --typography--scale--up:      #{abs($extra-large/$large)};
 
         @include breakpoint($desktop) {
-          @include type-variable(--typography--size, $large--desktop);
+          @include type-size($large--desktop);
 
           --typography--scale--down--2: #{abs($small--desktop/$large--desktop)};
           --typography--scale--down:    #{abs($medium--desktop/$large--desktop)};
@@ -66,14 +103,14 @@
       }
 
       @include variant(extra-large) {
-        @include type-variable(--typography--size, $extra-large);
+        @include type-size($extra-large);
 
         --typography--scale--down--2: #{abs($medium/$extra-large)};
         --typography--scale--down:    #{abs($large/$extra-large)};
         --typography--scale--up:      #{abs($extra-extra-large/$extra-large)};
 
         @include breakpoint($desktop) {
-          @include type-variable(--typography--size, $extra-large--desktop);
+          @include type-size($extra-large--desktop);
 
           --typography--scale--down--2: #{abs($medium--desktop/$extra-large--desktop)};
           --typography--scale--down:    #{abs($large--desktop/$extra-large--desktop)};
@@ -82,14 +119,14 @@
       }
 
       @include variant(extra-extra-large) {
-        @include type-variable(--typography--size, $extra-extra-large);
+        @include type-size($extra-extra-large);
 
         --typography--scale--down--2: #{abs($large/$extra-extra-large)};
         --typography--scale--down:    #{abs($extra-large/$extra-extra-large)};
         --typography--scale--up:      #{abs($hero/$extra-extra-large)};
 
         @include breakpoint($desktop) {
-          @include type-variable(--typography--size, $extra-extra-large--desktop);
+          @include type-size($extra-extra-large--desktop);
 
           --typography--scale--down--2: #{abs($large--desktop/$extra-extra-large--desktop)};
           --typography--scale--down:    #{abs($extra-large--desktop/$extra-extra-large--desktop)};
@@ -98,44 +135,70 @@
       }
 
       @include variant(hero) {
-        @include type-variable(--typography--size, $hero);
+        @include type-size($hero);
 
         @include breakpoint($desktop) {
-          @include type-variable(--typography--size, $hero--desktop);
+          @include type-size($hero--desktop);
         }
 
         @include variant(secondary) {
-          @include type-variable(--typography--size, $hero--secondary);
+          @include type-size($hero--secondary);
 
           @include breakpoint($desktop) {
-            @include type-variable(--typography--size, $hero--secondary--desktop);
+            @include type-size($hero--secondary--desktop);
           }
         }
 
         @include variant(short) {
-          @include type-variable(--typography--size, $hero); // No change at mobile 1, too narrow.
+          @include type-size($hero); // No change at mobile 1, too narrow.
 
           @include breakpoint(375) {
-            @include type-variable(--typography--size, $hero--short);
+            @include type-size($hero--short);
           }
 
           @include breakpoint($desktop) {
-            @include type-variable(--typography--size, $hero--short--desktop);
+            @include type-size($hero--short--desktop);
           }
         }
       }
     }
   }
 
-  // Discrete sizes available at our breakpoints.
   @include atom-breakpoints {
+    // Icon aliasing tweaks, so centered SVG strokes draw within whole pixels (not between).
+    %#{$atom-breakpoint}typography--svg--aliasing {
+      --typography--icon--translate:    -0.5px; // Half a point @1x.
+      --typography--icon--translate--x: var(--typography--icon--translate);
+      --typography--icon--translate--y: var(--typography--icon--translate);
+
+      @include retina(2) {
+        --typography--icon--translate: -0.25px; // Half a point @2x.
+      }
+    }
+
+    %#{$atom-breakpoint}typography--svg--aliasing--high {
+      @include retina(3) {
+        --typography--icon--translate: -0.1666667px; // Half a point @3x.
+      }
+
+      @include retina(4) {
+        --typography--icon--translate: -0.125px; // Half a point @4x.
+      }
+    }
+
+
+    // Discrete sizes available at our breakpoints.
     @include atom-var {
       @include atom(size) {
         // Allow for per-breakpoint inline overrides.
-        --typography--size--override: var(#{__css-var(#{$atom-breakpoint}--typography--size)});
+        --typography--size--override: var(#{css-var(#{$atom-breakpoint}--typography--size)});
 
-        @include variant(12, 14, 16, 18, 20, 22, 24, 30, 32, 36, 40, 48, 60, 80, 120) {
-          @include type-variable(--typography--size, $variant);
+        $sizes: 12, 14, 16, 18, 20, 22, 24, 30, 32, 36, 40, 48, 60, 80, 120;
+
+        @each $size in $sizes {
+          @include variant(#{$size}pt) {
+            @include type-size($size, $numeric: true);
+          }
         }
       }
     }
