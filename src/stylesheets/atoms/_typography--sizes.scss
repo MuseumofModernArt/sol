@@ -1,17 +1,15 @@
-// Variable cascade control.
 @mixin type-size($value, $numeric: null) {
   --typography--size: #{$value};
 
   // Only for smaller size variables. (All these shenanigans are just for more-efficient compiled CSS.)
   @if $value >= 16 and $value <= 24 {
-
     @if not $numeric { // Named sizes have their own/internal breakpoints.
       @if not $breakpoint--current { // Match to mobile.
         @extend %typography--svg--aliasing;
         @extend %typography--svg--aliasing--high;
       }
       @else { // Match to desktop.
-        @extend %#{$breakpoint-prefix}768#{$breakpoint-delimiter}typography--svg--aliasing;
+        @extend %#{$breakpoint-prefix}768#{$breakpoint-delimiter}typography--svg--aliasing; // No high, since there are no 3/4x desktop screens (yet).
       }
     }
     @else {
