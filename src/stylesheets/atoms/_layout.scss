@@ -465,7 +465,7 @@
             $variant-modifier: #{$variant}- !global; // With the hyphen.
           }
 
-          #{$variant-modifier}#{$atom}: var(#{$atom-property});
+          #{$variant-modifier}#{$atom}: var(#{$atom-property}); // Allow for inlining.
 
           @if $atom == "width" {
             @include variant-percentages {
@@ -534,27 +534,43 @@
         $spacing-count--lower: - $spacing-count--upper; // Margins, uniquely, can be negative.
       }
 
+      @at-root {
+        %#{$atom-breakpoint}layout--#{$atom}--page--axes {
+          #{$atom}-bottom: var(--#{$atom}--vertical);
+          #{$atom}-left:   var(--#{$atom}--horizontal);
+          #{$atom}-right:  var(--#{$atom}--horizontal);
+          #{$atom}-top:    var(--#{$atom}--vertical);
+        }
+      }
+
       @include increase-specificity(2) { // To allow for overriding sequential paragraph spacing (.typography + .typography) which is `0,2,0`.
         @include variant(&, top, right, bottom, left) {
+          $atom-property:    css-var(&);
+          $atom-placeholder: placeholder(first-selector(&));
+
           @if $variant {
             $variant-modifier: -#{$variant} !global; // With the hyphen.
           }
 
-          #{$atom}#{$variant-modifier}: var(#{css-var(&)}); // Allow for inlining.
+          #{$atom}#{$variant-modifier}: var(#{$atom-property}); // Allow for inlining.
 
           @include variant(page) {
             @include variant-count($spacing-count--lower, $spacing-count--upper, $halves: true) {
               @if $variant-modifier == "-left" or $variant-modifier == "-right" {
-                  #{$atom}#{$variant-modifier}: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
+                @extend #{$atom-placeholder};
+
+                #{$atom-property}: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
               }
               @else if $variant-modifier == "-top" or $variant-modifier == "-bottom" {
-                #{$atom}#{$variant-modifier}: calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
+                @extend #{$atom-placeholder};
+
+                #{$atom-property}: calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
               }
               @else {
-                #{$atom}-bottom: calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
-                #{$atom}-left:   calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
-                #{$atom}-right:  calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
-                #{$atom}-top:    calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
+                @extend %#{$atom-breakpoint}layout--#{$atom}--page--axes;
+
+                --#{$atom}--horizontal: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
+                --#{$atom}--vertical:   calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
               }
             }
           }
@@ -566,22 +582,26 @@
 
             @include variant-count($spacing-count--lower, $spacing-count--upper, $sign: true) {
               @extend %#{$atom-breakpoint}typography--baseline;
+              @extend #{$atom-placeholder};
 
               // Add the leading/shoulder.
-              #{$atom}#{$variant-modifier}: calc((var(--layout--typography--line-height) * #{$variant-count}) + (var(--layout--typography--leading-shoulder--override, var(--layout--typography--leading-shoulder)) * #{$variant-sign}));
+              #{$atom-property}: calc((var(--layout--typography--line-height) * #{$variant-count}) + (var(--layout--typography--leading-shoulder--override, var(--layout--typography--leading-shoulder)) * #{$variant-sign}));
             }
           }
 
           @include variant(cap) {
             @include variant-count($spacing-count--lower, $spacing-count--upper, $halves: true) { // TODO: tidy up the halves later
               @extend %#{$atom-breakpoint}typography--cap;
+              @extend #{$atom-placeholder};
 
-              #{$atom}#{$variant-modifier}: calc(var(--layout--typography--cap-height) * #{$variant-count});
+              #{$atom-property}: calc(var(--layout--typography--cap-height) * #{$variant-count});
             }
           }
 
           @include variant(clear) { // Reset any of them.
-            #{$atom}#{$variant-modifier}: initial;
+            @extend #{$atom-placeholder};
+
+            #{$atom-property}: initial;
           }
         }
       }
