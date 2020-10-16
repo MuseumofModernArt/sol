@@ -29,7 +29,8 @@
 
 
 
-@mixin variant-list($list, $value-suffix: null, $variant-suffix: $value-suffix) { // Separate suffixes for value and generated class name (100% vs. 100\%).
+ // Separate suffixes for value and generated class name (100% vs. 100\%).
+@mixin variant-list($list, $value-suffix: null, $variant-suffix: $value-suffix) {
   $selector-stem:      first-selector(&);
   $selector-remainder: remove-first-selector(&);
   $selectors:          &;
@@ -260,6 +261,7 @@
           #{css-var($selector-stem)}: #{$horizontal}; // Pass back to the call site.
         }
       }
+
       // TODO This still generates some redundant ones, like 2:4, 2:6, 3:6, etc.
       @else if $horizontal != $vertical {
         @include variant($horizontal) {

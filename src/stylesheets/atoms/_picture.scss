@@ -40,7 +40,8 @@
     $height-fallback--desktop: ();
     $width-fallback--desktop: ();
 
-    // Allow for breakpoint-specific overrides. This should probably be a mixin!
+    // Pictures/images (often) come from a component, so we can’t always put specific-use atoms directly on the `img`.
+    // This progression allows responsive constraint variables (--picture--max-height, --768--picture--max-height, etc.) on a parent element.
     @include atom-breakpoints {
       & {
         $height-fallback--append: (); // Internal lists.

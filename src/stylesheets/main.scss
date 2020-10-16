@@ -1,13 +1,15 @@
+// Globals.
 @import 'base/reset';
 @import 'base/fonts';
 
+// Our mixins and functions.
 @import 'shared/breakpoints';
 @import 'shared/browsers';
 @import 'shared/utilities';
 @import 'shared/atoms';
 @import 'shared/variants';
 
-// Basic vocabulary.
+// Generate the vocabulary.
 @import 'atoms/layout';
 @import 'atoms/link';
 @import 'atoms/picture';

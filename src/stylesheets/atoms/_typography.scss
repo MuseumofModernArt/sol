@@ -35,7 +35,7 @@
   --typography--weight:             400;
 }
 
-:root, %typography--bold {
+:root, %typography--bold { // Lower for ordering the default/root.
   --typography--bullet:             0.305; // Square matching the area of the bullet character.
   --typography--icon--space:        0.444; // Two spaces between two uppercase “M”, for icon separation.
   --typography--icon--stroke:       0.149; // Thickness of right-arrow icon stem.
@@ -456,7 +456,7 @@ nobr, %typography--nowrap {
         --typography--shoulder-extension--bottom:  calc(var(--typography--descenders) * 1em);
         --typography--shoulder-extension--top:     calc(var(--typography--ascenders) *  1em);
 
-        -webkit-box-orient:  vertical;          // This is kind of like column.
+        -webkit-box-orient:  vertical;          // This is kind of like flex column.
         -webkit-line-clamp:  #{$variant-count}; // For modern browsers, applies the ellipsis.
         box-sizing:          content-box;       // Reset margin/padding outside.
         display:            -webkit-box;        // This is kind of like flex.
