@@ -9,7 +9,7 @@
         @include variant-easings;
       }
     }
-    
+
     @include atom(transition) {
       @include variant(backdrop-filter, bottom, left, max-height, max-width, opacity, right, top, transform, visibility) {
         @include variant(duration, delay) {
