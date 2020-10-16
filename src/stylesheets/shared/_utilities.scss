@@ -101,7 +101,7 @@
   $increase: "";
 
   @while $level > 0 {
-    $increase: "#{$increase}:not(._)"; // This this adds one level of class specificity (0, +1, 0).;
+    $increase: "#{$increase}:not(._)"; // This this adds one level of class specificity (0, +1, 0).
     $level:    $level - 1;
   }
 
@@ -113,7 +113,7 @@
 
 
 @function class($selector) {
-  // This one makes a compiled class by escaping. (Used to extend base elements, like typography, in Acme.)
+  // Makes a compiled class by escaping. (Used to extend base elements without their children (like “.typography”, in Acme).
   $reserved:
     str-replace(#{$breakpoint-prefix}, '\\'),
     str-replace(#{$breakpoint-delimiter}, '\\'),

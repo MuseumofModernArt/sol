@@ -6,15 +6,15 @@
 
   --rem-conversion: 0.1rem;  // Rem conversion. No Math!
 
-  --page-spacing:          #{$page-spacing};
-  --page-spacing--fixed:   #{$page-spacing};
+  --page-spacing:        #{$page-spacing};
+  --page-spacing--fixed: #{$page-spacing};
 
   --page-width--extension: 0rem;
   --page-width--layout:    calc(var(--page-width--visible) - var(--page-spacing--fixed) * 2);
   --page-width--maximum:   128rem;
   --page-width--visible:   calc(100vw - var(--scrollbar-width, 0rem)); // vw does not account for scrollbar.
 
-  --rights-maximum:        200rem;
+  --rights-maximum: 200rem;
 
   --uneven-column-width--side: calc((var(--page-width--layout) - var(--page-spacing--fixed) * 2) / 3);                          // 1/3 without gutters.
   --uneven-column-width--main: calc(var(--page-width--layout) - var(--uneven-column-width--side) - var(--page-spacing--fixed)); // Less another gutter.
@@ -72,7 +72,7 @@
   }
 
 
-
+  // These are kind of our only true “molecules”.
   @include atom(wrapper) {
     @extend %layout--margins-auto;
     @extend %layout--page-width;

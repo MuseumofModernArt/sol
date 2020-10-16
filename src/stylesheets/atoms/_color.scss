@@ -264,6 +264,7 @@ $colors: (
 
 
     // Separate alpha atoms.
+    // Generally use these instead of opaque grays, for “free” invert/color-background usage!
     @include atom(alpha) {
       @include variant-alphas {
         @extend %color--high-contrast;
