@@ -458,28 +458,58 @@
     @include atom(height, width) {
       @include increase-specificity(2) {
         @include variant(&, max, min) {
+          $atom-property:    css-var(&);
+          $atom-placeholder: placeholder(first-selector(&));
+
           @if $variant {
             $variant-modifier: #{$variant}- !global; // With the hyphen.
           }
 
+          #{$variant-modifier}#{$atom}: var(#{$atom-property}); // Allow for inlining.
+
           @if $atom == "width" {
             @include variant-percentages {
-              #{$variant-modifier}#{$atom}: #{$variant-percentage};
+              @extend #{$atom-placeholder};
             }
           }
           @else {
             @include variant-percentages(0, 50, 100) {
-              #{$variant-modifier}#{$atom}: #{$variant-percentage};
+              @extend #{$atom-placeholder};
+            }
+
+            // Ratio limits.
+            @at-root {
+              %#{$atom-breakpoint}layout--ratio--limit--#{$variant-modifier} {
+                #{$variant-modifier}width: calc(var(#{$atom-property}) * var(--ratio)); // Derive width from height.
+
+                @if $variant-modifier { // Min/max need a width to work against.
+                  width: 100%;
+                }
+              }
+
+              // Base layout/height (min/max), for inlining.
+              #{first-selector(&)}[class*="layout/ratio"] { // A height class plus a ratio class, below.
+                @extend %#{$atom-breakpoint}layout--ratio--limit--#{$variant-modifier};
+              }
             }
           }
 
           @include variant(page) {
             @include variant-count($spacing-count--upper, $halves: true) {
+              @extend #{$atom-placeholder};
+
               @if $atom == "width" {
-                #{$variant-modifier}#{$atom}: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
+                #{$atom-property}: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
               }
               @else if $atom == "height" {
-                #{$variant-modifier}#{$atom}: calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
+                #{$atom-property}: calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
+
+                // Ratio limits.
+                @at-root {
+                  #{first-selector(&)}[class*="layout/ratio"] {
+                    @extend %#{$atom-breakpoint}layout--ratio--limit--#{$variant-modifier};
+                  }
+                }
               }
             }
           }
@@ -493,22 +523,44 @@
 
             @include variant-count(0, $spacing-count--upper, $halves: $halves) {
               @extend %#{$atom-breakpoint}typography--baseline;
+              @extend #{$atom-placeholder};
 
               // Subtract a shoulder.
-              #{$variant-modifier}#{$atom}: calc((var(--layout--typography--line-height) * #{$variant-count}) - var(--layout--typography--leading-shoulder--override, var(--layout--typography--leading-shoulder)));
+              #{$atom-property}: calc((var(--layout--typography--line-height) * #{$variant-count}) - var(--layout--typography--leading-shoulder--override, var(--layout--typography--leading-shoulder)));
+
+              // Ratio limits.
+              @if $atom == "height" {
+                @at-root {
+                  #{first-selector(&)}[class*="layout/ratio"] {
+                    @extend %#{$atom-breakpoint}layout--ratio--limit--#{$variant-modifier};
+                  }
+                }
+              }
             }
           }
 
           @include variant(cap) {
             @include variant-count($spacing-count--upper, $halves: true) {
               @extend %#{$atom-breakpoint}typography--cap;
+              @extend #{$atom-placeholder};
 
-              #{$variant-modifier}#{$atom}: calc(var(--layout--typography--cap-height) * #{$variant-count});
+              #{$atom-property}: calc(var(--layout--typography--cap-height) * #{$variant-count});
+
+              // Ratio limits.
+              @if $atom == "height" {
+                @at-root {
+                  #{first-selector(&)}[class*="layout/ratio"] {
+                    @extend %#{$atom-breakpoint}layout--ratio--limit--#{$variant-modifier};
+                  }
+                }
+              }
             }
           }
 
           @include variant(clear) { // Reset any of them.
-            #{$variant-modifier}#{$atom}: initial;
+            @extend #{$atom-placeholder};
+
+            #{$atom-property}: initial;
           }
         }
       }
@@ -523,27 +575,43 @@
         $spacing-count--lower: - $spacing-count--upper; // Margins, uniquely, can be negative.
       }
 
+      @at-root {
+        %#{$atom-breakpoint}layout--#{$atom}--page--axes {
+          #{$atom}-bottom: var(--#{$atom}--vertical);
+          #{$atom}-left:   var(--#{$atom}--horizontal);
+          #{$atom}-right:  var(--#{$atom}--horizontal);
+          #{$atom}-top:    var(--#{$atom}--vertical);
+        }
+      }
+
       @include increase-specificity(2) { // To allow for overriding sequential paragraph spacing (.typography + .typography) which is `0,2,0`.
         @include variant(&, top, right, bottom, left) {
+          $atom-property:    css-var(&);
+          $atom-placeholder: placeholder(first-selector(&));
+
           @if $variant {
             $variant-modifier: -#{$variant} !global; // With the hyphen.
           }
 
-          #{$atom}#{$variant-modifier}: var(#{css-var(&)}); // Allow for inlining.
+          #{$atom}#{$variant-modifier}: var(#{$atom-property}); // Allow for inlining.
 
           @include variant(page) {
             @include variant-count($spacing-count--lower, $spacing-count--upper, $halves: true) {
               @if $variant-modifier == "-left" or $variant-modifier == "-right" {
-                  #{$atom}#{$variant-modifier}: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
+                @extend #{$atom-placeholder};
+
+                #{$atom-property}: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
               }
               @else if $variant-modifier == "-top" or $variant-modifier == "-bottom" {
-                #{$atom}#{$variant-modifier}: calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
+                @extend #{$atom-placeholder};
+
+                #{$atom-property}: calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
               }
               @else {
-                #{$atom}-bottom: calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
-                #{$atom}-left:   calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
-                #{$atom}-right:  calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
-                #{$atom}-top:    calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
+                @extend %#{$atom-breakpoint}layout--#{$atom}--page--axes;
+
+                --#{$atom}--horizontal: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
+                --#{$atom}--vertical:   calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
               }
             }
           }
@@ -555,22 +623,26 @@
 
             @include variant-count($spacing-count--lower, $spacing-count--upper, $sign: true) {
               @extend %#{$atom-breakpoint}typography--baseline;
+              @extend #{$atom-placeholder};
 
               // Add the leading/shoulder.
-              #{$atom}#{$variant-modifier}: calc((var(--layout--typography--line-height) * #{$variant-count}) + (var(--layout--typography--leading-shoulder--override, var(--layout--typography--leading-shoulder)) * #{$variant-sign}));
+              #{$atom-property}: calc((var(--layout--typography--line-height) * #{$variant-count}) + (var(--layout--typography--leading-shoulder--override, var(--layout--typography--leading-shoulder)) * #{$variant-sign}));
             }
           }
 
           @include variant(cap) {
             @include variant-count($spacing-count--lower, $spacing-count--upper, $halves: true) { // TODO: tidy up the halves later
               @extend %#{$atom-breakpoint}typography--cap;
+              @extend #{$atom-placeholder};
 
-              #{$atom}#{$variant-modifier}: calc(var(--layout--typography--cap-height) * #{$variant-count});
+              #{$atom-property}: calc(var(--layout--typography--cap-height) * #{$variant-count});
             }
           }
 
           @include variant(clear) { // Reset any of them.
-            #{$atom}#{$variant-modifier}: initial;
+            @extend #{$atom-placeholder};
+
+            #{$atom-property}: initial;
           }
         }
       }
@@ -584,10 +656,15 @@
         @include variant-ratios {
           --ratio: #{$variant-ratio};
 
-          padding-top: calc(1 / var(--ratio) * 100%);
           position:    relative;
 
-          > iframe, > img, > div, > picture { // Immediate child fills the container.
+          &:before { // This pseudo-element “inflates” the space based on the width.
+            content:     '';
+            display:     block;
+            padding-top: calc(1 / var(--ratio) * 100%);
+          }
+
+          > * { // Immediate child fills the container.
             bottom:   0;
             height:   100%;
             left:     0;
