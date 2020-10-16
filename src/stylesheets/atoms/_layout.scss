@@ -487,7 +487,8 @@
                 }
               }
 
-              #{first-selector(&)}[class*="layout/ratio"] {
+              // Base layout/height (min/max), for inlining.
+              #{first-selector(&)}[class*="layout/ratio"] { // A height class plus a ratio class, below.
                 @extend %#{$atom-breakpoint}layout--ratio--limit--#{$variant-modifier};
               }
             }
@@ -503,6 +504,7 @@
               @else if $atom == "height" {
                 #{$atom-property}: calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
 
+                // Ratio limits.
                 @at-root {
                   #{first-selector(&)}[class*="layout/ratio"] {
                     @extend %#{$atom-breakpoint}layout--ratio--limit--#{$variant-modifier};
@@ -526,6 +528,7 @@
               // Subtract a shoulder.
               #{$atom-property}: calc((var(--layout--typography--line-height) * #{$variant-count}) - var(--layout--typography--leading-shoulder--override, var(--layout--typography--leading-shoulder)));
 
+              // Ratio limits.
               @if $atom == "height" {
                 @at-root {
                   #{first-selector(&)}[class*="layout/ratio"] {
@@ -543,6 +546,7 @@
 
               #{$atom-property}: calc(var(--layout--typography--cap-height) * #{$variant-count});
 
+              // Ratio limits.
               @if $atom == "height" {
                 @at-root {
                   #{first-selector(&)}[class*="layout/ratio"] {
@@ -654,13 +658,13 @@
 
           position:    relative;
 
-          &:before {
+          &:before { // This pseudo-element “inflates” the space based on the width.
             content:     '';
             display:     block;
             padding-top: calc(1 / var(--ratio) * 100%);
           }
 
-          > iframe, > img, > div, > picture { // Immediate child fills the container.
+          > * { // Immediate child fills the container.
             bottom:   0;
             height:   100%;
             left:     0;
