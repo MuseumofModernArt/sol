@@ -58,7 +58,7 @@
       $hero--short--desktop:     $extra-extra-large--desktop * 2; // Double XXL.
 
       @include variant(small) {
-        @include type-size($small); // SCSS can’t dynamically generate/use variable names, thus the repetition.
+        @include type-size($small); // SCSS can’t dynamically generate/use variable names, thus the repetition. Use a map next time!
 
         --typography--scale--down--2: initial;
         --typography--scale--down:    initial;
@@ -67,7 +67,7 @@
         @include breakpoint($desktop) {
           @include type-size($small--desktop);
 
-          --typography--scale--up:    #{abs($medium--desktop/$small--desktop)};
+          --typography--scale--up: #{abs($medium--desktop/$small--desktop)};
         }
       }
 
@@ -81,8 +81,8 @@
         @include breakpoint($desktop) {
           @include type-size($medium--desktop);
 
-          --typography--scale--down:  #{abs($small--desktop/$medium--desktop)};
-          --typography--scale--up:    #{abs($large--desktop/$medium--desktop)};
+          --typography--scale--down: #{abs($small--desktop/$medium--desktop)};
+          --typography--scale--up:   #{abs($large--desktop/$medium--desktop)};
         }
       }
 

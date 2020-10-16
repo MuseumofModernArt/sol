@@ -1,3 +1,4 @@
+// Some things still need prefixing.
 @mixin browser-prefix($property, $value, $prefixes...) {
   @each $prefix in $prefixes {
     #{'-' + $prefix + '-' + $property}: $value;
@@ -7,7 +8,7 @@
 }
 
 
-
+// For targeting lingering, different behaviors.
 @mixin browser-specific($browsers...) {
   @if index($browsers, 'firefox') {
     @-moz-document url-prefix() {
@@ -15,7 +16,7 @@
     }
   }
   @if index($browsers, 'safari') {
-    @supports (-webkit-hyphens:none) {
+    @supports (-webkit-hyphens:none) { // This might change, when Chrome plays ball.
       @content;
     }
   }

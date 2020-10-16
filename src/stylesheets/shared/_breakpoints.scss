@@ -15,12 +15,12 @@ $breakpoints: (
     "2000": 2000  // Rights-maximum.                  (Legacy "Max")
   ),
   height: (
-    "tall": 900 // TODO can you describe a use case where we care about/uses this break point?
+    "tall": 900 // Tall desktop screens, usually used to adjust height constraints.
   )
 );
 
 $desktop:        nth(map-keys(map-get($breakpoints, width)), 9); // Where we ratchet up type/layout sizes, née “nonmobile”.
-$desktop--width: map-get(map-get($breakpoints, width), $desktop);
+$desktop--width: map-get(map-get($breakpoints, width), $desktop); // Numeric.
 
 
 

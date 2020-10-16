@@ -198,15 +198,16 @@
       box-sizing: border-box; // Back inside.
     }
 
-    @include variant(contain) { // TODO when to use this?
+    // For containers around link/focus, which need to be larger to see the focus outline.
+    @include variant(contain) {
       margin-bottom:  calc(-2 * var(--link-enlargement));
       margin-top:     calc(-2 * var(--link-enlargement));
       padding-bottom: calc(2 * var(--link-enlargement));
       padding-top:    calc(2 * var(--link-enlargement));
     }
 
-    // This has to be sorta-repeated because of the selector construction.
-    @include variant(children) { // TODO when to use this (example DOM structure)
+    // For large link parent/containers, where we’d rather highlight/outline on specific children (marked with link/focus).
+    @include variant(children) {
       @extend %link--tap-highlight;
 
       // TODO: Desktop only highlights focus elements; need to replicate
@@ -248,7 +249,8 @@
       }
     }
 
-    @include variant(inline) { // TODO when to use this?
+    // For inline links in running text, where our standard link-enlargement margin/padding will break the text flow.
+    @include variant(inline) {
       @extend %link--cursor-pointer;
       @extend %link--focus-active;
 

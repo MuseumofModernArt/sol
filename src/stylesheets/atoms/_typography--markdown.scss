@@ -11,7 +11,7 @@
 
   strong {
     @extend #{placeholder("$typography/weight:bold")};
-    @extend #{placeholder("typography/face")}; //Re-declared for the weight to work.
+    @extend #{placeholder("typography/face")}; // Re-declared for the weight to work.
   }
 
   p:not([class]) {
@@ -22,7 +22,7 @@
     }
   }
 
-  blockquote:not([class]) {
+  blockquote:not([class]) { // Parsed without child <p>.
     @extend #{placeholder("$color/alpha:47%")};
     @extend #{placeholder("$typography/scale:minor")};
 

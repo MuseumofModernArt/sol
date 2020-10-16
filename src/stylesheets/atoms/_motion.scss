@@ -34,6 +34,9 @@
     }
   }
 
+  // Transition is just a single property, so this stack lets us specifify different effects without overwriting any others.
+  // Specific effect variables slot in, but when undeclared will fall back to overall/shared values.
+  // The order/number of effects must be the same across property, -delay, -duration, and -timing-function!
   @include atom(transition) {
     transition-property:        -webkit-backdrop-filter,
                                 backdrop-filter,
