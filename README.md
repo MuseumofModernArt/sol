@@ -1,6 +1,6 @@
-# MoMA Style
+# Sol
 
-# Development
+## Development
 1. To install, make sure you have homebrew installed, and then run this install Dart Sass<br>
 `yarn install-sass`
 
@@ -11,9 +11,9 @@
 `yarn run build`
 
 To link with `moma-go`, in the project folder, run `yarn link`.
-In `moma-go`, run `yarn link moma-style`. This creates a [symlink](https://classic.yarnpkg.com/en/docs/cli/link/) to your local version.
+In `moma-go`, run `yarn link sol`. This creates a [symlink](https://classic.yarnpkg.com/en/docs/cli/link/) to your local version.
 
-# Releases
+## Releases
 
 To create a release, merge all PRs that will be part of it into `master`.
 
@@ -23,9 +23,9 @@ Once the artifact files have been generated and the release has been tagged, go 
 
 More on semantic versioning [here](https://classic.yarnpkg.com/en/docs/dependency-versions#toc-semantic-versioning).
 
-# Usage
-You should just get `dist/moma-style.css` or `dist/moma-style.min.css`. Fonts are also provided in the `dist` folder.
+## Usage
+You should just get `dist/sol.css` or `dist/sol.min.css`. Fonts are also provided in the `dist` folder.
 
-To add to your package manager, such as yarn, do `yarn add github:MuseumofModernArt/moma-style`. If you would like to lock to a specific version, append `#v1.0.0` to the end. More on all this [here](http://thecodebarbarian.com/github-is-my-favorite-private-npm-registry.html).
+To add to your package manager, such as yarn, do `yarn add github:MuseumofModernArt/sol`. If you would like to lock to a specific version, append `#v1.0.0` to the end. More on all this [here](http://thecodebarbarian.com/github-is-my-favorite-private-npm-registry.html).
 
-To update your version of the MoMA Style to the latest release, `yarn upgrade moma-style`. To update to a specific version, run `yarn upgrade moma-style#[version]`.
+To update your version of the MoMA Style to the latest release, `yarn upgrade sol`. To update to a specific version, run `yarn upgrade sol#[version]`.

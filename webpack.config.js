@@ -4,9 +4,9 @@ module.exports = {
   entry: "./src/js/main.js",
   output: {
     path: path.resolve(__dirname, "./dist"),
-    filename: "moma-style.js",
+    filename: "sol.js",
     globalObject: "this",
-    library: "momaStyle",
+    library: "sol",
     libraryTarget: "umd",
   },
   module: {
