@@ -24,10 +24,10 @@
   }
 
   @include atom(animation) {
-    animation-name:            var(#{__css-var(&)});
-    animation-delay:           var(#{__css-var(&)}--delay, 0ms);
-    animation-duration:        var(#{__css-var(&)}--duration, 0ms);
-    animation-timing-function: var(#{__css-var(&)}--curve, linear);
+    animation-name:            var(#{css-var(&)});
+    animation-delay:           var(#{css-var(&)}--delay, 0ms);
+    animation-duration:        var(#{css-var(&)}--duration, 0ms);
+    animation-timing-function: var(#{css-var(&)}--curve, linear);
 
     @include variant(paused, running) {
       animation-play-state: #{$variant};
