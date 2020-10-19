@@ -556,12 +556,6 @@
               }
             }
           }
-
-          @include variant(clear) { // Reset any of them.
-            @extend #{$atom-placeholder};
-
-            #{$atom-property}: initial;
-          }
         }
       }
     }
