@@ -1,26 +1,26 @@
 {
-  "name": "moma-style",
+  "name": "sol",
   "version": "1.0.0",
   "description": "Atomic styles and javascript for MoMA digital properties",
-  "main": "dist/moma-style.js",
-  "style": "dist/atoms.css",
+  "main": "dist/sol.js",
+  "style": "dist/sol.css",
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/MuseumofModernArt/moma-style",
+  "repository": "https://github.com/MuseumofModernArt/sol",
   "author": "MoMA Digital Media",
   "license": "SEE LICENSE IN README.MD",
   "private": true,
   "scripts": {
     "install-sass": "SASS=sass/sass/sass; if brew ls --versions $SASS; then brew upgrade $SASS; else brew install $SASS; fi",
     "test": "jest",
-    "build-sass-dev": "sass src/stylesheets/atoms.scss:dist/atoms.css",
-    "build-sass-prod": "sass src/stylesheets/atoms.scss:dist/atoms.min.css --style=compressed",
+    "build-sass-dev": "sass src/stylesheets/main.scss:dist/sol.css",
+    "build-sass-prod": "sass src/stylesheets/main.scss:dist/sol.min.css --style=compressed",
     "build-webpack-prod": "webpack -p --config webpack.config.js --mode production",
     "build-webpack-dev": "webpack -p --config webpack.config.js --mode development",
     "build": "yarn run build-sass-dev && yarn run build-sass-prod && yarn run build-webpack-prod",
     "build-dev": "yarn run build-sass-dev && yarn run build-webpack-dev",
-    "watch-sass": "sass --watch --poll src/stylesheets/atoms.scss:dist/atoms.css",
+    "watch-sass": "sass --watch --poll src/stylesheets/main.scss:dist/sol.css",
     "watch-webpack": "webpack --progress --watch --config webpack.config.js --mode development",
     "watch": "yarn watch-sass & yarn watch-webpack",
     "release": "./bin/release.sh"

@@ -5,7 +5,7 @@ import Viewporter from './viewporter/viewporter';
 import AccentColor from './accent-color/accent-color';
 import Modernizr from './modernizr/modernizr';
 
-class MoMAStyle {
+class Sol {
   constructor() {
     this.viewporter = new Viewporter();
     this.focus = new Focus();
@@ -16,7 +16,7 @@ class MoMAStyle {
 }
 
 export {
-  MoMAStyle,
+  Sol,
   MoMABalanceText,
   Focus,
   Viewporter,
