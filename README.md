@@ -1,10 +1,20 @@
 # Sol
 
+<br>
+
+<a href="https://www.moma.org/collection/works/35205"><img src="https://www.moma.org/d/p/sa/maximum/cri_000000291104.jpg" height="480" /></a>
+
+<br>
+
 > The form itself is of very limited importance; it becomes the grammar for the total work. In fact it is best that the basic unit be deliberately uninteresting so that it may more easily become an intrinsic part of the entire work. Using complex basic forms only disrupts the unity of the whole. Using a simple form repeatedly narrows the field of the work and concentrates the intensity to the arrangement of the form. This arrangement becomes the end while the form becomes the means.
 >
 > [Sol LeWitt](https://www.moma.org/artists/3528), [_Paragraphs on Conceptual Art_](https://www.moma.org/documents/moma_catalogue_1971_300297572.pdf#page=171)
 
+<br>
+
 **Sol** is a front-end (JS/CSS) library, developed by MoMA’s Digital Media team for use across the organization’s various products. It takes an “atomic” approach of providing simple utility functions and classes which incorporate the basic design paradigms for MoMA’s brand, (mostly) agnostic of their specific usage.
+
+<br>
 
 ## Development
 1. To install, make sure you have homebrew installed, and then run this install Dart Sass<br>
