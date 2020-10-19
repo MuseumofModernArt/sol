@@ -1,14 +1,14 @@
-%__disable--touch {
+%picture--disable--touch {
   -webkit-touch-callout: none; // This is the long-press on iOS. Fine for links; bad for images.
 }
 
 
 
-%__disable--interaction {
+%picture--disable--interaction {
   @at-root {
     img#{&} { // Specificity for images.
-      @extend %__disable--drag-select; // TODO This extends from links, @use will resolve.
-      @extend %__disable--touch;
+      @extend %link--disable--drag-select;
+      @extend %picture--disable--touch;
     }
   }
 }
@@ -32,58 +32,59 @@
   }
 
   @include atom(image) {
-    @extend %__disable--interaction;
+    @extend %picture--disable--interaction;
 
     $height-fallback: 100%;
     $width-fallback: 100%;
 
-    $height-fallback--nonmobile: ();
-    $width-fallback--nonmobile: ();
+    $height-fallback--desktop: ();
+    $width-fallback--desktop: ();
 
-    // Allow for breakpoint-specific overrides. This should probably be a mixin!
+    // Pictures/images (often) come from a component, so we can’t always put specific-use atoms directly on the `img`.
+    // This progression allows responsive constraint variables (--picture--max-height, --768--picture--max-height, etc.) on a parent element.
     @include atom-breakpoints {
       & {
         $height-fallback--append: (); // Internal lists.
         $width-fallback--append: ();
 
-        @if str-index(#{$atom-breakpoint}, "tall") { // Will only match on the last run-through.
-          $height-fallback--append: join($height-fallback--nonmobile, __css-var(#{$atom-breakpoint}--picture--max-height));
-          $width-fallback--append:  join($width-fallback--nonmobile, __css-var(#{$atom-breakpoint}--picture--max-width));
+        @if $breakpoint--current == tall { // Will only match on the last run-through.
+          $height-fallback--append: join($height-fallback--desktop, css-var(#{$atom-breakpoint}--picture--max-height));
+          $width-fallback--append:  join($width-fallback--desktop, css-var(#{$atom-breakpoint}--picture--max-width));
         }
-        @else if str-index(#{$atom-breakpoint}, "landscape") and str-index(#{$atom-breakpoint}, "nonmobile") { // Landscape and nonmobile.
-          $height-fallback--nonmobile: append($height-fallback--nonmobile, __css-var(#{$atom-breakpoint}--picture--max-height), $separator: comma);
-          $width-fallback--nonmobile:  append($width-fallback--nonmobile, __css-var(#{$atom-breakpoint}--picture--max-width), $separator: comma);
+        @else if $breakpoint--desktop and $breakpoint--landscape {
+          $height-fallback--desktop: append($height-fallback--desktop, css-var(#{$atom-breakpoint}--picture--max-height), $separator: comma);
+          $width-fallback--desktop:  append($width-fallback--desktop, css-var(#{$atom-breakpoint}--picture--max-width), $separator: comma);
 
-          $height-fallback--append: $height-fallback--nonmobile;
-          $width-fallback--append: $width-fallback--nonmobile;
+          $height-fallback--append: $height-fallback--desktop;
+          $width-fallback--append: $width-fallback--desktop;
         }
-        @else if str-index(#{$atom-breakpoint}, "landscape") { // Just landscape.
-          $height-fallback: append($height-fallback, __css-var(#{$atom-breakpoint}--picture--max-height), $separator: comma);
-          $width-fallback:  append($width-fallback, __css-var(#{$atom-breakpoint}--picture--max-width), $separator: comma);
+        @else if $breakpoint--landscape {
+          $height-fallback: append($height-fallback, css-var(#{$atom-breakpoint}--picture--max-height), $separator: comma);
+          $width-fallback:  append($width-fallback, css-var(#{$atom-breakpoint}--picture--max-width), $separator: comma);
         }
-        @else if str-index(#{$atom-breakpoint}, "nonmobile") or length($height-fallback--nonmobile) > 0 { // In first nonmobile, or subsequent.
-          $height-fallback--nonmobile: append($height-fallback--nonmobile, __css-var(#{$atom-breakpoint}--picture--max-height), $separator: comma);
-          $width-fallback--nonmobile:  append($width-fallback--nonmobile, __css-var(#{$atom-breakpoint}--picture--max-width), $separator: comma);
+        @else if $breakpoint--desktop {
+          $height-fallback--desktop: append($height-fallback--desktop, css-var(#{$atom-breakpoint}--picture--max-height), $separator: comma);
+          $width-fallback--desktop:  append($width-fallback--desktop, css-var(#{$atom-breakpoint}--picture--max-width), $separator: comma);
 
-          $height-fallback--append: $height-fallback--nonmobile;
-          $width-fallback--append: $width-fallback--nonmobile;
+          $height-fallback--append: $height-fallback--desktop;
+          $width-fallback--append: $width-fallback--desktop;
         }
-        @else { // Otherwise we must be in mobile.
-          $height-fallback: append($height-fallback, __css-var(#{$atom-breakpoint}--picture--max-height), $separator: comma);
-          $width-fallback:  append($width-fallback, __css-var(#{$atom-breakpoint}--picture--max-width), $separator: comma);
+        @else { // Must be base/mobile.
+          $height-fallback: append($height-fallback, css-var(#{$atom-breakpoint}--picture--max-height), $separator: comma);
+          $width-fallback:  append($width-fallback, css-var(#{$atom-breakpoint}--picture--max-width), $separator: comma);
         }
 
         max-height: #{__fallback-list(join($height-fallback, $height-fallback--append))};
         max-width:  #{__fallback-list(join($width-fallback, $width-fallback--append))};
 
-        @if not $breakpoint { // Only mobile/base, shared across.
+        @if not $breakpoint--current { // Only mobile/base, shared across.
           position: static;
         }
       }
     }
 
     @include variant(crop) {
-      @extend %__disable--interaction;
+      @extend %picture--disable--interaction;
 
       height:          100%;
       object-fit:      cover;

@@ -1,20 +1,3 @@
-@function __color--css-var($color-level-1, $color-level-2: null) {
-  @if $color-level-2 {
-    @return --color--#{$color-level-1}--#{$color-level-2};
-  }
-  @else {
-    @return --color--#{$color-level-1};
-  }
-}
-
-@function __color--css-var--rgb($color-level-1, $color-level-2: null) {
-  @return #{__color--css-var($color-level-1, $color-level-2)}--rgb;
-}
-
-
-
-$alphas: 0, 3, 7, 10, 13, 20, 27, 33, 40, 47, 50, 80, 93, 96, 100; // The ones we’ve used in the past, for now.
-
 $colors: (
   black: (hex: #000000, dark-background: true),
   white: (hex: #ffffff),
@@ -53,90 +36,61 @@ $colors: (
 
 
 
-// TODO incorporate the alpha extends into this mixin, without repeating?
-@mixin __variant-alphas($background: null) {
-  $selector-stem:      first-selector(&);
-  $selector-remainder: remove-first-selector(&);
-  $selectors:          &;
-
-  @each $alpha in $alphas {
-    @include variant(#{$alpha}\%) {
-      @if $background {
-        @extend %__alpha--background--#{$alpha};
-      }
-      @else {
-        @extend %__alpha--#{$alpha};
-      }
-
-      $selector:  #{$selector-stem}#{$variant-delimiter}#{$alpha}\%#{$selector-remainder};
-      $selectors: append($selectors, $selector, $separator: comma);
-    }
-  }
-
-  @at-root {
-    #{__selector-list($selectors)} {
-      @content;
-    }
-  }
-}
-
-
-
 :root {
-  @extend %__base;
-  @extend %__base--background;
-  @extend %__focus;
+  @extend %color--base;
+  @extend %color--base--background;
+  @extend %color--focus;
 
-  --color--ps1:                        var(#{__color--css-var(white)});
+  --color--ps1:                        var(--color--white);
   --color--ps1--secondary:             var(--accent-color--on-dark);
-  --color--ps1--background:            var(#{__color--css-var(black)});
-  --color--ps1--background--secondary: var(#{__color--css-var(gray, 222)});
+  --color--ps1--background:            var(--color--black);
+  --color--ps1--background--secondary: var(--color--gray--222);
 
-  --color--ps1--rgb:                        var(#{__color--css-var--rgb(white)});
+  --color--ps1--rgb:                        var(--color--white--rgb);
   --color--ps1--secondary--rgb:             var(--accent-color--on-dark--rgb);
-  --color--ps1--background--rgb:            var(#{__color--css-var--rgb(black)});
-  --color--ps1--background--secondary--rgb: var(#{__color--css-var--rgb(gray, 222)});
+  --color--ps1--background--rgb:            var(--color--black--rgb);
+  --color--ps1--background--secondary--rgb: var(--color--gray--222--rgb);
 
-  --color--collection:             var(#{__color--css-var(black)});
-  --color--collection--secondary:  var(#{__color--css-var(brand, 10)});
-  --color--collection--background: var(#{__color--css-var(brand, 6)});
+  --color--collection:             var(--color--black);
+  --color--collection--secondary:  var(--color--brand--10);
+  --color--collection--background: var(--color--brand--6);
 
-  --color--collection--rgb:             var(#{__color--css-var--rgb(black)});
-  --color--collection--secondary--rgb:  var(#{__color--css-var--rgb(brand, 10)});
-  --color--collection--background--rgb: var(#{__color--css-var--rgb(brand, 6)});
+  --color--collection--rgb:             var(--color--black--rgb);
+  --color--collection--secondary--rgb:  var(--color--brand--10--rgb);
+  --color--collection--background--rgb: var(--color--brand--6--rgb);
 }
 
 
 
 // Base colors, pulled out for extending.
-%__base {
-  --color--rgb: var(#{__color--css-var--rgb(black)});
+%color--base {
+  --color--rgb: var(--color--black--rgb);
   --color:      rgba(var(--color--rgb), var(--color--alpha, 1));
 }
 
-%__base--reverse {
-  --color--rgb: var(#{__color--css-var--rgb(white)});
+%color--base--reverse {
+  --color--rgb: var(--color--white--rgb);
   --color:      rgba(var(--color--rgb), var(--color--alpha, 1));
 }
 
-%__base--background {
-  --background-color--rgb: var(#{__color--css-var--rgb(white)});
-  --background-color:      rgba(var(--background-color--rgb), var(--background-color--alpha, 1));
+%color--base--background {
+  --color--background--rgb: var(--color--white--rgb);
+  --color--background:      rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
 }
 
 
 
-%__focus {
-  --color--focus:          var(#{__color--css-var(black)});
-  --color--focus--rgb:     var(#{__color--css-var--rgb(black)});
+%color--focus {
+  --color--focus:          var(--color--black);
+  --color--focus--rgb:     var(--color--black--rgb);
 
   --color--active--alpha:        0.04;
   --color--tap-highlight--alpha: 0.07;
 }
 
-%__focus--reverse {
-  --color--focus--rgb: var(#{__color--css-var--rgb(white)});
-  --color--focus:      var(#{__color--css-var(white)});
+%color--focus--reverse {
+  --color--focus--rgb: var(--color--white--rgb);
+  --color--focus:      var(--color--white);
 
   --color--active--alpha:        0.10; // These are brighter (more opaque) on darker backgrounds.
   --color--tap-highlight--alpha: 0.13;
@@ -146,70 +100,57 @@ $colors: (
 
 // Reset/flatten colors on all elements for high-contrast.
 [data-high-contrast] {
-  %__high-contrast {
-    --color:      var(#{__color--css-var(black)});
-    --color--rgb: var(#{__color--css-var--rgb(black)});
+  %color--high-contrast {
+    --color:      var(--color--black);
+    --color--rgb: var(--color--black--rgb);
   }
 
-  %__high-contrast--background {
-    --background-color:      var(#{__color--css-var(white)});
-    --background-color--rgb: var(#{__color--css-var--rgb(white)});
+  %color--high-contrast--background {
+    --color--background:      var(--color--white);
+    --color--background--rgb: var(--color--white--rgb);
   }
 
-  %__high-contrast--reverse {
-    --color:      var(#{__color--css-var(white)});
-    --color--rgb: var(#{__color--css-var--rgb(white)});
+  %color--high-contrast--reverse {
+    --color:      var(--color--white);
+    --color--rgb: var(--color--white--rgb);
   }
 
-  %__high-contrast--reverse--background {
-    --background-color:      var(#{__color--css-var(black)});
-    --background-color--rgb: var(#{__color--css-var--rgb(black)});
+  %color--high-contrast--reverse--background {
+    --color--background:      var(--color--black);
+    --color--background--rgb: var(--color--black--rgb);
   }
 
-  %__high-contrast--accent {
-    --color:      var(#{__color--css-var(red)});
-    --color--rgb: var(#{__color--css-var--rgb(red)});
+  %color--high-contrast--accent {
+    --color:      var(--color--red);
+    --color--rgb: var(--color--red--rgb);
   }
 
-  %__high-contrast--accent--background {
-    --background-color:      var(#{__color--css-var(red)});
-    --background-color--rgb: var(#{__color--css-var--rgb(red)});
+  %color--high-contrast--accent--background {
+    --color--background:      var(--color--red);
+    --color--background--rgb: var(--color--red--rgb);
   }
 }
 
 
 
 // For SVGs, this splits the alpha out to use as opacity on the whole icon—avoiding stroke transparency overlaps.
-%color__svg--alpha {
-  fill:    rgba(var(--color--rgb, #{__color--css-var--rgb(black)}), 1);
+%color--svg--alpha {
+  fill:    rgba(var(--color--rgb, --color--black--rgb), 1);
   opacity: var(--color--alpha, 1);
-  stroke:  rgba(var(--color--rgb, #{__color--css-var--rgb(black)}), 1);
-}
-
-
-
-// Alpha extends.
-@each $alpha in $alphas {
-  %__alpha--#{$alpha} {
-    --color--alpha: #{$alpha / 100};
-  }
-
-  %__alpha--background--#{$alpha} {
-    --background-color--alpha: #{$alpha / 100};
-  }
+  stroke:  rgba(var(--color--rgb, --color--black--rgb), 1);
 }
 
 
 
 .color {
-  @include atom(var) {
+  @include atom-var {
     $color-variables: ();
 
     @each $item, $value in $colors {
       // First-level “named” colors.
       @if map-has-key($value, hex) {
-        $color-name--rgb:  __color--css-var--rgb($item);
-        $color-name:       __color--css-var($item);
+        $color-name--rgb:  --color--#{$item}--rgb;
+        $color-name:       --color--#{$item};
         $color-value--rgb: hex-to-rgb(map-get($value, hex));
         $color-value:      #{rgba}(#{$color-value--rgb}, 1); // The encapsulation on “rgba” is to prevent SCSS from using its function.
 
@@ -218,12 +159,12 @@ $colors: (
 
         // Map to the color variable.
         @include atom($item) {
-          @include __variant-alphas {
+          @include variant-alphas {
             @if $item == red {
-              @extend %__high-contrast--accent;
+              @extend %color--high-contrast--accent;
             }
             @else {
-              @extend %__high-contrast;
+              @extend %color--high-contrast;
             }
 
             --color--rgb: var(#{$color-name--rgb});
@@ -232,25 +173,25 @@ $colors: (
         }
         // Map to the background color variable.
         @include atom(background) {
-          @include atom($item) {
-            @include __variant-alphas($background: true) {
+          @include variant($item) {
+            @include variant-alphas($background: true) {
               @if $item == red {
-                @extend %__high-contrast--accent--background;
-                @extend %__high-contrast--reverse;
+                @extend %color--high-contrast--accent--background;
+                @extend %color--high-contrast--reverse;
               }
               @else {
-                @extend %__high-contrast--background;
-                @extend %__high-contrast;
+                @extend %color--high-contrast--background;
+                @extend %color--high-contrast;
               }
 
               // Invert base colors for dark values.
               @if map-get($value, dark-background) {
-                @extend %__focus--reverse;
-                @extend %__base--reverse;
+                @extend %color--focus--reverse;
+                @extend %color--base--reverse;
               }
 
-              --background-color--rgb: var(#{$color-name--rgb});
-              --background-color:      rgba(var(--background-color--rgb), var(--background-color--alpha, 1));
+              --color--background--rgb: var(#{$color-name--rgb});
+              --color--background:      rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
             }
           }
         }
@@ -259,8 +200,8 @@ $colors: (
       // Second-level groups.
       @else {
         @each $grouped-item, $grouped-values in $value {
-          $color-name--rgb:  __color--css-var--rgb($item, $grouped-item);
-          $color-name:       __color--css-var($item, $grouped-item);
+          $color-name--rgb:  --color--#{$item}--#{$grouped-item}--rgb;
+          $color-name:       --color--#{$item}--#{$grouped-item};
           $color-value--rgb: hex-to-rgb(map-get($grouped-values, hex));
           $color-value:      #{rgba}(#{$color-value--rgb}, 1);
 
@@ -269,12 +210,12 @@ $colors: (
 
           @include atom($item) {
             @include variant($grouped-item) {
-              @include __variant-alphas {
+              @include variant-alphas {
                 @if $item == brand {
-                  @extend %__high-contrast--accent;
+                  @extend %color--high-contrast--accent;
                 }
                 @else {
-                  @extend %__high-contrast;
+                  @extend %color--high-contrast;
                 }
 
                 --color--rgb: var(#{$color-name--rgb});
@@ -283,26 +224,26 @@ $colors: (
             }
           }
           @include atom(background) {
-            @include atom($item) {
+            @include variant($item) {
               @include variant($grouped-item) {
-                @include __variant-alphas($background: true) {
+                @include variant-alphas($background: true) {
                   @if $item == brand {
-                    @extend %__high-contrast--accent--background;
-                    @extend %__high-contrast--reverse;
+                    @extend %color--high-contrast--accent--background;
+                    @extend %color--high-contrast--reverse;
                   }
                   @else {
-                    @extend %__high-contrast--background;
-                    @extend %__high-contrast;
+                    @extend %color--high-contrast--background;
+                    @extend %color--high-contrast;
                   }
 
                   // Invert base colors for dark values.
                   @if map-get($grouped-values, dark-background) {
-                    @extend %__focus--reverse;
-                    @extend %__base--reverse;
+                    @extend %color--focus--reverse;
+                    @extend %color--base--reverse;
                   }
 
-                  --background-color--rgb: var(#{$color-name--rgb});
-                  --background-color:      rgba(var(--background-color--rgb), var(--background-color--alpha, 1));
+                  --color--background--rgb: var(#{$color-name--rgb});
+                  --color--background:      rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
                 }
               }
             }
@@ -323,9 +264,10 @@ $colors: (
 
 
     // Separate alpha atoms.
+    // Generally use these instead of opaque grays, for “free” invert/color-background usage!
     @include atom(alpha) {
-      @include __variant-alphas {
-        @extend %__high-contrast;
+      @include variant-alphas {
+        @extend %color--high-contrast;
 
         --color: rgba(var(--color--rgb), var(--color--alpha, 1));
       }
@@ -334,23 +276,23 @@ $colors: (
 
 
     // For resetting to the base/root ones.
-    @include atom(base-colors) {
-      @extend %__base;
-      @extend %__base--background;
-      @extend %__focus;
-      @extend %__high-contrast;
+    @include atom(base) {
+      @extend %color--base;
+      @extend %color--base--background;
+      @extend %color--focus;
+      @extend %color--high-contrast;
     }
 
 
 
-    @include atom(promo-color) {
-      @extend %__high-contrast;
+    @include atom(promo) {
+      @extend %color--high-contrast;
 
-      --color:      var(--color--promo,      var(#{__color--css-var(black)}));
-      --color--rgb: var(--color--promo--rgb, var(#{__color--css-var--rgb(black)}));
+      --color:      var(--color--promo,      var(--color--black));
+      --color--rgb: var(--color--promo--rgb, var(--color--black--rgb));
 
       @include variant(secondary) {
-        @extend %__high-contrast--accent;
+        @extend %color--high-contrast--accent;
 
         --color:      var(--color--promo--secondary,      var(--accent-color--on-light));
         --color--rgb: var(--color--promo--secondary--rgb, var(--accent-color--on-light--rgb));
@@ -361,22 +303,22 @@ $colors: (
 
     // Create classes to manually-apply when needed.
     @include atom(focus) {
-      @extend %__focus;
+      @extend %color--focus;
 
       @include variant(reverse) {
-        @extend %__focus--reverse;
+        @extend %color--focus--reverse;
       }
     }
 
     @include atom(high-contrast) {
-      @extend %__high-contrast;
+      @extend %color--high-contrast;
 
       @include variant(accent) {
-        @extend %__high-contrast--accent;
+        @extend %color--high-contrast--accent;
       }
 
       @include variant(reverse) {
-        @extend %__high-contrast--reverse;
+        @extend %color--high-contrast--reverse;
       }
     }
 
@@ -386,58 +328,58 @@ $colors: (
       --color:      var(--accent-color--on-light);
       --color--rgb: var(--accent-color--on-light--rgb);
 
-      // TODO Unravel this?
-      @include has-dark-background {
-        --color:      var(--accent-color--on-dark);
-        --color--rgb: var(--accent-color--on-dark--rgb);
-      }
+      // TODO Unravel this as part of updating the colors.
+      // @include has-dark-background {
+      //   --color:      var(--accent-color--on-dark);
+      //   --color--rgb: var(--accent-color--on-dark--rgb);
+      // }
     }
 
 
 
     // Background versions.
     @include atom(background) {
-      @include atom(alpha) {
-        @include __variant-alphas($background: true) {
-          @extend %__high-contrast--background;
-          @extend %__high-contrast;
+      @include variant(alpha) {
+        @include variant-alphas($background: true) {
+          @extend %color--high-contrast--background;
+          @extend %color--high-contrast;
 
-          --background-color: rgba(var(--background-color--rgb), var(--background-color--alpha, 1));
+          --color--background: rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
         }
       }
 
 
 
-      @include atom(promo-color) {
-        @extend %__high-contrast--background;
-        @extend %__high-contrast;
+      @include variant(promo) {
+        @extend %color--high-contrast--background;
+        @extend %color--high-contrast;
 
-        --background-color:      var(--color--promo--background,      var(#{__color--css-var(gray, eee)}));
-        --background-color--rgb: var(--color--promo--background--rgb, var(#{__color--css-var--rgb(gray, eee)}));
+        --color--background:      var(--color--promo--background,      var(--color--gray--eee));
+        --color--background--rgb: var(--color--promo--background--rgb, var(--color--gray--eee--rgb));
 
         @include variant(secondary) {
-          @extend %__high-contrast--background;
-          @extend %__high-contrast;
+          @extend %color--high-contrast--background;
+          @extend %color--high-contrast;
 
-          --background-color:      var(--color--promo--background--secondary,      transparent);
-          --background-color--rgb: var(--color--promo--background--secondary--rgb, initial);
+          --color--background:      var(--color--promo--background--secondary,      transparent);
+          --color--background--rgb: var(--color--promo--background--secondary--rgb, initial);
         }
       }
 
 
 
-      @include atom(high-contrast) {
-        @extend %__high-contrast--background;
-        @extend %__high-contrast;
+      @include variant(high-contrast) {
+        @extend %color--high-contrast--background;
+        @extend %color--high-contrast;
 
         @include variant(accent) {
-          @extend %__high-contrast--accent--background;
-          @extend %__high-contrast--reverse;
+          @extend %color--high-contrast--accent--background;
+          @extend %color--high-contrast--reverse;
         }
 
         @include variant(reverse) {
-          @extend %__high-contrast--reverse--background;
-          @extend %__high-contrast--reverse;
+          @extend %color--high-contrast--reverse--background;
+          @extend %color--high-contrast--reverse;
         }
       }
     }
@@ -449,22 +391,22 @@ $colors: (
       --color--parent:                 var(--color);
       --color--rgb--parent:            var(--color--rgb);
 
-      --background-color--parent:      var(--background-color);
-      --background-color--rgb--parent: var(--background-color--rgb);
+      --color--background--parent:      var(--color--background);
+      --color--background--rgb--parent: var(--color--background--rgb);
 
       > * {
-        --color:                 var(--background-color--parent);
-        --color--rgb:            var(--background-color--rgb--parent);
+        --color:                 var(--color--background--parent);
+        --color--rgb:            var(--color--background--rgb--parent);
 
-        --background-color:      var(--color--parent);
-        --background-color--rgb: var(--color--rgb--parent);
+        --color--background:      var(--color--parent);
+        --color--background--rgb: var(--color--rgb--parent);
       }
 
       @include variant(background) {
-        --background-color: rgba(var(--color--rgb), var(--background-color--alpha, 1));
+        --color--background: rgba(var(--color--rgb), var(--color--background--alpha, 1));
 
         > * {
-          --background-color: rgba(var(--background-color--rgb), var(--background-color--alpha, 1));
+          --color--background: rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
         }
       }
     }
@@ -480,13 +422,13 @@ $colors: (
     @at-root {
       svg#{&},
       #{&} svg {
-        @extend %color__svg--alpha;
+        @extend %color--svg--alpha;
       }
     }
   }
 
   @include atom(background) {
-    background-color: var(--background-color);
+    background-color: var(--color--background);
   }
 
   @include atom(backdrop) {

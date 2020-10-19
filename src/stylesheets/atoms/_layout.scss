@@ -1,60 +1,59 @@
-// Pulled in from “legacy” layout doc.
 :root {
-  $page-spacing:                       2.4rem;
-  $page-spacing--landscape:            1.6rem;
-  $page-spacing--nonmobile:            2 * $page-spacing;
-  $page-spacing--nonmobile--landscape: 2 * $page-spacing--landscape;
+  $page-spacing:                     2.4rem;
+  $page-spacing--desktop:            2 * $page-spacing;
+  $page-spacing--landscape:          1.6rem;
+  $page-spacing--landscape--desktop: 2 * $page-spacing--landscape;
 
   --rem-conversion: 0.1rem;  // Rem conversion. No Math!
 
-  --page-spacing:          #{$page-spacing};
-  --page-spacing--fixed:   #{$page-spacing};
+  --page-spacing:        #{$page-spacing};
+  --page-spacing--fixed: #{$page-spacing};
 
   --page-width--extension: 0rem;
   --page-width--layout:    calc(var(--page-width--visible) - var(--page-spacing--fixed) * 2);
-  --page-width--maximum:   #{$breakpoint__nonmobile--3};
+  --page-width--maximum:   128rem;
   --page-width--visible:   calc(100vw - var(--scrollbar-width, 0rem)); // vw does not account for scrollbar.
 
-  --rights-maximum:        200rem;
+  --rights-maximum: 200rem;
 
   --uneven-column-width--side: calc((var(--page-width--layout) - var(--page-spacing--fixed) * 2) / 3);                          // 1/3 without gutters.
   --uneven-column-width--main: calc(var(--page-width--layout) - var(--uneven-column-width--side) - var(--page-spacing--fixed)); // Less another gutter.
 
-  @include breakpoint--landscape {
+  @include breakpoint(landscape) {
     --page-spacing: #{$page-spacing--landscape};
   }
 
-  @include breakpoint($breakpoint__nonmobile) {
-    --page-spacing:        #{$page-spacing--nonmobile};
-    --page-spacing--fixed: #{$page-spacing--nonmobile};
+  @include breakpoint($desktop) {
+    --page-spacing:        #{$page-spacing--desktop};
+    --page-spacing--fixed: #{$page-spacing--desktop};
 
-    @include breakpoint--landscape {
-      --page-spacing: #{$page-spacing--nonmobile--landscape};
+    @include breakpoint(landscape) {
+      --page-spacing: #{$page-spacing--landscape--desktop};
 
-      @include breakpoint--height($breakpoint__tall) {
-        --page-spacing: #{$page-spacing--nonmobile};
+      @include breakpoint(tall) {
+        --page-spacing: #{$page-spacing--desktop};
       }
     }
   }
 
-  @include breakpoint($breakpoint__nonmobile--3) {
+  @include breakpoint(1280) {
     --page-width--layout:    calc(var(--page-width--maximum) - var(--page-spacing--fixed) * 2);
     --page-width--extension: calc((var(--page-width--visible) - var(--page-width--maximum)) / 2);
   }
 
-  @include breakpoint($breakpoint__max) {
+  @include breakpoint(2000) {
     --page-width--extension: calc((var(--rights-maximum) - var(--page-width--maximum)) / 2);
   }
 }
 
 
 
-%__margins-auto {
+%layout--margins-auto {
   margin-left:  auto;
   margin-right: auto;
 }
 
-%__page-width {
+%layout--page-width {
   max-width: var(--page-width--maximum);
   width:     var(--page-width--visible);
 }
@@ -73,10 +72,10 @@
   }
 
 
-
+  // These are kind of our only true “molecules”.
   @include atom(wrapper) {
-    @extend %__margins-auto;
-    @extend %__page-width;
+    @extend %layout--margins-auto;
+    @extend %layout--page-width;
 
     padding-left:  var(--page-spacing--fixed);
     padding-right: var(--page-spacing--fixed);
@@ -88,12 +87,12 @@
     }
 
     @include variant(bleed) {
-      @extend %__margins-auto;
-      @extend %__page-width;
+      @extend %layout--margins-auto;
+      @extend %layout--page-width;
     }
 
     @include variant(rights-maximum) {
-      @extend %__margins-auto;
+      @extend %layout--margins-auto;
 
       max-width: var(--rights-maximum);
       width:     100%;
@@ -103,28 +102,28 @@
 
 
   @include atom-breakpoints {
-    %__#{$atom-breakpoint}page-spacing--reset {
+    %#{$atom-breakpoint}page-spacing--reset {
       --page-spacing--override: initial;
     }
 
-    %__#{$atom-breakpoint}typography--previous {
+    %#{$atom-breakpoint}typography--previous {
       --layout--typography--size:    var(--typography--size--previous);
       --layout--typography--leading: var(--typography--leading--previous);
     }
 
-    %__#{$atom-breakpoint}typography--reset {
+    %#{$atom-breakpoint}typography--reset {
       --layout--typography--size:    initial;
       --layout--typography--leading: initial;
     }
 
     // Size for layout.
-    %__#{$atom-breakpoint}typography--size {
+    %#{$atom-breakpoint}typography--size {
       --layout--typography--font-size: var(--layout--typography--size, var(--typography--size)) * var(--rem-conversion); // Separate internal calculations for spacing.
     }
 
     // Maths for sequential baselines.
-    %__#{$atom-breakpoint}typography--baseline {
-      @extend %__#{$atom-breakpoint}typography--size;
+    %#{$atom-breakpoint}typography--baseline {
+      @extend %#{$atom-breakpoint}typography--size;
 
       --layout--typography--line-height:      var(--layout--typography--leading, var(--typography--leading)) * var(--layout--typography--font-size); // Same.
       --layout--typography--leading--between: var(--layout--typography--font-size) * (var(--layout--typography--leading, var(--typography--leading)) - 1); // Same.
@@ -134,21 +133,21 @@
     }
 
     // Cap-heights.
-    %__#{$atom-breakpoint}typography--cap {
-      @extend %__#{$atom-breakpoint}typography--size;
+    %#{$atom-breakpoint}typography--cap {
+      @extend %#{$atom-breakpoint}typography--size;
 
       --layout--typography--cap-height: calc(var(--typography--cap-height) * var(--layout--typography--font-size)); // Calc a cap-height.
     }
 
 
 
-    @include atom(var) {
+    @include atom-var {
       @include atom(page) { // Overrides.
         @include variant(fixed) {
           --page-spacing--override: var(--page-spacing--fixed);
 
           > * { // Reset for descendants.
-            @extend %__#{$atom-breakpoint}page-spacing--reset;
+            @extend %#{$atom-breakpoint}page-spacing--reset;
           }
         }
 
@@ -156,26 +155,26 @@
           --page-spacing--override: var(--page-spacing);
 
           > * { // Reset for descendants.
-            @extend %__#{$atom-breakpoint}page-spacing--reset;
+            @extend %#{$atom-breakpoint}page-spacing--reset;
           }
         }
 
         @include variant(clear) {
-          @extend %__#{$atom-breakpoint}page-spacing--reset;
+          @extend %#{$atom-breakpoint}page-spacing--reset;
         }
       }
 
       @include atom(baseline, cap) {
         @include variant(previous) {
-          @extend %__#{$atom-breakpoint}typography--previous;
+          @extend %#{$atom-breakpoint}typography--previous;
 
           > * { // Reset for descendants.
-            @extend %__#{$atom-breakpoint}typography--reset;
+            @extend %#{$atom-breakpoint}typography--reset;
           }
         }
 
         @include variant(current) {
-          @extend %__#{$atom-breakpoint}typography--reset;
+          @extend %#{$atom-breakpoint}typography--reset;
         }
 
         @if $atom == "baseline" {
@@ -255,7 +254,7 @@
             $variant-modifier: #{$variant}- !global; // With the hyphen.
           }
 
-          #{$variant-modifier}gap: var(#{__css-var(first-selector(&))}); // Allow for inlining.
+          #{$variant-modifier}gap: var(#{css-var(&)}); // Allow for inlining.
 
           @include variant(page) {
             @include variant-count($spacing-count--upper, $halves: true) {
@@ -274,7 +273,7 @@
 
           @include variant(baseline) {
             @include variant-count(0, $spacing-count--upper) {
-              @extend %__#{$atom-breakpoint}typography--baseline;
+              @extend %#{$atom-breakpoint}typography--baseline;
 
               // Add the leading/shoulder.
               #{$variant-modifier}gap: calc((var(--layout--typography--line-height) * #{$variant-count}) + var(--layout--typography--leading-shoulder--override, var(--layout--typography--leading-shoulder)));
@@ -283,7 +282,7 @@
 
           @include variant(cap) {
             @include variant-count($spacing-count--upper, $halves: true) {
-              @extend %__#{$atom-breakpoint}typography--cap;
+              @extend %#{$atom-breakpoint}typography--cap;
 
               #{$variant-modifier}gap: calc(var(--layout--typography--cap-height) * #{$variant-count});
             }
@@ -376,7 +375,7 @@
 
 
     @include atom(transform) {
-      transform: var(#{__css-var(first-selector(&))}); // Allow for inlining.
+      transform: var(#{css-var(&)}); // Allow for inlining.
     }
 
 
@@ -459,28 +458,58 @@
     @include atom(height, width) {
       @include increase-specificity(2) {
         @include variant(&, max, min) {
+          $atom-property:    css-var(&);
+          $atom-placeholder: placeholder(first-selector(&));
+
           @if $variant {
             $variant-modifier: #{$variant}- !global; // With the hyphen.
           }
 
+          #{$variant-modifier}#{$atom}: var(#{$atom-property}); // Allow for inlining.
+
           @if $atom == "width" {
             @include variant-percentages {
-              #{$variant-modifier}#{$atom}: #{$variant-percentage};
+              @extend #{$atom-placeholder};
             }
           }
           @else {
             @include variant-percentages(0, 50, 100) {
-              #{$variant-modifier}#{$atom}: #{$variant-percentage};
+              @extend #{$atom-placeholder};
+            }
+
+            // Ratio limits.
+            @at-root {
+              %#{$atom-breakpoint}layout--ratio--limit--#{$variant-modifier} {
+                #{$variant-modifier}width: calc(var(#{$atom-property}) * var(--ratio)); // Derive width from height.
+
+                @if $variant-modifier { // Min/max need a width to work against.
+                  width: 100%;
+                }
+              }
+
+              // Base layout/height (min/max), for inlining.
+              #{first-selector(&)}[class*="layout/ratio"] { // A height class plus a ratio class, below.
+                @extend %#{$atom-breakpoint}layout--ratio--limit--#{$variant-modifier};
+              }
             }
           }
 
           @include variant(page) {
             @include variant-count($spacing-count--upper, $halves: true) {
+              @extend #{$atom-placeholder};
+
               @if $atom == "width" {
-                #{$variant-modifier}#{$atom}: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
+                #{$atom-property}: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
               }
               @else if $atom == "height" {
-                #{$variant-modifier}#{$atom}: calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
+                #{$atom-property}: calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
+
+                // Ratio limits.
+                @at-root {
+                  #{first-selector(&)}[class*="layout/ratio"] {
+                    @extend %#{$atom-breakpoint}layout--ratio--limit--#{$variant-modifier};
+                  }
+                }
               }
             }
           }
@@ -493,23 +522,39 @@
             }
 
             @include variant-count(0, $spacing-count--upper, $halves: $halves) {
-              @extend %__#{$atom-breakpoint}typography--baseline;
+              @extend %#{$atom-breakpoint}typography--baseline;
+              @extend #{$atom-placeholder};
 
               // Subtract a shoulder.
-              #{$variant-modifier}#{$atom}: calc((var(--layout--typography--line-height) * #{$variant-count}) - var(--layout--typography--leading-shoulder--override, var(--layout--typography--leading-shoulder)));
+              #{$atom-property}: calc((var(--layout--typography--line-height) * #{$variant-count}) - var(--layout--typography--leading-shoulder--override, var(--layout--typography--leading-shoulder)));
+
+              // Ratio limits.
+              @if $atom == "height" {
+                @at-root {
+                  #{first-selector(&)}[class*="layout/ratio"] {
+                    @extend %#{$atom-breakpoint}layout--ratio--limit--#{$variant-modifier};
+                  }
+                }
+              }
             }
           }
 
           @include variant(cap) {
             @include variant-count($spacing-count--upper, $halves: true) {
-              @extend %__#{$atom-breakpoint}typography--cap;
+              @extend %#{$atom-breakpoint}typography--cap;
+              @extend #{$atom-placeholder};
 
-              #{$variant-modifier}#{$atom}: calc(var(--layout--typography--cap-height) * #{$variant-count});
+              #{$atom-property}: calc(var(--layout--typography--cap-height) * #{$variant-count});
+
+              // Ratio limits.
+              @if $atom == "height" {
+                @at-root {
+                  #{first-selector(&)}[class*="layout/ratio"] {
+                    @extend %#{$atom-breakpoint}layout--ratio--limit--#{$variant-modifier};
+                  }
+                }
+              }
             }
-          }
-
-          @include variant(clear) { // Reset any of them.
-            #{$variant-modifier}#{$atom}: initial;
           }
         }
       }
@@ -524,27 +569,43 @@
         $spacing-count--lower: - $spacing-count--upper; // Margins, uniquely, can be negative.
       }
 
+      @at-root {
+        %#{$atom-breakpoint}layout--#{$atom}--page--axes {
+          #{$atom}-bottom: var(--#{$atom}--vertical);
+          #{$atom}-left:   var(--#{$atom}--horizontal);
+          #{$atom}-right:  var(--#{$atom}--horizontal);
+          #{$atom}-top:    var(--#{$atom}--vertical);
+        }
+      }
+
       @include increase-specificity(2) { // To allow for overriding sequential paragraph spacing (.typography + .typography) which is `0,2,0`.
         @include variant(&, top, right, bottom, left) {
+          $atom-property:    css-var(&);
+          $atom-placeholder: placeholder(first-selector(&));
+
           @if $variant {
             $variant-modifier: -#{$variant} !global; // With the hyphen.
           }
 
-          #{$atom}#{$variant-modifier}: var(#{__css-var(first-selector(&))}); // Allow for inlining.
+          #{$atom}#{$variant-modifier}: var(#{$atom-property}); // Allow for inlining.
 
           @include variant(page) {
             @include variant-count($spacing-count--lower, $spacing-count--upper, $halves: true) {
               @if $variant-modifier == "-left" or $variant-modifier == "-right" {
-                  #{$atom}#{$variant-modifier}: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
+                @extend #{$atom-placeholder};
+
+                #{$atom-property}: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
               }
               @else if $variant-modifier == "-top" or $variant-modifier == "-bottom" {
-                #{$atom}#{$variant-modifier}: calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
+                @extend #{$atom-placeholder};
+
+                #{$atom-property}: calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
               }
               @else {
-                #{$atom}-bottom: calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
-                #{$atom}-left:   calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
-                #{$atom}-right:  calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
-                #{$atom}-top:    calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
+                @extend %#{$atom-breakpoint}layout--#{$atom}--page--axes;
+
+                --#{$atom}--horizontal: calc(var(--page-spacing--override, var(--page-spacing--fixed)) * #{$variant-count});
+                --#{$atom}--vertical:   calc(var(--page-spacing--override, var(--page-spacing)) * #{$variant-count});
               }
             }
           }
@@ -555,23 +616,27 @@
             }
 
             @include variant-count($spacing-count--lower, $spacing-count--upper, $sign: true) {
-              @extend %__#{$atom-breakpoint}typography--baseline;
+              @extend %#{$atom-breakpoint}typography--baseline;
+              @extend #{$atom-placeholder};
 
               // Add the leading/shoulder.
-              #{$atom}#{$variant-modifier}: calc((var(--layout--typography--line-height) * #{$variant-count}) + (var(--layout--typography--leading-shoulder--override, var(--layout--typography--leading-shoulder)) * #{$variant-sign}));
+              #{$atom-property}: calc((var(--layout--typography--line-height) * #{$variant-count}) + (var(--layout--typography--leading-shoulder--override, var(--layout--typography--leading-shoulder)) * #{$variant-sign}));
             }
           }
 
           @include variant(cap) {
             @include variant-count($spacing-count--lower, $spacing-count--upper, $halves: true) { // TODO: tidy up the halves later
-              @extend %__#{$atom-breakpoint}typography--cap;
+              @extend %#{$atom-breakpoint}typography--cap;
+              @extend #{$atom-placeholder};
 
-              #{$atom}#{$variant-modifier}: calc(var(--layout--typography--cap-height) * #{$variant-count});
+              #{$atom-property}: calc(var(--layout--typography--cap-height) * #{$variant-count});
             }
           }
 
           @include variant(clear) { // Reset any of them.
-            #{$atom}#{$variant-modifier}: initial;
+            @extend #{$atom-placeholder};
+
+            #{$atom-property}: initial;
           }
         }
       }
@@ -585,10 +650,15 @@
         @include variant-ratios {
           --ratio: #{$variant-ratio};
 
-          padding-top: calc(1 / var(--ratio) * 100%);
           position:    relative;
 
-          > iframe, > img, > div, > picture { // Immediate child fills the container.
+          &:before { // This pseudo-element “inflates” the space based on the width.
+            content:     '';
+            display:     block;
+            padding-top: calc(1 / var(--ratio) * 100%);
+          }
+
+          > * { // Immediate child fills the container.
             bottom:   0;
             height:   100%;
             left:     0;

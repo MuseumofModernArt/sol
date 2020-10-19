@@ -20,45 +20,8 @@
 
 
 
-// Variable cascade control.
-@mixin type-variable($variable, $value) {
-  #{$variable}: $value;
-
-  // Only for smaller size variables. (All these shenanigans are just for more-efficient compiled CSS.)
-  @if $variable == "--typography--size" and $value >= 16 and $value <= 24 {
-    @if type-of($variant) == "string" { // Named sizes have their own/internal breakpoints.
-      @if $breakpoint == null { // Match to mobile.
-        @extend %__typography--icon-aliasing;
-        @extend %__typography--icon-aliasing--high;
-      }
-      @else { // Match to nonmobile.
-        @extend %__#{$breakpoint-prefix}nonmobile#{$breakpoint-delimiter}typography--icon-aliasing;
-      }
-    }
-    @else {
-      @if $breakpoint == null { // First call, outside media query.
-        @include atom-breakpoints {
-          .#{$atom-breakpoint}#{strip-selector(&)} {
-            @extend %__#{$atom-breakpoint}typography--icon-aliasing; // Match to media-query-specific extends, below.
-
-            @if str-index(#{$atom-breakpoint}, "nonmobile") == null {
-              @extend %__#{$atom-breakpoint}typography--icon-aliasing--high; // Even higher densities for mobile.
-            }
-          }
-        }
-      }
-    }
-  }
-
-  + * { // Makes value available to succeeding elements.
-    #{$variable}--previous: $value;
-  }
-}
-
-
-
 // Weights.
-%__regular {
+%typography--regular {
   --typography--bullet:             0.280; // See below.
   --typography--icon--space:        0.649;
   --typography--icon--stroke:       0.076;
@@ -72,7 +35,7 @@
   --typography--weight:             400;
 }
 
-:root, %__bold {
+:root, %typography--bold { // Lower for ordering the default/root.
   --typography--bullet:             0.305; // Square matching the area of the bullet character.
   --typography--icon--space:        0.444; // Two spaces between two uppercase “M”, for icon separation.
   --typography--icon--stroke:       0.149; // Thickness of right-arrow icon stem.
@@ -89,21 +52,25 @@
 
 
 // Baselines.
-%__body {
-  @include type-variable(--typography--leading, 4/3);
+%typography--body {
+  --typography--leading: #{abs(4/3)}; // The abs is for SCSS to render as a decimal.
 
   --typography--descenders: 0.231; // Lowest descender from the baseline: Ģ (“latin capital letter G with cedilla”).
 
-  --typography--scale--minor: #{abs(8/9)}; // Smaller text on same baseline. (The abs is for SCSS to render as a decimal.)
+  --typography--scale--minor: #{abs(8/9)}; // Smaller text on same baseline.
   --typography--scale--major: #{abs(4/3)}; // Slightly larger.
   --typography--scale--prime: 2;           // Largest.
 
-  @include breakpoint($breakpoint__nonmobile) {
+  + * { // Makes value available to succeeding elements.
+    --typography--leading--previous: #{abs(4/3)};
+  }
+
+  @include breakpoint($desktop) {
     --typography--scale--prime: #{abs(8/3)}; // This is the “correct” scale, on desktop.
   }
 }
 
-:root, %__solid {
+:root, %typography--solid {
   --typography--leading: 1;
 
   --typography--scale--minor: #{abs(3/4)};
@@ -115,7 +82,7 @@
   --typography--ascenders:  0.330; // Highest ascender from the top of a capital “M”: Ẵ (“latin capital letter A with breve and tilde”).
   --typography--descenders: 0.200; // Max distance below baseline before the next line’s common ascenders are visible, clears a “j”. TODO: This shows ascenders at size:medium.
 
-  @include breakpoint($breakpoint__nonmobile) {
+  @include breakpoint($desktop) {
     --typography--scale--major: 2;
     --typography--scale--prime: 3;
   }
@@ -123,25 +90,25 @@
 
 
 
-%__nowrap, .nowrap, moma-nowrap, nobr { // Legacy class/element coverage.
+nobr, %typography--nowrap {
   white-space: nowrap;
 }
 
 
 
-%__icon {
-  @extend %color__svg--alpha;
+%typography--svg {
+  @extend %color--svg--alpha;
 
   --typography--icon--size:         var(--typography--font-size, calc(var(--typography--size--override, var(--typography--size)) * var(--rem-conversion))); // Render the actual value.
   --typography--icon--stroke-width: calc(var(--typography--icon--stroke) * var(--typography--icon--size)); // Same.
 
   height:       var(--typography--icon--size);
   stroke-width: var(--typography--icon--stroke-width);
-  transform:    translate(var(--typography--icon--translate-x, 0), var(--typography--icon--translate-y, 0)) rotate(var(--typography--icon--rotate, 0)); // X/Y shift for aliasing tweaks.
+  transform:    translate(var(--typography--icon--translate--x, 0), var(--typography--icon--translate--y, 0)) rotate(var(--typography--icon--rotate, 0)); // X/Y shift for aliasing tweaks.
   width:        var(--typography--icon--size);
 }
 
-%__icon--embedded {
+%typography--svg--embedded {
   --typography--icon--inset: -0.156; // Optical “safe area” in embedded/inline SVGs.
 
   --typography--icon--margin:       calc(var(--typography--icon--inset) *  1em); // Render the actual values.
@@ -155,7 +122,7 @@
 
 
 
-%__underline--disable {
+%typography--disable-underline {
   background:  initial;
   text-shadow: initial;
 }
@@ -186,14 +153,14 @@
 
     // For language-specific tweaks (when not mixed with latin/Sans characters).
     @at-root {
-      %__tracking--kanji {
+      %typography--tracking--kanji {
         --typography--tracking--override: 0.040;
       }
     }
 
     @include variant(ja, zh-hans, zh-hant) {
       @extend #{$face};
-      @extend %__tracking--kanji;
+      @extend %typography--tracking--kanji;
 
       @if $variant == "ja" {
         @include variant(kana) { // For kana-only, much tighter.
@@ -212,8 +179,8 @@
   }
 
   @at-root {
-    #{__selector-list(&)} { // So these basic calculations can be extended.
-      @extend #{__placeholder("typography/face")};
+    #{class-placeholder-list(&)} { // So these basic calculations can be extended.
+      @extend #{placeholder("typography/face")};
 
       --typography--size--rendered:     var(--typography--size--override, var(--typography--size)) * var(--rem-conversion); // Render the actual value.
 
@@ -264,13 +231,13 @@
 
   // Classless links inside typography elements (usually from rendered markdown). On by default.
   a {
-    @extend #{__placeholder("link/focus:inline")};
-    @extend #{__placeholder("typography/underline")};
+    @extend #{placeholder("link/focus:inline")};
+    @extend #{placeholder("typography/underline")};
   }
 
   // Targeting for sequential type elements.
   & + & {
-    @extend %__typography--baseline;
+    @extend %typography--baseline;
 
     margin-top: var(--layout--typography--leading-shoulder); // Equivalent to .layout/margin:top:baseline:0.
   }
@@ -300,18 +267,18 @@
 
 
 
-  @include atom(var) {
+  @include atom-var {
     // Weights.
     @include atom(weight) {
       @include variant(regular, bold) { // If you need to redeclare the root/defaults.
-        @extend %__#{$variant};
+        @extend %typography--#{$variant};
       }
     }
 
     // Baselines.
     @include atom(baseline) {
       @include variant(body, solid) { // If you need to redeclare the root/defaults.
-        @extend %__#{$variant};
+        @extend %typography--#{$variant};
       }
     }
 
@@ -340,8 +307,8 @@
 
 
   // Wrapping.
-  @include atom(no-wrap) {
-    @extend %__nowrap;
+  @include atom(nowrap) {
+    @extend %typography--nowrap;
   }
 
   // Underlines.
@@ -351,13 +318,13 @@
     background-repeat:   no-repeat; // Prevent top/bottom from looping back over.
     background-size:     calc(100% + var(--typography--underline--margin) + var(--typography--margin--right)) 100%; // Larger offsets would need a negative margin/padding on the bottom, but this covers us for now.
     text-shadow: // Clear the descenders, if we know the background color.
-      var(--background-color) var(--typography--underline--clearing) 0, // “East”
-      var(--background-color) var(--typography--underline--clearing) calc(var(--typography--underline--clearing) / 3), // “Southeast”
-      var(--background-color) 0 calc(var(--typography--underline--clearing) / 3), // “South”
-      var(--background-color) calc(-1 * var(--typography--underline--clearing)) calc(var(--typography--underline--clearing) / 3), // “Southwest”
-      var(--background-color) calc(-1 * var(--typography--underline--clearing)) 0, // “West”
-      var(--background-color) calc(-1 * var(--typography--underline--clearing)) calc(-1 * var(--typography--underline--clearing) / 3), // “Northwest”
-      var(--background-color) 0 calc(-1 * var(--typography--underline--clearing) / 3) // “North”
+      var(--color--background) var(--typography--underline--clearing) 0, // “East”
+      var(--color--background) var(--typography--underline--clearing) calc(var(--typography--underline--clearing) / 3), // “Southeast”
+      var(--color--background) 0 calc(var(--typography--underline--clearing) / 3), // “South”
+      var(--color--background) calc(-1 * var(--typography--underline--clearing)) calc(var(--typography--underline--clearing) / 3), // “Southwest”
+      var(--color--background) calc(-1 * var(--typography--underline--clearing)) 0, // “West”
+      var(--color--background) calc(-1 * var(--typography--underline--clearing)) calc(-1 * var(--typography--underline--clearing) / 3), // “Northwest”
+      var(--color--background) 0 calc(-1 * var(--typography--underline--clearing) / 3) // “North”
       ;
 
     @at-root {
@@ -374,12 +341,12 @@
     @include variant(disable) { // TODO Messy extend with `show-focus` stuff, also double-nested links.
       &.typography {
         a:not([class]) { // Markdown descendants.
-          @extend %__underline--disable;
+          @extend %typography--disable-underline;
         }
       }
 
       &:not(.typography) {
-        @extend %__underline--disable;
+        @extend %typography--disable-underline;
       }
     }
   }
@@ -392,15 +359,15 @@
   // Icons.
   @include atom(icon) {
     @include variant-rotations {
-      @extend %__icon;
+      @extend %typography--svg;
 
       --typography--icon--rotate: #{$variant-rotation};
     }
 
     @include variant(before, after) {
       @include variant-rotations {
-        @extend %__icon--embedded;
-        @extend %__icon;
+        @extend %typography--svg--embedded;
+        @extend %typography--svg;
 
         --typography--icon--rotate: #{$variant-rotation};
 
@@ -425,10 +392,10 @@
     --typography--shift:         0.06; // Ballparking Courier to MoMA Sans baseline.
 
     // Duplicated these in from color atoms, so typography can be used independently.
-    --background-color--alpha:   0.07;
-    --background-color:          rgba(var(--color--rgb), var(--background-color--alpha, 1));
+    --color--background--alpha:   0.07;
+    --color--background:          rgba(var(--color--rgb), var(--color--background--alpha, 1));
 
-    background-color: var(--background-color);
+    background-color: var(--color--background);
     font-family:      Courier, monospace;
     letter-spacing:   normal;
     padding-left:     var(--typography--code--padding);
@@ -442,7 +409,7 @@
 
       &:before,
       &:after {
-        background-color: var(--background-color); // Extend the fill.
+        background-color: var(--color--background); // Extend the fill.
         margin-left:      calc(-1 * var(--typography--code--padding));
         width:            calc(100% + var(--typography--code--padding) * 2);
       }
@@ -479,42 +446,17 @@
 
 
   @include atom-breakpoints {
-    // Icon aliasing tweaks.
-    %__#{$atom-breakpoint}typography--icon-aliasing {
-      --typography--icon--translate-x: -0.5px;
-      --typography--icon--translate-y: -0.5px;
-
-      @include retina(2) {
-        --typography--icon--translate-x: -0.25px;
-        --typography--icon--translate-y: -0.25px;
-      }
-    }
-
-    %__#{$atom-breakpoint}typography--icon-aliasing--high {
-      @include retina(3) {
-        --typography--icon--translate-x: -0.1666667px;
-        --typography--icon--translate-y: -0.1666667px;
-      }
-
-      @include retina(4) {
-        --typography--icon--translate-x: -0.125px;
-        --typography--icon--translate-y: -0.125px;
-      }
-    }
-
-
-
     // Truncation.
     @include atom(truncate) {
       @include variant-count(1, 6) {
-        @extend #{__placeholder("#{$atom-breakpoint}layout/height:max:baseline:clear")};
+        @extend #{placeholder("#{$atom-breakpoint}layout/height:max:baseline:clear")};
 
-        #{__css-var(#{$atom-breakpoint}--layout--height--max--baseline)}: #{$variant-count}; // Constrain the height.
+        #{css-var(#{$atom-breakpoint}--layout--height--max--baseline)}: #{$variant-count}; // Constrain the height.
 
         --typography--shoulder-extension--bottom:  calc(var(--typography--descenders) * 1em);
         --typography--shoulder-extension--top:     calc(var(--typography--ascenders) *  1em);
 
-        -webkit-box-orient:  vertical;          // This is kind of like column.
+        -webkit-box-orient:  vertical;          // This is kind of like flex column.
         -webkit-line-clamp:  #{$variant-count}; // For modern browsers, applies the ellipsis.
         box-sizing:          content-box;       // Reset margin/padding outside.
         display:            -webkit-box;        // This is kind of like flex.
@@ -532,14 +474,14 @@
 
 
     // Per-breakpoint variables.
-    @include atom(var) {
+    @include atom-var {
       // Scales.
       @include atom(scale) {
         @include variant(minor, down, clear, up, major, prime) {
           --typography--scale: var(--typography--scale--#{$variant});
 
           @if $variant == "major" or $variant == "prime" {
-            @extend %__#{$atom-breakpoint}scaled-solid;
+            @extend %#{$atom-breakpoint}typography--scaled-solid;
           }
 
           @if $variant == "down" or $variant == "up" {
@@ -556,7 +498,7 @@
         }
 
         @at-root { // Here for ordering/efficiency.
-          %__#{$atom-breakpoint}scaled-solid {
+          %#{$atom-breakpoint}typography--scaled-solid {
             --typography--line-height: var(--typography--font-size); // Set solid, at the larger size.
 
             --typography--shift: calc(var(--typography--shoulder--bottom) * (var(--typography--scale) - 1) - var(--typography--leading--remainder)); // Shift to original baseline.
@@ -570,12 +512,14 @@
 
 
 // // Example type size atoms.
-// .typography\/var\/size {
-//   @include variant(small) {
-//     @include type-variable(--typography--size, 18);
-//   }
-//   @include variant(medium) {
-//     @include type-variable(--typography--size, 24);
+// .typography {
+//   @include atom(size) {
+//     @include variant(small) {
+//       @include type-variable(--typography--size, 18);
+//     }
+//     @include variant(medium) {
+//       @include type-variable(--typography--size, 24);
+//     }
 //   }
 // }
 
@@ -584,11 +528,11 @@
 // Example DOM, in “line-break” style. Atom classes are alphabetized. 'balance-text' is the only non-type atom we’d see on a paragraph element.
 // <p
 //   class="
+//     $typography/baseline:body
+//     $typography/size:small
+//     $typography/weight:regular
 //     balance-text
 //     typography
-//     typography/var/baseline:body
-//     typography/var/size:small
-//     typography/var/weight:regular
 //     "
 //   >
 //   Lorem ipsum color sit amet.

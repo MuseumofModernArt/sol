@@ -1,77 +1,60 @@
-$breakpoint__mobile:       32rem;    // iPhones …/5/SE.
-$breakpoint__mobile--1-25: 36rem;    // Most Androids.
-$breakpoint__mobile--1-5:  37.5rem;  // iPhones 6/7/8/X.
-$breakpoint__mobile--1-75: 41.2rem;  // iPhones Plus/Max, Pixels.
-$breakpoint__mobile--2:    48.0rem;
-$breakpoint__mobile--2-5:  56.8rem;  // Landscape iPhones …/5/SE.
-$breakpoint__mobile--3:    60rem;
-$breakpoint__mobile--3-5:  66.7rem;  // Landscape iPhones 6/7/8.
-$breakpoint__mobile--3-75: 72.4rem;  // Landscape iPhone X.
-$breakpoint__nonmobile:    76.8rem;  // Portrait iPad.
-$breakpoint__nonmobile--2: 102.4rem; // Landscape iPad.
-$breakpoint__nonmobile--3: 128rem;
-$breakpoint__nonmobile--4: 144rem;
-
-$breakpoint__max:  200rem; // Rights-maximum.
-$breakpoint__tall: 90rem;
-
 $breakpoints: (
   width: (
-    "mobile:1.25": $breakpoint__mobile--1-25,
-    "mobile:1.5":  $breakpoint__mobile--1-5,
-    "mobile:1.75": $breakpoint__mobile--1-75,
-    "mobile:2":    $breakpoint__mobile--2,
-    "mobile:2.5":  $breakpoint__mobile--2-5,
-    "mobile:3":    $breakpoint__mobile--3,
-    "mobile:3.5":  $breakpoint__mobile--3-5,
-    "mobile:3.75": $breakpoint__mobile--3-75,
-    "nonmobile":   $breakpoint__nonmobile,
-    "nonmobile:2": $breakpoint__nonmobile--2,
-    "nonmobile:3": $breakpoint__nonmobile--3,
-    "nonmobile:4": $breakpoint__nonmobile--4,
-    "max":         $breakpoint__max
+    "360":  360,  // Many Androids.                   (Legacy "Mobile 1.25")
+    "375":  375,  // iPhones 6/7/8/X/11 Pro/SE 2.     (Legacy "Mobile 1.5")
+    "412":  412,  // iPhones Plus/Max/XR/11, Pixels.  (Legacy "Mobile 1.75")
+    "480":  480,  // Old landscape iPhones.           (Legacy "Mobile 2")
+    "568":  568,  // Landscape iPhones …/5/SE.        (Legacy "Mobile 2.5")
+    "600":  600,  // Old Android tablets.             (Legacy "Mobile 3")
+    "667":  667,  // Landscape iPhones 6/7/8/SE 2.    (Legacy "Mobile 3.5")
+    "724":  724,  // Landscape iPhones X/11 Pro.      (Legacy "Mobile 3.75")
+    "768":  768,  // Portrait iPads.                  (Legacy "Nonmobile 1")
+    "1024": 1024, // Landscape iPads.                 (Legacy "Nonmobile 2")
+    "1280": 1280, // Desktop.                         (Legacy "Nonmobile 3")
+    "1440": 1440, // Bigger desktops.                 (Legacy "Nonmobile 4")
+    "2000": 2000  // Rights-maximum.                  (Legacy "Max")
   ),
   height: (
-    "tall": $breakpoint__tall
+    "tall": 900 // Tall desktop screens, usually used to adjust height constraints.
   )
 );
 
-$breakpoints--limited: (
-  width: (
-    "nonmobile": $breakpoint__nonmobile
-  )
-);
-
-$breakpoint: null !default; // Empty, used for current one.
+$desktop:        nth(map-keys(map-get($breakpoints, width)), 9); // Where we ratchet up type/layout sizes, née “nonmobile”.
+$desktop--width: map-get(map-get($breakpoints, width), $desktop); // Numeric.
 
 
+
+$breakpoint--current:   null !default; // Empty for base/mobile, to start.
+$breakpoint--desktop:   null !default;
+$breakpoint--landscape: null !default;
 
 @mixin breakpoint($break) {
-  $breakpoint: $break !global; // Pass back, for determinine if you are in a media directive.
+  $breakpoint--current: $break !global; // Pass back, for determining if you are in a media directive.
 
-  @media (min-width: px-convert($break)) {
-    @content;
+  @if $break == "landscape" {
+    @media (orientation: landscape) {
+      $breakpoint--landscape: true !global;
+
+      @content;
+    }
+  }
+  @else {
+    @each $direction, $breakpoint in $breakpoints {
+      $breakpoint-list: map-get($breakpoints, $direction);
+
+      @if map-has-key($breakpoint-list, #{$break}) {
+        @media (min-#{$direction}: #{map-get($breakpoint-list, #{$break})}px) {
+          @if $direction == width and map-get($breakpoint-list, #{$break}) >= $desktop--width {
+            $breakpoint--desktop: true !global;
+          }
+
+          @content;
+        }
+      }
+    }
   }
 
-  $breakpoint: null !global; // Reset.
-}
-
-@mixin breakpoint--height($break) {
-  $breakpoint: $break !global; // Pass back.
-
-  @media (min-height: px-convert($break)) {
-    @content;
-  }
-
-  $breakpoint: null !global; // Reset.
-}
-
-@mixin breakpoint--landscape {
-  $breakpoint: landscape !global; // Pass back.
-
-  @media (orientation: landscape) {
-    @content;
-  }
-
-  $breakpoint: null !global; // Reset.
+  $breakpoint--current:   null !global;  // Resets.
+  $breakpoint--desktop:   null !global;
+  $breakpoint--landscape: null !global;
 }

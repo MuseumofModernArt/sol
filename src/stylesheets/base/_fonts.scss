@@ -1,3 +1,6 @@
+$default-font-size--preferred: 10px;
+$default-font-size--browser:   16px;
+
 $font-weight--extra-light: 100;
 $font-weight--light:       300;
 $font-weight--regular:     400;
@@ -7,18 +10,33 @@ $font-weight--bold:        900;
 
 
 
-body {
-  @extend %font-family;
+// Our base HTML `font-size` is set to 62.5%, so that `1rem` = `10px`. Easy maths.
+html {
+  @extend %webkit-type-size-adjust; // iOS Safari inflates on device rotation.
 
+  font-size: percentage($default-font-size--preferred / $default-font-size--browser);
+
+  * {
+    @extend %webkit-type-size-adjust; // iOS Chrome follows system-wide “Text Size”.
+  }
+}
+
+%webkit-type-size-adjust {
+  -webkit-text-size-adjust: none;
+}
+
+
+
+body {
   -moz-osx-font-smoothing:  grayscale;
   -webkit-font-smoothing:   antialiased;
   font-family:              'MoMA Sans', Helvetica, sans-serif; // Fallback for browsers that don’t understand the CSS var, below.
   font-kerning:             normal;
   font-weight:              $font-weight--regular;
   text-rendering:           optimizeLegibility;
+
+  @extend %font-family;
 }
-
-
 
 %font-family { // Lower, for ordering.
   font-family: 'MoMA Sans', var(--language-font-face), Helvetica, sans-serif;
