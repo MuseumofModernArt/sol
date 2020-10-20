@@ -1,20 +1,20 @@
 const highlightColors = {
-  0: 'accent-color--january',
-  1: 'accent-color--february',
-  2: 'accent-color--march',
-  3: 'accent-color--april',
-  4: 'accent-color--may',
-  5: 'accent-color--june',
-  6: 'accent-color--july',
-  7: 'accent-color--august',
-  8: 'accent-color--september',
-  9: 'accent-color--october',
-  10: 'accent-color--november',
-  11: 'accent-color--december',
+  0: '$color/accent:1',
+  1: '$color/accent:2',
+  2: '$color/accent:3',
+  3: '$color/accent:4',
+  4: '$color/accent:5',
+  5: '$color/accent:6',
+  6: '$color/accent:7',
+  7: '$color/accent:8',
+  8: '$color/accent:9',
+  9: '$color/accent:10',
+  10: '$color/accent:11',
+  11: '$color/accent:12',
 };
 
 const cookieKey = 'sessionHighlightColor';
-const accentColorClassRegex = /accent-color--\S+/;
+const accentColorClassRegex = /\$color\/accent\:\S+/;
 
 const getRandomInt = (min, max) => {
   min = Math.ceil(min);

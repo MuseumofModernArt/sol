@@ -24,12 +24,12 @@ test('setSessionColor sets the session color correctly', () => {
   AccentColor.prototype.applySessionColor = applySessionColor;
 });
 
-test('applySessionColor applies the session to accent-color', () => {
-  document.body.innerHTML = '<div class="accent-color"> Words </div>';
+test('applySessionColor applies the session to $color/accent', () => {
+  document.body.innerHTML = '<div class="$color/accent"> Words </div>';
   document.cookie = 'sessionHighlightColor=0; path=/;';
 
   const ac = new AccentColor();
 
-  const div = document.querySelector('[class*=accent-color--january]');
+  const div = document.querySelector('[class*=\\$color\\/accent\\:1]');
   expect(div).not.toBe(null);
 });
