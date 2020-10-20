@@ -333,6 +333,13 @@ $colors: (
       @extend %color--rgba;
 
       --color--rgb: var(--color--accent--rgb);
+
+      // The accent classes on <html>, mapping to brand colors.
+      @each $color in map-keys(map-get($colors, brand)) {
+        @include variant($color) {
+          --color--accent--rgb: var(--color--brand--#{$color}--rgb);
+        }
+      }
     }
 
     @include atom(promo) {
