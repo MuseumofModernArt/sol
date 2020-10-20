@@ -41,9 +41,10 @@ $colors: (
   @extend %color--base--background;
   @extend %color--focus;
 
-  --color--accent:                  var(--color--gray--888);
+  --color--accent:             var(--color--gray--888);
+  --color--accent--background: var(--color--gray--999);
+
   --color--accent--rgb:             var(--color--gray--888--rgb);
-  --color--accent--background:      var(--color--gray--999);
   --color--accent--background--rgb: var(--color--gray--999--rgb);
 
   --color--ps1:                        var(--color--white);
@@ -86,8 +87,8 @@ $colors: (
 
 
 %color--focus {
-  --color--focus:          var(--color--black);
   --color--focus--rgb:     var(--color--black--rgb);
+  --color--focus:          var(--color--black);
 
   --color--active--alpha:        0.04;
   --color--tap-highlight--alpha: 0.07;
@@ -106,33 +107,33 @@ $colors: (
 // Reset/flatten colors on all elements for high-contrast.
 [data-high-contrast] {
   %color--high-contrast {
-    --color:      var(--color--black);
     --color--rgb: var(--color--black--rgb);
+    --color:      var(--color--black);
   }
 
   %color--high-contrast--background {
-    --color--background:      var(--color--white);
     --color--background--rgb: var(--color--white--rgb);
+    --color--background:      var(--color--white);
   }
 
   %color--high-contrast--reverse {
-    --color:      var(--color--white);
     --color--rgb: var(--color--white--rgb);
+    --color:      var(--color--white);
   }
 
   %color--high-contrast--reverse--background {
-    --color--background:      var(--color--black);
     --color--background--rgb: var(--color--black--rgb);
+    --color--background:      var(--color--black);
   }
 
   %color--high-contrast--accent {
-    --color:      var(--color--red);
     --color--rgb: var(--color--red--rgb);
+    --color:      var(--color--red);
   }
 
   %color--high-contrast--accent--background {
-    --color--background:      var(--color--red);
     --color--background--rgb: var(--color--red--rgb);
+    --color--background:      var(--color--red);
   }
 }
 
@@ -191,8 +192,8 @@ $colors: (
 
               // Invert base colors for dark values.
               @if map-get($value, dark-background) {
-                @extend %color--focus--reverse;
                 @extend %color--base--reverse;
+                @extend %color--focus--reverse;
               }
 
               --color--background--rgb: var(#{$color-name--rgb});
@@ -243,8 +244,8 @@ $colors: (
 
                   // Invert base colors for dark values.
                   @if map-get($grouped-values, dark-background) {
-                    @extend %color--focus--reverse;
                     @extend %color--base--reverse;
+                    @extend %color--focus--reverse;
                   }
 
                   --color--background--rgb: var(#{$color-name--rgb});
@@ -270,8 +271,8 @@ $colors: (
 
     // For resetting to the base/root ones.
     @include atom(base) {
-      @extend %color--base;
       @extend %color--base--background;
+      @extend %color--base;
       @extend %color--focus;
       @extend %color--high-contrast;
     }
@@ -291,21 +292,21 @@ $colors: (
     @include atom(accent) {
       @extend %color--high-contrast--accent;
 
-      --color:      var(--color--accent);
       --color--rgb: var(--color--accent--rgb);
+      --color:      var(--color--accent);
     }
 
     @include atom(promo) {
       @extend %color--high-contrast;
 
-      --color:      var(--color--promo,      var(--color--black));
       --color--rgb: var(--color--promo--rgb, var(--color--black--rgb));
+      --color:      var(--color--promo,      var(--color--black));
 
       @include variant(secondary) {
         @extend %color--high-contrast--accent;
 
-        --color:      var(--color--promo--secondary,      var(--color--accent));
         --color--rgb: var(--color--promo--secondary--rgb, var(--color--accent--rgb));
+        --color:      var(--color--promo--secondary,      var(--color--accent));
       }
     }
 
@@ -347,23 +348,23 @@ $colors: (
         @extend %color--high-contrast--accent--background;
         @extend %color--high-contrast--reverse;
 
-        --color--background:      var(--color--accent);
         --color--background--rgb: var(--color--accent--rgb);
+        --color--background:      var(--color--accent);
       }
 
       @include variant(promo) {
         @extend %color--high-contrast--background;
         @extend %color--high-contrast;
 
-        --color--background:      var(--color--promo--background,      var(--color--gray--eee));
         --color--background--rgb: var(--color--promo--background--rgb, var(--color--gray--eee--rgb));
+        --color--background:      var(--color--promo--background,      var(--color--gray--eee));
 
         @include variant(secondary) {
           @extend %color--high-contrast--background;
           @extend %color--high-contrast;
 
-          --color--background:      var(--color--promo--background--secondary,      transparent);
           --color--background--rgb: var(--color--promo--background--secondary--rgb, initial);
+          --color--background:      var(--color--promo--background--secondary,      transparent);
         }
       }
 
@@ -394,11 +395,11 @@ $colors: (
       --color--background--rgb--parent: var(--color--background--rgb);
 
       > * {
-        --color:                 var(--color--background--parent);
         --color--rgb:            var(--color--background--rgb--parent);
+        --color:                 var(--color--background--parent);
 
-        --color--background:      var(--color--parent);
         --color--background--rgb: var(--color--rgb--parent);
+        --color--background:      var(--color--parent);
       }
 
       @include variant(background) {
