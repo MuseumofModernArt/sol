@@ -18,19 +18,19 @@ $colors: (
     ddd: (hex: #dddddd),
     eee: (hex: #eeeeee),
   ),
-  brand: (
-    1:  (hex: #e93cac),
-    2:  (hex: #e4002b),
-    3:  (hex: #ff585d),
-    4:  (hex: #ffb3ab),
-    5:  (hex: #ff8f1c),
-    6:  (hex: #ffcd00),
-    7:  (hex: #cedc00),
-    8:  (hex: #00b140),
-    9:  (hex: #8ce2d0),
-    10: (hex: #00afd7),
-    11: (hex: #0057b8),
-    12: (hex: #753bbd),
+  brand: ( // These have been tweaked for more uniform density, light/dark use.
+    1:  (hex: #f752bd), // Ours.             // #e93cac in the brand guidelines.
+    2:  (hex: #e82046),                      // #e4002b
+    3:  (hex: #ff585d),                      // #ff585d
+    4:  (hex: #ffa096),                      // #ffb3ab
+    5:  (hex: #ff8f1c),                      // #ff8f1c
+    6:  (hex: #fac300),                      // #ffcd00
+    7:  (hex: #bad200),                      // #cedc00
+    8:  (hex: #0db54a),                      // #00b140
+    9:  (hex: #6bdcc5),                      // #8ce2d0
+    10: (hex: #00afd7),                      // #00afd7
+    11: (hex: #1263bd),                      // #0057b8
+    12: (hex: #834fc4),                      // #753bbd
   ),
 );
 
