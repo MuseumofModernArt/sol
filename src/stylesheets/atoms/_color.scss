@@ -67,28 +67,41 @@ $colors: (
 }
 
 
+// Shared color-to-rgba mapping.
+%color--rgba {
+  --color: rgba(var(--color--rgb), var(--color--alpha, 1));
+}
+
+%color--background--rgba {
+  --color--background: rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
+}
+
+
 
 // Base colors, pulled out for extending.
 %color--base {
+  @extend %color--rgba;
+
   --color--rgb: var(--color--black--rgb);
-  --color:      rgba(var(--color--rgb), var(--color--alpha, 1));
 }
 
 %color--base--reverse {
+  @extend %color--rgba;
+
   --color--rgb: var(--color--white--rgb);
-  --color:      rgba(var(--color--rgb), var(--color--alpha, 1));
 }
 
 %color--base--background {
+  @extend %color--background--rgba;
+
   --color--background--rgb: var(--color--white--rgb);
-  --color--background:      rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
 }
 
 
 
 %color--focus {
-  --color--focus--rgb:     var(--color--black--rgb);
-  --color--focus:          var(--color--black);
+  --color--focus--rgb: var(--color--black--rgb);
+  --color--focus:      var(--color--black);
 
   --color--active--alpha:        0.04;
   --color--tap-highlight--alpha: 0.07;
@@ -106,34 +119,57 @@ $colors: (
 
 // Reset/flatten colors on all elements for high-contrast.
 [data-high-contrast] {
+  %color--high-contrast--alpha {
+    --color--alpha: initial;
+  }
+
+  %color--high-contrast--background--alpha {
+    --color--background--alpha: initial;
+  }
+
   %color--high-contrast {
+    @extend %color--high-contrast--alpha;
+    @extend %color--rgba;
+
     --color--rgb: var(--color--black--rgb);
-    --color:      var(--color--black);
   }
 
   %color--high-contrast--background {
+    @extend %color--background--rgba;
+    @extend %color--high-contrast--background--alpha;
+
     --color--background--rgb: var(--color--white--rgb);
-    --color--background:      var(--color--white);
   }
 
   %color--high-contrast--reverse {
+    @extend %color--focus--reverse;
+    @extend %color--high-contrast--alpha;
+    @extend %color--rgba;
+
     --color--rgb: var(--color--white--rgb);
-    --color:      var(--color--white);
   }
 
   %color--high-contrast--reverse--background {
+    @extend %color--background--rgba;
+    @extend %color--focus--reverse;
+    @extend %color--high-contrast--background--alpha;
+
     --color--background--rgb: var(--color--black--rgb);
-    --color--background:      var(--color--black);
   }
 
   %color--high-contrast--accent {
+    @extend %color--high-contrast--alpha;
+    @extend %color--rgba;
+
     --color--rgb: var(--color--red--rgb);
-    --color:      var(--color--red);
   }
 
   %color--high-contrast--accent--background {
+    @extend %color--background--rgba;
+    @extend %color--focus--reverse;
+    @extend %color--high-contrast--background--alpha;
+
     --color--background--rgb: var(--color--red--rgb);
-    --color--background:      var(--color--red);
   }
 }
 
@@ -166,6 +202,8 @@ $colors: (
         // Map to the color variable.
         @include atom($item) {
           @include variant-alphas {
+            @extend %color--rgba;
+
             @if $item == red {
               @extend %color--high-contrast--accent;
             }
@@ -174,13 +212,14 @@ $colors: (
             }
 
             --color--rgb: var(#{$color-name--rgb});
-            --color:      rgba(var(--color--rgb), var(--color--alpha, 1));
           }
         }
         // Map to the background color variable.
         @include atom(background) {
           @include variant($item) {
             @include variant-alphas($background: true) {
+              @extend %color--background--rgba;
+
               @if $item == red {
                 @extend %color--high-contrast--accent--background;
                 @extend %color--high-contrast--reverse;
@@ -197,7 +236,6 @@ $colors: (
               }
 
               --color--background--rgb: var(#{$color-name--rgb});
-              --color--background:      rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
             }
           }
         }
@@ -217,6 +255,8 @@ $colors: (
           @include atom($item) {
             @include variant($grouped-item) {
               @include variant-alphas {
+                @extend %color--rgba;
+
                 @if $item == brand {
                   @extend %color--high-contrast--accent;
                 }
@@ -225,7 +265,6 @@ $colors: (
                 }
 
                 --color--rgb: var(#{$color-name--rgb});
-                --color:      rgba(var(--color--rgb), var(--color--alpha, 1));
               }
             }
           }
@@ -233,6 +272,8 @@ $colors: (
             @include variant($item) {
               @include variant($grouped-item) {
                 @include variant-alphas($background: true) {
+                  @extend %color--background--rgba;
+
                   @if $item == brand {
                     @extend %color--high-contrast--accent--background;
                     @extend %color--high-contrast--reverse;
@@ -249,7 +290,6 @@ $colors: (
                   }
 
                   --color--background--rgb: var(#{$color-name--rgb});
-                  --color--background:      rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
                 }
               }
             }
@@ -284,29 +324,28 @@ $colors: (
     @include atom(alpha) {
       @include variant-alphas {
         @extend %color--high-contrast;
-
-        --color: rgba(var(--color--rgb), var(--color--alpha, 1));
+        @extend %color--rgba;
       }
     }
 
     @include atom(accent) {
       @extend %color--high-contrast--accent;
+      @extend %color--rgba;
 
       --color--rgb: var(--color--accent--rgb);
-      --color:      var(--color--accent);
     }
 
     @include atom(promo) {
       @extend %color--high-contrast;
+      @extend %color--rgba;
 
       --color--rgb: var(--color--promo--rgb, var(--color--black--rgb));
-      --color:      var(--color--promo,      var(--color--black));
 
       @include variant(secondary) {
         @extend %color--high-contrast--accent;
+        @extend %color--rgba;
 
         --color--rgb: var(--color--promo--secondary--rgb, var(--color--accent--rgb));
-        --color:      var(--color--promo--secondary,      var(--color--accent));
       }
     }
 
@@ -337,34 +376,33 @@ $colors: (
     @include atom(background) {
       @include variant(alpha) {
         @include variant-alphas($background: true) {
+          @extend %color--background--rgba;
           @extend %color--high-contrast--background;
           @extend %color--high-contrast;
-
-          --color--background: rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
         }
       }
 
       @include variant(accent) {
+        @extend %color--background--rgba;
         @extend %color--high-contrast--accent--background;
         @extend %color--high-contrast--reverse;
 
         --color--background--rgb: var(--color--accent--rgb);
-        --color--background:      var(--color--accent);
       }
 
       @include variant(promo) {
+        @extend %color--background--rgba;
         @extend %color--high-contrast--background;
         @extend %color--high-contrast;
 
         --color--background--rgb: var(--color--promo--background--rgb, var(--color--gray--eee--rgb));
-        --color--background:      var(--color--promo--background,      var(--color--gray--eee));
 
         @include variant(secondary) {
+          @extend %color--background--rgba;
           @extend %color--high-contrast--background;
           @extend %color--high-contrast;
 
           --color--background--rgb: var(--color--promo--background--secondary--rgb, initial);
-          --color--background:      var(--color--promo--background--secondary,      transparent);
         }
       }
 
@@ -388,25 +426,22 @@ $colors: (
 
     // Flips the color/background for children.
     @include atom(reverse) {
-      --color--parent:                 var(--color);
-      --color--rgb--parent:            var(--color--rgb);
-
-      --color--background--parent:      var(--color--background);
       --color--background--rgb--parent: var(--color--background--rgb);
+      --color--rgb--parent:             var(--color--rgb);
 
       > * {
-        --color--rgb:            var(--color--background--rgb--parent);
-        --color:                 var(--color--background--parent);
+        @extend %color--background--rgba;
+        @extend %color--rgba;
 
         --color--background--rgb: var(--color--rgb--parent);
-        --color--background:      var(--color--parent);
+        --color--rgb:             var(--color--background--rgb--parent);
       }
 
       @include variant(background) {
         --color--background: rgba(var(--color--rgb), var(--color--background--alpha, 1));
 
         > * {
-          --color--background: rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
+          @extend %color--background--rgba;
         }
       }
     }
