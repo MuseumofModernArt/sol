@@ -10,7 +10,7 @@ test('setSessionColor sets the session color correctly', () => {
 
   const applySessionColor = SessionColor.prototype.applySessionColor;
   SessionColor.prototype.applySessionColor = jest.fn();
-  const ac = new SessionColor();
+  const sc = new SessionColor();
 
   const cookieAfterCall = document.cookie.replace(
     /(?:(?:^|.*;\s*)sessionHighlightColor\s*\=\s*([^;]*).*$)|^.*$/,
@@ -18,7 +18,7 @@ test('setSessionColor sets the session color correctly', () => {
   );
 
   expect(cookieAfterCall).not.toBe('');
-  expect(ac.applySessionColor.mock.calls.length).toBe(1);
+  expect(sc.applySessionColor.mock.calls.length).toBe(1);
 
 
   SessionColor.prototype.applySessionColor = applySessionColor;
@@ -28,7 +28,7 @@ test('applySessionColor applies the session to $color/session', () => {
   document.body.innerHTML = '<div class="$color/session"> Words </div>';
   document.cookie = 'sessionHighlightColor=0; path=/;';
 
-  const ac = new SessionColor();
+  const sc = new SessionColor();
 
   const div = document.querySelector('[class*=\\$color\\/session\\:1]');
   expect(div).not.toBe(null);
