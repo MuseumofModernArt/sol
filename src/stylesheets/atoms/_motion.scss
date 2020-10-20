@@ -1,3 +1,16 @@
+$motion-properties:
+  backdrop-filter,
+  bottom,
+  left,
+  max-height,
+  max-width,
+  opacity,
+  right,
+  top,
+  transform,
+  visibility
+;
+
 .motion {
   @include atom-var {
     @include atom(animation, transition) {
@@ -11,7 +24,7 @@
     }
 
     @include atom(transition) {
-      @include variant(backdrop-filter, bottom, left, max-height, max-width, opacity, right, top, transform, visibility) {
+      @include variant($motion-properties...) {
         @include variant(duration, delay) {
           @include variant-timings;
         }
@@ -38,18 +51,19 @@
   // Specific effect variables slot in, but when undeclared will fall back to overall/shared values.
   // The order/number of effects must be the same across property, -delay, -duration, and -timing-function!
   @include atom(transition) {
-    transition-property:        -webkit-backdrop-filter,
-                                backdrop-filter,
-                                bottom,
-                                left,
-                                max-height,
-                                max-width,
-                                opacity,
-                                right,
-                                top,
-                                transform,
-                                visibility
-                                ;
+    $properties:       (); // Set up empty variables.
+
+    @each $property in $motion-properties {
+      // This one needs a dupe with a vendor prefix, because Safari.
+      @if $property == "backdrop-filter" {
+        $properties: append($properties, #{"-webkit-"}#{$property}, $separator: comma);
+      }
+
+      $properties: append($properties, $property, $separator: comma);
+    }
+
+    transition-property: $properties;
+
     transition-delay:           var(#{css-var(&)}--backdrop-filter--delay, var(#{css-var(&)}--delay, 0ms)),
                                 var(#{css-var(&)}--backdrop-filter--delay, var(#{css-var(&)}--delay, 0ms)),
                                 var(#{css-var(&)}--bottom--delay,          var(#{css-var(&)}--delay, 0ms)),
