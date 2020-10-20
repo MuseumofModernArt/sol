@@ -41,19 +41,19 @@ $colors: (
   @extend %color--base--background;
   @extend %color--focus;
 
-  --color--accent:             var(--color--gray--888);
-  --color--accent--background: var(--color--gray--999);
+  --color--session:             var(--color--gray--888);
+  --color--session--background: var(--color--gray--999);
 
-  --color--accent--rgb:             var(--color--gray--888--rgb);
-  --color--accent--background--rgb: var(--color--gray--999--rgb);
+  --color--session--rgb:             var(--color--gray--888--rgb);
+  --color--session--background--rgb: var(--color--gray--999--rgb);
 
   --color--ps1:                        var(--color--white);
-  --color--ps1--secondary:             var(--color--accent);
+  --color--ps1--secondary:             var(--color--session);
   --color--ps1--background:            var(--color--black);
   --color--ps1--background--secondary: var(--color--gray--222);
 
   --color--ps1--rgb:                        var(--color--white--rgb);
-  --color--ps1--secondary--rgb:             var(--color--accent--rgb);
+  --color--ps1--secondary--rgb:             var(--color--session--rgb);
   --color--ps1--background--rgb:            var(--color--black--rgb);
   --color--ps1--background--secondary--rgb: var(--color--gray--222--rgb);
 
@@ -157,14 +157,14 @@ $colors: (
     --color--background--rgb: var(--color--black--rgb);
   }
 
-  %color--high-contrast--accent {
+  %color--high-contrast--session {
     @extend %color--high-contrast--alpha;
     @extend %color--rgba;
 
     --color--rgb: var(--color--red--rgb);
   }
 
-  %color--high-contrast--accent--background {
+  %color--high-contrast--session--background {
     @extend %color--background--rgba;
     @extend %color--focus--reverse;
     @extend %color--high-contrast--background--alpha;
@@ -205,7 +205,7 @@ $colors: (
             @extend %color--rgba;
 
             @if $item == red {
-              @extend %color--high-contrast--accent;
+              @extend %color--high-contrast--session;
             }
             @else {
               @extend %color--high-contrast;
@@ -221,7 +221,7 @@ $colors: (
               @extend %color--background--rgba;
 
               @if $item == red {
-                @extend %color--high-contrast--accent--background;
+                @extend %color--high-contrast--session--background;
                 @extend %color--high-contrast--reverse;
               }
               @else {
@@ -258,7 +258,7 @@ $colors: (
                 @extend %color--rgba;
 
                 @if $item == brand {
-                  @extend %color--high-contrast--accent;
+                  @extend %color--high-contrast--session;
                 }
                 @else {
                   @extend %color--high-contrast;
@@ -275,7 +275,7 @@ $colors: (
                   @extend %color--background--rgba;
 
                   @if $item == brand {
-                    @extend %color--high-contrast--accent--background;
+                    @extend %color--high-contrast--session--background;
                     @extend %color--high-contrast--reverse;
                   }
                   @else {
@@ -328,16 +328,16 @@ $colors: (
       }
     }
 
-    @include atom(accent) {
-      @extend %color--high-contrast--accent;
+    @include atom(session) {
+      @extend %color--high-contrast--session;
       @extend %color--rgba;
 
-      --color--rgb: var(--color--accent--rgb);
+      --color--rgb: var(--color--session--rgb);
 
-      // The accent classes on <html>, mapping to brand colors.
+      // The session classes on <html>, mapping to brand colors.
       @each $color in map-keys(map-get($colors, brand)) {
         @include variant($color) {
-          --color--accent--rgb: var(--color--brand--#{$color}--rgb);
+          --color--session--rgb: var(--color--brand--#{$color}--rgb);
         }
       }
     }
@@ -349,10 +349,10 @@ $colors: (
       --color--rgb: var(--color--promo--rgb, var(--color--black--rgb));
 
       @include variant(secondary) {
-        @extend %color--high-contrast--accent;
+        @extend %color--high-contrast--session;
         @extend %color--rgba;
 
-        --color--rgb: var(--color--promo--secondary--rgb, var(--color--accent--rgb));
+        --color--rgb: var(--color--promo--secondary--rgb, var(--color--session--rgb));
       }
     }
 
@@ -360,8 +360,8 @@ $colors: (
     @include atom(high-contrast) {
       @extend %color--high-contrast;
 
-      @include variant(accent) {
-        @extend %color--high-contrast--accent;
+      @include variant(session) {
+        @extend %color--high-contrast--session;
       }
 
       @include variant(reverse) {
@@ -389,12 +389,12 @@ $colors: (
         }
       }
 
-      @include variant(accent) {
+      @include variant(session) {
         @extend %color--background--rgba;
-        @extend %color--high-contrast--accent--background;
+        @extend %color--high-contrast--session--background;
         @extend %color--high-contrast--reverse;
 
-        --color--background--rgb: var(--color--accent--rgb);
+        --color--background--rgb: var(--color--session--rgb);
       }
 
       @include variant(promo) {
@@ -417,8 +417,8 @@ $colors: (
         @extend %color--high-contrast--background;
         @extend %color--high-contrast;
 
-        @include variant(accent) {
-          @extend %color--high-contrast--accent--background;
+        @include variant(session) {
+          @extend %color--high-contrast--session--background;
           @extend %color--high-contrast--reverse;
         }
 

@@ -1,4 +1,4 @@
-import AccentColor from './accent-color';
+import SessionColor from './session-color';
 
 test('setSessionColor sets the session color correctly', () => {
   const cookieBeforeCall = document.cookie.replace(
@@ -8,9 +8,9 @@ test('setSessionColor sets the session color correctly', () => {
 
   expect(cookieBeforeCall).toBe('');
 
-  const applySessionColor = AccentColor.prototype.applySessionColor;
-  AccentColor.prototype.applySessionColor = jest.fn();
-  const ac = new AccentColor();
+  const applySessionColor = SessionColor.prototype.applySessionColor;
+  SessionColor.prototype.applySessionColor = jest.fn();
+  const ac = new SessionColor();
 
   const cookieAfterCall = document.cookie.replace(
     /(?:(?:^|.*;\s*)sessionHighlightColor\s*\=\s*([^;]*).*$)|^.*$/,
@@ -21,15 +21,15 @@ test('setSessionColor sets the session color correctly', () => {
   expect(ac.applySessionColor.mock.calls.length).toBe(1);
 
 
-  AccentColor.prototype.applySessionColor = applySessionColor;
+  SessionColor.prototype.applySessionColor = applySessionColor;
 });
 
-test('applySessionColor applies the session to $color/accent', () => {
-  document.body.innerHTML = '<div class="$color/accent"> Words </div>';
+test('applySessionColor applies the session to $color/session', () => {
+  document.body.innerHTML = '<div class="$color/session"> Words </div>';
   document.cookie = 'sessionHighlightColor=0; path=/;';
 
-  const ac = new AccentColor();
+  const ac = new SessionColor();
 
-  const div = document.querySelector('[class*=\\$color\\/accent\\:1]');
+  const div = document.querySelector('[class*=\\$color\\/session\\:1]');
   expect(div).not.toBe(null);
 });
