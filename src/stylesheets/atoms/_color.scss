@@ -338,6 +338,7 @@ $colors: (
       @each $color in map-keys(map-get($colors, brand)) {
         @include variant($color) {
           --color--session--rgb: var(--color--brand--#{$color}--rgb);
+          --color--session:      var(--color--brand--#{$color});
         }
       }
     }
