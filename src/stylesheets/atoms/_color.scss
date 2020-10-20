@@ -19,7 +19,7 @@ $colors: (
     eee: (hex: #eeeeee),
   ),
   brand: (
-    1:  (hex: #e93cac), // TODO These need dark-background decisions.
+    1:  (hex: #e93cac),
     2:  (hex: #e4002b),
     3:  (hex: #ff585d),
     4:  (hex: #ffb3ab),
@@ -41,13 +41,18 @@ $colors: (
   @extend %color--base--background;
   @extend %color--focus;
 
+  --color--accent:                  var(--color--gray--888);
+  --color--accent--rgb:             var(--color--gray--888--rgb);
+  --color--accent--background:      var(--color--gray--999);
+  --color--accent--background--rgb: var(--color--gray--999--rgb);
+
   --color--ps1:                        var(--color--white);
-  --color--ps1--secondary:             var(--accent-color--on-dark);
+  --color--ps1--secondary:             var(--color--accent);
   --color--ps1--background:            var(--color--black);
   --color--ps1--background--secondary: var(--color--gray--222);
 
   --color--ps1--rgb:                        var(--color--white--rgb);
-  --color--ps1--secondary--rgb:             var(--accent-color--on-dark--rgb);
+  --color--ps1--secondary--rgb:             var(--color--accent--rgb);
   --color--ps1--background--rgb:            var(--color--black--rgb);
   --color--ps1--background--secondary--rgb: var(--color--gray--222--rgb);
 
@@ -263,18 +268,6 @@ $colors: (
 
 
 
-    // Separate alpha atoms.
-    // Generally use these instead of opaque grays, for “free” invert/color-background usage!
-    @include atom(alpha) {
-      @include variant-alphas {
-        @extend %color--high-contrast;
-
-        --color: rgba(var(--color--rgb), var(--color--alpha, 1));
-      }
-    }
-
-
-
     // For resetting to the base/root ones.
     @include atom(base) {
       @extend %color--base;
@@ -285,6 +278,23 @@ $colors: (
 
 
 
+    // Separate alpha atoms.
+    // Generally use these instead of opaque grays, for “free” invert/color-background usage!
+    @include atom(alpha) {
+      @include variant-alphas {
+        @extend %color--high-contrast;
+
+        --color: rgba(var(--color--rgb), var(--color--alpha, 1));
+      }
+    }
+
+    @include atom(accent) {
+      @extend %color--high-contrast--accent;
+
+      --color:      var(--color--accent);
+      --color--rgb: var(--color--accent--rgb);
+    }
+
     @include atom(promo) {
       @extend %color--high-contrast;
 
@@ -294,22 +304,12 @@ $colors: (
       @include variant(secondary) {
         @extend %color--high-contrast--accent;
 
-        --color:      var(--color--promo--secondary,      var(--accent-color--on-light));
-        --color--rgb: var(--color--promo--secondary--rgb, var(--accent-color--on-light--rgb));
+        --color:      var(--color--promo--secondary,      var(--color--accent));
+        --color--rgb: var(--color--promo--secondary--rgb, var(--color--accent--rgb));
       }
     }
-
-
 
     // Create classes to manually-apply when needed.
-    @include atom(focus) {
-      @extend %color--focus;
-
-      @include variant(reverse) {
-        @extend %color--focus--reverse;
-      }
-    }
-
     @include atom(high-contrast) {
       @extend %color--high-contrast;
 
@@ -322,17 +322,12 @@ $colors: (
       }
     }
 
+    @include atom(focus) {
+      @extend %color--focus;
 
-    // This just sets variables for atomic elements to use, vs. the legacy ones which also apply properties.
-    @include atom(accent) {
-      --color:      var(--accent-color--on-light);
-      --color--rgb: var(--accent-color--on-light--rgb);
-
-      // TODO Unravel this as part of updating the colors.
-      // @include has-dark-background {
-      //   --color:      var(--accent-color--on-dark);
-      //   --color--rgb: var(--accent-color--on-dark--rgb);
-      // }
+      @include variant(reverse) {
+        @extend %color--focus--reverse;
+      }
     }
 
 
@@ -348,7 +343,13 @@ $colors: (
         }
       }
 
+      @include variant(accent) {
+        @extend %color--high-contrast--accent--background;
+        @extend %color--high-contrast--reverse;
 
+        --color--background:      var(--color--accent);
+        --color--background--rgb: var(--color--accent--rgb);
+      }
 
       @include variant(promo) {
         @extend %color--high-contrast--background;
@@ -365,8 +366,6 @@ $colors: (
           --color--background--rgb: var(--color--promo--background--secondary--rgb, initial);
         }
       }
-
-
 
       @include variant(high-contrast) {
         @extend %color--high-contrast--background;
