@@ -1,6 +1,22 @@
-# MoMA Style
+# Sol
 
-# Development
+<br>
+
+<a href="https://www.moma.org/collection/works/35205"><img src="https://www.moma.org/d/p/sa/maximum/cri_000000291104.jpg" height="480" /></a>
+
+<br>
+
+> The form itself is of very limited importance; it becomes the grammar for the total work. In fact it is best that the basic unit be deliberately uninteresting so that it may more easily become an intrinsic part of the entire work. Using complex basic forms only disrupts the unity of the whole. Using a simple form repeatedly narrows the field of the work and concentrates the intensity to the arrangement of the form. This arrangement becomes the end while the form becomes the means.
+>
+> [Sol LeWitt](https://www.moma.org/artists/3528), [_Paragraphs on Conceptual Art_](https://www.moma.org/documents/moma_catalogue_1971_300297572.pdf#page=171)
+
+<br>
+
+**Sol** is a front-end (JS/CSS) library, developed by MoMA’s Digital Media team for use across the organization’s various products. It takes an “atomic” approach of providing simple utility functions and classes which incorporate the basic design paradigms for MoMA’s brand, (mostly) agnostic of their specific usage.
+
+<br>
+
+## Development
 1. To install, make sure you have homebrew installed, and then run this install Dart Sass<br>
 `yarn install-sass`
 
@@ -11,9 +27,9 @@
 `yarn run build`
 
 To link with `moma-go`, in the project folder, run `yarn link`.
-In `moma-go`, run `yarn link moma-style`. This creates a [symlink](https://classic.yarnpkg.com/en/docs/cli/link/) to your local version.
+In `moma-go`, run `yarn link sol`. This creates a [symlink](https://classic.yarnpkg.com/en/docs/cli/link/) to your local version.
 
-# Releases
+## Releases
 
 To create a release, merge all PRs that will be part of it into `master`.
 
@@ -23,9 +39,9 @@ Once the artifact files have been generated and the release has been tagged, go 
 
 More on semantic versioning [here](https://classic.yarnpkg.com/en/docs/dependency-versions#toc-semantic-versioning).
 
-# Usage
-You should just get `dist/moma-style.css` or `dist/moma-style.min.css`. Fonts are also provided in the `dist` folder.
+## Usage
+You should just get `dist/sol.css` or `dist/sol.min.css`. Fonts are also provided in the `dist` folder.
 
-To add to your package manager, such as yarn, do `yarn add github:MuseumofModernArt/moma-style`. If you would like to lock to a specific version, append `#v1.0.0` to the end. More on all this [here](http://thecodebarbarian.com/github-is-my-favorite-private-npm-registry.html).
+To add to your package manager, such as yarn, do `yarn add github:MuseumofModernArt/sol`. If you would like to lock to a specific version, append `#v1.0.0` to the end. More on all this [here](http://thecodebarbarian.com/github-is-my-favorite-private-npm-registry.html).
 
-To update your version of the MoMA Style to the latest release, `yarn upgrade moma-style`. To update to a specific version, run `yarn upgrade moma-style#[version]`.
+To update your version of the MoMA Style to the latest release, `yarn upgrade sol`. To update to a specific version, run `yarn upgrade sol#[version]`.
