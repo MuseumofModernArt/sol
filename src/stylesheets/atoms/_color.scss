@@ -69,11 +69,11 @@ $colors: (
 
 // Shared color-to-rgba mapping.
 %color--rgba {
-  --color: rgba(var(--color--rgb), var(--color--alpha, 1));
+  --color: rgba(var(--color--rgb--override, var(--color--rgb)), var(--color--alpha, 1));
 }
 
 %color--background--rgba {
-  --color--background: rgba(var(--color--background--rgb), var(--color--background--alpha, 1));
+  --color--background: rgba(var(--color--background--rgb--override, var(--color--background--rgb)), var(--color--background--alpha, 1));
 }
 
 
@@ -457,25 +457,18 @@ $colors: (
 
 
 
-    // Flips the color/background for children.
+    // Flips the color/background.
     @include atom(reverse) {
-      --color--background--rgb--parent: var(--color--background--rgb);
-      --color--rgb--parent:             var(--color--rgb);
+      @extend %color--background--rgba;
+      @extend %color--rgba;
 
-      > * {
+      --color--background--rgb--override: var(--color--rgb);
+      --color--rgb--override:             var(--color--background--rgb);
+
+      @include variant(background) { // Just the background, to use --color.
         @extend %color--background--rgba;
-        @extend %color--rgba;
 
-        --color--background--rgb: var(--color--rgb--parent);
-        --color--rgb:             var(--color--background--rgb--parent);
-      }
-
-      @include variant(background) {
-        --color--background: rgba(var(--color--rgb), var(--color--background--alpha, 1));
-
-        > * {
-          @extend %color--background--rgba;
-        }
+        --color--background--rgb--override: var(--color--rgb);
       }
     }
   }
