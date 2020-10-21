@@ -71910,6 +71910,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 .\$color\/background\:session {
   --color--background--rgb: var(--color--session--rgb);
 }
+
 .\$color\/background\:promo {
   --color--background--rgb: var(--color--promo--background--rgb, var(--color--gray--eee--rgb));
 }
@@ -72474,7 +72475,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --motion--transition--background-color--duration:150ms;
 }
 
-.\$motion\/transition\:background-color\:duration\:200ms, .\$color\/background\:session {
+.\$motion\/transition\:background-color\:duration\:200ms, .\$color\/session, .\$color\/background\:session {
   --motion--transition--background-color--duration:200ms;
 }
 
@@ -72606,7 +72607,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --motion--transition--background-color--curve:ease;
 }
 
-.\$motion\/transition\:background-color\:curve\:ease-in, .\$color\/background\:session {
+.\$motion\/transition\:background-color\:curve\:ease-in, .\$color\/session, .\$color\/background\:session {
   --motion--transition--background-color--curve:ease-in;
 }
 
@@ -72646,7 +72647,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --motion--transition--border-color--duration:150ms;
 }
 
-.\$motion\/transition\:border-color\:duration\:200ms, .\$color\/session {
+.\$motion\/transition\:border-color\:duration\:200ms, .\$color\/session, .\$color\/background\:session {
   --motion--transition--border-color--duration:200ms;
 }
 
@@ -72778,7 +72779,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --motion--transition--border-color--curve:ease;
 }
 
-.\$motion\/transition\:border-color\:curve\:ease-in, .\$color\/session {
+.\$motion\/transition\:border-color\:curve\:ease-in, .\$color\/session, .\$color\/background\:session {
   --motion--transition--border-color--curve:ease-in;
 }
 
@@ -72990,7 +72991,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --motion--transition--color--duration:150ms;
 }
 
-.\$motion\/transition\:color\:duration\:200ms, .\$color\/session {
+.\$motion\/transition\:color\:duration\:200ms, .\$color\/session, .\$color\/background\:session {
   --motion--transition--color--duration:200ms;
 }
 
@@ -73122,7 +73123,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --motion--transition--color--curve:ease;
 }
 
-.\$motion\/transition\:color\:curve\:ease-in, .\$color\/session {
+.\$motion\/transition\:color\:curve\:ease-in, .\$color\/session, .\$color\/background\:session {
   --motion--transition--color--curve:ease-in;
 }
 
@@ -73162,7 +73163,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --motion--transition--fill--duration:150ms;
 }
 
-.\$motion\/transition\:fill\:duration\:200ms, .\$color\/session {
+.\$motion\/transition\:fill\:duration\:200ms, .\$color\/session, .\$color\/background\:session {
   --motion--transition--fill--duration:200ms;
 }
 
@@ -73294,7 +73295,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --motion--transition--fill--curve:ease;
 }
 
-.\$motion\/transition\:fill\:curve\:ease-in, .\$color\/session {
+.\$motion\/transition\:fill\:curve\:ease-in, .\$color\/session, .\$color\/background\:session {
   --motion--transition--fill--curve:ease-in;
 }
 
@@ -75054,7 +75055,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --motion--transition--stroke--duration:150ms;
 }
 
-.\$motion\/transition\:stroke\:duration\:200ms, .\$color\/session {
+.\$motion\/transition\:stroke\:duration\:200ms, .\$color\/session, .\$color\/background\:session {
   --motion--transition--stroke--duration:200ms;
 }
 
@@ -75186,7 +75187,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   --motion--transition--stroke--curve:ease;
 }
 
-.\$motion\/transition\:stroke\:curve\:ease-in, .\$color\/session {
+.\$motion\/transition\:stroke\:curve\:ease-in, .\$color\/session, .\$color\/background\:session {
   --motion--transition--stroke--curve:ease-in;
 }
 
@@ -75914,8 +75915,13 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
 
 .motion\/transition, .\$color\/session, .\$color\/session .typography,
 .\$color\/session [class*="color/all"],
+.\$color\/session [class*="color/background"],
 .\$color\/session [class*="layout/border"],
-.\$color\/session [class*="typography/icon"], .\$color\/background\:session, .\$color\/background\:session [class*="color/background"] {
+.\$color\/session [class*="typography/icon"], .\$color\/background\:session, .\$color\/background\:session .typography,
+.\$color\/background\:session [class*="color/all"],
+.\$color\/background\:session [class*="color/background"],
+.\$color\/background\:session [class*="layout/border"],
+.\$color\/background\:session [class*="typography/icon"] {
   transition-delay: var(--motion--transition--backdrop-filter--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--backdrop-filter--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--background-color--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--border-color--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--bottom--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--color--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--fill--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--height--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--left--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--margin--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--padding--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--max-height--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--max-width--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--min-height--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--min-width--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--opacity--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--right--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--stroke--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--top--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--transform--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--visibility--delay, var(--motion--transition--delay, 0ms)), var(--motion--transition--width--delay, var(--motion--transition--delay, 0ms));
   transition-duration: var(--motion--transition--backdrop-filter--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--backdrop-filter--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--background-color--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--border-color--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--bottom--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--color--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--fill--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--height--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--left--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--margin--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--padding--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--max-height--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--max-width--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--min-height--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--min-width--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--opacity--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--right--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--stroke--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--top--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--transform--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--visibility--duration, var(--motion--transition--duration, 0ms)), var(--motion--transition--width--duration, var(--motion--transition--duration, 0ms));
   transition-property: -webkit-backdrop-filter, backdrop-filter, background-color, border-color, bottom, color, fill, height, left, margin, padding, max-height, max-width, min-height, min-width, opacity, right, stroke, top, transform, visibility, width;
