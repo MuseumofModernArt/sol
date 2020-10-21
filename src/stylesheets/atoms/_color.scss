@@ -329,6 +329,16 @@ $colors: (
     }
 
     @include atom(session) {
+      // Triggered after by JS after load, so ease in color properties.
+      @extend #{placeholder("$motion/transition:border-color:curve:ease-in")};
+      @extend #{placeholder("$motion/transition:border-color:duration:200ms")};
+      @extend #{placeholder("$motion/transition:color:curve:ease-in")};
+      @extend #{placeholder("$motion/transition:color:duration:200ms")};
+      @extend #{placeholder("$motion/transition:fill:curve:ease-in")};
+      @extend #{placeholder("$motion/transition:fill:duration:200ms")};
+      @extend #{placeholder("$motion/transition:stroke:curve:ease-in")};
+      @extend #{placeholder("$motion/transition:stroke:duration:200ms")};
+      @extend #{placeholder("motion/transition")};
       @extend %color--high-contrast--session;
       @extend %color--rgba;
 
@@ -340,6 +350,13 @@ $colors: (
           --color--session--rgb: var(--color--brand--#{$color}--rgb);
           --color--session:      var(--color--brand--#{$color});
         }
+      }
+
+      .typography,
+      [class*="color/all"],
+      [class*="layout/border"],
+      [class*="typography/icon"] { // TODO This correctly targets icon SVGs, but the transition doesn’t seem to work.
+        @extend #{placeholder("motion/transition")};
       }
     }
 
@@ -391,11 +408,19 @@ $colors: (
       }
 
       @include variant(session) {
+        @extend #{placeholder("$motion/transition:background-color:curve:ease-in")};
+        @extend #{placeholder("$motion/transition:background-color:duration:200ms")};
+        @extend #{placeholder("motion/transition")};
         @extend %color--background--rgba;
-        @extend %color--high-contrast--session--background;
         @extend %color--high-contrast--reverse;
+        @extend %color--high-contrast--session--background;
 
         --color--background--rgb: var(--color--session--rgb);
+
+        // If the class isn’t on the background directly.
+        [class*="color/background"] {
+          @extend #{placeholder("motion/transition")};
+        }
       }
 
       @include variant(promo) {
