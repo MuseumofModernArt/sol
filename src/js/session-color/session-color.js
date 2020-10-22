@@ -1,20 +1,20 @@
 const highlightColors = {
-  0: 'accent-color--january',
-  1: 'accent-color--february',
-  2: 'accent-color--march',
-  3: 'accent-color--april',
-  4: 'accent-color--may',
-  5: 'accent-color--june',
-  6: 'accent-color--july',
-  7: 'accent-color--august',
-  8: 'accent-color--september',
-  9: 'accent-color--october',
-  10: 'accent-color--november',
-  11: 'accent-color--december',
+  0: '$color/session:1',
+  1: '$color/session:2',
+  2: '$color/session:3',
+  3: '$color/session:4',
+  4: '$color/session:5',
+  5: '$color/session:6',
+  6: '$color/session:7',
+  7: '$color/session:8',
+  8: '$color/session:9',
+  9: '$color/session:10',
+  10: '$color/session:11',
+  11: '$color/session:12',
 };
 
 const cookieKey = 'sessionHighlightColor';
-const accentColorClassRegex = /accent-color--\S+/;
+const sessionColorClassRegex = /\$color\/session\:\S+/;
 
 const getRandomInt = (min, max) => {
   min = Math.ceil(min);
@@ -26,7 +26,7 @@ const IsCookieSet = (name) => {
   return document.cookie.indexOf(name) > -1;
 };
 
-export default class AccentColor {
+export default class SessionColor {
   constructor() {
     this.colorKey = null;
 
@@ -63,7 +63,7 @@ export default class AccentColor {
   applySessionColor() {
     const htmlClassList = document.documentElement.classList;
     htmlClassList.forEach((c) => {
-      if (accentColorClassRegex.test(c)) {
+      if (sessionColorClassRegex.test(c)) {
         htmlClassList.remove(c);
       }
     });

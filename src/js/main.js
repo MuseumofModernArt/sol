@@ -2,14 +2,14 @@ import * as Util from './util/util';
 import MoMABalanceText from './moma-balance-text/moma-balance-text';
 import Focus from './focus/focus';
 import Viewporter from './viewporter/viewporter';
-import AccentColor from './accent-color/accent-color';
+import SessionColor from './session-color/session-color';
 import Modernizr from './modernizr/modernizr';
 
 class Sol {
   constructor() {
     this.viewporter = new Viewporter();
     this.focus = new Focus();
-    this.accentColor = new AccentColor();
+    this.sessionColor = new SessionColor();
     this.balanceText = new MoMABalanceText()
     this.balanceText.initInteraction();
   }
@@ -20,7 +20,7 @@ export {
   MoMABalanceText,
   Focus,
   Viewporter,
-  AccentColor,
+  SessionColor,
   Modernizr,
   Util,
 };
