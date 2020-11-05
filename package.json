@@ -4,9 +4,6 @@
   "description": "Atomic styles and javascript for MoMA digital properties",
   "main": "dist/sol.js",
   "style": "dist/sol.css",
-  "files": [
-    "dist"
-  ],
   "repository": "https://github.com/MuseumofModernArt/sol",
   "author": "MoMA Digital Media",
   "license": "SEE LICENSE IN README.MD",
