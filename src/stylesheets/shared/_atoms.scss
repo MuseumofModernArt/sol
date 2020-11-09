@@ -1,9 +1,10 @@
-$atom-delimiter:       \/;
-$atom-var-prefix:      \$;
-$variant-delimiter:    \:;
-$variant-decimal:      \.;
-$breakpoint-prefix:    \@;
-$breakpoint-delimiter: #{$atom-delimiter};
+$atom-breakpoint-delimiter: \/;
+$atom-delimiter:            #{$atom-breakpoint-delimiter};
+$atom-var-prefix:           \$;
+$variant-delimiter:         \:;
+$variant-decimal:           \.;
+$breakpoint-prefix:         \@;
+$breakpoint-delimiter:      #{$atom-breakpoint-delimiter};
 
 
 
