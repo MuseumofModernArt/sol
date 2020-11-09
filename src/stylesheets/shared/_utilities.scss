@@ -116,9 +116,8 @@
   // Makes a compiled class by escaping. (Used to extend base elements without their children (like “.typography”, in Acme).
   $reserved:
     str-replace(#{$breakpoint-prefix}, '\\'),
-    str-replace(#{$breakpoint-delimiter}, '\\'),
     str-replace(#{$variant-delimiter}, '\\'),
-    str-replace(#{$atom-delimiter}, '\\'),
+    str-replace(#{$atom-breakpoint-delimiter}, '\\'),
     str-replace(#{$atom-var-prefix}, '\\'),
     '.',
     '(',
@@ -133,9 +132,8 @@
   // Our un-escaped delimiters and CSS syntax.
   $reserved:
     str-replace(#{$breakpoint-prefix}, '\\'),
-    str-replace(#{$breakpoint-delimiter}, '\\'),
     str-replace(#{$variant-delimiter}, '\\'),
-    str-replace(#{$atom-delimiter}, '\\'),
+    str-replace(#{$atom-breakpoint-delimiter}, '\\'),
     str-replace(#{$atom-var-prefix}, '\\'),
     '.',
     '(',
