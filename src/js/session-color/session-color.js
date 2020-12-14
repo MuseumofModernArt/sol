@@ -1,3 +1,5 @@
+import { BaseDomain } from '../util/util';
+
 const highlightColors = {
   0: '$color/session:1',
   1: '$color/session:2',
@@ -57,7 +59,7 @@ export default class SessionColor {
     const max = Object.keys(highlightColors).length - 1;
 
     this.colorKey = getRandomInt(min, max);
-    document.cookie = `${cookieKey}=${this.colorKey}; path=/;`;
+    document.cookie = `${cookieKey}=${this.colorKey}; path=/; domain=${BaseDomain()};`;
   }
 
   applySessionColor() {
