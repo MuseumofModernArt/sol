@@ -1,6 +1,6 @@
 {
   "name": "sol",
-  "version": "1.0.0",
+  "version": "3.1.4",
   "description": "Atomic styles and javascript for MoMA digital properties",
   "main": "dist/sol.js",
   "module": "src/js/main.js",
