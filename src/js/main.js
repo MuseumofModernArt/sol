@@ -7,6 +7,7 @@ import Modernizr from './modernizr/modernizr';
 
 class Sol {
   constructor() {
+    this.modernizr = new Modernizr();
     this.viewporter = new Viewporter();
     this.focus = new Focus();
     this.sessionColor = new SessionColor();
@@ -17,10 +18,10 @@ class Sol {
 
 export {
   Sol,
-  MoMABalanceText,
   Focus,
-  Viewporter,
-  SessionColor,
   Modernizr,
+  MoMABalanceText,
+  SessionColor,
   Util,
+  Viewporter,
 };
