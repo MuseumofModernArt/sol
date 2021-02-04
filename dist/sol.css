@@ -1,4 +1,4 @@
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, input, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, select, input, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   border: 0;
   font-size: 100%;
   font: inherit;
@@ -33,7 +33,7 @@ table {
   border-spacing: 0;
 }
 
-form, input, button {
+form, select, input, button {
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
   background-color: transparent;
@@ -43,7 +43,7 @@ form, input, button {
   padding: 0;
   text-align: left;
 }
-form:invalid, input:invalid, button:invalid {
+form:invalid, select:invalid, input:invalid, button:invalid {
   box-shadow: none;
 }
 
@@ -83,7 +83,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-input::placeholder, button, form, input, :lang(ja), :lang(ko), :lang(zh-Hant), :lang(zh-Hans), body {
+input::placeholder, button, form, input, select, :lang(ja), :lang(ko), :lang(zh-Hant), :lang(zh-Hans), body {
   font-family: "MoMA Sans", var(--language-font-face), Helvetica, sans-serif;
 }
 
