@@ -1437,6 +1437,30 @@ a {
   visibility: hidden;
 }
 
+.layout\/opacity\:0\% {
+  --layout--opacity:0%;
+}
+
+.layout\/opacity\:50\% {
+  --layout--opacity:50%;
+}
+
+.layout\/opacity\:100\% {
+  --layout--opacity:100%;
+}
+
+.layout\/opacity, .layout\/opacity\:clear, .layout\/opacity\:auto, .layout\/opacity\:0\%, .layout\/opacity\:50\%, .layout\/opacity\:100\% {
+  opacity: var(--layout--opacity);
+}
+
+.layout\/opacity\:auto {
+  --layout--opacity:auto;
+}
+
+.layout\/opacity\:clear {
+  --layout--opacity:initial;
+}
+
 .layout\/overflow\:auto {
   overflow: auto;
 }
@@ -5634,6 +5658,30 @@ a {
     visibility: hidden;
   }
 
+  .\@360\/layout\/opacity\:0\% {
+    --360--layout--opacity:0%;
+  }
+
+  .\@360\/layout\/opacity\:50\% {
+    --360--layout--opacity:50%;
+  }
+
+  .\@360\/layout\/opacity\:100\% {
+    --360--layout--opacity:100%;
+  }
+
+  .\@360\/layout\/opacity, .\@360\/layout\/opacity\:clear, .\@360\/layout\/opacity\:auto, .\@360\/layout\/opacity\:0\%, .\@360\/layout\/opacity\:50\%, .\@360\/layout\/opacity\:100\% {
+    opacity: var(--360--layout--opacity);
+  }
+
+  .\@360\/layout\/opacity\:auto {
+    --360--layout--opacity:auto;
+  }
+
+  .\@360\/layout\/opacity\:clear {
+    --360--layout--opacity:initial;
+  }
+
   .\@360\/layout\/overflow\:auto {
     overflow: auto;
   }
@@ -9776,6 +9824,30 @@ a {
   .\@375\/layout\/invisible {
     opacity: 0;
     visibility: hidden;
+  }
+
+  .\@375\/layout\/opacity\:0\% {
+    --375--layout--opacity:0%;
+  }
+
+  .\@375\/layout\/opacity\:50\% {
+    --375--layout--opacity:50%;
+  }
+
+  .\@375\/layout\/opacity\:100\% {
+    --375--layout--opacity:100%;
+  }
+
+  .\@375\/layout\/opacity, .\@375\/layout\/opacity\:clear, .\@375\/layout\/opacity\:auto, .\@375\/layout\/opacity\:0\%, .\@375\/layout\/opacity\:50\%, .\@375\/layout\/opacity\:100\% {
+    opacity: var(--375--layout--opacity);
+  }
+
+  .\@375\/layout\/opacity\:auto {
+    --375--layout--opacity:auto;
+  }
+
+  .\@375\/layout\/opacity\:clear {
+    --375--layout--opacity:initial;
   }
 
   .\@375\/layout\/overflow\:auto {
@@ -13922,6 +13994,30 @@ a {
     visibility: hidden;
   }
 
+  .\@412\/layout\/opacity\:0\% {
+    --412--layout--opacity:0%;
+  }
+
+  .\@412\/layout\/opacity\:50\% {
+    --412--layout--opacity:50%;
+  }
+
+  .\@412\/layout\/opacity\:100\% {
+    --412--layout--opacity:100%;
+  }
+
+  .\@412\/layout\/opacity, .\@412\/layout\/opacity\:clear, .\@412\/layout\/opacity\:auto, .\@412\/layout\/opacity\:0\%, .\@412\/layout\/opacity\:50\%, .\@412\/layout\/opacity\:100\% {
+    opacity: var(--412--layout--opacity);
+  }
+
+  .\@412\/layout\/opacity\:auto {
+    --412--layout--opacity:auto;
+  }
+
+  .\@412\/layout\/opacity\:clear {
+    --412--layout--opacity:initial;
+  }
+
   .\@412\/layout\/overflow\:auto {
     overflow: auto;
   }
@@ -18064,6 +18160,30 @@ a {
   .\@480\/layout\/invisible {
     opacity: 0;
     visibility: hidden;
+  }
+
+  .\@480\/layout\/opacity\:0\% {
+    --480--layout--opacity:0%;
+  }
+
+  .\@480\/layout\/opacity\:50\% {
+    --480--layout--opacity:50%;
+  }
+
+  .\@480\/layout\/opacity\:100\% {
+    --480--layout--opacity:100%;
+  }
+
+  .\@480\/layout\/opacity, .\@480\/layout\/opacity\:clear, .\@480\/layout\/opacity\:auto, .\@480\/layout\/opacity\:0\%, .\@480\/layout\/opacity\:50\%, .\@480\/layout\/opacity\:100\% {
+    opacity: var(--480--layout--opacity);
+  }
+
+  .\@480\/layout\/opacity\:auto {
+    --480--layout--opacity:auto;
+  }
+
+  .\@480\/layout\/opacity\:clear {
+    --480--layout--opacity:initial;
   }
 
   .\@480\/layout\/overflow\:auto {
@@ -22210,6 +22330,30 @@ a {
     visibility: hidden;
   }
 
+  .\@568\/layout\/opacity\:0\% {
+    --568--layout--opacity:0%;
+  }
+
+  .\@568\/layout\/opacity\:50\% {
+    --568--layout--opacity:50%;
+  }
+
+  .\@568\/layout\/opacity\:100\% {
+    --568--layout--opacity:100%;
+  }
+
+  .\@568\/layout\/opacity, .\@568\/layout\/opacity\:clear, .\@568\/layout\/opacity\:auto, .\@568\/layout\/opacity\:0\%, .\@568\/layout\/opacity\:50\%, .\@568\/layout\/opacity\:100\% {
+    opacity: var(--568--layout--opacity);
+  }
+
+  .\@568\/layout\/opacity\:auto {
+    --568--layout--opacity:auto;
+  }
+
+  .\@568\/layout\/opacity\:clear {
+    --568--layout--opacity:initial;
+  }
+
   .\@568\/layout\/overflow\:auto {
     overflow: auto;
   }
@@ -26352,6 +26496,30 @@ a {
   .\@600\/layout\/invisible {
     opacity: 0;
     visibility: hidden;
+  }
+
+  .\@600\/layout\/opacity\:0\% {
+    --600--layout--opacity:0%;
+  }
+
+  .\@600\/layout\/opacity\:50\% {
+    --600--layout--opacity:50%;
+  }
+
+  .\@600\/layout\/opacity\:100\% {
+    --600--layout--opacity:100%;
+  }
+
+  .\@600\/layout\/opacity, .\@600\/layout\/opacity\:clear, .\@600\/layout\/opacity\:auto, .\@600\/layout\/opacity\:0\%, .\@600\/layout\/opacity\:50\%, .\@600\/layout\/opacity\:100\% {
+    opacity: var(--600--layout--opacity);
+  }
+
+  .\@600\/layout\/opacity\:auto {
+    --600--layout--opacity:auto;
+  }
+
+  .\@600\/layout\/opacity\:clear {
+    --600--layout--opacity:initial;
   }
 
   .\@600\/layout\/overflow\:auto {
@@ -30498,6 +30666,30 @@ a {
     visibility: hidden;
   }
 
+  .\@667\/layout\/opacity\:0\% {
+    --667--layout--opacity:0%;
+  }
+
+  .\@667\/layout\/opacity\:50\% {
+    --667--layout--opacity:50%;
+  }
+
+  .\@667\/layout\/opacity\:100\% {
+    --667--layout--opacity:100%;
+  }
+
+  .\@667\/layout\/opacity, .\@667\/layout\/opacity\:clear, .\@667\/layout\/opacity\:auto, .\@667\/layout\/opacity\:0\%, .\@667\/layout\/opacity\:50\%, .\@667\/layout\/opacity\:100\% {
+    opacity: var(--667--layout--opacity);
+  }
+
+  .\@667\/layout\/opacity\:auto {
+    --667--layout--opacity:auto;
+  }
+
+  .\@667\/layout\/opacity\:clear {
+    --667--layout--opacity:initial;
+  }
+
   .\@667\/layout\/overflow\:auto {
     overflow: auto;
   }
@@ -34640,6 +34832,30 @@ a {
   .\@724\/layout\/invisible {
     opacity: 0;
     visibility: hidden;
+  }
+
+  .\@724\/layout\/opacity\:0\% {
+    --724--layout--opacity:0%;
+  }
+
+  .\@724\/layout\/opacity\:50\% {
+    --724--layout--opacity:50%;
+  }
+
+  .\@724\/layout\/opacity\:100\% {
+    --724--layout--opacity:100%;
+  }
+
+  .\@724\/layout\/opacity, .\@724\/layout\/opacity\:clear, .\@724\/layout\/opacity\:auto, .\@724\/layout\/opacity\:0\%, .\@724\/layout\/opacity\:50\%, .\@724\/layout\/opacity\:100\% {
+    opacity: var(--724--layout--opacity);
+  }
+
+  .\@724\/layout\/opacity\:auto {
+    --724--layout--opacity:auto;
+  }
+
+  .\@724\/layout\/opacity\:clear {
+    --724--layout--opacity:initial;
   }
 
   .\@724\/layout\/overflow\:auto {
@@ -38786,6 +39002,30 @@ a {
     visibility: hidden;
   }
 
+  .\@768\/layout\/opacity\:0\% {
+    --768--layout--opacity:0%;
+  }
+
+  .\@768\/layout\/opacity\:50\% {
+    --768--layout--opacity:50%;
+  }
+
+  .\@768\/layout\/opacity\:100\% {
+    --768--layout--opacity:100%;
+  }
+
+  .\@768\/layout\/opacity, .\@768\/layout\/opacity\:clear, .\@768\/layout\/opacity\:auto, .\@768\/layout\/opacity\:0\%, .\@768\/layout\/opacity\:50\%, .\@768\/layout\/opacity\:100\% {
+    opacity: var(--768--layout--opacity);
+  }
+
+  .\@768\/layout\/opacity\:auto {
+    --768--layout--opacity:auto;
+  }
+
+  .\@768\/layout\/opacity\:clear {
+    --768--layout--opacity:initial;
+  }
+
   .\@768\/layout\/overflow\:auto {
     overflow: auto;
   }
@@ -42928,6 +43168,30 @@ a {
   .\@1024\/layout\/invisible {
     opacity: 0;
     visibility: hidden;
+  }
+
+  .\@1024\/layout\/opacity\:0\% {
+    --1024--layout--opacity:0%;
+  }
+
+  .\@1024\/layout\/opacity\:50\% {
+    --1024--layout--opacity:50%;
+  }
+
+  .\@1024\/layout\/opacity\:100\% {
+    --1024--layout--opacity:100%;
+  }
+
+  .\@1024\/layout\/opacity, .\@1024\/layout\/opacity\:clear, .\@1024\/layout\/opacity\:auto, .\@1024\/layout\/opacity\:0\%, .\@1024\/layout\/opacity\:50\%, .\@1024\/layout\/opacity\:100\% {
+    opacity: var(--1024--layout--opacity);
+  }
+
+  .\@1024\/layout\/opacity\:auto {
+    --1024--layout--opacity:auto;
+  }
+
+  .\@1024\/layout\/opacity\:clear {
+    --1024--layout--opacity:initial;
   }
 
   .\@1024\/layout\/overflow\:auto {
@@ -47074,6 +47338,30 @@ a {
     visibility: hidden;
   }
 
+  .\@1280\/layout\/opacity\:0\% {
+    --1280--layout--opacity:0%;
+  }
+
+  .\@1280\/layout\/opacity\:50\% {
+    --1280--layout--opacity:50%;
+  }
+
+  .\@1280\/layout\/opacity\:100\% {
+    --1280--layout--opacity:100%;
+  }
+
+  .\@1280\/layout\/opacity, .\@1280\/layout\/opacity\:clear, .\@1280\/layout\/opacity\:auto, .\@1280\/layout\/opacity\:0\%, .\@1280\/layout\/opacity\:50\%, .\@1280\/layout\/opacity\:100\% {
+    opacity: var(--1280--layout--opacity);
+  }
+
+  .\@1280\/layout\/opacity\:auto {
+    --1280--layout--opacity:auto;
+  }
+
+  .\@1280\/layout\/opacity\:clear {
+    --1280--layout--opacity:initial;
+  }
+
   .\@1280\/layout\/overflow\:auto {
     overflow: auto;
   }
@@ -51216,6 +51504,30 @@ a {
   .\@1440\/layout\/invisible {
     opacity: 0;
     visibility: hidden;
+  }
+
+  .\@1440\/layout\/opacity\:0\% {
+    --1440--layout--opacity:0%;
+  }
+
+  .\@1440\/layout\/opacity\:50\% {
+    --1440--layout--opacity:50%;
+  }
+
+  .\@1440\/layout\/opacity\:100\% {
+    --1440--layout--opacity:100%;
+  }
+
+  .\@1440\/layout\/opacity, .\@1440\/layout\/opacity\:clear, .\@1440\/layout\/opacity\:auto, .\@1440\/layout\/opacity\:0\%, .\@1440\/layout\/opacity\:50\%, .\@1440\/layout\/opacity\:100\% {
+    opacity: var(--1440--layout--opacity);
+  }
+
+  .\@1440\/layout\/opacity\:auto {
+    --1440--layout--opacity:auto;
+  }
+
+  .\@1440\/layout\/opacity\:clear {
+    --1440--layout--opacity:initial;
   }
 
   .\@1440\/layout\/overflow\:auto {
@@ -55362,6 +55674,30 @@ a {
     visibility: hidden;
   }
 
+  .\@2000\/layout\/opacity\:0\% {
+    --2000--layout--opacity:0%;
+  }
+
+  .\@2000\/layout\/opacity\:50\% {
+    --2000--layout--opacity:50%;
+  }
+
+  .\@2000\/layout\/opacity\:100\% {
+    --2000--layout--opacity:100%;
+  }
+
+  .\@2000\/layout\/opacity, .\@2000\/layout\/opacity\:clear, .\@2000\/layout\/opacity\:auto, .\@2000\/layout\/opacity\:0\%, .\@2000\/layout\/opacity\:50\%, .\@2000\/layout\/opacity\:100\% {
+    opacity: var(--2000--layout--opacity);
+  }
+
+  .\@2000\/layout\/opacity\:auto {
+    --2000--layout--opacity:auto;
+  }
+
+  .\@2000\/layout\/opacity\:clear {
+    --2000--layout--opacity:initial;
+  }
+
   .\@2000\/layout\/overflow\:auto {
     overflow: auto;
   }
@@ -59504,6 +59840,30 @@ a {
   .\@landscape\/layout\/invisible {
     opacity: 0;
     visibility: hidden;
+  }
+
+  .\@landscape\/layout\/opacity\:0\% {
+    --landscape--layout--opacity:0%;
+  }
+
+  .\@landscape\/layout\/opacity\:50\% {
+    --landscape--layout--opacity:50%;
+  }
+
+  .\@landscape\/layout\/opacity\:100\% {
+    --landscape--layout--opacity:100%;
+  }
+
+  .\@landscape\/layout\/opacity, .\@landscape\/layout\/opacity\:clear, .\@landscape\/layout\/opacity\:auto, .\@landscape\/layout\/opacity\:0\%, .\@landscape\/layout\/opacity\:50\%, .\@landscape\/layout\/opacity\:100\% {
+    opacity: var(--landscape--layout--opacity);
+  }
+
+  .\@landscape\/layout\/opacity\:auto {
+    --landscape--layout--opacity:auto;
+  }
+
+  .\@landscape\/layout\/opacity\:clear {
+    --landscape--layout--opacity:initial;
   }
 
   .\@landscape\/layout\/overflow\:auto {
@@ -63650,6 +64010,30 @@ a {
     visibility: hidden;
   }
 
+  .\@landscape\/768\/layout\/opacity\:0\% {
+    --landscape--768--layout--opacity:0%;
+  }
+
+  .\@landscape\/768\/layout\/opacity\:50\% {
+    --landscape--768--layout--opacity:50%;
+  }
+
+  .\@landscape\/768\/layout\/opacity\:100\% {
+    --landscape--768--layout--opacity:100%;
+  }
+
+  .\@landscape\/768\/layout\/opacity, .\@landscape\/768\/layout\/opacity\:clear, .\@landscape\/768\/layout\/opacity\:auto, .\@landscape\/768\/layout\/opacity\:0\%, .\@landscape\/768\/layout\/opacity\:50\%, .\@landscape\/768\/layout\/opacity\:100\% {
+    opacity: var(--landscape--768--layout--opacity);
+  }
+
+  .\@landscape\/768\/layout\/opacity\:auto {
+    --landscape--768--layout--opacity:auto;
+  }
+
+  .\@landscape\/768\/layout\/opacity\:clear {
+    --landscape--768--layout--opacity:initial;
+  }
+
   .\@landscape\/768\/layout\/overflow\:auto {
     overflow: auto;
   }
@@ -67792,6 +68176,30 @@ a {
   .\@tall\/layout\/invisible {
     opacity: 0;
     visibility: hidden;
+  }
+
+  .\@tall\/layout\/opacity\:0\% {
+    --tall--layout--opacity:0%;
+  }
+
+  .\@tall\/layout\/opacity\:50\% {
+    --tall--layout--opacity:50%;
+  }
+
+  .\@tall\/layout\/opacity\:100\% {
+    --tall--layout--opacity:100%;
+  }
+
+  .\@tall\/layout\/opacity, .\@tall\/layout\/opacity\:clear, .\@tall\/layout\/opacity\:auto, .\@tall\/layout\/opacity\:0\%, .\@tall\/layout\/opacity\:50\%, .\@tall\/layout\/opacity\:100\% {
+    opacity: var(--tall--layout--opacity);
+  }
+
+  .\@tall\/layout\/opacity\:auto {
+    --tall--layout--opacity:auto;
+  }
+
+  .\@tall\/layout\/opacity\:clear {
+    --tall--layout--opacity:initial;
   }
 
   .\@tall\/layout\/overflow\:auto {
