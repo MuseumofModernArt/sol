@@ -400,6 +400,14 @@
       visibility: hidden;
     }
 
+    @include atom(opacity) {
+      $opacities: 0, 50, 100;
+
+      @include variant-list($opacities, $variant-suffix: '\\%') {
+        #{$atom}: calc(var(#{$variant-item}) * 0.01);
+      }
+    }
+
     @include atom(overflow) {
       @include variant(auto, hidden, visible) {
         overflow: #{$variant};

@@ -69,6 +69,10 @@ input {
   }
 }
 
+select {
+  @extend form;
+}
+
 // Disclosure triangle.
 details {
   summary::-webkit-details-marker {
