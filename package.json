@@ -1,5 +1,5 @@
 {
-  "name": "sol",
+  "name": "@moma/sol",
   "version": "1.0.0",
   "description": "Atomic styles and javascript for MoMA digital properties",
   "main": "dist/sol.js",
