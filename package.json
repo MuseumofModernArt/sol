@@ -1,6 +1,6 @@
 {
   "name": "@MuseumofModernArt/sol",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Atomic styles and javascript for MoMA digital properties",
   "main": "dist/sol.js",
   "module": "src/js/main.js",
@@ -23,6 +23,7 @@
     "watch-sass": "sass --watch --poll src/stylesheets/main.scss:dist/sol.css",
     "watch-webpack": "webpack --progress --watch --config webpack.config.js --mode development",
     "watch": "yarn watch-sass & yarn watch-webpack",
+    "prepublishOnly": "yarn build",
     "release": "./bin/release.sh"
   },
   "devDependencies": {
