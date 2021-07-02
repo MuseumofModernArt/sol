@@ -1,14 +1,16 @@
 {
-  "name": "sol",
-  "version": "1.0.0",
+  "name": "@MuseumofModernArt/sol",
+  "version": "3.1.5",
   "description": "Atomic styles and javascript for MoMA digital properties",
   "main": "dist/sol.js",
   "module": "src/js/main.js",
   "style": "dist/sol.css",
-  "repository": "https://github.com/MuseumofModernArt/sol",
+  "repository": "git://github.com/MuseumofModernArt/sol.git",
   "author": "MoMA Digital Media",
   "license": "SEE LICENSE IN README.MD",
-  "private": true,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "install-sass": "SASS=sass/sass/sass; if brew ls --versions $SASS; then brew upgrade $SASS; else brew install $SASS; fi",
     "test": "jest",
@@ -21,6 +23,7 @@
     "watch-sass": "sass --watch --poll src/stylesheets/main.scss:dist/sol.css",
     "watch-webpack": "webpack --progress --watch --config webpack.config.js --mode development",
     "watch": "yarn watch-sass & yarn watch-webpack",
+    "prepublishOnly": "yarn build",
     "release": "./bin/release.sh"
   },
   "devDependencies": {

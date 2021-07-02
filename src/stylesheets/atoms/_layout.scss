@@ -10,7 +10,7 @@
   --page-spacing--fixed: #{$page-spacing};
 
   --page-width--extension: 0rem;
-  --page-width--layout:    calc(var(--page-width--visible) - var(--page-spacing--fixed) * 2);
+  --page-width--layout:    calc(var(--page-width--visible) - var(--page-spacing--fixed) * 2 - env(safe-area-inset-left, 0rem) - env(safe-area-inset-right, 0rem));
   --page-width--maximum:   128rem;
   --page-width--visible:   calc(100vw - var(--scrollbar-width, 0rem)); // vw does not account for scrollbar.
 
@@ -37,7 +37,7 @@
   }
 
   @include breakpoint(1280) {
-    --page-width--layout:    calc(var(--page-width--maximum) - var(--page-spacing--fixed) * 2);
+    --page-width--layout:    calc(var(--page-width--maximum) - var(--page-spacing--fixed) * 2 - env(safe-area-inset-left, 0rem) - env(safe-area-inset-right, 0rem));
     --page-width--extension: calc((var(--page-width--visible) - var(--page-width--maximum)) / 2);
   }
 
@@ -77,25 +77,30 @@
     @extend %layout--margins-auto;
     @extend %layout--page-width;
 
-    padding-left:  var(--page-spacing--fixed);
-    padding-right: var(--page-spacing--fixed);
-
-    @include variant(extension) {
-      @include variant(left, right) {
-        padding-#{$variant}: var(--page-width--extension);
-      }
-    }
+    padding-left:  calc(var(--page-spacing--fixed) + env(safe-area-inset-left, 0rem));
+    padding-right: calc(var(--page-spacing--fixed) + env(safe-area-inset-right, 0rem));
 
     @include variant(bleed) {
       @extend %layout--margins-auto;
       @extend %layout--page-width;
+
+      padding-left: env(safe-area-inset-left, 0rem);
+      padding-right: env(safe-area-inset-right, 0rem);
     }
 
     @include variant(rights-maximum) {
       @extend %layout--margins-auto;
 
-      max-width: var(--rights-maximum);
-      width:     100%;
+      max-width:     var(--rights-maximum);
+      padding-left:  env(safe-area-inset-left, 0rem);
+      padding-right: env(safe-area-inset-right, 0rem);
+      width:         100%;
+    }
+
+    @include variant(extension) {
+      @include variant(left, right) {
+        padding-#{$variant}: calc(var(--page-width--extension) + env(safe-area-inset-#{$variant}, 0rem));
+      }
     }
   }
 
