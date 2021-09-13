@@ -230,7 +230,7 @@ nobr, %typography--nowrap {
 
 
   // Classless links inside typography elements (usually from rendered markdown). On by default.
-  a {
+  a:not([data-moma-link]) {
     @extend #{placeholder("link/focus:inline")};
     @extend #{placeholder("typography/underline")};
   }
