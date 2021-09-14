@@ -306,6 +306,13 @@ nobr, %typography--nowrap {
 
 
 
+  // Text alignment.
+  @include atom(align) {
+    @include variant(left, center, right) {
+      text-align: #{$variant};
+    }
+  }
+
   // Wrapping.
   @include atom(nowrap) {
     @extend %typography--nowrap;
