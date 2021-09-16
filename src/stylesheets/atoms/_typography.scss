@@ -230,7 +230,7 @@ nobr, %typography--nowrap {
 
 
   // Classless links inside typography elements (usually from rendered markdown). On by default.
-  a {
+  a:not([data-moma-link]) {
     @extend #{placeholder("link/focus:inline")};
     @extend #{placeholder("typography/underline")};
   }
@@ -305,6 +305,13 @@ nobr, %typography--nowrap {
   }
 
 
+
+  // Text alignment.
+  @include atom(align) {
+    @include variant(left, center, right) {
+      text-align: #{$variant};
+    }
+  }
 
   // Wrapping.
   @include atom(nowrap) {
