@@ -196,7 +196,7 @@
 
 
 
-    @include atom(block, flow-root, inline-block, none) {
+    @include atom(block, flow-root, inline-block, inline-flex, none) {
       display: #{$atom};
     }
 
