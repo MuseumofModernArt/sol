@@ -630,6 +630,10 @@ a {
   display: inline-block;
 }
 
+.layout\/inline-flex {
+  display: inline-flex;
+}
+
 .layout\/none, .typography\/markdown h2,
 .typography\/markdown h3,
 .typography\/markdown h4, .typography\/markdown\:headers h1, .typography\/markdown h1,
@@ -4855,6 +4859,10 @@ a {
     display: inline-block;
   }
 
+  .\@360\/layout\/inline-flex {
+    display: inline-flex;
+  }
+
   .\@360\/layout\/none {
     display: none;
   }
@@ -9013,6 +9021,10 @@ a {
 
   .\@375\/layout\/inline-block {
     display: inline-block;
+  }
+
+  .\@375\/layout\/inline-flex {
+    display: inline-flex;
   }
 
   .\@375\/layout\/none {
@@ -13175,6 +13187,10 @@ a {
     display: inline-block;
   }
 
+  .\@412\/layout\/inline-flex {
+    display: inline-flex;
+  }
+
   .\@412\/layout\/none {
     display: none;
   }
@@ -17333,6 +17349,10 @@ a {
 
   .\@480\/layout\/inline-block {
     display: inline-block;
+  }
+
+  .\@480\/layout\/inline-flex {
+    display: inline-flex;
   }
 
   .\@480\/layout\/none {
@@ -21495,6 +21515,10 @@ a {
     display: inline-block;
   }
 
+  .\@568\/layout\/inline-flex {
+    display: inline-flex;
+  }
+
   .\@568\/layout\/none {
     display: none;
   }
@@ -25653,6 +25677,10 @@ a {
 
   .\@600\/layout\/inline-block {
     display: inline-block;
+  }
+
+  .\@600\/layout\/inline-flex {
+    display: inline-flex;
   }
 
   .\@600\/layout\/none {
@@ -29815,6 +29843,10 @@ a {
     display: inline-block;
   }
 
+  .\@667\/layout\/inline-flex {
+    display: inline-flex;
+  }
+
   .\@667\/layout\/none {
     display: none;
   }
@@ -33973,6 +34005,10 @@ a {
 
   .\@724\/layout\/inline-block {
     display: inline-block;
+  }
+
+  .\@724\/layout\/inline-flex {
+    display: inline-flex;
   }
 
   .\@724\/layout\/none {
@@ -38135,6 +38171,10 @@ a {
     display: inline-block;
   }
 
+  .\@768\/layout\/inline-flex {
+    display: inline-flex;
+  }
+
   .\@768\/layout\/none {
     display: none;
   }
@@ -42293,6 +42333,10 @@ a {
 
   .\@1024\/layout\/inline-block {
     display: inline-block;
+  }
+
+  .\@1024\/layout\/inline-flex {
+    display: inline-flex;
   }
 
   .\@1024\/layout\/none {
@@ -46455,6 +46499,10 @@ a {
     display: inline-block;
   }
 
+  .\@1280\/layout\/inline-flex {
+    display: inline-flex;
+  }
+
   .\@1280\/layout\/none {
     display: none;
   }
@@ -50613,6 +50661,10 @@ a {
 
   .\@1440\/layout\/inline-block {
     display: inline-block;
+  }
+
+  .\@1440\/layout\/inline-flex {
+    display: inline-flex;
   }
 
   .\@1440\/layout\/none {
@@ -54775,6 +54827,10 @@ a {
     display: inline-block;
   }
 
+  .\@2000\/layout\/inline-flex {
+    display: inline-flex;
+  }
+
   .\@2000\/layout\/none {
     display: none;
   }
@@ -58933,6 +58989,10 @@ a {
 
   .\@landscape\/layout\/inline-block {
     display: inline-block;
+  }
+
+  .\@landscape\/layout\/inline-flex {
+    display: inline-flex;
   }
 
   .\@landscape\/layout\/none {
@@ -63095,6 +63155,10 @@ a {
     display: inline-block;
   }
 
+  .\@landscape\/768\/layout\/inline-flex {
+    display: inline-flex;
+  }
+
   .\@landscape\/768\/layout\/none {
     display: none;
   }
@@ -67255,6 +67319,10 @@ a {
     display: inline-block;
   }
 
+  .\@tall\/layout\/inline-flex {
+    display: inline-flex;
+  }
+
   .\@tall\/layout\/none {
     display: none;
   }
@@ -71409,19 +71477,19 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   user-select: auto;
 }
 
-.link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a, .link\/focus, .link\/cursor {
+.link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a:not([data-moma-link]), .link\/focus, .link\/cursor {
   cursor: pointer;
   touch-action: manipulation;
 }
 
-.link\/focus\:children, .link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a, .link\/focus {
+.link\/focus\:children, .link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a:not([data-moma-link]), .link\/focus {
   -webkit-tap-highlight-color: rgba(var(--color--focus--rgb), var(--color--tap-highlight--alpha));
 }
-[ontouchstart].link\/focus\:children, [ontouchstart].link\/focus\:inline, .typography\/markdown\:headers a[ontouchstart]:not([class]), .typography\/markdown a[ontouchstart]:not([class]), .typography a[ontouchstart], [ontouchstart].link\/focus {
+[ontouchstart].link\/focus\:children, [ontouchstart].link\/focus\:inline, .typography\/markdown\:headers a[ontouchstart]:not([class]), .typography\/markdown a[ontouchstart]:not([class]), .typography a[ontouchstart]:not([data-moma-link]), [ontouchstart].link\/focus {
   -webkit-tap-highlight-color: transparent;
 }
 
-.link\/focus\:children:focus .link\/focus, .link\/focus:focus-within, .link\/focus\:inline:focus, .typography\/markdown\:headers a:focus:not([class]), .typography\/markdown a:focus:not([class]), .typography a:focus, .link\/focus:focus {
+.link\/focus\:children:focus .link\/focus, .link\/focus:focus-within, .link\/focus\:inline:focus, .typography\/markdown\:headers a:focus:not([class]), .typography\/markdown a:focus:not([class]), .typography a:focus:not([data-moma-link]), .link\/focus:focus {
   outline: none;
   position: relative;
   z-index: 1;
@@ -71431,11 +71499,11 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   outline: none;
 }
 
-.link\/focus\:children:active .link\/focus, .link\/focus\:children:focus .link\/focus, .link\/focus:focus-within, .link\/focus\:inline:active, .typography\/markdown\:headers a:active:not([class]), .typography\/markdown a:active:not([class]), .typography a:active, .link\/focus:active, .link\/focus\:inline:focus, .typography\/markdown\:headers a:focus:not([class]), .typography\/markdown a:focus:not([class]), .typography a:focus, .link\/focus:focus {
+.link\/focus\:children:active .link\/focus, .link\/focus\:children:focus .link\/focus, .link\/focus:focus-within, .link\/focus\:inline:active, .typography\/markdown\:headers a:active:not([class]), .typography\/markdown a:active:not([class]), .typography a:active:not([data-moma-link]), .link\/focus:active, .link\/focus\:inline:focus, .typography\/markdown\:headers a:focus:not([class]), .typography\/markdown a:focus:not([class]), .typography a:focus:not([data-moma-link]), .link\/focus:focus {
   border-radius: var(--border-radius, var(--focus-radius));
 }
 
-.show-focus .link\/focus\:children:focus .link\/focus, .show-focus .link\/focus:focus-within, .show-focus .link\/focus\:inline:focus, .show-focus .typography\/markdown\:headers a:focus:not([class]), .show-focus .typography\/markdown a:focus:not([class]), .typography\/markdown\:headers .show-focus a:focus:not([class]), .typography\/markdown .show-focus a:focus:not([class]), .show-focus .typography a:focus, .typography .show-focus a:focus, .show-focus .link\/focus:focus {
+.show-focus .link\/focus\:children:focus .link\/focus, .show-focus .link\/focus:focus-within, .show-focus .link\/focus\:inline:focus, .show-focus .typography\/markdown\:headers a:focus:not([class]), .show-focus .typography\/markdown a:focus:not([class]), .typography\/markdown\:headers .show-focus a:focus:not([class]), .typography\/markdown .show-focus a:focus:not([class]), .show-focus .typography a:focus:not([data-moma-link]), .typography .show-focus a:focus:not([data-moma-link]), .show-focus .link\/focus:focus {
   box-shadow: 0 0 0 var(--focus-thickness) var(--color--focus);
 }
 
@@ -71443,11 +71511,11 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   box-shadow: none;
 }
 
-.no-touchevents .link\/focus\:children:active .link\/focus, .no-touchevents .link\/focus\:inline:active, .no-touchevents .typography\/markdown\:headers a:active:not([class]), .no-touchevents .typography\/markdown a:active:not([class]), .typography\/markdown\:headers .no-touchevents a:active:not([class]), .typography\/markdown .no-touchevents a:active:not([class]), .no-touchevents .typography a:active, .typography .no-touchevents a:active, .no-touchevents .link\/focus:active {
+.no-touchevents .link\/focus\:children:active .link\/focus, .no-touchevents .link\/focus\:inline:active, .no-touchevents .typography\/markdown\:headers a:active:not([class]), .no-touchevents .typography\/markdown a:active:not([class]), .typography\/markdown\:headers .no-touchevents a:active:not([class]), .typography\/markdown .no-touchevents a:active:not([class]), .no-touchevents .typography a:active:not([data-moma-link]), .typography .no-touchevents a:active:not([data-moma-link]), .no-touchevents .link\/focus:active {
   background-color: rgba(var(--color--focus--rgb), var(--color--active--alpha));
 }
 
-.touchevents .link\/focus\:children[ontouchstart]:active .link\/focus, .touchevents [ontouchstart].link\/focus\:inline:active, .touchevents .typography\/markdown\:headers a[ontouchstart]:active:not([class]), .touchevents .typography\/markdown a[ontouchstart]:active:not([class]), .typography\/markdown\:headers .touchevents a[ontouchstart]:active:not([class]), .typography\/markdown .touchevents a[ontouchstart]:active:not([class]), .touchevents .typography a[ontouchstart]:active, .typography .touchevents a[ontouchstart]:active, .touchevents [ontouchstart].link\/focus:active {
+.touchevents .link\/focus\:children[ontouchstart]:active .link\/focus, .touchevents [ontouchstart].link\/focus\:inline:active, .touchevents .typography\/markdown\:headers a[ontouchstart]:active:not([class]), .touchevents .typography\/markdown a[ontouchstart]:active:not([class]), .typography\/markdown\:headers .touchevents a[ontouchstart]:active:not([class]), .typography\/markdown .touchevents a[ontouchstart]:active:not([class]), .touchevents .typography a[ontouchstart]:active:not([data-moma-link]), .typography .touchevents a[ontouchstart]:active:not([data-moma-link]), .touchevents [ontouchstart].link\/focus:active {
   background-color: rgba(var(--color--focus--rgb), var(--color--tap-highlight--alpha));
 }
 
@@ -71472,7 +71540,7 @@ img.picture\/image\:crop, img.picture\/image\:crop\:bottom, img.picture\/image\:
   padding-top: calc(2 * var(--link-enlargement));
 }
 
-.link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a {
+.link\/focus\:inline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a:not([data-moma-link]) {
   border-left-color: transparent;
   border-left-style: solid;
   border-left-width: calc(var(--link-enlargement) / 2);
@@ -76304,7 +76372,7 @@ nobr, .typography\/nowrap {
   margin-top: calc(var(--typography--margin--bottom) + var(--typography--margin--top));
 }
 
-.typography\/underline\:disable:not(.typography), .show-focus .link\/focus\:inline:not(.typography):focus, .show-focus .typography\/markdown\:headers a:not(.typography):focus:not([class]), .show-focus .typography\/markdown a:not(.typography):focus:not([class]), .typography\/markdown\:headers .show-focus a:not(.typography):focus:not([class]), .typography\/markdown .show-focus a:not(.typography):focus:not([class]), .show-focus .typography a:not(.typography):focus, .typography .show-focus a:not(.typography):focus, .typography\/underline\:disable.typography a:not([class]), .show-focus .typography.link\/focus\:inline:focus a:not([class]), .show-focus .typography\/markdown\:headers a.typography:focus:not([class]) a:not([class]), .show-focus .typography\/markdown a.typography:focus:not([class]) a:not([class]), .typography\/markdown\:headers .show-focus a.typography:focus:not([class]) a:not([class]), .typography\/markdown .show-focus a.typography:focus:not([class]) a:not([class]), .show-focus .typography a.typography:focus a:not([class]), .typography .show-focus a.typography:focus a:not([class]) {
+.typography\/underline\:disable:not(.typography), .show-focus .link\/focus\:inline:not(.typography):focus, .show-focus .typography\/markdown\:headers a:not(.typography):focus:not([class]), .show-focus .typography\/markdown a:not(.typography):focus:not([class]), .typography\/markdown\:headers .show-focus a:not(.typography):focus:not([class]), .typography\/markdown .show-focus a:not(.typography):focus:not([class]), .show-focus .typography a:not(.typography):focus:not([data-moma-link]), .typography .show-focus a:not(.typography):focus:not([data-moma-link]), .typography\/underline\:disable.typography a:not([class]), .show-focus .typography.link\/focus\:inline:focus a:not([class]), .show-focus .typography\/markdown\:headers a.typography:focus:not([class]) a:not([class]), .show-focus .typography\/markdown a.typography:focus:not([class]) a:not([class]), .typography\/markdown\:headers .show-focus a.typography:focus:not([class]) a:not([class]), .typography\/markdown .show-focus a.typography:focus:not([class]) a:not([class]), .show-focus .typography a.typography:focus:not([data-moma-link]) a:not([class]), .typography .show-focus a.typography:focus:not([data-moma-link]) a:not([class]) {
   background: initial;
   text-shadow: initial;
 }
@@ -76420,7 +76488,19 @@ input.typography:before, input.typography:after {
   --typography--margin--top--shift: calc(var(--typography--cap-height) - var(--typography--x-height));
 }
 
-.typography\/underline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a {
+.typography\/align\:left {
+  text-align: left;
+}
+
+.typography\/align\:center {
+  text-align: center;
+}
+
+.typography\/align\:right {
+  text-align: right;
+}
+
+.typography\/underline, .typography\/markdown\:headers a:not([class]), .typography\/markdown a:not([class]), .typography a:not([data-moma-link]) {
   background-image: linear-gradient(to var(--typography--underline--direction, bottom), var(--color), var(--color) var(--typography--underline--thickness), transparent var(--typography--underline--thickness));
   background-position: left calc(-1 * var(--typography--underline--margin)) var(--typography--underline--position, top calc(var(--typography--underline--top) + 1em));
   background-repeat: no-repeat;
