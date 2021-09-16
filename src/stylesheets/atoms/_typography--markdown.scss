@@ -158,14 +158,8 @@
 
   // Wrapped in paragraphs.
   p:not([class]) > svg {
-    border-bottom-color: transparent;
-    border-bottom-style: solid;
-    border-bottom-width: calc(-1 * var(--typography--margin--bottom)); // Put the shoulders back.
-    border-top-color:    transparent;
-    border-top-style:    solid;
-    border-top-width:    calc(-1 * var(--typography--margin--top));
-    padding-left:        calc(-1 * var(--typography--margin--left)); // Counter the typography inset.
-    padding-right:       calc(-1 * var(--typography--margin--right));
+    @extend %typography--shoulder-reset;
+    @extend %typography--inset-reset;
   }
 
   // On their own.
@@ -193,6 +187,22 @@
         padding-top: calc(var(--typography--height--offset) + var(--layout--typography--line-height) * 0.5);
       }
     }
+  }
+
+
+
+  // MoMA Links.
+  p:not([class]) > [data-moma-link] {
+    @extend %typography--shoulder-reset;
+    @extend %typography--inset-reset;
+  }
+
+  p:not([class]) > [data-moma-link="button"] {
+    @extend #{placeholder("layout/height:baseline:2")};
+    
+    box-sizing: content-box;
+    flex-direction: column;
+    justify-content: end;
   }
 
   // TODO Legacy “--split” equivalent (without first-child rules. Maybe `typography/markdown:continued`?
