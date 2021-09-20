@@ -192,12 +192,12 @@
 
 
   // MoMA Links.
-  p:not([class]) > [data-moma-link] {
+  p:not([class]) [data-moma-link] {
     @extend %typography--shoulder-reset;
     @extend %typography--inset-reset;
   }
 
-  p:not([class]) > [data-moma-link="button"] {
+  p:not([class]) [data-moma-link="button"] {
     @extend #{placeholder("layout/height:baseline:2")};
     
     box-sizing: content-box;
