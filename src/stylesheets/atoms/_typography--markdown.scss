@@ -195,6 +195,30 @@
     }
   }
 
+
+
+  // MoMA Links.
+  p:not([class]) [data-moma-link] {
+    @extend %typography--shoulder-reset;
+    @extend %typography--inset-reset;
+  }
+
+  p:not([class]) [data-moma-link="button"] {
+    @extend #{placeholder("layout/height:baseline:2")};
+    
+    box-sizing: content-box;
+    flex-direction: column;
+    justify-content: end;
+
+    @at-root { 
+      [class*="$typography/baseline:solid"]#{&} {
+        @extend #{placeholder("layout/height:baseline:3")};
+
+        justify-content: start;
+      }
+    }
+  }
+
   // TODO Legacy “--split” equivalent (without first-child rules. Maybe `typography/markdown:continued`?
   // TODO Footnotes.
   // TODO Horizontal rules.
