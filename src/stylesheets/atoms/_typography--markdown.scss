@@ -203,6 +203,14 @@
     box-sizing: content-box;
     flex-direction: column;
     justify-content: end;
+
+    @at-root { 
+      [class*="$typography/baseline:solid"]#{&} {
+        @extend #{placeholder("layout/height:baseline:3")};
+
+        justify-content: start;
+      }
+    }
   }
 
   // TODO Legacy “--split” equivalent (without first-child rules. Maybe `typography/markdown:continued`?
