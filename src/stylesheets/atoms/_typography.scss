@@ -96,6 +96,22 @@ nobr, %typography--nowrap {
 
 
 
+%typography--shoulder-reset {
+  border-bottom-color: transparent;
+  border-bottom-style: solid;
+  border-bottom-width: calc(-1 * var(--typography--margin--bottom)); // Put the shoulders back.
+  border-top-color:    transparent;
+  border-top-style:    solid;
+  border-top-width:    calc(-1 * var(--typography--margin--top));
+}
+
+%typography--inset-reset {
+  padding-left:        calc(-1 * var(--typography--margin--left)); // Counter the typography inset.
+  padding-right:       calc(-1 * var(--typography--margin--right));
+}
+
+
+
 %typography--svg {
   @extend %color--svg--alpha;
 
