@@ -205,7 +205,7 @@
     justify-content: end;
 
     @at-root { 
-      [class*="$typography/baseline:solid"]#{&} {
+      .\$typography\/baseline\:solid:not(.\$typography\/size\:large)#{&} {
         @extend #{placeholder("layout/height:baseline:3")};
 
         justify-content: start;
