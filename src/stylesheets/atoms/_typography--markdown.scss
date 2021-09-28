@@ -2,7 +2,6 @@
   @extend #{placeholder("$typography/baseline:body")};
   @extend #{placeholder("$typography/size:medium")};
   @extend #{placeholder("$typography/weight:regular")};
-  @extend #{placeholder("@480/layout/width")};
 
   // Basics.
   a:not([class]) { // Any unclassed links.
