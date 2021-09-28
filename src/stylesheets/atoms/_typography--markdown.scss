@@ -274,27 +274,37 @@
   }
 
   // Spacing rules for blocks
-  // div + div, 3 baselines
-  // div + inline, 3 baselines
-  // inline + div, 3 baselines
+  // block + block, 3 baselines
+  // block + inline, 3 baselines
+  // inline + block, 3 baselines
   // inline + inline, 1 baseline
   > div {
     &:not(:first-child) {
       @extend #{placeholder("layout/margin:top:baseline:3")};
-
-      &[type="inline"] + div[type="inline"] {
-        @extend #{placeholder("layout/margin:top:baseline:1")};
-      }
     }
 
     &:not([type="inline"]) + p,
     &:not([type="inline"]) + h2,
     &:not([type="inline"]) + h3,
-    &:not([type="inline"]) + h4 {
+    &:not([type="inline"]) + h4,
+    &:not([type="inline"]) + ol,
+    &:not([type="inline"]) + ul,
+    &:not([type="inline"]) + blockquote {
       @include increase-specificity(2) {
         @extend #{placeholder("layout/margin:top:baseline:3")};
       }
     }
+  }
+
+  > div[type="inline"] + div[type="inline"],
+  > p:not([class]) + div[type="inline"],
+  > h2:not([class]) + div[type="inline"],
+  > h3:not([class]) + div[type="inline"],
+  > h4:not([class]) + div[type="inline"],
+  > ol:not([class]) + div[type="inline"],
+  > ul:not([class]) + div[type="inline"],
+  > blockquote:not([class]) + div[type="inline"] {
+    @extend #{placeholder("layout/margin:top:baseline:1")};
   }
 }
 
