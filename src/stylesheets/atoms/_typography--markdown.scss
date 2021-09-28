@@ -110,16 +110,18 @@
       }
 
       &:not(:first-child) {
-        padding-top: var(--typography--leading-shoulder); // And since we use margin for the shoulder, use padding for the baseline spacing.
+        padding-top: var(--layout--typography--leading-shoulder); // And since we use margin for the shoulder, use padding for the baseline spacing.
       }
 
       &:before {
+        @extend #{placeholder("$typography/weight:bold")};
         @extend #{placeholder("layout/absolute")};
         @extend #{placeholder("layout/left:0%")};
         @extend #{placeholder("typography/tabular-numbers")};
 
         content:    counter(item)'.'; // The number and a period.
         margin-top: initial; // Moved above.
+        visibility: visible;
       }
     }
   }
