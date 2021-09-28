@@ -76467,7 +76467,7 @@ nobr, .typography\/nowrap {
   text-shadow: initial;
 }
 
-.typography\/face, .typography\/face\:ko, .typography\/face\:zh-hant, .typography\/face\:zh-hans, .typography\/face\:ja\:kana, .typography\/face\:ja, .typography\/markdown\:headers strong, .typography\/markdown strong, .typography, .typography\/markdown\:headers > h4, .typography\/markdown\:headers > h3, .typography\/markdown\:headers > h2, .typography\/markdown\:headers pre, .typography\/markdown pre, .typography\/markdown\:headers ol:not([class]) > li, .typography\/markdown ol:not([class]) > li,
+.typography\/face, .typography\/face\:ko, .typography\/face\:zh-hant, .typography\/face\:zh-hans, .typography\/face\:ja\:kana, .typography\/face\:ja, .typography\/markdown\:headers strong, .typography\/markdown strong, .typography, .typography\/markdown\:headers > h4, .typography\/markdown\:headers > h3, .typography\/markdown\:headers > h2, .typography\/markdown\:headers pre, .typography\/markdown pre, .typography\/markdown\:headers ol:not([class]) > li:before, .typography\/markdown ol:not([class]) > li:before, .typography\/markdown\:headers ol:not([class]) > li, .typography\/markdown ol:not([class]) > li,
 .typography\/markdown\:headers ul:not([class]) > li,
 .typography\/markdown ul:not([class]) > li, .typography\/markdown\:headers p:not([class]), .typography\/markdown p:not([class]) {
   --typography--tracking--override: var(--typography--tracking);
@@ -76494,7 +76494,7 @@ nobr, .typography\/nowrap {
   --typography--tracking--override: 0;
 }
 
-.typography, .typography\/markdown\:headers > h4, .typography\/markdown\:headers > h3, .typography\/markdown\:headers > h2, .typography\/markdown\:headers pre, .typography\/markdown pre, .typography\/markdown\:headers ol:not([class]) > li, .typography\/markdown ol:not([class]) > li,
+.typography, .typography\/markdown\:headers > h4, .typography\/markdown\:headers > h3, .typography\/markdown\:headers > h2, .typography\/markdown\:headers pre, .typography\/markdown pre, .typography\/markdown\:headers ol:not([class]) > li:before, .typography\/markdown ol:not([class]) > li:before, .typography\/markdown\:headers ol:not([class]) > li, .typography\/markdown ol:not([class]) > li,
 .typography\/markdown\:headers ul:not([class]) > li,
 .typography\/markdown ul:not([class]) > li, .typography\/markdown\:headers p:not([class]), .typography\/markdown p:not([class]) {
   --typography--size--rendered: var(--typography--size--override, var(--typography--size)) * var(--rem-conversion);
@@ -76516,7 +76516,7 @@ nobr, .typography\/nowrap {
   overflow-wrap: break-word;
 }
 @supports (display: flow-root) {
-  .typography, .typography\/markdown\:headers > h4, .typography\/markdown\:headers > h3, .typography\/markdown\:headers > h2, .typography\/markdown\:headers pre, .typography\/markdown pre, .typography\/markdown\:headers ol:not([class]) > li, .typography\/markdown ol:not([class]) > li,
+  .typography, .typography\/markdown\:headers > h4, .typography\/markdown\:headers > h3, .typography\/markdown\:headers > h2, .typography\/markdown\:headers pre, .typography\/markdown pre, .typography\/markdown\:headers ol:not([class]) > li:before, .typography\/markdown ol:not([class]) > li:before, .typography\/markdown\:headers ol:not([class]) > li, .typography\/markdown ol:not([class]) > li,
 .typography\/markdown\:headers ul:not([class]) > li,
 .typography\/markdown ul:not([class]) > li, .typography\/markdown\:headers p:not([class]), .typography\/markdown p:not([class]) {
     display: flow-root;
