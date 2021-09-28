@@ -115,6 +115,7 @@
 
       &:before {
         @extend #{placeholder("$typography/weight:bold")};
+        @extend #{placeholder("typography")};
         @extend #{placeholder("layout/absolute")};
         @extend #{placeholder("layout/left:0%")};
         @extend #{placeholder("typography/tabular-numbers")};
