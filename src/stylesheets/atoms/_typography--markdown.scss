@@ -26,9 +26,11 @@
     @extend #{placeholder("$color/alpha:47%")};
     @extend #{placeholder("$typography/scale:minor")};
 
-    &:not(:first-child) {
-      @extend #{placeholder("layout/margin:top:baseline")};
+    &:not(:first-child),
+    & + * {
+      @extend #{placeholder("layout/margin:top:baseline:3")};
     }
+    
 
     // “Change-bars” on nested quotes.
     blockquote:not([class]) {
@@ -280,7 +282,6 @@
       @extend #{placeholder("layout/margin:top:baseline:3")};
     }
 
-    &:not([type="inline"]) + blockquote
     &:not([type="inline"]) + h2,
     &:not([type="inline"]) + h3,
     &:not([type="inline"]) + h4,
@@ -293,7 +294,6 @@
     }
   }
 
-  > blockquote:not([class]) + div[type="inline"],
   > div[type="inline"] + div[type="inline"],
   > h4:not([class]) + div[type="inline"],
   > ol:not([class]) + div[type="inline"],
@@ -305,7 +305,9 @@
   > h2,
   > h3 {
     & + div[type="inline"],
-    & + p:not([class]) {
+    & + ol:not([class]),
+    & + p:not([class]),
+    & + ul:not([class]) {
       @include increase-specificity {
         @extend #{placeholder("layout/margin:top:baseline:2")};
       }
