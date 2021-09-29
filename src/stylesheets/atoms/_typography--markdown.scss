@@ -28,7 +28,9 @@
 
     &:not(:first-child),
     & + * {
-      @extend #{placeholder("layout/margin:top:baseline:3")};
+      @include increase-specificity(2) {
+        @extend #{placeholder("layout/margin:top:baseline:3")};
+      }
     }
     
 
