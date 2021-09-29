@@ -249,6 +249,12 @@
     &:not(:first-child) {
       @extend #{placeholder("layout/margin:top:baseline:2")};
     }
+
+    & + p:not([class]) {
+      @include increase-specificity {
+        @extend #{placeholder("layout/margin:top:baseline:2")};
+      }
+    }
   }
 
   > h4 {
