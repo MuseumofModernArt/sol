@@ -233,12 +233,6 @@
     &:not(:first-child) {
       @extend #{placeholder("layout/margin:top:baseline:3")};
     }
-
-    & + p:not([class]) {
-      @include increase-specificity {
-        @extend #{placeholder("layout/margin:top:baseline:2")};
-      }
-    }
   }
 
   > h3 {
@@ -248,12 +242,6 @@
 
     &:not(:first-child) {
       @extend #{placeholder("layout/margin:top:baseline:2")};
-    }
-
-    & + p:not([class]) {
-      @include increase-specificity {
-        @extend #{placeholder("layout/margin:top:baseline:2")};
-      }
     }
   }
 
@@ -271,10 +259,10 @@
 
 %typography--markdown--spacing {
   // Width constrain the main text blocks.
-  > p:not([class]),
   > blockquote:not([class]),
-  > ul:not([class]),
-  > ol:not([class]) {
+  > ol:not([class]),
+  > p:not([class]),
+  > ul:not([class]) {
     @include increase-specificity {
       @extend #{placeholder("@480/layout/width:max")};
     }
@@ -292,28 +280,36 @@
       @extend #{placeholder("layout/margin:top:baseline:3")};
     }
 
-    &:not([type="inline"]) + p,
+    &:not([type="inline"]) + blockquote
     &:not([type="inline"]) + h2,
     &:not([type="inline"]) + h3,
     &:not([type="inline"]) + h4,
     &:not([type="inline"]) + ol,
-    &:not([type="inline"]) + ul,
-    &:not([type="inline"]) + blockquote {
+    &:not([type="inline"]) + p,
+    &:not([type="inline"]) + ul {
       @include increase-specificity(2) {
         @extend #{placeholder("layout/margin:top:baseline:3")};
       }
     }
   }
 
+  > blockquote:not([class]) + div[type="inline"],
   > div[type="inline"] + div[type="inline"],
-  > p:not([class]) + div[type="inline"],
-  > h2:not([class]) + div[type="inline"],
-  > h3:not([class]) + div[type="inline"],
   > h4:not([class]) + div[type="inline"],
   > ol:not([class]) + div[type="inline"],
-  > ul:not([class]) + div[type="inline"],
-  > blockquote:not([class]) + div[type="inline"] {
-    @extend #{placeholder("layout/margin:top:baseline:1")};
+  > p:not([class]) + div[type="inline"],
+  > ul:not([class]) + div[type="inline"] {
+    @extend #{placeholder("layout/margin:top:baseline")};
+  }
+
+  > h2,
+  > h3 {
+    & + div[type="inline"],
+    & + p:not([class]) {
+      @include increase-specificity {
+        @extend #{placeholder("layout/margin:top:baseline:2")};
+      }
+    }
   }
 }
 
