@@ -44,6 +44,12 @@
     }
   }
 
+  // Anchor offset.
+  *[id]:target {
+    scroll-margin-top: calc(var(--page-spacing) + var(--header-height--current, 0rem));
+  }
+
+
 
 
   // Lists.
