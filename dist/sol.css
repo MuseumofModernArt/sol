@@ -80433,6 +80433,9 @@ pre > .typography\/code:not(.typography), .typography\/markdown\:headers pre > c
   background-repeat: no-repeat;
   background-size: calc((var(--typography--bullet) / 2) * var(--typography--size) * var(--rem-conversion)) 100%;
 }
+.typography\/markdown\:headers *[id]:target, .typography\/markdown *[id]:target {
+  scroll-margin-top: calc(var(--page-spacing) + var(--header-height--current, 0rem));
+}
 .typography\/markdown\:headers ol:not([class]) > li > p, .typography\/markdown ol:not([class]) > li > p,
 .typography\/markdown\:headers ol:not([class]) > li > blockquote > p,
 .typography\/markdown ol:not([class]) > li > blockquote > p,
