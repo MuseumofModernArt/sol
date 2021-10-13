@@ -22,31 +22,37 @@
 
 // Weights.
 %typography--regular {
-  --typography--bullet:             0.280; // See below.
-  --typography--icon--space:        0.649;
-  --typography--icon--stroke:       0.076;
-  --typography--inset--left:       -0.097;
-  --typography--inset--right:      -0.074;
-  --typography--tracking:           0;
-  --typography--underline--clear:   0.075;
-  --typography--underline--inset:  -0.081;
-  --typography--underline--offset:  0.120;
-  --typography--underline:          0.075;
-  --typography--weight:             400;
+  --typography--bullet:               0.280; // See below.
+  --typography--icon--space:          0.649;
+  --typography--icon--stroke:         0.076;
+  --typography--inset--left:         -0.097;
+  --typography--inset--right:        -0.074;
+  --typography--script--cap-height:   0.428;
+  --typography--subscript--offset:   -0.075;
+  --typography--superscript--offset:  0.390;
+  --typography--tracking:             0;
+  --typography--underline--clear:     0.075;
+  --typography--underline--inset:    -0.081;
+  --typography--underline--offset:    0.120;
+  --typography--underline:            0.075;
+  --typography--weight:               400;
 }
 
 :root, %typography--bold { // Lower for ordering the default/root.
-  --typography--bullet:             0.305; // Square matching the area of the bullet character.
-  --typography--icon--space:        0.444; // Two spaces between two uppercase “M”, for icon separation.
-  --typography--icon--stroke:       0.149; // Thickness of right-arrow icon stem.
-  --typography--inset--left:       -0.071; // Optical insets, at Bold weight. Left edge of capital "M".
-  --typography--inset--right:      -0.035; // Right edge of lowercase “m” (since lines tend to end lowercase).
-  --typography--tracking:          -0.020; // Tracked in. This corresponds to a -20 (thousdanths-of-em) in Adobe parlance.
-  --typography--underline--clear:   0.100; // Can’t exceed narrowest descender width, with this shadow implementation.
-  --typography--underline--inset:  -0.059; // Left edge of lowercase “m” (since links tend to start lowercase).
-  --typography--underline--offset:  0.056; // Distance down from baseline. Lines up to bottom of descenders.
-  --typography--underline:          0.133; // Height of crossbar on capital “E”.
-  --typography--weight:             900;   // Direct map to font stylesheet.
+  --typography--bullet:               0.305; // Square matching the area of the bullet character.
+  --typography--icon--space:          0.444; // Two spaces between two uppercase “M”, for icon separation.
+  --typography--icon--stroke:         0.149; // Thickness of right-arrow icon stem.
+  --typography--inset--left:         -0.071; // Optical insets, at Bold weight. Left edge of capital "M".
+  --typography--inset--right:        -0.035; // Right edge of lowercase “m” (since lines tend to end lowercase).
+  --typography--script--cap-height:   0.440; // Cap height of super/subscripts.
+  --typography--subscript--offset:   -0.075; // Baseline offset for subscript.
+  --typography--superscript--offset:  0.378; // Baseline offset for supserscript.
+  --typography--tracking:            -0.020; // Tracked in. This corresponds to a -20 (thousdanths-of-em) in Adobe parlance.
+  --typography--underline--clear:     0.100; // Can’t exceed narrowest descender width, with this shadow implementation.
+  --typography--underline--inset:    -0.059; // Left edge of lowercase “m” (since links tend to start lowercase).
+  --typography--underline--offset:    0.056; // Distance down from baseline. Lines up to bottom of descenders.
+  --typography--underline:            0.133; // Height of crossbar on capital “E”.
+  --typography--weight:               900;   // Direct map to font stylesheet.
 }
 
 
@@ -240,6 +246,50 @@ nobr, %typography--nowrap {
 
       &:after {
         margin-bottom: var(--typography--margin--bottom); // Pulls bounding box up to baseline.
+      }
+
+      sup, sub {
+        --typography--script--scale:              calc(var(--typography--script--cap-height)  / var(--typography--cap-height)); // Sets the ratio of script cap height to regular cap height
+        
+        --typography--script--font-size:          calc(var(--typography--script--scale) * var(--typography--font-size)); // Adjusted font size
+        
+        --typography--script--shift:              calc((var(--typography--shoulder) + var(--typography--shoulder--top)) * (1 - var(--typography--script--scale))); // Everything below is same as above, but with adjustments for script only
+        
+        --typography--script--leading--bottom:    calc(var(--typography--shoulder--bottom) + var(--typography--leading--remainder) + var(--typography--script--shift, 0));
+        --typography--script--leading--top:       calc(var(--typography--shoulder--top) + var(--typography--leading--remainder) - var(--typography--script--shift, 0));
+
+        --typography--script--margin--bottom:     calc(-1 * var(--typography--script--leading--bottom) * var(--typography--size--rendered));
+        --typography--script--margin--top:        calc(-1 * var(--typography--script--leading--top) *    var(--typography--size--rendered));
+        
+        display:          inline-block; // Set it inline, no new contexts here.
+        font-size:        var(--typography--script--font-size);
+        letter-spacing:   initial; // Track it back out.
+        margin-top:       calc(-1 * var(--typography--margin--top)); // Negate parent bounding.
+        margin-left:      calc(0.25 * var(--typography--script--cap-height) * var(--typography--script--font-size)); // Give it some room to breathe.
+
+        &:before,
+        &:after {
+          content:    '';
+          display:    block;
+          visibility: hidden;
+        }
+
+        &:before {
+          // Pulls bounding box down to cap-height, unless there is a shift.
+          margin-top: calc(var(--typography--script--margin--top) - (var(--typography--script--margin--top--shift, 0) * var(--typography--size--rendered)));
+        }
+  
+        &:after {
+          margin-bottom: var(--typography--script--margin--bottom); // Pulls bounding box up to baseline.
+        }
+      }
+
+      sup {
+        --typography--script--margin--top--shift: var(--typography--superscript--offset);
+      }
+
+      sub {
+        --typography--script--margin--top--shift: var(--typography--subscript--offset);
       }
     }
   }
