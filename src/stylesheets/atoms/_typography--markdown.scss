@@ -40,6 +40,14 @@
     }
   }
 
+  sup.footnote-ref {
+    @extend #{placeholder("$color/alpha:47%")};
+
+    a[rel="footnote"] {
+      @extend #{placeholder("typography/underline:disable")};
+    }
+  }
+
 
 
   // Lists.
@@ -110,16 +118,18 @@
       }
 
       &:not(:first-child) {
-        padding-top: var(--typography--leading-shoulder); // And since we use margin for the shoulder, use padding for the baseline spacing.
+        padding-top: var(--layout--typography--leading-shoulder); // And since we use margin for the shoulder, use padding for the baseline spacing.
       }
 
       &:before {
+        @extend #{placeholder("$typography/weight:bold")};
         @extend #{placeholder("layout/absolute")};
         @extend #{placeholder("layout/left:0%")};
         @extend #{placeholder("typography/tabular-numbers")};
 
         content:    counter(item)'.'; // The number and a period.
         margin-top: initial; // Moved above.
+        visibility: visible;
       }
     }
   }
@@ -137,6 +147,36 @@
     }
   }
 
+
+
+  // Footnotes
+  div.footnotes {
+    &:not(:first-child) {
+      @extend #{placeholder("layout/margin:top:baseline:2")};
+    }
+
+    ol:not([class]) {
+      @extend #{placeholder("layout/margin:top:clear")};
+
+      > li {
+        @extend #{placeholder("$typography/scale:minor")};
+        @extend #{placeholder("$color/alpha:47%")};
+
+        &:before {
+          @extend #{placeholder("$typography/scale:minor")};
+          @extend #{placeholder("$typography/weight:regular")};
+        }
+
+        a.footnote-return {
+          @extend #{placeholder("link/focus:inline")};
+
+          > svg {
+            @extend #{placeholder("typography/icon:after:270deg")};
+          }
+        }
+      }
+    }
+  }
 
 
   // Code stuff.
