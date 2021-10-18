@@ -26,13 +26,9 @@
     @extend #{placeholder("$color/alpha:47%")};
     @extend #{placeholder("$typography/scale:minor")};
 
-    &:not(:first-child),
-    & + * {
-      @include increase-specificity(2) {
-        @extend #{placeholder("layout/margin:top:baseline:3")};
-      }
+    &:not(:first-child) {
+      @extend #{placeholder("layout/margin:top:baseline")};
     }
-    
 
     // “Change-bars” on nested quotes.
     blockquote:not([class]) {
@@ -44,11 +40,13 @@
     }
   }
 
-  // Anchor offset.
-  *[id]:target {
-    scroll-margin-top: calc(var(--page-spacing) + var(--header-height--current, 0rem));
-  }
+  sup.footnote-ref {
+    @extend #{placeholder("$color/alpha:47%")};
 
+    a[rel="footnote"] {
+      @extend #{placeholder("typography/underline:disable")};
+    }
+  }
 
 
 
@@ -125,7 +123,6 @@
 
       &:before {
         @extend #{placeholder("$typography/weight:bold")};
-        @extend #{placeholder("typography")};
         @extend #{placeholder("layout/absolute")};
         @extend #{placeholder("layout/left:0%")};
         @extend #{placeholder("typography/tabular-numbers")};
@@ -150,6 +147,36 @@
     }
   }
 
+
+
+  // Footnotes
+  div.footnotes {
+    &:not(:first-child) {
+      @extend #{placeholder("layout/margin:top:baseline:2")};
+    }
+
+    ol:not([class]) {
+      @extend #{placeholder("layout/margin:top:clear")};
+
+      > li {
+        @extend #{placeholder("$typography/scale:minor")};
+        @extend #{placeholder("$color/alpha:47%")};
+
+        &:before {
+          @extend #{placeholder("$typography/scale:minor")};
+          @extend #{placeholder("$typography/weight:regular")};
+        }
+
+        a.footnote-return {
+          @extend #{placeholder("link/focus:inline")};
+
+          > svg {
+            @extend #{placeholder("typography/icon:after:270deg")};
+          }
+        }
+      }
+    }
+  }
 
 
   // Code stuff.
@@ -227,7 +254,6 @@
   }
 
   // TODO Legacy “--split” equivalent (without first-child rules. Maybe `typography/markdown:continued`?
-  // TODO Footnotes.
   // TODO Horizontal rules.
   // TODO Tables.
 }
@@ -324,6 +350,19 @@
 }
 
 
+// Additional spacing for markdown headers
+%typography--markdown--spacing--extended {
+  blockquote:not([class]) {
+    &:not(:first-child),
+    & + * {
+      @include increase-specificity(2) {
+        @extend #{placeholder("layout/margin:top:baseline:3")};
+      }
+    }
+  }
+}
+
+
 
 // Fix spacing after disabled elements.
 %typography--markdown--disable--reset {
@@ -374,6 +413,7 @@
       @extend %typography--markdown--headers;
       @extend %typography--markdown--base;
       @extend %typography--markdown--spacing;
+      @extend %typography--markdown--spacing--extended;
     }
   }
 }
