@@ -249,48 +249,22 @@ nobr, %typography--nowrap {
       }
 
       sup, sub {
-        --typography--script--scale:              calc(var(--typography--script--cap-height)  / var(--typography--cap-height)); // Sets the ratio of script cap height to regular cap height
-        
-        --typography--script--font-size:          calc(var(--typography--script--scale) * var(--typography--font-size)); // Adjusted font size
-        
-        --typography--script--shift:              calc((var(--typography--shoulder) + var(--typography--shoulder--top)) * (1 - var(--typography--script--scale))); // Everything below is same as above, but with adjustments for script only
-        
-        --typography--script--leading--bottom:    calc(var(--typography--shoulder--bottom) + var(--typography--leading--remainder) + var(--typography--script--shift, 0));
-        --typography--script--leading--top:       calc(var(--typography--shoulder--top) + var(--typography--leading--remainder) - var(--typography--script--shift, 0));
+        --typography--script--scale: calc(var(--typography--script--cap-height) / var(--typography--cap-height));
 
-        --typography--script--margin--bottom:     calc(-1 * var(--typography--script--leading--bottom) * var(--typography--size--rendered));
-        --typography--script--margin--top:        calc(-1 * var(--typography--script--leading--top) *    var(--typography--size--rendered));
-        
-        color:            var(--color);
-        display:          inline-block; // Set it inline, no new contexts here.
-        font-size:        var(--typography--script--font-size);
-        letter-spacing:   initial; // Track it back out.
-        margin-left:      calc(0.25 * var(--typography--script--cap-height) * var(--typography--script--font-size)); // Give it some room to breathe.
-        margin-top:       calc(-1 * var(--typography--margin--top)); // Negate parent bounding.
-
-        &:before,
-        &:after {
-          content:    '';
-          display:    block;
-          visibility: hidden;
-        }
-
-        &:before {
-          // Pulls bounding box down to cap-height, unless there is a shift.
-          margin-top: calc(var(--typography--script--margin--top) - (var(--typography--script--margin--top--shift, 0) * var(--typography--size--rendered)));
-        }
-  
-        &:after {
-          margin-bottom: var(--typography--script--margin--bottom); // Pulls bounding box up to baseline.
-        }
+        color: var(--color);
+        display: inline-block;
+        font-size: calc(var(--typography--size) * var(--typography--scale, 1) * var(--typography--script--scale) * 0.1rem);
+        line-height: 1;
+        transform: translateY(calc(-1 * var(--typography--script--shift) * var(--typography--font-size)));
+        vertical-align: baseline;
       }
 
       sup {
-        --typography--script--margin--top--shift: var(--typography--superscript--offset);
+        --typography--script--shift: var(--typography--superscript--offset);
       }
 
       sub {
-        --typography--script--margin--top--shift: var(--typography--subscript--offset);
+        --typography--script--shift: var(--typography--subscript--offset);
       }
     }
   }
