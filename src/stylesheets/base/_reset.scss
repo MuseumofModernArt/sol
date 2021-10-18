@@ -75,7 +75,8 @@ select {
 
 // Disclosure triangle.
 details {
-  summary::-webkit-details-marker {
+  summary::-webkit-details-marker,
+  summary::marker {
     display: none;
   }
 }

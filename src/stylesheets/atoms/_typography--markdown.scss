@@ -44,11 +44,13 @@
     }
   }
 
-  // Anchor offset.
-  *[id]:target {
-    scroll-margin-top: calc(var(--page-spacing) + var(--header-height--current, 0rem));
-  }
+  sup.footnote-ref {
+    @extend #{placeholder("$color/alpha:47%")};
 
+    a[rel="footnote"] {
+      @extend #{placeholder("typography/underline:disable")};
+    }
+  }
 
 
 
@@ -125,7 +127,6 @@
 
       &:before {
         @extend #{placeholder("$typography/weight:bold")};
-        @extend #{placeholder("typography")};
         @extend #{placeholder("layout/absolute")};
         @extend #{placeholder("layout/left:0%")};
         @extend #{placeholder("typography/tabular-numbers")};
@@ -150,6 +151,36 @@
     }
   }
 
+
+
+  // Footnotes
+  div.footnotes {
+    &:not(:first-child) {
+      @extend #{placeholder("layout/margin:top:baseline:2")};
+    }
+
+    ol:not([class]) {
+      @extend #{placeholder("layout/margin:top:clear")};
+
+      > li {
+        @extend #{placeholder("$typography/scale:minor")};
+        @extend #{placeholder("$color/alpha:47%")};
+
+        &:before {
+          @extend #{placeholder("$typography/scale:minor")};
+          @extend #{placeholder("$typography/weight:regular")};
+        }
+
+        a.footnote-return {
+          @extend #{placeholder("link/focus:inline")};
+
+          > svg {
+            @extend #{placeholder("typography/icon:after:270deg")};
+          }
+        }
+      }
+    }
+  }
 
 
   // Code stuff.
