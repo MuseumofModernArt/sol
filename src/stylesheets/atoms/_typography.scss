@@ -250,11 +250,13 @@ nobr, %typography--nowrap {
 
       sup, sub {
         --typography--script--scale: calc(var(--typography--script--cap-height) / var(--typography--cap-height));
-
+        --typography--script--font-size: calc(var(--typography--size) * var(--typography--scale, 1) * var(--typography--script--scale) * 0.1rem);
+        
         color: var(--color);
         display: inline-block;
-        font-size: calc(var(--typography--size) * var(--typography--scale, 1) * var(--typography--script--scale) * 0.1rem);
+        font-size: var(--typography--script--font-size);
         line-height: 1;
+        margin-left: calc(0.25 * var(--typography--script--cap-height) * var(--typography--script--font-size));
         transform: translateY(calc(-1 * var(--typography--script--shift) * var(--typography--font-size)));
         vertical-align: baseline;
       }
