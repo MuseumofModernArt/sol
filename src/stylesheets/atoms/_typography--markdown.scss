@@ -349,7 +349,9 @@
   }
 }
 
-%typography--markdown--spacing--additional {
+
+// Additional spacing for markdown headers
+%typography--markdown--spacing--extended {
   blockquote:not([class]) {
     &:not(:first-child),
     & + * {
@@ -411,7 +413,7 @@
       @extend %typography--markdown--headers;
       @extend %typography--markdown--base;
       @extend %typography--markdown--spacing;
-      @extend %typography--markdown--spacing--additional;
+      @extend %typography--markdown--spacing--extended;
     }
   }
 }
