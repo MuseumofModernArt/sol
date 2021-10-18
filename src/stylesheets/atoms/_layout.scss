@@ -71,6 +71,12 @@
     border-radius: var(--border-radius);
   }
 
+  @include atom(anchor-offset) {
+    &:target {
+      scroll-margin-top: calc(var(--page-spacing) + var(--header-height--current, 0rem));
+    }
+  }
+
 
   // These are kind of our only true “molecules”.
   @include atom(wrapper) {
