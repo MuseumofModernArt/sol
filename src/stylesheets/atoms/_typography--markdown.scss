@@ -254,7 +254,6 @@
   }
 
   // TODO Legacy “--split” equivalent (without first-child rules. Maybe `typography/markdown:continued`?
-  // TODO Footnotes.
   // TODO Horizontal rules.
   // TODO Tables.
 }
@@ -288,6 +287,77 @@
 
     &:not(:first-child) {
       @extend #{placeholder("layout/margin:top:baseline")};
+    }
+  }
+}
+
+
+
+%typography--markdown--spacing {
+  // Width constrain the main text blocks.
+  > blockquote:not([class]),
+  > ol:not([class]),
+  > p:not([class]),
+  > ul:not([class]) {
+    @include increase-specificity {
+      @extend #{placeholder("@480/layout/width:max")};
+    }
+
+    --480--layout--width--max: var(--uneven-column-width--main);
+  }
+
+  // Spacing rules for blocks
+  // block + block, 3 baselines
+  // block + inline, 3 baselines
+  // inline + block, 3 baselines
+  // inline + inline, 1 baseline
+  > div {
+    &:not(:first-child) {
+      @extend #{placeholder("layout/margin:top:baseline:3")};
+    }
+
+    &:not([type="inline"]) + h2,
+    &:not([type="inline"]) + h3,
+    &:not([type="inline"]) + h4,
+    &:not([type="inline"]) + ol,
+    &:not([type="inline"]) + p,
+    &:not([type="inline"]) + ul {
+      @include increase-specificity(2) {
+        @extend #{placeholder("layout/margin:top:baseline:3")};
+      }
+    }
+  }
+
+  > div[type="inline"] + div[type="inline"],
+  > h4:not([class]) + div[type="inline"],
+  > ol:not([class]) + div[type="inline"],
+  > p:not([class]) + div[type="inline"],
+  > ul:not([class]) + div[type="inline"] {
+    @extend #{placeholder("layout/margin:top:baseline")};
+  }
+
+  > h2,
+  > h3 {
+    & + div[type="inline"],
+    & + ol:not([class]),
+    & + p:not([class]),
+    & + ul:not([class]) {
+      @include increase-specificity {
+        @extend #{placeholder("layout/margin:top:baseline:2")};
+      }
+    }
+  }
+}
+
+
+// Additional spacing for markdown headers
+%typography--markdown--spacing--extended {
+  blockquote:not([class]) {
+    &:not(:first-child),
+    & + * {
+      @include increase-specificity(2) {
+        @extend #{placeholder("layout/margin:top:baseline:3")};
+      }
     }
   }
 }
@@ -336,11 +406,14 @@
     @extend %typography--markdown--disable--headers;
     @extend %typography--markdown--disable;
     @extend %typography--markdown--base;
+    @extend %typography--markdown--spacing;
 
     @include variant(headers) {
       @extend %typography--markdown--disable;
       @extend %typography--markdown--headers;
       @extend %typography--markdown--base;
+      @extend %typography--markdown--spacing;
+      @extend %typography--markdown--spacing--extended;
     }
   }
 }
