@@ -376,7 +376,7 @@ a {
   border-radius: var(--border-radius);
 }
 
-.layout\/anchor-offset:target {
+.layout\/anchor-offset:target, .typography\/markdown\:headers [id]:target, .typography\/markdown [id]:target {
   scroll-margin-top: calc(var(--page-spacing) + var(--header-height--current, 0rem));
 }
 
