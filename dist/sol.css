@@ -323,6 +323,7 @@ a {
   --rights-maximum: 200rem;
   --uneven-column-width--side: calc((var(--page-width--layout) - var(--page-spacing--fixed) * 2) / 3);
   --uneven-column-width--main: calc(var(--page-width--layout) - var(--uneven-column-width--side) - var(--page-spacing--fixed));
+  --nav-height: 0rem;
 }
 @media (orientation: landscape) {
   :root {
@@ -373,7 +374,7 @@ a {
 }
 
 .layout\/anchor-offset:target, .typography\/markdown\:headers [id]:target, .typography\/markdown [id]:target {
-  scroll-margin-top: calc(var(--page-spacing) + var(--header-height--current, 0rem));
+  scroll-margin-top: calc(var(--page-spacing) + var(--nav-height, 0rem));
 }
 
 .layout\/wrapper {
