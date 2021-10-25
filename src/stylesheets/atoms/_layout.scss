@@ -19,6 +19,8 @@
   --uneven-column-width--side: calc((var(--page-width--layout) - var(--page-spacing--fixed) * 2) / 3);                          // 1/3 without gutters.
   --uneven-column-width--main: calc(var(--page-width--layout) - var(--uneven-column-width--side) - var(--page-spacing--fixed)); // Less another gutter.
 
+  --nav-height: 0rem;
+
   @include breakpoint(landscape) {
     --page-spacing: #{$page-spacing--landscape};
   }
@@ -73,7 +75,7 @@
 
   @include atom(anchor-offset) {
     &:target {
-      scroll-margin-top: calc(var(--page-spacing) + var(--header-height--current, 0rem));
+      scroll-margin-top: calc(var(--page-spacing) + var(--nav-height, 0rem));
     }
   }
 
