@@ -48,6 +48,10 @@
     }
   }
 
+  *[id] {
+    @extend #{placeholder("layout/anchor-offset")};
+  }
+
 
 
   // Lists.
