@@ -321,7 +321,9 @@
           $prefix: flex-;
         }
 
-        #{$atom}-items: #{$prefix}#{$variant};
+        @include increase-specificity {
+          #{$atom}-items: #{$prefix}#{$variant};
+        }
 
         // Because flexbox is dumb, need to use `-content` on the cross axis.
         @if $atom == "justify" {
@@ -332,7 +334,9 @@
       }
 
       @include variant(evenly, between) {
-        #{$atom}-content: space-#{$variant};
+        @include increase-specificity {
+          #{$atom}-content: space-#{$variant};
+        }
       }
     }
 
