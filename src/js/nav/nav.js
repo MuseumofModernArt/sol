@@ -10,9 +10,11 @@ export default class Nav {
     
     this.setCurrentHeightCSS();
     
-    this.navEl.addEventListener('transitionend', () => {
-      this.setCurrentHeightCSS();
-    });
+    if (this.navEl) {
+      this.navEl.addEventListener('transitionend', () => {
+        this.setCurrentHeightCSS();
+      });
+    }
 
     window.addEventListener('resize', () => {
       this.setCurrentHeightCSS();
