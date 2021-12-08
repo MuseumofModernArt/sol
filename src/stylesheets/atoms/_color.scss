@@ -161,6 +161,7 @@ $colors: (
 
   %color--high-contrast--background {
     @extend %color--background--rgba;
+    @extend %color--focus;
     @extend %color--high-contrast--background--alpha;
 
     --color--background--rgb: var(--color--white--rgb);
