@@ -340,6 +340,12 @@
       }
     }
 
+    @include atom(order) {
+      @include variant-count(1, 6, $default: false) {
+        #{$atom}: #{$variant-count};
+      }
+    }
+
     @include atom(float) {
       @include variant(left, none, right) {
         float: #{$variant};
