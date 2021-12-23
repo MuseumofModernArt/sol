@@ -247,13 +247,22 @@
 
     @include atom(grid) {
       $columns: 6;
+      $parent: &;
 
       display: #{$atom};
+      
+      @include variant(&, columns, rows) {
+        @include variant-count(1, $columns, $default: false) {
+          @extend #{$parent};
+          
+          $base: $variant;
+          @if not $variant {
+            $base: "columns";
+          } 
 
-      @include variant-count(1, $columns, $default: false) {
-        @extend #{$variant-parent};
-
-        grid-template-columns: repeat(#{$variant-count}, minmax(0, 1fr));
+          #{css-var($parent)}--template--#{$base}: repeat(#{$variant-count}, minmax(0, 1fr));
+          grid-template-#{$base}: var(#{css-var(#{css-var($parent)}--template--#{$base})});
+        }
       }
 
       @include variant(gap) {
