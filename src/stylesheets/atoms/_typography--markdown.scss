@@ -155,6 +155,10 @@
 
   // Footnotes
   div.footnotes {
+    @extend #{placeholder("@480/layout/width:max")};
+
+    --480--layout--width--max: var(--uneven-column-width--main);
+
     &:not(:first-child) {
       @extend #{placeholder("layout/margin:top:baseline:2")};
     }
