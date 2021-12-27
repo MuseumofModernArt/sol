@@ -306,7 +306,7 @@
           }
 
           @include variant(clear) { // Reset any of them.
-            #{$variant-modifier}#{$atom}: initial;
+            #{$variant-modifier}gap: initial;
           }
         }
       }
