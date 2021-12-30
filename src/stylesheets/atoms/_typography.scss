@@ -293,7 +293,7 @@ nobr, %typography--nowrap {
       width:         calc(100% - var(--typography--margin--left) - var(--typography--margin--right));
 
       &::placeholder {
-        color:       rgba(var(--color--rgb), 0.20); // Ahead of discrete atoms.
+        color:       rgba(var(--color--rgb), 0.47); // Ahead of discrete atoms.
 
         @include browser-specific(safari) {
           line-height: normal; // Fixes Safari vertical alignment.
