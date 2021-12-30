@@ -78117,7 +78117,7 @@ input.typography {
   width: calc(100% - var(--typography--margin--left) - var(--typography--margin--right));
 }
 input.typography::placeholder {
-  color: rgba(var(--color--rgb), 0.2);
+  color: rgba(var(--color--rgb), 0.47);
 }
 @supports (-webkit-hyphens: none) {
   input.typography::placeholder {
