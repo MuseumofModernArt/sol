@@ -43,9 +43,11 @@
       $small--desktop:             16;
       $medium:                     16;
       $medium--desktop:            18;
-      $large:                      18;
+      $large:                      20;
       $large--desktop:             22;
-      $extra-large:                24;
+      $medium-large:               24;
+      $medium-large--desktop:      30;
+      $extra-large:                28;
       $extra-large--desktop:       40;
       $extra-extra-large:          32;
       $extra-extra-large--desktop: 60;
@@ -102,18 +104,34 @@
         }
       }
 
+      @include variant(medium-large) {
+        @include type-size($medium-large);
+
+        --typography--scale--down--2: #{abs(calc($medium/$medium-large))};
+        --typography--scale--down:    #{abs(calc($large/$medium-large))};
+        --typography--scale--up:      #{abs(calc($extra-large/$medium-large))};
+
+        @include breakpoint($desktop) {
+          @include type-size($medium-large--desktop);
+
+          --typography--scale--down--2: #{abs(calc($medium--desktop/$medium-large--desktop))};
+          --typography--scale--down:    #{abs(calc($large--desktop/$medium-large--desktop))};
+          --typography--scale--up:      #{abs(calc($extra-large--desktop/$medium-large--desktop))};
+        }
+      }
+
       @include variant(extra-large) {
         @include type-size($extra-large);
 
-        --typography--scale--down--2: #{abs(calc($medium/$extra-large))};
-        --typography--scale--down:    #{abs(calc($large/$extra-large))};
+        --typography--scale--down--2: #{abs(calc($large/$extra-large))};
+        --typography--scale--down:    #{abs(calc($medium-large/$extra-large))};
         --typography--scale--up:      #{abs(calc($extra-extra-large/$extra-large))};
 
         @include breakpoint($desktop) {
           @include type-size($extra-large--desktop);
 
-          --typography--scale--down--2: #{abs(calc($medium--desktop/$extra-large--desktop))};
-          --typography--scale--down:    #{abs(calc($large--desktop/$extra-large--desktop))};
+          --typography--scale--down--2: #{abs(calc($large--desktop/$extra-large--desktop))};
+          --typography--scale--down:    #{abs(calc($medium-large--desktop/$extra-large--desktop))};
           --typography--scale--up:      #{abs(calc($extra-extra-large--desktop/$extra-large--desktop))};
         }
       }
@@ -121,14 +139,14 @@
       @include variant(extra-extra-large) {
         @include type-size($extra-extra-large);
 
-        --typography--scale--down--2: #{abs(calc($large/$extra-extra-large))};
+        --typography--scale--down--2: #{abs(calc($medium-large/$extra-extra-large))};
         --typography--scale--down:    #{abs(calc($extra-large/$extra-extra-large))};
         --typography--scale--up:      #{abs(calc($hero/$extra-extra-large))};
 
         @include breakpoint($desktop) {
           @include type-size($extra-extra-large--desktop);
 
-          --typography--scale--down--2: #{abs(calc($large--desktop/$extra-extra-large--desktop))};
+          --typography--scale--down--2: #{abs(calc($medium-large--desktop/$extra-extra-large--desktop))};
           --typography--scale--down:    #{abs(calc($extra-large--desktop/$extra-extra-large--desktop))};
           --typography--scale--up:      #{abs(calc($hero--desktop/$extra-extra-large--desktop))};
         }
