@@ -302,7 +302,7 @@ $variant-alpha--initial: true !default;
   $selector-remainder: remove-first-selector(&);
   $selectors:          &;
 
-  $alphas: 0, 3, 7, 10, 13, 20, 27, 33, 40, 47, 50, 80, 93, 96, 100; // The ones we’ve used in the past, for now.
+  $alphas: 0, 3, 7, 10, 13, 20, 27, 33, 40, 47, 50, 54, 80, 93, 96, 100; // The ones we’ve used in the past, for now.
 
   @if $variant-alpha--initial {
     @at-root {
