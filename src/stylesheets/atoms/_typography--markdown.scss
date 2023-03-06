@@ -23,7 +23,7 @@
   }
 
   blockquote:not([class]) { // Parsed without child <p>.
-    @extend #{placeholder("$color/alpha:47%")};
+    @extend #{placeholder("$color/alpha:54%")};
     @extend #{placeholder("$typography/scale:minor")};
 
     &:not(:first-child) {
@@ -41,7 +41,7 @@
   }
 
   sup.footnote-ref {
-    @extend #{placeholder("$color/alpha:47%")};
+    @extend #{placeholder("$color/alpha:54%")};
 
     a[rel="footnote"] {
       @extend #{placeholder("typography/underline:disable")};
@@ -168,7 +168,7 @@
 
       > li {
         @extend #{placeholder("$typography/scale:minor")};
-        @extend #{placeholder("$color/alpha:47%")};
+        @extend #{placeholder("$color/alpha:54%")};
 
         &:before {
           @extend #{placeholder("$typography/scale:minor")};

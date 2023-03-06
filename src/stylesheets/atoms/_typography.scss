@@ -59,27 +59,27 @@
 
 // Baselines.
 %typography--body {
-  --typography--leading: #{abs(4/3)}; // The abs is for SCSS to render as a decimal.
+  --typography--leading: #{abs(calc(4/3))}; // The abs is for SCSS to render as a decimal.
 
   --typography--descenders: 0.231; // Lowest descender from the baseline: Ģ (“latin capital letter G with cedilla”).
 
-  --typography--scale--minor: #{abs(8/9)}; // Smaller text on same baseline.
-  --typography--scale--major: #{abs(4/3)}; // Slightly larger.
+  --typography--scale--minor: #{abs(calc(8/9))}; // Smaller text on same baseline.
+  --typography--scale--major: #{abs(calc(4/3))}; // Slightly larger.
   --typography--scale--prime: 2;           // Largest.
 
   + * { // Makes value available to succeeding elements.
-    --typography--leading--previous: #{abs(4/3)};
+    --typography--leading--previous: #{abs(calc(4/3))};
   }
 
   @include breakpoint($desktop) {
-    --typography--scale--prime: #{abs(8/3)}; // This is the “correct” scale, on desktop.
+    --typography--scale--prime: #{abs(calc(8/3))}; // This is the “correct” scale, on desktop.
   }
 }
 
 :root, %typography--solid {
   --typography--leading: 1;
 
-  --typography--scale--minor: #{abs(3/4)};
+  --typography--scale--minor: #{abs(calc(3/4))};
   --typography--scale--major: 1.5;
   --typography--scale--prime: 2;
 
