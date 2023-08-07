@@ -36,9 +36,9 @@ In `moma-go`, run `yarn link sol`. This creates a [symlink](https://classic.yarn
 
 ## Releases
 
-To create a release, merge all PRs that will be part of it into `master`.
+To create a release, merge all PRs that will be part of it into `main`.
 
-Then with `master` checked out, run `yarn release 1.0.0`, replacing 1.0.0 with the release version number.
+Then with `main` checked out, run `yarn release 1.0.0`, replacing 1.0.0 with the release version number.
 
 Once the artifact files have been generated and the release has been tagged, go to Github and draft a new release, using the tag version that was created.
 
