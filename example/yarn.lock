@@ -800,9 +800,9 @@ signal-exit@^3.0.3:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.3.tgz#a1410c2edd8f077b08b4e253c8eacfcaf057461c"
   integrity sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==
 
-"sol@github:MuseumofModernArt/sol#v3.1.5":
-  version "3.1.5"
-  resolved "git+ssh://git@github.com/MuseumofModernArt/sol.git#e3c35ee0a3205ac30a3293bbaa1e4bcf874c9ee9"
+"sol@github:MuseumofModernArt/sol#v3.2.11":
+  version "3.2.11"
+  resolved "git+ssh://git@github.com/MuseumofModernArt/sol.git#a111fdacfd83e5d8555452d69757c4229f7d3188"
   dependencies:
     balance-text "^3.3.0"
 
