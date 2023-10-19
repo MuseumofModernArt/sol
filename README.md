@@ -16,7 +16,12 @@
 
 <br>
 
+## Documentation
+
+Classes and available modules are documented on the [Wiki](https://github.com/MuseumofModernArt/sol/wiki). You can see an example of how to include in your site in the `example` folder, and for more examples of how to use various classes and components check `sol-101`.
+
 ## Development
+
 1. To install, make sure you have homebrew installed, and then run this install Dart Sass<br>
 `yarn install-sass`
 
@@ -31,15 +36,16 @@ In `moma-go`, run `yarn link sol`. This creates a [symlink](https://classic.yarn
 
 ## Releases
 
-To create a release, merge all PRs that will be part of it into `master`.
+To create a release, merge all PRs that will be part of it into `main`.
 
-Then with `master` checked out, run `yarn release 1.0.0`, replacing 1.0.0 with the release version number.
+Then with `main` checked out, run `yarn release 1.0.0`, replacing 1.0.0 with the release version number.
 
 Once the artifact files have been generated and the release has been tagged, go to Github and draft a new release, using the tag version that was created.
 
 More on semantic versioning [here](https://classic.yarnpkg.com/en/docs/dependency-versions#toc-semantic-versioning).
 
 ## Usage
+
 You should just get `dist/sol.css` or `dist/sol.min.css`. Fonts are also provided in the `dist` folder.
 
 To add to your package manager, such as yarn, do `yarn add github:MuseumofModernArt/sol`. If you would like to lock to a specific version, append `#v1.0.0` to the end. More on all this [here](http://thecodebarbarian.com/github-is-my-favorite-private-npm-registry.html).
