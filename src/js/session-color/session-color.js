@@ -2,7 +2,7 @@ import { BaseDomain } from '../util/util';
 
 const highlightColors = {
   0: '$color/session:1',
-  1: '$color/session:2',
+  1: '$color/session:5',
   2: '$color/session:8',
   3: '$color/session:7',
   4: '$color/session:10',
