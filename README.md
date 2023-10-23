@@ -12,7 +12,7 @@
 
 <br>
 
-**Sol** is a front-end (JS/CSS) library, developed by MoMA’s Digital Media team for use across the organization’s various products. It takes an “atomic” approach of providing simple utility functions and classes which incorporate the basic design paradigms for MoMA’s brand, (mostly) agnostic of their specific usage.
+**Sol** is a front-end (JS/CSS) library, developed by MoMA’s Digital Product team for use across the organization’s various products. It takes an “atomic” approach of providing simple utility functions and classes which incorporate the basic design paradigms for MoMA’s brand, (mostly) agnostic of their specific usage.
 
 <br>
 

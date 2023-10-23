@@ -41,7 +41,7 @@ $colors: (
   @extend %color--base--background;
   @extend %color--focus;
 
-  --color--session:             var(--color--gray--888);
+  --color--session:             var(--color--brand--10);
   --color--session--background: var(--color--gray--999);
 
   --color--session--rgb:             var(--color--gray--888--rgb);
