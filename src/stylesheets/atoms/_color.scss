@@ -298,7 +298,6 @@ $colors: (
           $color-variables:  append($color-variables, (name: $color-name--rgb, value: $color-value--rgb));
           $color-variables:  append($color-variables, (name: $color-name, value: $color-value));
 
-
           @include atom($item) {
             @include variant($grouped-item) {
               @include variant-alphas {
