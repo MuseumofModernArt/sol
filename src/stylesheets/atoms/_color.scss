@@ -298,9 +298,10 @@ $colors: (
           $color-variables:  append($color-variables, (name: $color-name--rgb, value: $color-value--rgb));
           $color-variables:  append($color-variables, (name: $color-name, value: $color-value));
 
+
           @include atom($item) {
             @include variant($grouped-item) {
-              @include variant-alphas {
+              @if $item == membership {
                 @extend %color--rgba;
 
                 @if $item == brand {
@@ -312,12 +313,26 @@ $colors: (
 
                 --color--rgb: var(#{$color-name--rgb});
               }
+              @else {
+                @include variant-alphas {
+                  @extend %color--rgba;
+
+                  @if $item == brand {
+                    @extend %color--high-contrast--session;
+                  }
+                  @else {
+                    @extend %color--high-contrast;
+                  }
+
+                  --color--rgb: var(#{$color-name--rgb});
+                }
+              }
             }
           }
           @include atom(background) {
             @include variant($item) {
               @include variant($grouped-item) {
-                @include variant-alphas($background: true) {
+                @if $item == membership {
                   @extend %color--background--rgba;
 
                   @if $item == brand {
@@ -336,6 +351,28 @@ $colors: (
                   }
 
                   --color--background--rgb: var(#{$color-name--rgb});
+                }
+                @else {
+                  @include variant-alphas($background: true) {
+                    @extend %color--background--rgba;
+
+                    @if $item == brand {
+                      @extend %color--high-contrast--session--background;
+                      @extend %color--high-contrast--reverse;
+                    }
+                    @else {
+                      @extend %color--high-contrast--background;
+                      @extend %color--high-contrast;
+                    }
+
+                    // Invert base colors for dark values.
+                    @if map-get($grouped-values, dark-background) {
+                      @extend %color--base--reverse;
+                      @extend %color--focus--reverse;
+                    }
+
+                    --color--background--rgb: var(#{$color-name--rgb});
+                  }
                 }
               }
             }
