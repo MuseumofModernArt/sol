@@ -304,12 +304,7 @@ $colors: (
               @if $item == membership {
                 @extend %color--rgba;
 
-                @if $item == brand {
-                  @extend %color--high-contrast--session;
-                }
-                @else {
-                  @extend %color--high-contrast;
-                }
+                @extend %color--high-contrast;
 
                 --color--rgb: var(#{$color-name--rgb});
               }
@@ -335,14 +330,8 @@ $colors: (
                 @if $item == membership {
                   @extend %color--background--rgba;
 
-                  @if $item == brand {
-                    @extend %color--high-contrast--session--background;
-                    @extend %color--high-contrast--reverse;
-                  }
-                  @else {
-                    @extend %color--high-contrast--background;
-                    @extend %color--high-contrast;
-                  }
+                  @extend %color--high-contrast--background;
+                  @extend %color--high-contrast;
 
                   // Invert base colors for dark values.
                   @if map-get($grouped-values, dark-background) {
