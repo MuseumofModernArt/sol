@@ -21,20 +21,12 @@
 
   --nav-height: 0rem;
 
-  @include breakpoint(landscape) {
-    --page-spacing: #{$page-spacing--landscape};
-  }
-
   @include breakpoint($desktop) {
     --page-spacing:        #{$page-spacing--desktop};
     --page-spacing--fixed: #{$page-spacing--desktop};
 
-    @include breakpoint(landscape) {
-      --page-spacing: #{$page-spacing--landscape--desktop};
-
-      @include breakpoint(tall) {
-        --page-spacing: #{$page-spacing--desktop};
-      }
+    @include breakpoint(tall) {
+      --page-spacing: #{$page-spacing--desktop};
     }
   }
 
