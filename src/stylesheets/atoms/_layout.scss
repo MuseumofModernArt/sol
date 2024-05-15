@@ -1,8 +1,7 @@
 :root {
   $page-spacing:                     2.4rem;
-  $page-spacing--desktop:            2 * $page-spacing;
-  $page-spacing--landscape:          1.6rem;
-  $page-spacing--landscape--desktop: 2 * $page-spacing--landscape;
+  $page-spacing--desktop:            3.2rem;
+  $page-spacing--desktop--wrapper:   4.8rem;
 
   --rem-conversion: 0.1rem;  // Rem conversion. No Math!
 
@@ -24,6 +23,7 @@
   @include breakpoint($desktop) {
     --page-spacing:        #{$page-spacing--desktop};
     --page-spacing--fixed: #{$page-spacing--desktop};
+    --page-spacing--fixed--wrapper: #{$page-spacing--desktop--wrapper};
 
     @include breakpoint(tall) {
       --page-spacing: #{$page-spacing--desktop};
@@ -77,8 +77,8 @@
     @extend %layout--margins-auto;
     @extend %layout--page-width;
 
-    padding-left:  var(--page-spacing--fixed);
-    padding-right: var(--page-spacing--fixed);
+    padding-left:  var(--page-spacing--fixed--wrapper, --page-spacing--fixed);
+    padding-right: var(--page-spacing--fixed--wrapper, --page-spacing--fixed);
 
     @include variant(extension) {
       @include variant(left, right) {
