@@ -5,8 +5,8 @@
 
   --rem-conversion: 0.1rem;  // Rem conversion. No Math!
 
-  --page-spacing:        #{$page-spacing};
-  --page-spacing--fixed: #{$page-spacing};
+  --page-spacing:        #{$page-spacing}; // Top/bottom spacing.
+  --page-spacing--fixed: #{$page-spacing}; // Left/right spacing.
 
   --page-width--extension: 0rem;
   --page-width--layout:    calc(var(--page-width--visible) - var(--page-spacing--fixed) * 2);
