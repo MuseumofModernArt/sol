@@ -58,19 +58,6 @@ $breakpoint-delimiter:      #{$atom-breakpoint-delimiter};
           }
         }
         @else {
-          // Render landscape queries after widths, for specificity.
-          // These are used sparingly, when we care more about overall viewport shape more than width—like Collection objects, video heroes, etc.
-          @include breakpoint(landscape) {
-            $atom-breakpoint: #{$breakpoint-prefix}#{$breakpoint--current}#{$breakpoint-delimiter} !global;
-
-            @content;
-
-            @include breakpoint($desktop) {
-              $atom-breakpoint: #{$atom-breakpoint}#{$breakpoint--current}#{$breakpoint-delimiter} !global; // Nested/appended.
-
-              @content;
-            }
-          }
           // Then our lone height.
           @include breakpoint($desktop) { // Only meaningful on desktop.
             @include breakpoint(tall) {
