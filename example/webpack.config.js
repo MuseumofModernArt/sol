@@ -8,7 +8,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
-        test: /\.(woff2?|ttf|eot)$/,
+        test: /\.(woff2)$/,
         use: {
           loader: "file-loader",
           options: {
