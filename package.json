@@ -1,5 +1,5 @@
 {
-  "name": "@MuseumofModernArt/sol",
+  "name": "sol",
   "version": "3.2.14",
   "description": "Atomic styles and javascript for MoMA digital properties",
   "main": "dist/sol.js",
@@ -36,5 +36,9 @@
   },
   "dependencies": {
     "balance-text": "^3.3.0"
+  },
+  "engineStrict": true,
+  "engines": {
+    "node": "^20.0.0"
   }
 }
