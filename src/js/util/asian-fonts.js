@@ -21,12 +21,18 @@ export const loadAsianFonts = () => {
 
     const notoSansVariant = notoSansMappings[lang] || false;
 
-    if (notoSansVariant !== false) {
-      const link = document.createElement('link');
-      link.rel = "stylesheet";
-      link.type = "text/css";
-      link.href = "https://fonts.googleapis.com/css2?family=Noto+Sans+" + notoSansVariant + ":wght@100;300;400;500;700;900";
-      document.head.appendChild(link);
-    }
+    if (notoSansVariant === false) return;
+
+    const stylesheetId = "noto-sans-" + notoSansVariant;
+
+    if (document.getElementById(stylesheetId)) return;
+
+    const link = document.createElement('link');
+    link.id = stylesheetId;
+    link.rel = "stylesheet";
+    link.type = "text/css";
+    link.href = "https://fonts.googleapis.com/css2?family=Noto+Sans+" + notoSansVariant + ":wght@100;300;400;500;700;900";
+    document.head.appendChild(link);
+
   });
 };
