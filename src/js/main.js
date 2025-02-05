@@ -5,6 +5,7 @@ import Viewporter from './viewporter/viewporter';
 import SessionColor from './session-color/session-color';
 import Modernizr from './modernizr/modernizr';
 import Nav from './nav/nav';
+import { loadAsianFonts } from './util/asian-fonts';
 
 class Sol {
   constructor() {
@@ -18,6 +19,8 @@ class Sol {
     this.balanceText.initInteraction();
   }
 }
+
+loadAsianFonts();
 
 export {
   Sol,
