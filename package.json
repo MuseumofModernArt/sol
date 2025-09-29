@@ -37,8 +37,7 @@
   "dependencies": {
     "balance-text": "^3.3.0"
   },
-  "engineStrict": true,
   "engines": {
-    "node": "^20.0.0"
+    "node": "20"
   }
 }
