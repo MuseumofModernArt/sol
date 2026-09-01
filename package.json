@@ -36,8 +36,5 @@
   },
   "dependencies": {
     "balance-text": "^3.3.0"
-  },
-  "engines": {
-    "node": "22"
   }
 }
