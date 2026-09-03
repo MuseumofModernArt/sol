@@ -230,6 +230,18 @@
           flex-#{$direction}: initial;
         }
       }
+
+      @include variant(basis) {
+        $basis-property:    css-var(&);
+        $basis-placeholder: placeholder(first-selector(&));
+
+        flex-basis: var(#{$basis-property}); // Allow for inlining.
+
+        // Same vocabulary as “layout/width”, since basis is the main-axis size.
+        @include variant-percentages {
+          @extend #{$basis-placeholder};
+        }
+      }
     }
 
     @include atom(grid) {
